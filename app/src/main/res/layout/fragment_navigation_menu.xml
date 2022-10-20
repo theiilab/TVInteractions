@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/open_nav_CL"
+    android:background="@color/transparent"
+    android:layout_width="wrap_content"
+    android:padding="15dp"
+    android:layout_height="match_parent">
+
+    <!--  Search  -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/search_IB"
+        android:layout_width="@dimen/dimens_22dp"
+        android:layout_height="@dimen/dimens_22dp"
+        android:layout_marginTop="@dimen/dimens_100dp"
+        android:layout_marginStart="@dimen/dimens_5dp"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:nextFocusUp="@id/search_IB"
+        android:nextFocusLeft="@id/search_IB"
+        android:nextFocusDown="@id/home_IB"
+        android:tag="@string/menu_item_home"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_search_unselected" />
+    <TextView
+        android:id="@+id/search_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_17dp"
+        android:text="@string/menu_item_search"
+        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textSize="@dimen/dimens_20sp"
+        android:fontFamily="monospace"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/search_IB"
+        app:layout_constraintStart_toEndOf="@id/search_IB"
+        app:layout_constraintTop_toTopOf="@id/search_IB" />
+
+    <!--  Home  -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/home_IB"
+        android:layout_width="@dimen/dimens_22dp"
+        android:layout_height="@dimen/dimens_22dp"
+        android:layout_marginTop="@dimen/dimens_30dp"
+        android:layout_marginStart="@dimen/dimens_5dp"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:nextFocusUp="@id/search_IB"
+        android:nextFocusLeft="@id/home_IB"
+        android:nextFocusDown="@id/movies_IB"
+        android:tag="@string/menu_item_home"
+        app:layout_constraintTop_toBottomOf="@id/search_IB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_home_unselected" />
+    <TextView
+        android:id="@+id/home_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_17dp"
+        android:text="@string/menu_item_home"
+        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textSize="@dimen/dimens_20sp"
+        android:fontFamily="monospace"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/home_IB"
+        app:layout_constraintStart_toEndOf="@id/home_IB"
+        app:layout_constraintTop_toTopOf="@id/home_IB" />
+
+    <!--  Movies  -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/movies_IB"
+        android:layout_width="@dimen/dimens_22dp"
+        android:layout_height="@dimen/dimens_22dp"
+        android:layout_marginTop="@dimen/dimens_30dp"
+        android:layout_marginStart="@dimen/dimens_5dp"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:nextFocusUp="@id/home_IB"
+        android:nextFocusLeft="@id/movies_IB"
+        android:nextFocusDown="@id/shows_IB"
+        android:tag="@string/menu_item_movies"
+        app:layout_constraintTop_toBottomOf="@id/home_IB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_movie_unselected" />
+    <TextView
+        android:id="@+id/movies_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_17dp"
+        android:text="@string/menu_item_movies"
+        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textSize="@dimen/dimens_20sp"
+        android:fontFamily="monospace"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/movies_IB"
+        app:layout_constraintStart_toEndOf="@id/movies_IB"
+        app:layout_constraintTop_toTopOf="@id/movies_IB" />
+
+    <!--  TV Shows  -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/shows_IB"
+        android:layout_width="@dimen/dimens_22dp"
+        android:layout_height="@dimen/dimens_22dp"
+        android:layout_marginTop="@dimen/dimens_30dp"
+        android:layout_marginStart="@dimen/dimens_5dp"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:nextFocusUp="@id/movies_IB"
+        android:nextFocusDown="@id/settings_IB"
+        android:nextFocusLeft="@id/shows_IB"
+        android:tag="@string/menu_item_tv_shows"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movies_IB"
+        app:srcCompat="@drawable/ic_shows_unselected" />
+    <TextView
+        android:id="@+id/shows_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_17dp"
+        android:fontFamily="monospace"
+        android:text="@string/menu_item_tv_shows"
+        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textSize="@dimen/dimens_20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/shows_IB"
+        app:layout_constraintStart_toEndOf="@id/shows_IB"
+        app:layout_constraintTop_toTopOf="@id/shows_IB" />
+
+    <!--  Settings  -->
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/settings_IB"
+        android:layout_width="@dimen/dimens_22dp"
+        android:layout_height="@dimen/dimens_22dp"
+        android:layout_marginTop="@dimen/dimens_30dp"
+        android:layout_marginStart="@dimen/dimens_5dp"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:nextFocusUp="@id/shows_IB"
+        android:nextFocusDown="@id/settings_IB"
+        android:nextFocusLeft="@id/settings_IB"
+        android:tag="@string/menu_item_settings"
+        app:layout_constraintTop_toBottomOf="@id/shows_IB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_settings_unselected" />
+    <TextView
+        android:id="@+id/settings_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_17dp"
+        android:fontFamily="monospace"
+        android:text="@string/menu_item_settings"
+        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textSize="@dimen/dimens_20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/settings_IB"
+        app:layout_constraintStart_toEndOf="@id/settings_IB"
+        app:layout_constraintTop_toTopOf="@id/settings_IB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

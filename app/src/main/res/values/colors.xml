@@ -1,0 +1,18 @@
+<resources>
+    <color name="transparent">#00000000</color>
+
+    <color name="background">#000000</color> <!-- #0d0c10 -->
+    <color name="background2">#0d0c10</color> <!-- #0d0c10 -->
+    <color name="background_gradient_start">#FF000000</color>
+    <color name="background_gradient_end">#00DDDDDD</color>
+    <color name="fastlane_background">#000000</color>
+
+    <!--    nav menu-->
+    <color name="navigation_menu_focus_color">#ffaa3f</color>
+    <color name="navigation_menu_focus_out_color">#CECCD5</color>
+
+    <!--   movie item in grid   -->
+    <color name="search_opaque">#ffaa3f</color>
+    <color name="selected_background">#ffaa3f</color>
+    <color name="default_background">#1c1a23</color>
+</resources>
