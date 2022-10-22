@@ -52,12 +52,13 @@ public class PlaybackFragment extends VideoSupportFragment {
         // get selected movie
         movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
-        VideoSupportFragmentGlueHost glueHost =
-                new VideoSupportFragmentGlueHost(PlaybackFragment.this);
-
+        // set up adapter
         MediaPlayerAdapter playerAdapter = new MediaPlayerAdapter(getActivity());
         playerAdapter.setRepeatAction(PlaybackControlsRow.RepeatAction.INDEX_NONE);
 
+        //set up glue and glue host
+        VideoSupportFragmentGlueHost glueHost =
+                new VideoSupportFragmentGlueHost(PlaybackFragment.this);
         mTransportControlGlue = new PlaybackTransportControlGlue<>(getActivity(), playerAdapter);
         mTransportControlGlue.setHost(glueHost);
         mTransportControlGlue.setTitle(movie.getTitle());
