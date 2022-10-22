@@ -17,9 +17,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TVINteractions"
+        android:theme="@style/Theme.TVInteractions"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.playback.PlaybackActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:banner="@drawable/app_icon_your_company"
@@ -28,14 +27,15 @@
             android:label="@string/title_activity_main"
             android:logo="@drawable/app_icon_your_company"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.TVINteractions.NoActionBar">
+            android:theme="@style/Theme.TVInteractions.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.movie_detail.DetailsActivity" />
+        <activity android:name=".view.movie_detail.DetailsActivity"/>
+        <activity android:name=".view.playback.PlaybackActivity"/>
     </application>
 
 </manifest>

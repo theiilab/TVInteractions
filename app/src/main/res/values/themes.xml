@@ -1,13 +1,13 @@
 <resources>
 
-    <style name="Theme.TVINteractions" parent="@style/Theme.Leanback" />
+    <style name="Theme.TVInteractions" parent="@style/Theme.Leanback" />
 
-    <style name="Theme.TVINteractions.NoActionBar">
+    <style name="Theme.TVInteractions.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.TVINteractions.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TVInteractions.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.TVINteractions.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.TVInteractions.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

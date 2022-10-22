@@ -4,11 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.yuanren.tvinteractions.R;
 
 /**
@@ -26,7 +21,7 @@ public class DetailsActivity extends FragmentActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.details_fragment, DetailsFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE)))
+                    .replace(R.id.detials_fragment, DetailsFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE)))
                     .commitNow();
         }
     }

@@ -284,6 +284,7 @@ public class NavigationMenuFragment extends Fragment {
     public void closeNav() {
         Log.d(TAG, "closeNav");
         enableNavMenuViews(View.GONE);
+        navOutAnimation();
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.MATCH_PARENT);
         constraintLayout.setLayoutParams(lp);
 
@@ -293,6 +294,11 @@ public class NavigationMenuFragment extends Fragment {
         //Setting out of focus views for menu icons, names
         unHighlightMenuSelections(lastSelectedMenuItem);
 
+    }
+
+    private void navOutAnimation() {
+        Animation animate = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_right);
+        constraintLayout.startAnimation(animate);
     }
 
     private void unHighlightMenuSelections(int lastSelectedMenuItem) {

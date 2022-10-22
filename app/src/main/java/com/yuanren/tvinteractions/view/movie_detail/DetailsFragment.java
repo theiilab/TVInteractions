@@ -1,6 +1,14 @@
 package com.yuanren.tvinteractions.view.movie_detail;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,25 +17,21 @@ import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
+import androidx.leanback.widget.OnItemViewSelectedListener;
+import androidx.leanback.widget.Presenter;
+import androidx.leanback.widget.Row;
+import androidx.leanback.widget.RowPresenter;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.base.MovieDetailsCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 
 import org.jetbrains.annotations.NotNull;
+import com.bumptech.glide.Glide;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,27 +39,18 @@ import java.util.List;
  * Use the {@link DetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends RowsSupportFragment implements MovieDetailsCallback {
     private static final String TAG = "DetailsFragment";
     private static final String SELECTED_MOVIE_ID = "selectedMovieId";
 
-    // num of related movies/recommadations
-    private static final int NUM_COLS = 15;
-    private ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter();
-
+    private FrameLayout backgroundContainer;
     private ImageView backgroundImage;
-    private TextView title;
-    private TextView description;
-    private TextView studio;
-    private TextView category;
-    private ImageButton playIB;
-    private TextView playTV;
-    private ImageView restartIB;
-    private TextView restartTV;
-    private ImageButton trailerIB;
-    private TextView trailerTV;
-    private ImageButton myListIB;
-    private TextView myListTV;
+    private float originalY;
+
+
+    // num of related movies/recommendations
+    private static final int NUM_COLS = 15;
+    private ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter(new RowPresenterSelector());
 
     private Movie movie;
     private List<Movie> list;
@@ -65,6 +60,7 @@ public class DetailsFragment extends Fragment {
     }
 
     public static DetailsFragment newInstance(long id) {
+        Log.d(TAG, "Item: " + String.valueOf(id));
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
         args.putLong(SELECTED_MOVIE_ID, id);
@@ -75,16 +71,6 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        addRowView();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView");
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false);
     }
 
     @Override
@@ -93,113 +79,82 @@ public class DetailsFragment extends Fragment {
 
         // get movies list and selected movie
         list = MovieList.getList();
-        movie = list.get((int)getArguments().getLong(SELECTED_MOVIE_ID));
+        movie = MovieList.findBy((int)getArguments().getLong(SELECTED_MOVIE_ID));
 
-        // init views
-        backgroundImage = view.findViewById(R.id.background_image);
-        title = view.findViewById(R.id.title);
-        description = view.findViewById(R.id.description);
-        studio = view.findViewById(R.id.studio);
-        category = view.findViewById(R.id.category);
-        playIB = view.findViewById(R.id.play_IB);
-        playTV = view.findViewById(R.id.play_TV);
-        restartIB = view.findViewById(R.id.restart_IB);
-        restartTV = view.findViewById(R.id.restart_TV);
-        trailerIB = view.findViewById(R.id.trailer_IB);
-        trailerTV = view.findViewById(R.id.trailer_TV);
-        myListIB = view.findViewById(R.id.watch_list_IB);
-        myListTV = view.findViewById(R.id.watch_list_TV);
-
-        title.setText(movie.getTitle());
-        description.setText(movie.getDescription());
-        studio.setText(movie.getStudio());
-        category.setText(" • Romance");
+        backgroundContainer = getActivity().findViewById(R.id.background_container);
+        originalY = backgroundContainer.getY();
+        backgroundImage = getActivity().findViewById(R.id.background_image);
         Glide.with(getContext())
                 .load(movie.getBackgroundImageUrl())
                 .centerCrop()
                 .into(backgroundImage);
 
-        // initially focused by default
-        playIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_focused));
+        addRowView();
 
-        playListener();
-        restartListener();
-        trailerListener();
-        playListListener();
+        setOnItemViewSelectedListener(new ItemViewSelectedListener());
     }
 
-    private void playListener() {
-        playIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                // is focused
-                if (b) {
-                    playIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_focused));
-                } else {
-                    playIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_unfocused));
-                }
+    private void addRowView() {
+        // movie details view
+        MovieDetailPresenter movieDetailPresenter = new MovieDetailPresenter();
+        movieDetailPresenter.setMovieDetailsCallback(this);
+        ArrayObjectAdapter detailAdapter = new ArrayObjectAdapter(movieDetailPresenter);
+        detailAdapter.add(movie);
+        mRowsAdapter.add(new ListRow(detailAdapter));
+
+        // related movies view
+        CardPresenter cardPresenter = new CardPresenter();
+        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenter);
+        for (int i = 0; i < NUM_COLS; i++) {
+            listRowAdapter.add(list.get(i));
+        }
+        HeaderItem header = new HeaderItem(1, "Relate Movies");
+        mRowsAdapter.add(new ListRow(header, listRowAdapter));
+        setAdapter(mRowsAdapter);
+    }
+
+    @Override
+    public void backgroundToggle() {
+        animateBgImage(true);
+    }
+
+    private void animateBgImage(boolean isVisible) {
+        Animation animation;
+        if (isVisible) {
+            animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_up);
+            backgroundContainer.setY(originalY - backgroundContainer.getHeight() / 2);
+        } else {
+            animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_down);
+            backgroundContainer.setY(originalY);
+        }
+        backgroundContainer.startAnimation(animation);
+    }
+
+    // called when user navigate to the item and focus on it
+    private final class ItemViewSelectedListener implements OnItemViewSelectedListener {
+        @Override
+        public void onItemSelected(
+                Presenter.ViewHolder itemViewHolder,
+                Object item,
+                RowPresenter.ViewHolder rowViewHolder,
+                Row row) {
+
+            if (item instanceof Movie) {
+                Log.d(TAG, "ItemViewSelectedListener");
+
+                itemViewHolder.view.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                        if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                            if (i == KeyEvent.KEYCODE_DPAD_UP) {
+                                animateBgImage(false);
+                            }
+                        }
+                        return false;
+                    }
+                });
+
             }
-        });
+        }
     }
-
-    private void restartListener() {
-        restartIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                // is focused
-                if (b) {
-                    restartIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_focused));
-                    restartTV.setVisibility(View.VISIBLE);
-
-                } else {
-                    restartIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    restartTV.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
-
-    private void trailerListener() {
-        trailerIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                // is focused
-                if (b) {
-                    trailerIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_focused));
-                    trailerTV.setVisibility(View.VISIBLE);
-
-                } else {
-                    trailerIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    trailerTV.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
-
-    private void playListListener() {
-        myListIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                // is focused
-                if (b) {
-                    myListIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_focused));
-                    myListTV.setVisibility(View.VISIBLE);
-
-                } else {
-                    myListIB.setBackground(getActivity().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    myListTV.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
-
-//    private void addRowView() {
-//        CardPresenter cardPresenter = new CardPresenter();
-//            ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenter);
-//            for (int j = 0; j < NUM_COLS; j++) {
-//                listRowAdapter.add(list.get(j));
-//            }
-//            mRowsAdapter.add(new ListRow(listRowAdapter));
-//        setAdapter(mRowsAdapter);
-//    }
 }
