@@ -9,7 +9,7 @@ import androidx.leanback.widget.Presenter;
 
 import com.yuanren.tvinteractions.R;
 
-public class MovieDetailViewHolder extends Presenter.ViewHolder {
+public class DetailsViewHolder extends Presenter.ViewHolder {
 //    ImageView backgroundImage;
     TextView title;
     TextView description;
@@ -24,7 +24,7 @@ public class MovieDetailViewHolder extends Presenter.ViewHolder {
     ImageButton myListIB;
     TextView myListTV;
 
-    public MovieDetailViewHolder(View view) {
+    public DetailsViewHolder(View view) {
         super(view);
 
 //        backgroundImage = view.findViewById(R.id.background_image);

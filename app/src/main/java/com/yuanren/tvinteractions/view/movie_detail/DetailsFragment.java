@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -23,7 +22,7 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.base.MovieDetailsCallback;
+import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
@@ -39,12 +38,12 @@ import java.util.List;
  * Use the {@link DetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailsFragment extends RowsSupportFragment implements MovieDetailsCallback {
+public class DetailsFragment extends RowsSupportFragment implements DetailsAnimationCallback {
     private static final String TAG = "DetailsFragment";
-    private static final String SELECTED_MOVIE_ID = "selectedMovieId";
 
     private FrameLayout backgroundContainer;
     private ImageView backgroundImage;
+
     private float originalY;
 
 
@@ -63,7 +62,7 @@ public class DetailsFragment extends RowsSupportFragment implements MovieDetails
         Log.d(TAG, "Item: " + String.valueOf(id));
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
-        args.putLong(SELECTED_MOVIE_ID, id);
+        args.putLong(DetailsActivity.SELECTED_MOVIE_ID, id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,7 +78,7 @@ public class DetailsFragment extends RowsSupportFragment implements MovieDetails
 
         // get movies list and selected movie
         list = MovieList.getList();
-        movie = MovieList.findBy((int)getArguments().getLong(SELECTED_MOVIE_ID));
+        movie = MovieList.findBy((int)getArguments().getLong(DetailsActivity.SELECTED_MOVIE_ID));
 
         backgroundContainer = getActivity().findViewById(R.id.background_container);
         originalY = backgroundContainer.getY();
@@ -96,11 +95,11 @@ public class DetailsFragment extends RowsSupportFragment implements MovieDetails
 
     private void addRowView() {
         // movie details view
-        MovieDetailPresenter movieDetailPresenter = new MovieDetailPresenter();
-        movieDetailPresenter.setMovieDetailsCallback(this);
-        ArrayObjectAdapter detailAdapter = new ArrayObjectAdapter(movieDetailPresenter);
-        detailAdapter.add(movie);
-        mRowsAdapter.add(new ListRow(detailAdapter));
+        DetailsPresenter detailsPresenter = new DetailsPresenter();
+        detailsPresenter.setMovieDetailsCallback(this);
+        ArrayObjectAdapter detailsAdapter = new ArrayObjectAdapter(detailsPresenter);
+        detailsAdapter.add(movie);
+        mRowsAdapter.add(new ListRow(detailsAdapter));
 
         // related movies view
         CardPresenter cardPresenter = new CardPresenter();
@@ -153,7 +152,6 @@ public class DetailsFragment extends RowsSupportFragment implements MovieDetails
                         return false;
                     }
                 });
-
             }
         }
     }

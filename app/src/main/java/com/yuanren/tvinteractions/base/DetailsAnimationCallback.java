@@ -1,5 +1,5 @@
 package com.yuanren.tvinteractions.base;
 
-public interface MovieDetailsCallback {
+public interface DetailsAnimationCallback {
     void backgroundToggle();
 }

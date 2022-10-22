@@ -64,14 +64,14 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         try {
             if (toShow) {
                 navDrawerLayout.setBackgroundResource(R.drawable.ic_nav_bg_open);
-                mainContentLayout.clearFocus();
                 navDrawerLayout.requestFocus();
+                mainContentLayout.clearFocus();
                 navEnterAnimation();
                 navMenuFragment.openNav();
             } else {
                 navDrawerLayout.setBackgroundResource(R.drawable.ic_nav_bg_closed);
-                navDrawerLayout.clearFocus();
                 mainContentLayout.requestFocus();
+                navDrawerLayout.clearFocus();
                 navMenuFragment.closeNav();
             }
         } catch (Exception e) {
@@ -102,8 +102,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
     @Override
     public void onStateChanged(Boolean expanded, int lastSelected) {
         if (!expanded) {
-            navDrawerLayout.setBackgroundResource(R.drawable.ic_nav_bg_closed);
-            navDrawerLayout.clearFocus();
+            navMenuToggle(false);
 
             switch (currentSelectedFragment) {
                 case NavigationMenuFragment.TYPE_VIEW_HOME:

@@ -1,6 +1,6 @@
 package com.yuanren.tvinteractions.view.movie_detail;
 
-import android.os.StrictMode;
+import android.content.Intent;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -10,37 +10,39 @@ import android.view.ViewGroup;
 import androidx.leanback.widget.Presenter;
 
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.base.MovieDetailsCallback;
-import com.yuanren.tvinteractions.base.NavigationMenuCallback;
+import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
 import com.yuanren.tvinteractions.model.Movie;
+import com.yuanren.tvinteractions.view.playback.PlaybackActivity;
 
-public class MovieDetailPresenter extends Presenter {
+public class DetailsPresenter extends Presenter {
     private static final String TAG = "MovieDetailPresenter";
-    private MovieDetailsCallback movieDetailsCallback;
+    private DetailsAnimationCallback detailsCallback;
     private float originalY = 0;
+    private long movieId;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
         Log.d(TAG, "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_card, parent, false);
-        return new MovieDetailViewHolder(view);
+        return new DetailsViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
         Log.d(TAG, "onBindViewHolder");
         Movie movie = (Movie) item;
-        MovieDetailViewHolder movieDetailViewHolder = (MovieDetailViewHolder) viewHolder;
-        movieDetailViewHolder.title.setText(movie.getTitle());
-        movieDetailViewHolder.description.setText(movie.getDescription());
-        movieDetailViewHolder.studio.setText(movie.getStudio());
-        movieDetailViewHolder.category.setText(" • Romance");
+        movieId = movie.getId();
+        DetailsViewHolder detailsViewHolder = (DetailsViewHolder) viewHolder;
+        detailsViewHolder.title.setText(movie.getTitle());
+        detailsViewHolder.description.setText(movie.getDescription());
+        detailsViewHolder.studio.setText(movie.getStudio());
+        detailsViewHolder.category.setText(" • Romance");
 
         // initially focused by default
-        movieDetailViewHolder.playIB.setBackground(viewHolder.view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+        detailsViewHolder.playIB.setBackground(viewHolder.view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
 
         // set listeners for image buttons
-        movieDetailViewHolder.playIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        detailsViewHolder.playIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // is focused
@@ -51,84 +53,99 @@ public class MovieDetailPresenter extends Presenter {
                 }
             }
         });
-        movieDetailViewHolder.playIB.setOnKeyListener(new View.OnKeyListener() {
+        detailsViewHolder.playIB.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        movieDetailsCallback.backgroundToggle();
+
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            detailsCallback.backgroundToggle();
+                            break;
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            Intent intent = new Intent(detailsViewHolder.view.getContext(), PlaybackActivity.class);
+                            intent.putExtra(PlaybackActivity.SELECTED_MOVIE_ID, movieId);
+                            detailsViewHolder.view.getContext().startActivity(intent);
+                            break;
                     }
                 }
                 return false;
             }
         });
 
-        movieDetailViewHolder.restartIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        detailsViewHolder.restartIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // is focused
                 if (b) {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
-                    movieDetailViewHolder.restartTV.setVisibility(View.VISIBLE);
+                    detailsViewHolder.restartTV.setVisibility(View.VISIBLE);
                 } else {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    movieDetailViewHolder.restartTV.setVisibility(View.GONE);
+                    detailsViewHolder.restartTV.setVisibility(View.GONE);
                 }
             }
         });
-        movieDetailViewHolder.restartIB.setOnKeyListener(new View.OnKeyListener() {
+        detailsViewHolder.restartIB.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        movieDetailsCallback.backgroundToggle();
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            detailsCallback.backgroundToggle();
+                            break;
                     }
                 }
                 return false;
             }
         });
-        movieDetailViewHolder.trailerIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        detailsViewHolder.trailerIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
-                    movieDetailViewHolder.trailerTV.setVisibility(View.VISIBLE);
+                    detailsViewHolder.trailerTV.setVisibility(View.VISIBLE);
                 } else {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    movieDetailViewHolder.trailerTV.setVisibility(View.GONE);
+                    detailsViewHolder.trailerTV.setVisibility(View.GONE);
                 }
             }
         });
-        movieDetailViewHolder.trailerIB.setOnKeyListener(new View.OnKeyListener() {
+        detailsViewHolder.trailerIB.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        movieDetailsCallback.backgroundToggle();
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            detailsCallback.backgroundToggle();
+                            break;
                     }
                 }
                 return false;
             }
         });
-        movieDetailViewHolder.myListIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        detailsViewHolder.myListIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // is focused
                 if (b) {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
-                    movieDetailViewHolder.myListTV.setVisibility(View.VISIBLE);
+                    detailsViewHolder.myListTV.setVisibility(View.VISIBLE);
                 } else {
                     view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
-                    movieDetailViewHolder.myListTV.setVisibility(View.GONE);
+                    detailsViewHolder.myListTV.setVisibility(View.GONE);
                 }
             }
         });
-        movieDetailViewHolder.myListIB.setOnKeyListener(new View.OnKeyListener() {
+        detailsViewHolder.myListIB.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
-                        movieDetailsCallback.backgroundToggle();
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            detailsCallback.backgroundToggle();
+                            break;
                     }
                 }
                 return false;
@@ -136,8 +153,8 @@ public class MovieDetailPresenter extends Presenter {
         });
     }
 
-    public void setMovieDetailsCallback(MovieDetailsCallback callback) {
-        this.movieDetailsCallback = callback;
+    public void setMovieDetailsCallback(DetailsAnimationCallback callback) {
+        this.detailsCallback = callback;
     }
 
     @Override

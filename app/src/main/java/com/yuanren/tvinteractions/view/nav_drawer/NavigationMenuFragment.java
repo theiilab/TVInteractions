@@ -76,13 +76,13 @@ public class NavigationMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_navigation_menu, container, false);
+        return inflater.inflate(R.layout.navigation_menu, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        constraintLayout = getActivity().findViewById(R.id.open_nav_CL);
+        constraintLayout = getActivity().findViewById(R.id.nav_drawer_details);
         searchIB = view.findViewById(R.id.search_IB);
         homeIB = view.findViewById(R.id.home_IB);
         moviesIB = view.findViewById(R.id.movies_IB);
@@ -243,10 +243,6 @@ public class NavigationMenuFragment extends Fragment {
             settingsTV.setVisibility(visibility);
         } else {
             animateMenuNamesEntry(searchTV, visibility, TYPE_VIEW_SEARCH);
-//            animateMenuNamesEntry(homeTV, visibility, TYPE_VIEW_HOME);
-//            animateMenuNamesEntry(moviesTV, visibility, TYPE_VIEW_MOVIES);
-//            animateMenuNamesEntry(tvShowsTV, visibility, TYPE_VIEW_TV_SHOWS);
-//            animateMenuNamesEntry(settingsTV, visibility, TYPE_VIEW_SETTING);
         }
 
     }
@@ -284,7 +280,6 @@ public class NavigationMenuFragment extends Fragment {
     public void closeNav() {
         Log.d(TAG, "closeNav");
         enableNavMenuViews(View.GONE);
-        navOutAnimation();
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.MATCH_PARENT);
         constraintLayout.setLayoutParams(lp);
 
@@ -294,11 +289,7 @@ public class NavigationMenuFragment extends Fragment {
         //Setting out of focus views for menu icons, names
         unHighlightMenuSelections(lastSelectedMenuItem);
 
-    }
 
-    private void navOutAnimation() {
-        Animation animate = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_right);
-        constraintLayout.startAnimation(animate);
     }
 
     private void unHighlightMenuSelections(int lastSelectedMenuItem) {

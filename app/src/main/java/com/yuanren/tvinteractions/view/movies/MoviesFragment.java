@@ -170,7 +170,7 @@ public class MoviesFragment extends RowsSupportFragment {
                 Movie movie = (Movie) item;
                 Log.d(TAG, "Item: " + item.toString());
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra(DetailsActivity.SELECTED_MOVIE, movie.getId());
+                intent.putExtra(DetailsActivity.SELECTED_MOVIE_ID, movie.getId());
 
                 // start detail activity
 //                Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(

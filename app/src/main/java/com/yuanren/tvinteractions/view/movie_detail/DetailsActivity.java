@@ -12,7 +12,7 @@ import com.yuanren.tvinteractions.R;
  * create an instance of this fragment.
  */
 public class DetailsActivity extends FragmentActivity {
-    public static final String SELECTED_MOVIE = "MOVIE";
+    public static final String SELECTED_MOVIE_ID = "selectionMovieId";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class DetailsActivity extends FragmentActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.detials_fragment, DetailsFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE)))
+                    .replace(R.id.details_fragment, DetailsFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID)))
                     .commitNow();
         }
     }
