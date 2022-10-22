@@ -102,6 +102,8 @@ public class NavigationMenuFragment extends Fragment {
         // set listeners for each mav menu item
         searchListeners();
         homeListeners();
+        moviesListener();
+        tvShowsListener();
     }
 
     public void setFragmentChangeListener(FragmentChangeListener callback) {
@@ -191,6 +193,91 @@ public class NavigationMenuFragment extends Fragment {
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
                             navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
                             closeNav();
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    private void moviesListener() {
+        moviesIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                // check if the button is focused
+                if (b) {
+                    if (isNavigationOpen()) {
+                        setMenuIconFocusView(moviesIB, R.drawable.ic_movie_selected);
+                        setMenuNameFocusView(moviesTV, true);
+                        focusIn(moviesIB, 0);
+                    }
+                } else {
+                    setMenuIconFocusView(moviesIB, R.drawable.ic_movie_unselected);
+                    setMenuNameFocusView(moviesTV, false);
+                    focusOut(moviesIB, 0);
+                }
+            }
+        });
+
+        moviesIB.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            lastSelectedMenuItem = TYPE_VIEW_MOVIES;
+                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
+                            fragmentChangeListener.switchFragment(TYPE_VIEW_MOVIES);
+                            closeNav();
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
+                            closeNav();
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
+    }
+
+    private void tvShowsListener() {
+        tvShowsIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                // check if the button is focused
+                if (b) {
+                    if (isNavigationOpen()) {
+                        setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_selected);
+                        setMenuNameFocusView(tvShowsTV, true);
+                        focusIn(tvShowsIB, 0);
+                    }
+                } else {
+                    setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_unselected);
+                    setMenuNameFocusView(tvShowsTV, false);
+                    focusOut(tvShowsIB, 0);
+                }
+            }
+        });
+
+        tvShowsIB.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            lastSelectedMenuItem = TYPE_VIEW_TV_SHOWS;
+                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
+                            fragmentChangeListener.switchFragment(TYPE_VIEW_TV_SHOWS);
+                            closeNav();
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
+                            closeNav();
+                            break;
                     }
                 }
                 return false;
