@@ -36,7 +36,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        mainContentLayout = findViewById(R.id.main_content);
+        mainContentLayout = findViewById(R.id.rows_movies);
         navDrawerLayout = findViewById(R.id.nav_drawer);
 
         navMenuFragment = NavigationMenuFragment.newInstance();
@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.main_content, moviesFragment)
+                    .add(R.id.rows_movies, moviesFragment)
                     .commit();
 //            moviesFragment.selectFirstItem();
         }

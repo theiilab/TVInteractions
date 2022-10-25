@@ -76,7 +76,7 @@ public class NavigationMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.navigation_menu, container, false);
+        return inflater.inflate(R.layout.fragment_navigation_menu, container, false);
     }
 
     @Override

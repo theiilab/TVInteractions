@@ -7,14 +7,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
 import androidx.leanback.widget.HeaderItem;
-import androidx.leanback.widget.ImageCardView;
 import androidx.leanback.widget.ListRow;
 import androidx.leanback.widget.ListRowPresenter;
 import androidx.leanback.widget.OnItemViewClickedListener;
@@ -29,9 +26,8 @@ import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
-import com.yuanren.tvinteractions.view.base.CardViewHolder;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
-import com.yuanren.tvinteractions.view.movie_detail.DetailsActivity;
+import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import java.util.Collections;
 import java.util.List;

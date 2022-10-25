@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="410dp"
-    tools:context=".view.movie_detail.DetailsFragment">
+    tools:context=".view.movie_details.DetailsFragment">
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

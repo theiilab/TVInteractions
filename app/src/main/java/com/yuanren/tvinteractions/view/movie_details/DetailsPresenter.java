@@ -1,4 +1,4 @@
-package com.yuanren.tvinteractions.view.movie_detail;
+package com.yuanren.tvinteractions.view.movie_details;
 
 import android.content.Intent;
 import android.util.Log;
@@ -12,12 +12,11 @@ import androidx.leanback.widget.Presenter;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
 import com.yuanren.tvinteractions.model.Movie;
-import com.yuanren.tvinteractions.view.playback.PlaybackActivity;
+import com.yuanren.tvinteractions.view.movie_playback.PlaybackActivity;
 
 public class DetailsPresenter extends Presenter {
     private static final String TAG = "MovieDetailPresenter";
     private DetailsAnimationCallback detailsCallback;
-    private float originalY = 0;
     private long movieId;
 
     @Override

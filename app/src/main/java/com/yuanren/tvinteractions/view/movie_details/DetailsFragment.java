@@ -1,4 +1,4 @@
-package com.yuanren.tvinteractions.view.movie_detail;
+package com.yuanren.tvinteractions.view.movie_details;
 
 import android.os.Bundle;
 import android.util.Log;

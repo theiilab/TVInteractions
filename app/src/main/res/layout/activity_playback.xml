@@ -4,6 +4,6 @@
     android:id="@+id/playback_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.playback.PlaybackActivity">
+    tools:context=".view.movie_playback.PlaybackActivity">
 
 </FrameLayout>
