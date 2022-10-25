@@ -1,11 +1,9 @@
 package com.yuanren.tvinteractions;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,14 +13,16 @@ import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
+import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
+import com.yuanren.tvinteractions.view.search.SearchFragment;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends FragmentActivity implements FragmentChangeListener, NavigationMenuCallback, NavigationStateListener {
     private static final String TAG = "MainActivity";
 
-    private FrameLayout mainContentLayout;
+    private FrameLayout fragmentsLayout;
     private FrameLayout navDrawerLayout;
 //    private ActivityMainBinding binding;
 
@@ -34,10 +34,10 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        mainContentLayout = findViewById(R.id.rows_movies);
+
         navDrawerLayout = findViewById(R.id.nav_drawer);
+        fragmentsLayout = findViewById(R.id.fragments);
 
         navMenuFragment = NavigationMenuFragment.newInstance();
         moviesFragment = MoviesFragment.newInstance();
@@ -52,9 +52,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.rows_movies, moviesFragment)
+                    .add(R.id.fragments, moviesFragment)
                     .commit();
-//            moviesFragment.selectFirstItem();
         }
     }
 
@@ -65,12 +64,12 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
             if (toShow) {
                 navDrawerLayout.setBackgroundResource(R.drawable.ic_nav_bg_open);
                 navDrawerLayout.requestFocus();
-                mainContentLayout.clearFocus();
+                fragmentsLayout.clearFocus();
                 navEnterAnimation();
                 navMenuFragment.openNav();
             } else {
                 navDrawerLayout.setBackgroundResource(R.drawable.ic_nav_bg_closed);
-                mainContentLayout.requestFocus();
+                fragmentsLayout.requestFocus();
                 navDrawerLayout.clearFocus();
                 navMenuFragment.closeNav();
             }
@@ -96,7 +95,30 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
     @Override
     public void switchFragment(int fragmentName) {
+        Fragment fragment = null;
 
+        switch (fragmentName) {
+            case NavigationMenuFragment.TYPE_VIEW_SEARCH:
+                fragment = new SearchFragment();
+                break;
+            case NavigationMenuFragment.TYPE_VIEW_HOME:
+                fragment = moviesFragment;
+                //                    moviesFragment.selectFirstItem();
+                break;
+            case NavigationMenuFragment.TYPE_VIEW_MOVIES:
+                fragment = moviesFragment;
+                break;
+            case NavigationMenuFragment.TYPE_VIEW_TV_SHOWS:
+                fragment = moviesFragment;
+                break;
+            case NavigationMenuFragment.TYPE_VIEW_SETTINGS:
+                fragment = moviesFragment;
+                break;
+        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragments, fragment)
+                .commit();
     }
 
     @Override

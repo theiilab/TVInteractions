@@ -145,13 +145,14 @@ public class NavigationMenuFragment extends Fragment {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                             lastSelectedMenuItem = TYPE_VIEW_SEARCH;
+                            closeNav();
                             navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
                             fragmentChangeListener.switchFragment(TYPE_VIEW_SEARCH);
-                            closeNav();
+
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
-                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
                             closeNav();
+                            navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
                     }
                 }
                 return false;

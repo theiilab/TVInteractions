@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/movies_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/top_banner"/>
+<include layout="@layout/top_banner"/>
 
-    <FrameLayout
-        android:id="@+id/rows_movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-80dp"/>
+<FrameLayout
+    android:id="@+id/rows_movies"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-80dp"/>
 </LinearLayout>
