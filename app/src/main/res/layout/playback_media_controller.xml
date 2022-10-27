@@ -3,17 +3,60 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/default_thick_background"
+        app:layout_constraintBottom_toBottomOf="parent" />
     <LinearLayout
+        android:id="@+id/x_ray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimens_30dp"
+        android:layout_marginLeft="@dimen/dimens_30dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/controls">
+        <TextView
+            android:layout_width="@dimen/x_ray_box_width"
+            android:layout_height="@dimen/x_ray_height"
+            android:padding="@dimen/dimens_10dp"
+            android:textColor="@color/text_highlight"
+            android:textAlignment="center"
+            android:background="@drawable/shape_x_ray_focused"
+            android:text="X-Ray"
+            android:gravity="center"/>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/x_ray_content"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginLeft="@dimen/dimens_10dp">-->
+
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimens_10dp">
+
+            <include layout="@layout/x_ray_card" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimens_5dp"
+        android:paddingLeft="@dimen/dimens_30dp"
+        android:paddingRight="@dimen/dimens_30dp"
+        android:paddingBottom="@dimen/dimens_30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
         <ImageView
             android:id="@+id/play_btn"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:src="@drawable/ic_play_white"/>
         <TextView
             android:id="@+id/exo_position"
@@ -25,7 +68,7 @@
             android:textColor="@android:color/background_light"/>
 
         <com.google.android.exoplayer2.ui.DefaultTimeBar
-            android:id="@+id/time_bar"
+            android:id="@+id/exo_progress"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

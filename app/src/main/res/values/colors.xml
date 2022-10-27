@@ -20,4 +20,6 @@
     <color name="unplayed">#45424E</color>
     <color name="buffered">#95929F</color>
     <color name="played">#ffaa3f</color>
+    <color name="text_highlight">#ffaa3f</color>
+    <color name="x_ray_background_color">#aa303134</color>
 </resources>

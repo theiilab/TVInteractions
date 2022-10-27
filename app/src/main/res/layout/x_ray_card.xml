@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x_ray_card_width"
+    android:layout_height="@dimen/x_ray_height"
+    android:background="@drawable/shape_x_ray_info"
+    android:orientation="horizontal"
+    android:clipChildren="true">
+
+    <ImageView
+        android:id="@+id/info_image"
+        android:layout_width="40dp"
+        android:layout_height="@dimen/x_ray_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/x_ray_figure"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="@dimen/x_ray_height"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Tom Cruis"/>
+
+</LinearLayout>

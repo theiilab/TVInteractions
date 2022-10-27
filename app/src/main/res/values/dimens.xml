@@ -12,4 +12,8 @@
 
     <dimen name="details_btn_size">40dp</dimen>
     <dimen name="details_btn_margin">20dp</dimen>
+
+    <dimen name="x_ray_height">60dp</dimen>
+    <dimen name="x_ray_box_width">60dp</dimen>
+    <dimen name="x_ray_card_width">120dp</dimen>
 </resources>

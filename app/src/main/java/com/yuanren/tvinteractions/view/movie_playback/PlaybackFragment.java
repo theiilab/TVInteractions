@@ -3,6 +3,7 @@ package com.yuanren.tvinteractions.view.movie_playback;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,11 +114,26 @@ public class PlaybackFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         playerView = view.findViewById(R.id.video_player);
-        progressBar = view.findViewById(R.id.progress_bar);
+//        progressBar = view.findViewById(R.id.progress_bar);
 
         // get selected movie
         movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
         initializePlayer(movie.getVideoUrl());
+
+        playerView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            Log.d(TAG, "playView on press");
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void initializePlayer(String url) {
