@@ -15,4 +15,9 @@
     <color name="search_opaque">#ffaa3f</color>
     <color name="selected_background">#ffaa3f</color>
     <color name="default_background">#1c1a23</color>
+
+    <!--    playback media control-->
+    <color name="unplayed">#45424E</color>
+    <color name="buffered">#95929F</color>
+    <color name="played">#ffaa3f</color>
 </resources>

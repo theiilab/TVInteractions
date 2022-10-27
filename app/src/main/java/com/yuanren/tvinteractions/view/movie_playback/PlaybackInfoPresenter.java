@@ -10,7 +10,7 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 
 public class PlaybackInfoPresenter extends Presenter {
-    private static final String TAG = "MovieDetailPresenter";
+    private static final String TAG = "PlaybackInfoPresenter";
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {

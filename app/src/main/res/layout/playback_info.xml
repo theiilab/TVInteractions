@@ -7,13 +7,23 @@
     android:paddingLeft="@dimen/dimens_24dp"
     android:paddingRight="@dimen/dimens_24dp"
     android:paddingTop="@dimen/dimens_24dp">
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="@dimen/dimens_24dp"
+        android:layout_height="@dimen/dimens_24dp"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Movie Title"
         android:textAlignment="textEnd"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:text="Movie Title"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/back_btn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
