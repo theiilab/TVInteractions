@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -79,6 +80,7 @@ import org.jetbrains.annotations.NotNull;
 public class PlaybackFragment extends Fragment {
     private static final String TAG = "PlaybackFragment";
 
+    private TextView title;
     private PlayerView playerView;
     private ExoPlayer exoPlayer;
     private ProgressBar progressBar;
@@ -113,11 +115,13 @@ public class PlaybackFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        title = view.findViewById(R.id.title);
         playerView = view.findViewById(R.id.video_player);
 //        progressBar = view.findViewById(R.id.progress_bar);
 
         // get selected movie
         movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+        title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
 
         playerView.setOnKeyListener(new View.OnKeyListener() {
