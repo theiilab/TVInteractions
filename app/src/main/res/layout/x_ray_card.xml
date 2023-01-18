@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/x_ray_card_width"
     android:layout_height="@dimen/x_ray_height"
     android:background="@drawable/shape_x_ray_info"
     android:orientation="horizontal"
-    android:clipChildren="true">
+    android:clipChildren="true"
+    android:clipToOutline="true">
 
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:cardCornerRadius="@dimen/dimens_5dp">
     <ImageView
         android:id="@+id/info_image"
         android:layout_width="40dp"
         android:layout_height="@dimen/x_ray_height"
         android:scaleType="centerCrop"
         android:src="@drawable/x_ray_figure"/>
+    </androidx.cardview.widget.CardView>
     <TextView
+        android:id="@+id/info_details"
         android:layout_width="0dp"
         android:layout_height="@dimen/x_ray_height"
         android:layout_weight="1"
