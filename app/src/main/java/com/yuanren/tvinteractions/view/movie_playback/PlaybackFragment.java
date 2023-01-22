@@ -7,22 +7,30 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerLibraryInfo;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
+import com.yuanren.tvinteractions.view.movie_playback.x_ray.SpaceItemDecoration;
+import com.yuanren.tvinteractions.view.movie_playback.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
+import org.xml.sax.helpers.XMLReaderAdapter;
 
 //import com.google.android.exoplayer2.upstream.DataSource;
 
@@ -83,7 +91,12 @@ public class PlaybackFragment extends Fragment {
     private TextView title;
     private PlayerView playerView;
     private ExoPlayer exoPlayer;
-    private ProgressBar progressBar;
+    private ImageButton playBtn;
+    private DefaultTimeBar progressBar;
+    private RecyclerView recyclerView;
+    private XRayCardListAdapter adapter;
+
+
     private boolean playWhenReady = true;
     private int currentItem = 0;
     private long playbackPosition = 0L;
@@ -115,18 +128,31 @@ public class PlaybackFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        title = view.findViewById(R.id.title);
-        playerView = view.findViewById(R.id.video_player);
-//        progressBar = view.findViewById(R.id.progress_bar);
-
         // get selected movie
         movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+
+        // set x-ray row dynamically
+        recyclerView = view.findViewById(R.id.x_ray_content);
+        LinearLayoutManager ll = new LinearLayoutManager(getContext());
+        ll.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(ll);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.dimens_10dp)));
+        adapter = new XRayCardListAdapter(movie.getxRayItems());
+        recyclerView.setAdapter(adapter);
+
+        title = view.findViewById(R.id.title);
+        playerView = view.findViewById(R.id.video_player);
+        playBtn = view.findViewById(R.id.exo_play_btn);
+        progressBar = view.findViewById(R.id.exo_progress);
+
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
 
         playerView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
+
+                Log.d(TAG, "on key pressed");
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
@@ -149,11 +175,19 @@ public class PlaybackFragment extends Fragment {
         MediaItem mediaItem = MediaItem.fromUri(url);
         // Set the media item to be played.
         exoPlayer.setMediaItem(mediaItem);
+
+//        exoPlayer.addListener();
+
         // Prepare the player.
         exoPlayer.prepare();
-
         // Start the playback.
         exoPlayer.play();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initializePlayer(movie.getVideoUrl());
     }
 
     @Override
@@ -161,6 +195,4 @@ public class PlaybackFragment extends Fragment {
         super.onDestroy();
         exoPlayer.release();
     }
-
-
 }

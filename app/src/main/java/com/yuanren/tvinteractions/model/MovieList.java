@@ -1,7 +1,14 @@
 package com.yuanren.tvinteractions.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 public final class MovieList {
     public static final String MOVIE_CATEGORY[] = {
@@ -11,9 +18,14 @@ public final class MovieList {
             "Action",
             "Horror",
             "Sci-Fi",
+            "Adventure",
+            "Fantasy",
+            "Musicals",
+            "Mysteries"
     };
 
     private static List<Movie> list;
+    private static List<Map<String, List<String>>> xRayItems;
     private static long count = 0;
 
     public static List<Movie> getList() {
@@ -78,6 +90,8 @@ public final class MovieList {
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1HOYvwGFioUFL58UVvDRG6beEDm.jpg"
         };
 
+        xRayItems = setUpXRayItems();
+
         int n = title.length;
         for (int index = 0; index < length; ++index) {
             list.add(
@@ -111,6 +125,48 @@ public final class MovieList {
         movie.setCardImageUrl(cardImageUrl);
         movie.setBackgroundImageUrl(backgroundImageUrl);
         movie.setVideoUrl(videoUrl);
+
+//        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue()));
+        Map<String, List<String>> xRayItemForMovie = xRayItems.get(0);
+        List<String> names = xRayItemForMovie.get("name");
+        List<String> images = xRayItemForMovie.get("image");
+        List<String> links = xRayItemForMovie.get("link");
+
+        List<XRayItem> items = new ArrayList<>();
+        for (int i = 0; i < names.size(); ++i) {
+            XRayItem item = new XRayItem(names.get(i), images.get(i), links.get(i));
+            items.add(item);
+        }
+        movie.setxRayItems(items);
+
         return movie;
+    }
+
+    private static List<Map<String, List<String>>> setUpXRayItems() {
+        List<Map<String, List<String>>> listOfItems = new ArrayList<>();
+        List<String> xRayName = new ArrayList<>();
+        List<List<String>> xRayImageUrl = new ArrayList<>();
+        List<List<String>> xRayLinks = new ArrayList<>();
+
+        String xRay1Name[] = {
+                "Tom Cruise",
+                "Emma Watson"
+        };
+        String xRay1ImageUrl[] = {
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
+                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
+
+        };
+        String xRay1Link[] = {
+                "",
+                ""
+        };
+        Map<String, List<String>> entry1 = new HashMap<>();
+        entry1.put("name", Arrays.asList(xRay1Name));
+        entry1.put("image", Arrays.asList(xRay1ImageUrl));
+        entry1.put("link", Arrays.asList(xRay1Link));
+        listOfItems.add(entry1);
+
+        return listOfItems;
     }
 }

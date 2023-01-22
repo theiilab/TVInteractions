@@ -1,6 +1,7 @@
 package com.yuanren.tvinteractions.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /*
  * Movie class represents video entity with title, description, image thumbs and video url.
@@ -14,6 +15,7 @@ public class Movie implements Serializable {
     private String cardImageUrl;
     private String videoUrl;
     private String studio;
+    private List<XRayItem> xRayItems;
 
     public Movie() {
     }
@@ -72,6 +74,14 @@ public class Movie implements Serializable {
 
     public void setCardImageUrl(String cardImageUrl) {
         this.cardImageUrl = cardImageUrl;
+    }
+
+    public List<XRayItem> getxRayItems() {
+        return xRayItems;
+    }
+
+    public void setxRayItems(List<XRayItem> xRayItems) {
+        this.xRayItems = xRayItems;
     }
 
     @Override
