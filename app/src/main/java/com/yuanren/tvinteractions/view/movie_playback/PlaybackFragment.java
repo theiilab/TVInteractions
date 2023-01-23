@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -153,7 +156,7 @@ public class PlaybackFragment extends Fragment {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
                 Log.d(TAG, "on key pressed");
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) { //only when key is pressed down
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
@@ -184,15 +187,39 @@ public class PlaybackFragment extends Fragment {
         exoPlayer.play();
     }
 
+//    private void hideSystemUi() {
+//        WindowCompat.setDecorFitsSystemWindows(window, false);
+//
+//        WindowInsetsControllerCompat(window, viewBinding.videoView).let { controller ->
+//                controller.hide(WindowInsetsCompat.Type.systemBars())
+//            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//        }
+//    }
+
     @Override
     public void onResume() {
         super.onResume();
-        initializePlayer(movie.getVideoUrl());
+        if (exoPlayer == null) {
+            initializePlayer(movie.getVideoUrl());
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        exoPlayer.release();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        exoPlayer.release();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         exoPlayer.release();
+        exoPlayer = null;
     }
 }
