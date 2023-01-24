@@ -145,7 +145,7 @@ public class PlaybackFragment extends Fragment {
 
         title = view.findViewById(R.id.title);
         playerView = view.findViewById(R.id.video_player);
-        playBtn = view.findViewById(R.id.exo_play_btn);
+        playBtn = view.findViewById(R.id.exo_pause);
         progressBar = view.findViewById(R.id.exo_progress);
 
         title.setText(movie.getTitle());
