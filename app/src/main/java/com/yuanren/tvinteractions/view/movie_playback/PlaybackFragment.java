@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerLibraryInfo;
 import com.google.android.exoplayer2.MediaItem;
@@ -174,12 +175,13 @@ public class PlaybackFragment extends Fragment {
         exoPlayer = new ExoPlayer.Builder(getContext()).build();
         // Bind the player to the view.
         playerView.setPlayer(exoPlayer);
-
+        // resize and rescale the video to fit the screen
+        playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
+        exoPlayer.setVideoScalingMode(C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
         // Build the media item.
         MediaItem mediaItem = MediaItem.fromUri(url);
         // Set the media item to be played.
         exoPlayer.setMediaItem(mediaItem);
-
         // Prepare the player.
         exoPlayer.prepare();
         // Start the playback.
