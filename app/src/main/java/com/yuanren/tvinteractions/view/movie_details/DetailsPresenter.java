@@ -35,7 +35,7 @@ public class DetailsPresenter extends Presenter {
         detailsViewHolder.title.setText(movie.getTitle());
         detailsViewHolder.description.setText(movie.getDescription());
         detailsViewHolder.studio.setText(movie.getStudio());
-        detailsViewHolder.category.setText(" • Romance");
+        detailsViewHolder.category.setText(" • " + movie.getCategory());
 
         // initially focused by default
         detailsViewHolder.playIB.setBackground(viewHolder.view.getContext().getDrawable(R.drawable.shape_round_corner_focused));

@@ -15,6 +15,7 @@ public class Movie implements Serializable {
     private String cardImageUrl;
     private String videoUrl;
     private String studio;
+    private String category;
     private List<XRayItem> xRayItems;
 
     public Movie() {
@@ -50,6 +51,14 @@ public class Movie implements Serializable {
 
     public void setStudio(String studio) {
         this.studio = studio;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getVideoUrl() {

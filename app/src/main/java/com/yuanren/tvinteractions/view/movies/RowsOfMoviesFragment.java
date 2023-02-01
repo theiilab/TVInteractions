@@ -86,9 +86,9 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private void addRowsView() {
         CardPresenter cardPresenter = new CardPresenter();
         for (int i = 0; i < NUM_ROWS; i++) {
-            if (i != 0) {
-                Collections.shuffle(list);
-            }
+//            if (i != 0) {
+//                Collections.shuffle(list);
+//            }
             ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenter);
             for (int j = 0; j < NUM_COLS; j++) {
                 listRowAdapter.add(list.get(j));
