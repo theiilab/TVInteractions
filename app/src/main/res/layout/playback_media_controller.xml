@@ -19,15 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    movie info    -->
-    <ImageView
+    <ImageButton
         android:id="@+id/back_btn"
-        android:layout_width="@dimen/dimens_24dp"
-        android:layout_height="@dimen/dimens_24dp"
+        android:layout_width="@dimen/media_controller_button_size"
+        android:layout_height="@dimen/media_controller_button_size"
         android:src="@drawable/ic_arrow_left"
         android:layout_marginLeft="@dimen/dimens_50dp"
         android:layout_marginTop="@dimen/dimens_50dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:background="#00000000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
     <TextView
@@ -48,16 +49,16 @@
         android:id="@+id/x_ray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimens_30dp"
+        android:layout_marginLeft="@dimen/media_controller_margin_parent"
         app:layout_constraintBottom_toTopOf="@id/controls">
         <TextView
-            android:id="@+id/x_ray_box"
-            android:layout_width="@dimen/x_ray_box_width"
-            android:layout_height="@dimen/x_ray_height"
-            android:padding="@dimen/dimens_10dp"
+            android:id="@+id/x_ray_logo"
+            android:layout_width="@dimen/x_ray_logo_width"
+            android:layout_height="@dimen/x_ray_logo_height"
+            android:padding="@dimen/media_controller_margin_between"
             android:textColor="@color/text_highlight"
             android:textAlignment="center"
-            android:background="@drawable/shape_x_ray_focused"
+            android:background="@drawable/shape_x_ray_logo"
             android:text="X-Ray"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
@@ -66,10 +67,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/x_ray_content"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/x_ray_logo_height"
             android:layout_marginLeft="@dimen/dimens_10dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/x_ray_box"
+            app:layout_constraintLeft_toRightOf="@id/x_ray_logo"
             app:layout_constraintRight_toRightOf="parent">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -80,33 +81,29 @@
         android:id="@+id/controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/dimens_5dp"
-        android:paddingLeft="@dimen/dimens_30dp"
-        android:paddingRight="@dimen/dimens_30dp"
-        android:paddingBottom="@dimen/dimens_30dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="@dimen/media_controller_margin_parent"
+        android:paddingRight="@dimen/media_controller_margin_parent"
+        android:paddingBottom="@dimen/media_controller_margin_parent"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
         <ImageButton
             android:id="@+id/exo_play"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:layout_width="@dimen/media_controller_button_size"
+            android:layout_height="@dimen/media_controller_button_size"
             android:src="@drawable/ic_playback_play"
             android:background="#00000000"/>
         <ImageButton
             android:id="@+id/exo_pause"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:layout_width="@dimen/media_controller_button_size"
+            android:layout_height="@dimen/media_controller_button_size"
             android:src="@drawable/ic_playback_pause"
             android:background="#00000000"/>
         <TextView
             android:id="@+id/exo_position"
-            android:layout_width="60dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="@dimen/dimens_10dp"
+            android:layout_width="@dimen/media_controller_text_view_size"
+            android:layout_height="@dimen/media_controller_button_size"
+            android:layout_marginLeft="@dimen/media_controller_margin_between"
             android:gravity="center"
             android:text="00:00:01"
             android:textColor="@android:color/background_light"/>
@@ -122,7 +119,7 @@
 
         <TextView
             android:id="@+id/exo_duration"
-            android:layout_width="60dp"
+            android:layout_width="@dimen/media_controller_text_view_size"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="02:56:59"
