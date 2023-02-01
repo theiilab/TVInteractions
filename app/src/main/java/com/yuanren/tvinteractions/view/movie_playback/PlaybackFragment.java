@@ -133,7 +133,7 @@ public class PlaybackFragment extends Fragment {
         ll.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(ll);
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.dimens_10dp)));
-        adapter = new XRayCardListAdapter(movie.getxRayItems());
+        adapter = new XRayCardListAdapter(movie.getXRayItems());
         recyclerView.setAdapter(adapter);
 
         title = view.findViewById(R.id.title);
@@ -185,13 +185,16 @@ public class PlaybackFragment extends Fragment {
         super.onResume();
         if (exoPlayer == null) {
             initializePlayer(movie.getVideoUrl());
+        } else {
+            exoPlayer.play();
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        exoPlayer.release();
+        exoPlayer.pause();
+//        exoPlayer.release();
     }
 
     @Override

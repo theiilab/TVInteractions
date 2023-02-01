@@ -85,11 +85,11 @@ public class Movie implements Serializable {
         this.cardImageUrl = cardImageUrl;
     }
 
-    public List<XRayItem> getxRayItems() {
+    public List<XRayItem> getXRayItems() {
         return xRayItems;
     }
 
-    public void setxRayItems(List<XRayItem> xRayItems) {
+    public void setXRayItems(List<XRayItem> xRayItems) {
         this.xRayItems = xRayItems;
     }
 

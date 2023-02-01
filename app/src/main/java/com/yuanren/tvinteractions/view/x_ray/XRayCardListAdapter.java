@@ -1,5 +1,6 @@
 package com.yuanren.tvinteractions.view.x_ray;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.XRayItem;
+import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,7 +62,11 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
         xRayCardViewHolder.cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "setOnClickListener");
+                Intent intent = new Intent(view.getContext(), XRayItemContentActivity.class);
+                intent.putExtra(XRayItemContentActivity.SELECTED_MOVIE_ID, item.getMovieId());
+                intent.putExtra(XRayItemContentActivity.SELECTED_XRAY_ITEM_ID, item.getItemId());
+
+                view.getContext().startActivity(intent);
             }
         });
     }

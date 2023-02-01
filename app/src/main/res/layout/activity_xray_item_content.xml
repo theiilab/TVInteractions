@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/x_ray_image_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x_ray_content_margin_parent"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+    <ImageView
+        android:id="@+id/x_ray_image"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:src="@drawable/x_ray_figure"
+        android:scaleType="centerCrop"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/x_ray_title"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/x_ray_content_margin_parent"
+        android:text="Example"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"/>
+
+    <TextView
+        android:id="@+id/x_ray_price"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginLeft="@dimen/x_ray_content_margin_parent"
+        android:text="Example"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/x_ray_title"
+        app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginLeft="@dimen/x_ray_content_margin_parent"
+        android:text="Example"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/x_ray_price"
+        app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

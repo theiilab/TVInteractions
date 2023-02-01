@@ -3,6 +3,8 @@ package com.yuanren.tvinteractions.model;
 import java.io.Serializable;
 
 public class XRayItem implements Serializable {
+    private long movieId;
+    private long itemId;
     private String name;
     private String imageUrl;
     private String link;
@@ -10,10 +12,28 @@ public class XRayItem implements Serializable {
     public XRayItem() {
     }
 
-    public XRayItem(String name, String imageUrl, String link) {
+    public XRayItem(long movieId, long itemId, String name, String imageUrl, String link) {
+        this.movieId = movieId;
+        this.itemId = itemId;
         this.name = name;
         this.imageUrl = imageUrl;
         this.link = link;
+    }
+
+    public long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(long movieId) {
+        this.movieId = movieId;
+    }
+
+    public long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
     public String getName() {

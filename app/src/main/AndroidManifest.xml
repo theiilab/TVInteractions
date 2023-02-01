@@ -36,6 +36,7 @@
         </activity>
         <activity android:name=".view.movie_details.DetailsActivity" />
         <activity android:name=".view.movie_playback.PlaybackActivity" />
+        <activity android:name=".view.x_ray.XRayItemContentActivity" />
     </application>
 
 </manifest>

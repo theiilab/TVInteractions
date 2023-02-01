@@ -162,10 +162,10 @@ public final class MovieList {
 
         List<XRayItem> items = new ArrayList<>();
         for (int i = 0; i < names.size(); ++i) {
-            XRayItem item = new XRayItem(names.get(i), images.get(i), links.get(i));
+            XRayItem item = new XRayItem(id, i, names.get(i), images.get(i), links.get(i));
             items.add(item);
         }
-        movie.setxRayItems(items);
+        movie.setXRayItems(items);
 
         return movie;
     }
@@ -246,40 +246,42 @@ public final class MovieList {
         entry2.put("link", Arrays.asList(xRay2Link));
         listOfItems.add(entry1);
 
-        String xRay21Name[] = {
-                "Tom Cruise",
-                "Emma Watson",
-                "Tom Cruise",
-                "Emma Watson",
-                "Tom Cruise",
-                "Emma Watson",
-                "Emma Watson",
-        };
-        String xRay21ImageUrl[] = {
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
+        // random x-ray for placeholders
+        for (int i = 0; i < 5; ++i) {
+            String xRay21Name[] = {
+                    "Tom Cruise",
+                    "Emma Watson",
+                    "Tom Cruise",
+                    "Emma Watson",
+                    "Tom Cruise",
+                    "Emma Watson",
+                    "Emma Watson",
+            };
+            String xRay21ImageUrl[] = {
+                    "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
+                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
+                    "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
+                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
+                    "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
+                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
+                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
 
-        };
-        String xRay21Link[] = {
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
-        };
-        Map<String, List<String>> entry21 = new HashMap<>();
-        entry21.put("name", Arrays.asList(xRay21Name));
-        entry21.put("image", Arrays.asList(xRay21ImageUrl));
-        entry21.put("link", Arrays.asList(xRay21Link));
-        listOfItems.add(entry21);
-
+            };
+            String xRay21Link[] = {
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+            };
+            Map<String, List<String>> entry21 = new HashMap<>();
+            entry21.put("name", Arrays.asList(xRay21Name));
+            entry21.put("image", Arrays.asList(xRay21ImageUrl));
+            entry21.put("link", Arrays.asList(xRay21Link));
+            listOfItems.add(entry21);
+        }
         return listOfItems;
     }
 }
