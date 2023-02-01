@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class XRayCardViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
     TextView name;
+    View cover;
 
 
     public XRayCardViewHolder(@NonNull @NotNull View itemView) {
@@ -21,5 +22,6 @@ public class XRayCardViewHolder extends RecyclerView.ViewHolder {
 
         image = itemView.findViewById(R.id.info_image);
         name = itemView.findViewById(R.id.info_details);
+        cover = itemView.findViewById(R.id.selectable_cover);
     }
 }
