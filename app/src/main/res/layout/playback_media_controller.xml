@@ -23,7 +23,7 @@
         android:id="@+id/back_btn"
         android:layout_width="@dimen/media_controller_button_size"
         android:layout_height="@dimen/media_controller_button_size"
-        android:src="@drawable/ic_arrow_left"
+        android:src="@drawable/ic_arrow_left_unselected"
         android:layout_marginLeft="@dimen/dimens_50dp"
         android:layout_marginTop="@dimen/dimens_50dp"
         android:focusable="true"

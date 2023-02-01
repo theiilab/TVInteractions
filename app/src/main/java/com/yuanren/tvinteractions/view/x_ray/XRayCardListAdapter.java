@@ -1,14 +1,11 @@
-package com.yuanren.tvinteractions.view.movie_playback.x_ray;
+package com.yuanren.tvinteractions.view.x_ray;
 
-import android.content.ClipData;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;

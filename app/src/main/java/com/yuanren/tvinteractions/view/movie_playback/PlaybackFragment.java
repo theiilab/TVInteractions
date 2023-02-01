@@ -1,29 +1,21 @@
 package com.yuanren.tvinteractions.view.movie_playback;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.ExoPlayerLibraryInfo;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
@@ -31,11 +23,10 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.view.movie_playback.x_ray.SpaceItemDecoration;
-import com.yuanren.tvinteractions.view.movie_playback.x_ray.XRayCardListAdapter;
+import com.yuanren.tvinteractions.view.x_ray.SpaceItemDecoration;
+import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
-import org.xml.sax.helpers.XMLReaderAdapter;
 
 //import com.google.android.exoplayer2.upstream.DataSource;
 
@@ -94,9 +85,9 @@ public class PlaybackFragment extends Fragment {
     private static final String TAG = "PlaybackFragment";
 
     private TextView title;
+    private ImageButton backBtn;
     private PlayerView playerView;
     private ExoPlayer exoPlayer;
-    private ImageButton playBtn;
     private DefaultTimeBar progressBar;
     private RecyclerView recyclerView;
     private XRayCardListAdapter adapter;
@@ -146,27 +137,28 @@ public class PlaybackFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         title = view.findViewById(R.id.title);
+        backBtn = view.findViewById(R.id.back_btn);
         playerView = view.findViewById(R.id.video_player);
-        playBtn = view.findViewById(R.id.exo_pause);
         progressBar = view.findViewById(R.id.exo_progress);
 
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
 
-        playerView.setOnKeyListener(new View.OnKeyListener() {
+        backBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-
-                Log.d(TAG, "on key pressed");
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) { //only when key is pressed down
-                    switch (i) {
-                        case KeyEvent.KEYCODE_ENTER:
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
-                            Log.d(TAG, "playView on press");
-                            break;
-                    }
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    backBtn.setBackgroundResource(R.drawable.ic_arrow_left_selected);
+                } else {
+                    backBtn.setBackgroundResource(R.drawable.ic_arrow_left_unselected);
                 }
-                return false;
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
             }
         });
     }
