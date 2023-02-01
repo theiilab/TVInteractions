@@ -21,8 +21,8 @@
     <!--    movie info    -->
     <ImageButton
         android:id="@+id/back_btn"
-        android:layout_width="@dimen/media_controller_button_size"
-        android:layout_height="@dimen/media_controller_button_size"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:src="@drawable/ic_arrow_left_unselected"
         android:layout_marginLeft="@dimen/dimens_50dp"
         android:layout_marginTop="@dimen/dimens_50dp"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
-        android:textSize="17sp"
+        android:textSize="24sp"
         android:textColor="#fff"
         android:text="Movie Title"
         android:layout_marginRight="@dimen/dimens_50dp"
