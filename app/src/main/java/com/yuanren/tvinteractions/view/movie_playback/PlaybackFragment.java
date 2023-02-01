@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerLibraryInfo;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.yuanren.tvinteractions.R;
@@ -179,22 +180,11 @@ public class PlaybackFragment extends Fragment {
         // Set the media item to be played.
         exoPlayer.setMediaItem(mediaItem);
 
-//        exoPlayer.addListener();
-
         // Prepare the player.
         exoPlayer.prepare();
         // Start the playback.
         exoPlayer.play();
     }
-
-//    private void hideSystemUi() {
-//        WindowCompat.setDecorFitsSystemWindows(window, false);
-//
-//        WindowInsetsControllerCompat(window, viewBinding.videoView).let { controller ->
-//                controller.hide(WindowInsetsCompat.Type.systemBars())
-//            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-//        }
-//    }
 
     @Override
     public void onResume() {

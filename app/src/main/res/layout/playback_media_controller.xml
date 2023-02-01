@@ -86,14 +86,14 @@
         android:paddingBottom="@dimen/dimens_30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
-<!--        <ImageButton-->
-<!--            android:id="@+id/exo_play_btn"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:focusable="true"-->
-<!--            android:focusableInTouchMode="true"-->
-<!--            android:src="@drawable/ic_play_white"-->
-<!--            android:background="#00000000"/>-->
+        <ImageButton
+            android:id="@+id/exo_play"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:src="@drawable/ic_playback_play"
+            android:background="#00000000"/>
         <ImageButton
             android:id="@+id/exo_pause"
             android:layout_width="24dp"
