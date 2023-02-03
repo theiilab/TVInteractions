@@ -2,7 +2,7 @@
     <color name="transparent">#00000000</color>
 
     <color name="background">#000000</color> <!-- #0d0c10 -->
-    <color name="background2">#0d0c10</color> <!-- #0d0c10 -->
+    <color name="background2">#1d2633</color> <!-- #0d0c10 -->
     <color name="background_gradient_start">#FF000000</color>
     <color name="background_gradient_end">#00DDDDDD</color>
     <color name="fastlane_background">#000000</color>
