@@ -52,7 +52,7 @@ public final class MovieList {
     public static List<Movie> setupMovies(int length) {
         list = new ArrayList<>();
         String title[] = {
-                "Kingsman",
+                "THe King's Man",
                 "Red Notice",
                 "Bad Guys",
                 "The Lord Of The Rings",
@@ -176,20 +176,20 @@ public final class MovieList {
         List<List<String>> xRayImageUrl = new ArrayList<>();
         List<List<String>> xRayLinks = new ArrayList<>();
 
-        // kingsman
+        // The king's Man
         String xRay1Name[] = {
                 "Taron Egerton",
                 "Sofia Boutella",
-                "Cutler and Gross GR03 Square",
+                "Cutler and Gross Glasses",
                 "Savile Row Suits",
-                "Leather Oxford Brogues",
-                "Drake",
-                "Tag Heuer",
+                "Oxford Brogues Shoes",
+                "Drake's Tie",
+                "Tag Heuer Watch",
         };
         String xRay1ImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/765421_v9_bd.jpg",
                 "https://flxt.tmsimg.com/assets/327103_v9_bb.jpg",
-                "https://cdn.shopify.com/s/files/1/1140/7330/products/cutler-and-gross-0822-eyeglasses-optical-black-1_2000x.jpg?v=1600700207",
+                "https://cdn-images.farfetch-contents.com/11/88/16/03/11881603_9297567_1000.jpg",
                 "https://savilerowco.com/media/catalog/product/cache/dcdc46754122207d7695de0b04975a01/n/a/navy-wool-blend-tailored-suit-msuit337nav_model_1.jpg",
                 "https://images.squarespace-cdn.com/content/v1/5f4e4231f7c05656d0e2ef40/1641562901123-LL3V6VRARJAZPYKSHIJO/Shoe+5+Front.jpg?format=2500w",
                 "https://cdn.shopify.com/s/files/1/0649/6603/3653/products/FRE80R-02053-011-1_1080x.jpg?v=1665494255",
@@ -197,8 +197,8 @@ public final class MovieList {
 
         };
         String xRay1Link[] = {
-                "Taron Egerton\n_\nTaron Egerton is a Welsh actor. He is the recipient of a Golden Globe Award, and has received nominations for a Grammy Award and two British Academy Film Awards. Born in Birkenhead, England, Egerton began acting at age 15 and graduated from the Royal Academy of Dramatic Art in 2012. He gained recognition for his starring role as a spy recruit in the action comedy film Kingsman: The Secret Service (2014) and its sequel Kingsman: The Golden Circle (2017). He has also starred in several biographical films, portraying military officer Edward Brittain in the drama Testament of Youth (2014), the titular ski-jumper in the sports film Eddie the Eagle (2016), and singer Elton John in the musical Rocketman (2019), the last of which earned him a Golden Globe Award for Best Actor. Egerton has since starred in the miniseries Black Bird and the West End theatre play Cock (both 2022).\n",
-                "Sofia Boutella\n_\nSofia Boutella is an Algerian actress, model, and dancer.",
+                "Taron Egerton\nBorn in United Kingdom • 1989 (age 33 years) • Height 5′ 9″ • Nationality: British \nTaron Egerton is a Welsh actor. He is the recipient of a Golden Globe Award, and has received nominations for a Grammy Award and two British Academy Film Awards. Born in Birkenhead, England, Egerton began acting at age 15 and graduated from the Royal Academy of Dramatic Art in 2012. He gained recognition for his starring role as a spy recruit in the action comedy film Kingsman: The Secret Service (2014) and its sequel Kingsman: The Golden Circle (2017). He has also starred in several biographical films, portraying military officer Edward Brittain in the drama Testament of Youth (2014), the titular ski-jumper in the sports film Eddie the Eagle (2016), and singer Elton John in the musical Rocketman (2019), the last of which earned him a Golden Globe Award for Best Actor. Egerton has since starred in the miniseries Black Bird and the West End theatre play Cock (both 2022).\n",
+                "Sofia Boutella\nBorn in Algeria • 1982 (age 40 years) • Height 5′ 5″ • Nationality: Algerian, French\nSofia Boutella is an Algerian actress, model, and dancer.",
                 "Cutler and Gross GR03 Square\n$439\nThe devil is always in the detail, as is evident in the GR03. This optical frame is packed with considered design details and technical elements which elevate both its form and function. Angular exterior bevelling, coupled with a high nose bridge reflect the stylistic inspirations for this frame, whilst weight-saving interior milling maximises wearability and comfort.",
                 "Navy Wool-Blend Tailored Suit\n$311\n43% Virgin Wool, 53% Polyester, 4% Lycra. Weight 280 Gms.Durable and lightweight, this two-piece navy suit is ideal for business trips abroad. Designed on Savile Row, it has contrast burgundy lining and features elastane within the fabric composition – allowing any creases to drop out easily.",
                 "Edward in Black Calf with Rubber Sole\n£575\nThese black calf Oxford semi-brogues featuring brogue detail on cap, vamp & top of quarters is a essential business shoe. Flawlessly hand-finished in England in a round-toe shape, this slick pair will put you in good stead for years to come. Wear them with sharply tailored suiting. It also features a Dainite rubber sole and reinforced storm welting, making it an exceptionally hard-wearing shoe for all weather conditions.\n",
