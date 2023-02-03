@@ -21,7 +21,7 @@
     <dimen name="x_ray_logo_height">60dp</dimen>
     <dimen name="x_ray_corner_radius">5dp</dimen>
     <dimen name="x_ray_content_margin_parent">50dp</dimen>
-    <dimen name="x_ray_content_margin_between">10dp</dimen>
+    <dimen name="x_ray_content_margin_between">20dp</dimen>
     <!--    media controller    -->
     <dimen name="media_controller_margin_parent">30dp</dimen>
     <dimen name="media_controller_margin_between">10dp</dimen>

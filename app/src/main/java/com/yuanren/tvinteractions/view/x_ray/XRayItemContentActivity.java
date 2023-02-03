@@ -24,6 +24,8 @@ public class XRayItemContentActivity extends Activity {
 
     private ImageView image;
     private TextView title;
+    private TextView price;
+    private TextView description;
 
     private Movie movie;
     private XRayItem item;
@@ -38,11 +40,17 @@ public class XRayItemContentActivity extends Activity {
 
         image = findViewById(R.id.x_ray_image);
         title = findViewById(R.id.x_ray_title);
+        price = findViewById(R.id.x_ray_price);
+        description = findViewById(R.id.x_ray_description);
 
-        title.setText(item.getName());
+        String[] content = item.getLink().split(System.lineSeparator());
+        title.setText(content[0]);
         Glide.with(getApplicationContext())
                 .load(item.getImageUrl())
                 .centerCrop()
                 .into(image);
+        price.setText(content[1]);
+        description.setText(content[2]);
+
     }
 }
