@@ -186,6 +186,7 @@ public class PlaybackFragment extends Fragment {
         if (exoPlayer == null) {
             initializePlayer(movie.getVideoUrl());
         } else {
+//            exoPlayer.prepare();
             exoPlayer.play();
         }
     }
@@ -194,13 +195,12 @@ public class PlaybackFragment extends Fragment {
     public void onPause() {
         super.onPause();
         exoPlayer.pause();
-//        exoPlayer.release();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        exoPlayer.release();
+        exoPlayer.pause();
     }
 
     @Override
