@@ -43,7 +43,7 @@ public class XRayItemContentActivity extends Activity {
         price = findViewById(R.id.x_ray_price);
         description = findViewById(R.id.x_ray_description);
 
-        String[] content = item.getLink().split(System.lineSeparator());
+        String[] content = item.getLink().split("\\;"); //System.lineSeparator())
         title.setText(content[0]);
         Glide.with(getApplicationContext())
                 .load(item.getImageUrl())

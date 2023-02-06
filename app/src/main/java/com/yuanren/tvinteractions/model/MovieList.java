@@ -52,8 +52,9 @@ public final class MovieList {
     public static List<Movie> setupMovies(int length) {
         list = new ArrayList<>();
         String title[] = {
-                "THe King's Man",
+                "The King's Man",
                 "Red Notice",
+
                 "Bad Guys",
                 "The Lord Of The Rings",
                 "Doctor Strange III",
@@ -197,13 +198,13 @@ public final class MovieList {
 
         };
         String xRay1Link[] = {
-                "Taron Egerton\nBorn in United Kingdom • 1989 (age 33 years) • Height 5′ 9″ • Nationality: British \nTaron Egerton is a Welsh actor. He is the recipient of a Golden Globe Award, and has received nominations for a Grammy Award and two British Academy Film Awards. Born in Birkenhead, England, Egerton began acting at age 15 and graduated from the Royal Academy of Dramatic Art in 2012. He gained recognition for his starring role as a spy recruit in the action comedy film Kingsman: The Secret Service (2014) and its sequel Kingsman: The Golden Circle (2017). He has also starred in several biographical films, portraying military officer Edward Brittain in the drama Testament of Youth (2014), the titular ski-jumper in the sports film Eddie the Eagle (2016), and singer Elton John in the musical Rocketman (2019), the last of which earned him a Golden Globe Award for Best Actor. Egerton has since starred in the miniseries Black Bird and the West End theatre play Cock (both 2022).\n",
-                "Sofia Boutella\nBorn in Algeria • 1982 (age 40 years) • Height 5′ 5″ • Nationality: Algerian, French\nSofia Boutella is an Algerian actress, model, and dancer.",
-                "Cutler and Gross GR03 Square\n$439\nThe devil is always in the detail, as is evident in the GR03. This optical frame is packed with considered design details and technical elements which elevate both its form and function. Angular exterior bevelling, coupled with a high nose bridge reflect the stylistic inspirations for this frame, whilst weight-saving interior milling maximises wearability and comfort.",
-                "Navy Wool-Blend Tailored Suit\n$311\n43% Virgin Wool, 53% Polyester, 4% Lycra. Weight 280 Gms.Durable and lightweight, this two-piece navy suit is ideal for business trips abroad. Designed on Savile Row, it has contrast burgundy lining and features elastane within the fabric composition – allowing any creases to drop out easily.",
-                "Edward in Black Calf with Rubber Sole\n£575\nThese black calf Oxford semi-brogues featuring brogue detail on cap, vamp & top of quarters is a essential business shoe. Flawlessly hand-finished in England in a round-toe shape, this slick pair will put you in good stead for years to come. Wear them with sharply tailored suiting. It also features a Dainite rubber sole and reinforced storm welting, making it an exceptionally hard-wearing shoe for all weather conditions.\n",
-                "Navy and Blue Stripe Repp Silk Tie\n$225\nA striped repp silk tie is one of the most enduring pieces of neckwear available, redolent of earlier periods of style, while retaining a distinctly modern feel.\n",
-                "Tag Heuer Connected Modular 45\n$2,050\nStriking the perfect blend between innovation and high-end watchmaking, this TAG Heuer Connected Watch reveals an elegant 45mm steel case with sharp and sporty lugs, and integrated steel chronograph pushers. A new dimension where luxury meets performance."
+                "Taron Egerton;• Born in United Kingdom\n• Age: 33 years old\n• Height: 5′ 9″\n• Nationality: British;Taron Egerton is a Welsh actor. He is the recipient of a Golden Globe Award, and has received nominations for a Grammy Award and two British Academy Film Awards.\n\nHe gained recognition for his starring role as a spy recruit in the action comedy film Kingsman: The Secret Service (2014) and its sequel Kingsman: The Golden Circle (2017). ",
+                "Sofia Boutella;• Born in Algeria\n• Age: 40 (1982)\n• Height: 5′ 5″\n• Nationality: Algerian, French;Sofia Boutella is an Algerian actress, model, and dancer.",
+                "Cutler and Gross GR03 Square Glasses;$439;• Lens Width: 50mm\n• Bridge Width: 18mm\n• Temple Length: 145mm\n\nThis optical frame is packed with considered design details and technical elements which elevate both its form and function. Angular exterior bevelling, coupled with a high nose bridge reflect the stylistic inspirations for this frame, whilst weight-saving interior milling maximises wearability and comfort.",
+                "Navy Wool-Blend Tailored Suit;$311;• 43% Virgin Wool\n• 53% Polyester\n• 4% Lycra\n• Weight: 280 Gms\n\nDurable and lightweight, this two-piece navy suit is ideal for business trips abroad. Designed on Savile Row, it has contrast burgundy lining and features elastane within the fabric composition – allowing any creases to drop out easily.",
+                "Edward in Black Calf with Rubber Sole Shoes;£575;• Leather linings\n• Comes with Dust bags\n• Handmade in England\n\nThese black calf Oxford semi-brogues featuring brogue detail on cap, vamp & top of quarters is a essential business shoe. Flawlessly hand-finished in England in a round-toe shape, this slick pair will put you in good stead for years to come.",
+                "Navy and Blue Stripe Repp Silk Tie;$225;• 100% Silk\n• Handmade in London, England\n• 8cm x 147cm\n\nA striped repp silk tie is one of the most enduring pieces of neckwear available, redolent of earlier periods of style, while retaining a distinctly modern feel.",
+                "Tag Heuer Connected Modular 45 Watch;$2,050;• Calibre E4 - 45 mm\n\nStriking the perfect blend between innovation and high-end watchmaking, this TAG Heuer Connected Watch reveals an elegant 45mm steel case with sharp and sporty lugs, and integrated steel chronograph pushers. A new dimension where luxury meets performance."
         };
         Map<String, List<String>> entry1 = new HashMap<>();
         entry1.put("name", Arrays.asList(xRay1Name));
@@ -251,28 +252,12 @@ public final class MovieList {
             String xRay21Name[] = {
                     "Tom Cruise",
                     "Emma Watson",
-                    "Tom Cruise",
-                    "Emma Watson",
-                    "Tom Cruise",
-                    "Emma Watson",
-                    "Emma Watson",
             };
             String xRay21ImageUrl[] = {
                     "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
                     "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                    "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                    "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                    "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-
             };
             String xRay21Link[] = {
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
                     "",
                     ""
             };

@@ -42,7 +42,7 @@
         android:layout_marginLeft="@dimen/x_ray_content_margin_parent"
         android:layout_marginRight="@dimen/x_ray_content_margin_parent"
         android:text="Example"
-        android:textSize="17sp"
+        android:textSize="19sp"
         android:textColor="@color/lb_tv_white"
         app:layout_constraintTop_toBottomOf="@id/x_ray_title"
         app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"
