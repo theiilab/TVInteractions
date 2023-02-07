@@ -77,7 +77,10 @@
             android:layout_height="@dimen/x_ray_btn_height"
             android:background="@color/x_ray_btn_bg_color"
             android:src="@drawable/logo_amazon"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -95,8 +98,11 @@
             android:layout_height="@dimen/x_ray_btn_height"
             android:background="@color/x_ray_btn_bg_color"
             android:src="@drawable/logo_target"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
     </androidx.cardview.widget.CardView>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/x_ray_btn3_container"
@@ -113,6 +119,8 @@
             android:layout_height="@dimen/x_ray_btn_height"
             android:background="@color/x_ray_btn_bg_color"
             android:src="@drawable/logo_walmart"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

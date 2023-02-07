@@ -24,5 +24,5 @@
     <color name="x_ray_background_color">#88303134</color>
 
     <!--   x-ray content   -->
-    <color name="x_ray_btn_bg_color">#fff</color>
+    <color name="x_ray_btn_bg_color">#000</color>
 </resources>

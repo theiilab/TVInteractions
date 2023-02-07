@@ -5,19 +5,23 @@ import java.io.Serializable;
 public class XRayItem implements Serializable {
     private long movieId;
     private long itemId;
+    private String type;
     private String name;
     private String imageUrl;
-    private String link;
+    private String description;
+    private String merchandise;
 
     public XRayItem() {
     }
 
-    public XRayItem(long movieId, long itemId, String name, String imageUrl, String link) {
+    public XRayItem(long movieId, long itemId, String type, String name, String imageUrl, String description, String merchandise) {
         this.movieId = movieId;
         this.itemId = itemId;
+        this.type = type;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.link = link;
+        this.description = description;
+        this.merchandise = merchandise;
     }
 
     public long getMovieId() {
@@ -36,6 +40,15 @@ public class XRayItem implements Serializable {
         this.itemId = itemId;
     }
 
+    public String getType() {
+
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getName() {
         return name;
     }
@@ -52,11 +65,19 @@ public class XRayItem implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public String getLink() {
-        return link;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMerchandise() {
+        return merchandise;
+    }
+
+    public void setMerchandise(String merchandise) {
+        this.merchandise = merchandise;
     }
 }

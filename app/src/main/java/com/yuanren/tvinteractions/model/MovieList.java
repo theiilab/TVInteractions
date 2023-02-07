@@ -157,13 +157,15 @@ public final class MovieList {
 
 //        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue()));
         Map<String, List<String>> xRayItemForMovie = xRayItems.get(0);
+        List<String> types = xRayItemForMovie.get("type");
         List<String> names = xRayItemForMovie.get("name");
         List<String> images = xRayItemForMovie.get("image");
-        List<String> links = xRayItemForMovie.get("link");
+        List<String> descriptions = xRayItemForMovie.get("description");
+        List<String> merchandises = xRayItemForMovie.get("merchandise");
 
         List<XRayItem> items = new ArrayList<>();
         for (int i = 0; i < names.size(); ++i) {
-            XRayItem item = new XRayItem(id, i, names.get(i), images.get(i), links.get(i));
+            XRayItem item = new XRayItem(id, i, types.get(i), names.get(i), images.get(i), descriptions.get(i), merchandises.get(i));
             items.add(item);
         }
         movie.setXRayItems(items);
@@ -178,6 +180,15 @@ public final class MovieList {
         List<List<String>> xRayLinks = new ArrayList<>();
 
         // The king's Man
+        String xRay1Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
         String xRay1Name[] = {
                 "Taron Egerton",
                 "Sofia Boutella",
@@ -197,7 +208,7 @@ public final class MovieList {
                 "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw5044426c/TAG_Heuer_Connected_/SBR8A10.BT6259/SBR8A10.BT6259_0913.png?impolicy=resize&width=1328&height=996",
 
         };
-        String xRay1Link[] = {
+        String xRay1Description[] = {
                 "Taron Egerton;• Born in United Kingdom\n• Age: 33 years old\n• Height: 5′ 9″\n• Nationality: British;Taron Egerton is a Welsh actor. He is the recipient of a Golden Globe Award, and has received nominations for a Grammy Award and two British Academy Film Awards.\n\nHe gained recognition for his starring role as a spy recruit in the action comedy film Kingsman: The Secret Service (2014) and its sequel Kingsman: The Golden Circle (2017). ",
                 "Sofia Boutella;• Born in Algeria\n• Age: 40 (1982)\n• Height: 5′ 5″\n• Nationality: Algerian, French;Sofia Boutella is an Algerian actress, model, and dancer.",
                 "Cutler and Gross GR03 Square Glasses;$439;• Lens Width: 50mm\n• Bridge Width: 18mm\n• Temple Length: 145mm\n\nThis optical frame is packed with considered design details and technical elements which elevate both its form and function. Angular exterior bevelling, coupled with a high nose bridge reflect the stylistic inspirations for this frame, whilst weight-saving interior milling maximises wearability and comfort.",
@@ -206,13 +217,34 @@ public final class MovieList {
                 "Navy and Blue Stripe Repp Silk Tie;$225;• 100% Silk\n• Handmade in London, England\n• 8cm x 147cm\n\nA striped repp silk tie is one of the most enduring pieces of neckwear available, redolent of earlier periods of style, while retaining a distinctly modern feel.",
                 "Tag Heuer Connected Modular 45 Watch;$2,050;• Calibre E4 - 45 mm\n\nStriking the perfect blend between innovation and high-end watchmaking, this TAG Heuer Connected Watch reveals an elegant 45mm steel case with sharp and sporty lugs, and integrated steel chronograph pushers. A new dimension where luxury meets performance."
         };
+        String xRay1Merchandise[] = {
+                "",
+                "",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon bestbuy costco"
+        };
+
         Map<String, List<String>> entry1 = new HashMap<>();
+        entry1.put("type", Arrays.asList(xRay1Type));
         entry1.put("name", Arrays.asList(xRay1Name));
         entry1.put("image", Arrays.asList(xRay1ImageUrl));
-        entry1.put("link", Arrays.asList(xRay1Link));
+        entry1.put("description", Arrays.asList(xRay1Description));
+        entry1.put("merchandise", Arrays.asList(xRay1Merchandise));
         listOfItems.add(entry1);
 
         // Red Notice
+        String xRay2Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
         String xRay2Name[] = {
                 "Taron Egerton",
                 "Sofia Boutella",
@@ -232,7 +264,7 @@ public final class MovieList {
                 "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
 
         };
-        String xRay2Link[] = {
+        String xRay2Description[] = {
                 "",
                 "",
                 "",
@@ -242,9 +274,10 @@ public final class MovieList {
                 ""
         };
         Map<String, List<String>> entry2 = new HashMap<>();
+        entry2.put("type", Arrays.asList(xRay2Type));
         entry2.put("name", Arrays.asList(xRay2Name));
         entry2.put("image", Arrays.asList(xRay2ImageUrl));
-        entry2.put("link", Arrays.asList(xRay2Link));
+        entry2.put("description", Arrays.asList(xRay2Description));
         listOfItems.add(entry1);
 
         // random x-ray for placeholders
@@ -257,14 +290,14 @@ public final class MovieList {
                     "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
                     "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
             };
-            String xRay21Link[] = {
+            String xRay21Description[] = {
                     "",
                     ""
             };
             Map<String, List<String>> entry21 = new HashMap<>();
             entry21.put("name", Arrays.asList(xRay21Name));
             entry21.put("image", Arrays.asList(xRay21ImageUrl));
-            entry21.put("link", Arrays.asList(xRay21Link));
+            entry21.put("description", Arrays.asList(xRay21Description));
             listOfItems.add(entry21);
         }
         return listOfItems;
