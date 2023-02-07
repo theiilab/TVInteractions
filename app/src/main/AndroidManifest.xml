@@ -21,11 +21,11 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
-            android:banner="@drawable/app_icon_your_company"
+            android:banner="@drawable/logo_amazon"
             android:exported="true"
-            android:icon="@drawable/app_icon_your_company"
+            android:icon="@drawable/logo_amazon"
             android:label="@string/title_activity_main"
-            android:logo="@drawable/app_icon_your_company"
+            android:logo="@drawable/logo_amazon"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.TVInteractions.NoActionBar">
             <intent-filter>

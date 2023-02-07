@@ -7,7 +7,7 @@
     <color name="background_gradient_end">#00DDDDDD</color>
     <color name="fastlane_background">#000000</color>
 
-    <!--    nav menu-->
+    <!--   nav menu-->
     <color name="navigation_menu_focus_color">#ffaa3f</color>
     <color name="navigation_menu_focus_out_color">#CECCD5</color>
 
@@ -16,10 +16,13 @@
     <color name="selected_background">#ffaa3f</color>
     <color name="default_background">#1c1a23</color>
 
-    <!--    playback media control-->
+    <!--   playback media control   -->
     <color name="unplayed">#45424E</color>
     <color name="buffered">#95929F</color>
     <color name="played">#ffaa3f</color>
     <color name="text_highlight">#ffaa3f</color>
     <color name="x_ray_background_color">#88303134</color>
+
+    <!--   x-ray content   -->
+    <color name="x_ray_btn_bg_color">#fff</color>
 </resources>

@@ -22,6 +22,9 @@
     <dimen name="x_ray_corner_radius">5dp</dimen>
     <dimen name="x_ray_content_margin_parent">50dp</dimen>
     <dimen name="x_ray_content_margin_between">20dp</dimen>
+    <dimen name="x_ray_btn_corner_radius">25dp</dimen>
+    <dimen name="x_ray_btn_width">110dp</dimen>
+    <dimen name="x_ray_btn_height">50dp</dimen>
     <!--    media controller    -->
     <dimen name="media_controller_margin_parent">30dp</dimen>
     <dimen name="media_controller_margin_between">10dp</dimen>
