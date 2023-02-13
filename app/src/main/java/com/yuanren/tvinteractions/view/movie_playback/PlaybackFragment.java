@@ -5,6 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -86,6 +90,7 @@ public class PlaybackFragment extends Fragment {
 
     private TextView title;
     private ImageButton backBtn;
+    private ImageButton videoStatusIndicator;
     private PlayerView playerView;
     private ExoPlayer exoPlayer;
     private DefaultTimeBar progressBar;
@@ -136,8 +141,10 @@ public class PlaybackFragment extends Fragment {
         adapter = new XRayCardListAdapter(movie.getXRayItems());
         recyclerView.setAdapter(adapter);
 
+        // set up UI components
         title = view.findViewById(R.id.title);
         backBtn = view.findViewById(R.id.back_btn);
+        videoStatusIndicator = view.findViewById(R.id.video_status_indicator);
         playerView = view.findViewById(R.id.video_player);
         progressBar = view.findViewById(R.id.exo_progress);
 
@@ -159,6 +166,28 @@ public class PlaybackFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().finish();
+            }
+        });
+
+        videoStatusIndicator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoStatusIndicator.setBackground(getResources().getDrawable(R.drawable.shape_x_ray_media_controller_round_corner));
+                if (playWhenReady) {
+                    playWhenReady = false;
+                    videoStatusIndicator.setBackgroundResource(R.drawable.ic_playback_play_large);
+                    exoPlayer.pause();
+                } else {
+                    playWhenReady = true;
+                    videoStatusIndicator.setBackgroundResource(R.drawable.ic_playback_pause_large);
+                    exoPlayer.play();
+                }
+                Log.d(TAG, "videoStatusIndicator - onClick");
+                Animation animation = new AlphaAnimation(1.0f, 0.0f);
+                animation.setDuration(1000);
+                animation.setFillAfter(true);
+                videoStatusIndicator.startAnimation(animation);
+                Log.d(TAG, String.valueOf(videoStatusIndicator.getAlpha()));
             }
         });
     }
