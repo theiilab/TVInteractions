@@ -54,6 +54,7 @@ public final class MovieList {
         String title[] = {
                 "The King's Man",
                 "Red Notice",
+                "Jumanji",
 
                 "Bad Guys",
                 "The Lord Of The Rings",
@@ -71,6 +72,8 @@ public final class MovieList {
         String studio[] = {
                 "20th Century",
                 "Universal Pictures",
+                "Columbia Pictures",
+
                 "Studio Zero",
                 "Studio One",
                 "Studio Two",
@@ -78,8 +81,10 @@ public final class MovieList {
                 "Studio Four"
         };
         String category[] = {
-                "Action",
-                "Action",
+                MOVIE_CATEGORY[3],
+                MOVIE_CATEGORY[3],
+                MOVIE_CATEGORY[6],
+
                 "Category Zero",
                 "Category One",
                 "Category Two",
@@ -89,6 +94,8 @@ public final class MovieList {
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4.mp4",
                 "https://streamable.com/l/46vm7y/mp4-high.mp4",
+                "https://streamable.com/l/efmzs7/mp4-high.mp4",
+
                 "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
                 "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
                 "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue.mp4",
@@ -98,9 +105,10 @@ public final class MovieList {
         String bgImageUrl[] = {
                 "https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/kingsman-3.jpg",
                 "https://occ-0-34-1555.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVkcDtE1_UaJBGFQUfxakjzhYdT1L4kso24uZS0ASl_faURPBSGzY_Mxbx1KEcNbZr3ZqCatG-0zi2k3L4oBXenznQrrROKJQqdu.jpg?r=590",
+                "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
 
-                "https://roost.nbcuni.com/bin/viewasset.html/content/dam/Peacock/Landing-Pages/campaign/p1/badguys/BADGUYS-seo-m.jpg/_jcr_content/renditions/original.JPEG",
-                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/pdfCr8W0wBCpdjbZXSxnKhZtosP.jpg",
+                "https://thumb.canalplus.pro/http/unsafe/2560x1440/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/108431902",
+                "https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/10/Rings-of-Power.jpg",
                 "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg",
                 "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/9bColKVEAaWfmOLiLZoUhdYfevy.jpg",
                 "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/3VQj6m0I6gkuRaljmhNZl0XR3by.jpg"
@@ -108,9 +116,10 @@ public final class MovieList {
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
                 "https://cinemagic.ir/upload/image/movie/2021/11/red-notice-2021.jpg",
+                "https://occ-0-622-299.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABUd8TVjXGgyMY5xgsqWKbpbKx4XgKm5vXsFRSWUhoYE52kJvEcjqFjfIuAGnjh5NWWLUlfG_mMyALnqZOW67muP5zYH4WGte6YGj.jpg",
 
                 "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/81e8eaf4-42df-45fe-8eb9-f7596ba98246/df0ekt5-005cce1b-568a-4f4e-bdc3-a4879be52c8a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzgxZThlYWY0LTQyZGYtNDVmZS04ZWI5LWY3NTk2YmE5ODI0NlwvZGYwZWt0NS0wMDVjY2UxYi01NjhhLTRmNGUtYmRjMy1hNDg3OWJlNTJjOGEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.U-5Y35kKoLSzjlhoUWLpBQOi2fZtcA9erkGynkC-VlI",
-                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/suyNxglk17Cpk8rCM2kZgqKdftk.jpg",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWYFYyopTx6Ltjw_L84nqjkEMjc9_cylZgXQNq1xBHmujrjTbKog8pl_cPhotXVj1D1clWla7AImkDVATweq4AB0qk8DcgMvsaoSInPBvecwQxolSGT7lz8pgAUajuLJC2X-zr2r1z0UvKxVa-4GnLUb4WNXFjXRfuZalMo8Sn4mDefdMhGU4OjQlu/w1200-h630-p-k-no-nu/Rings%20of%20Power.jpg",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1ifiV9ZJD4tC3tRYcnLIzH0meaB.jpg",
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1HOYvwGFioUFL58UVvDRG6beEDm.jpg"
@@ -155,8 +164,8 @@ public final class MovieList {
         movie.setBackgroundImageUrl(backgroundImageUrl);
         movie.setVideoUrl(videoUrl);
 
-//        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue()));
-        Map<String, List<String>> xRayItemForMovie = xRayItems.get(0);
+        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue() % 8));
+//        Map<String, List<String>> xRayItemForMovie = xRayItems.get(0);
         List<String> types = xRayItemForMovie.get("type");
         List<String> names = xRayItemForMovie.get("name");
         List<String> images = xRayItemForMovie.get("image");
@@ -235,6 +244,9 @@ public final class MovieList {
         entry1.put("merchandise", Arrays.asList(xRay1Merchandise));
         listOfItems.add(entry1);
 
+
+
+
         // Red Notice
         String xRay2Type[] = {
                 "0",
@@ -246,42 +258,182 @@ public final class MovieList {
                 "1"
         };
         String xRay2Name[] = {
-                "Taron Egerton",
-                "Sofia Boutella",
-                "utler and Gross GR03 Square",
-                "Emma Watson",
-                "Tom Cruise",
-                "Emma Watson",
-                "Emma Watson",
+                "Dwayne Johnson",
+                "Ryan Reynolds",
+                "Brunello Cucinelli Blazer",
+                "Suunto Core Watch",
+                "iPhone SE",
+                "iPad mini 2",
+                "Gitzo Camera Tripod",
         };
         String xRay2ImageUrl[] = {
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRezb3QSPGhLptNSXoqUpKeVofpNCTLPXOG9n9o3Z2bnMp80f2AimK17SPKLa2PPkqsYkqIUAHfDgZFTs0",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-                "https://popularnetworth.com/wp-content/uploads/2021/05/6495d05033eb2029300f4a6fe5151952.jpg",
-
+                "https://flxt.tmsimg.com/assets/235135_v9_bb.jpg",
+                "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcRDIJ-PkZ_U6WOLo7fm-UVwSZbyFb8fu5TVmvvErBzsxb_TmMMdJEyOMBT53C7zqxvuqDATtVONl_l5zPM",
+                "https://cdn-images.farfetch-contents.com/18/64/56/76/18645676_41150734_1000.jpg",
+                "https://www.suunto.com/globalassets/productimages/suunto-core-alu-deep-black/suunto-core-alu-deep-black-3946.png?height=1100&format=jpg&bgcolor=f6f6f6",
+                "https://m.media-amazon.com/images/I/61TOWf11+jL.jpg",
+                "https://bestphone.ru/upload/resize_cache/iblock/0dc/1200_1200_140cd750bba9870f18aada2478b24840a/p0zihiqy743eb8fc2aomrmdju08572er.jpg",
+                "https://m.media-amazon.com/images/I/41qqMswbp4L._AC_SX679_.jpg"
         };
         String xRay2Description[] = {
+                "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
+                "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
+                "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4,995;• Outer: Cotton 100%\n• Lining: Cupro 100%\n• Dry Clean Only\n\nMade in Italy.",
+                "Suunto Core Alu Deep Black;$229;• Measurements: 49.1 x 49.1 x 14.5 mm\n• Weight: 79 g\n• Bezel material: Aluminum\n• Glass material: Mineral crystal\n\nSuunto Core Premium combines modern design with the essential outdoor functions. Choose rigid natural stainless steel with sapphire crystal glass for added durability, or the elegant aluminum cases for less weight on the wrist.",
+                "iPhone SE; $479; • Size: 128 GB\n• Color: Midnight\n• Display:4.7-inch Retina HD display with True Tone\n• Height:138.4 mm\n• Width: 67.3 mm\n• Depth: 7.3 mm\n• Weight: 144 g",
+                "iPad Mini 2;• $649; • Size: 256 GB\n• Color: Space Grey\n• Display: 8.3” Liquid Retina display² True Tone\n• Height: 7.87 inches (200 mm)\n• Width: 134.7 mm\n• Depth: .5 mm\n• Weight: 331 g",
+                "Gitzo Camera Tripod;$1616.88;• Dimensions: 30.9 x 7.6 x 6.6 inches\n• Weight: 5.8 pounds\n\nThe Gitzo Carbon Fiber Tripod with  3-Way Fluid Head Kit is a 4-section support with carbon fiber eXact tubing-constructed legs. The twist leg locks unlock with a quarter turn, enabling you to extend the legs along with the rapid center column"
+        };
+        String xRay2Merchandise[] = {
                 "",
                 "",
-                "",
-                "",
-                "",
-                "",
-                ""
+                "amazon target walmart",
+                "amazon target walmart",
+                "apple amazon bestbuy",
+                "apple amazon bestbuy",
+                "amazon bestbuy costco"
         };
         Map<String, List<String>> entry2 = new HashMap<>();
         entry2.put("type", Arrays.asList(xRay2Type));
         entry2.put("name", Arrays.asList(xRay2Name));
         entry2.put("image", Arrays.asList(xRay2ImageUrl));
         entry2.put("description", Arrays.asList(xRay2Description));
-        listOfItems.add(entry1);
+        entry2.put("merchandise", Arrays.asList(xRay2Merchandise));
+        listOfItems.add(entry2);
+
+
+
+
+        // Jumanji
+        String xRay3Type[] = {
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay3Name[] = {
+                "Dwayne Johnson",
+                "Kevin Hart",
+                "Karen Gillan",
+                "Timberland Mill Shirt ",
+                "Riparo Motorsports Half Finger Gloves",
+                "Army Camo Multicam Pants",
+                "Tru-Spec Men's Gen-ii Adjustable Boonie",
+                "Fitted Short Sleeve Crop Top",
+        };
+        String xRay3ImageUrl[] = {
+                "https://flxt.tmsimg.com/assets/235135_v9_bb.jpg",
+                "https://assets.fxnetworks.com/cms-next/production/cms/2021/05/26/web_crew_kevinhart_dave_570x698.jpg",
+                "https://static.tvtropes.org/pmwiki/pub/images/dw_kg.png",
+                "https://m.media-amazon.com/images/I/713Gok5YfvL._AC_UY879_.jpg",
+                "https://m.media-amazon.com/images/I/81QqXeRio+L._AC_SX679_.jpg",
+                "https://m.media-amazon.com/images/I/718UGtRaAlL._AC_UY879_.jpg",
+                "https://m.media-amazon.com/images/I/91ELqVs25HL._AC_UX679_.jpg",
+                "https://m.media-amazon.com/images/I/610b7cSuRaL._AC_UY879_.jpg"
+        };
+        String xRay3Description[] = {
+                "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
+                "Kevin Hart;• Born in Philadelphia, PA, American\n• Age: 43 (1979)\n• Height: 5′ 2″\n• Nationality: American;Kevin Darnell Hart is an American comedian and actor. Originally known as a stand-up comedian, he has since starred in Hollywood films and on TV. He has also released several well-received comedy albums.",
+                "Karen Gillan;• Born in Inverness, United Kingdom\n• Age: 35 (1987)\n• Height: 5′ 11″\n• Nationality:British, Scottish;Karen Sheila Gillan is a Scottish actress. She gained recognition for her work in British film and television, particularly for playing Amy Pond, a primary companion to the Eleventh Doctor in the science fiction series Doctor Who, for which she received several awards and nominations.",
+                "Timberland Mill River Linen Cargo SS Shirt ;$90;• Cotton: 100%\n• Machine Wash\n\nThis durable short-sleeve work shirt comes standard with built-in stretch, so whatever you're doing, it's easier to do.",
+                "Riparo Motorsports Half Finger Leather Gloves;$41.5;• Material: Leather\n• Color: Black\n• Sport Type: Cycling\n\nThese genuine leather gloves have the quality and the features you would expect from a pair of quality driving gloves , including soft supple leather and a snap closure on the wrist strap.",
+                "Army Camo Multicam Pants; 99.99; • 50% cotton\n• 50% nylon\n• Machine Wash\n\nThere are some core features include: double layer seat /knee areas for durability ,a rugged metal YKK zipper is used for the fly, knees are slightly articulated, and a simple velcro strap system in built into the waist to allow for size adjustments.",
+                "Tru-Spec Men's Gen-ii Adjustable Boonie;• $16.5;• 100% Cotton\n• Hand Wash Only\n\nThese stylish hats that meet US military specs are constructed from 65/35 poly-cotton rip-stop with an flexible drawstring chin strap with cardlock for an easy fit",
+                "Fitted Short Sleeve Crop Top;$17.99;• 63% Rayon\n• 33% Polyester\n• 4% Spandex\n• Hand Wash Only\n\nThis round neck short sleeve crop top will have you feeling wild for it. Keep it trendy and pair it with our flowy ankle length maxi skirt or for a more casual look wear it with our favorite high waisted skinny jeans."
+        };
+        String xRay3Merchandise[] = {
+                "",
+                "",
+                "",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon target walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry3 = new HashMap<>();
+        entry3.put("type", Arrays.asList(xRay3Type));
+        entry3.put("name", Arrays.asList(xRay3Name));
+        entry3.put("image", Arrays.asList(xRay3ImageUrl));
+        entry3.put("description", Arrays.asList(xRay3Description));
+        entry3.put("merchandise", Arrays.asList(xRay3Merchandise));
+        listOfItems.add(entry3);
+
+
+
+
+        // Uncharted
+        String xRay4Type[] = {
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay4Name[] = {
+                "Dwayne Johnson",
+                "Ryan Reynolds",
+                "Mark Wahlberg",
+                "Neck Ruffle Fit and Flare Dress",
+                "Vegan Leather Moto Jacket",
+                "The Boulevard Bomber",
+                "Relax Fit Men's Jeans",
+                "Uncharted Grey Hoodie"
+        };
+        String xRay4ImageUrl[] = {
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_bnTTg0RPTPRfk3n8lHBWB_oJS5SyPYSRTb0ffkdFcdXGNwh-rR7hwqwbykz90m2LWrI&usqp=CAU",
+                "https://flxt.tmsimg.com/assets/609607_v9_bb.jpg",
+                "https://flxt.tmsimg.com/assets/43431_v9_ba.jpg",
+                "https://images.express.com/is/image/expressfashion/0094_07827535_2073_a001?cache=on&wid=960&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+                "https://lsco.scene7.com/is/image/lsco/595440006-front-pdp?fmt=avif&qlt=40&resMode=bisharp&op_usm=0.6,0.6,8&fit=crop,0&wid=450&hei=491",
+                "https://bonobos-prod-s3.imgix.net/products/286106/original/JACKET_BOMBER-JACKET_BOT01535N1233G_1.jpg?1675112807=&auto=format&fit=clip&cs=srgb&w=768&q=75",
+                "https://lsco.scene7.com/is/image/lsco/005500110-front-pdp?fmt=avif&qlt=40&resMode=bisharp&op_usm=0.6,0.6,8&fit=crop,0&wid=450&hei=491",
+                ""
+        };
+        String xRay4Description[] = {
+                "Tom Holland ;• Born in Kingston upon Thames, United Kingdom\n• Age: 26 (1996)\n• Height: 5′ 8″\n• Nationality: British;Thomas Stanley Holland is an English actor. His accolades include a British Academy Film Award, three Saturn Awards, a Guinness World Record and an appearance on the Forbes 30 Under 30 Europe list. Some publications have called him one of the most popular actors of his generation.",
+                "Ryan Reynolds;• Born in San Diego, CA, American\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Sophia Taylor Ramsey Ali is an American actress. She is best known for her work in the MTV romantic comedy series Faking It, the ABC medical drama series Grey's Anatomy, and The Wilds.",
+                "Mark Wahlberg;• Born in Boston, MA, American\n• Age: 51 (1971)\n• Height: 5′ 8″\n• Nationality: American;Mark Robert Michael Wahlberg, former stage name Marky Mark, is an American actor, businessman, and former rapper. His work as a leading man spans the comedy, drama, and action genres.",
+                "Neck Ruffle Fit and Flare Dress;$128;• Polyester/Rayon 100%\n• Length: Regular 36, Petite 34\n\nThis one features fun ruffle details and a flattering fit and flare style. This piece perfectly pairs with heels or booties for your next event.",
+                "Vegan Leather Moto Jacket;$128;• Machine wash cold, tumble dry low\n• Machine wash cold, tumble dry low\n\nWater resistant outer shell for extra protection against inclement weather.",
+                "The Boulevard Bomber; $89; • 60% Cotton, 40% Nylon\n• Dry clean only\n\nClassic bomber style with rib collar, cuff and hem | Single welt hand pockets with snap | Water repellent | Fully lined.",
+                "Relax Fit Men's Jeans;• $69.5; • 1% elastane (Lycra®), 100% cotton\n• Zip fly\n• 5-pocket styling\n• Machine wash cold\n\nA comfortable classic, introduced in 1985 and loved ever since. After the '70s were over, things got more relaxed, including Levi's® jeans. This pair features extra room throughout with a slight, tailor-like taper at the leg.",
+                "Uncharted Grey Hoodie;$39;• Color: Vintage Heather\n• Style: Classic Hoodie\n• Cotton/Poly fleece blend\n\nSuper warm and cozy fleece lining with an adjustable hood and banded cuffs to keep in the heat."
+        };
+        String xRay4Merchandise[] = {
+                "",
+                "",
+                "",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry4 = new HashMap<>();
+        entry4.put("type", Arrays.asList(xRay4Type));
+        entry4.put("name", Arrays.asList(xRay4Name));
+        entry4.put("image", Arrays.asList(xRay4ImageUrl));
+        entry4.put("description", Arrays.asList(xRay4Description));
+        entry4.put("merchandise", Arrays.asList(xRay4Merchandise));
+        listOfItems.add(entry4);
+
+
+
 
         // random x-ray for placeholders
         for (int i = 0; i < 5; ++i) {
+            String xRay21Type[] = {
+                "0",
+                "0",
+            };
             String xRay21Name[] = {
                     "Tom Cruise",
                     "Emma Watson",
@@ -294,10 +446,16 @@ public final class MovieList {
                     "",
                     ""
             };
+            String xRay21Merchandise[] = {
+                "",
+                ""
+            };
             Map<String, List<String>> entry21 = new HashMap<>();
+            entry21.put("type", Arrays.asList(xRay21Type));
             entry21.put("name", Arrays.asList(xRay21Name));
             entry21.put("image", Arrays.asList(xRay21ImageUrl));
             entry21.put("description", Arrays.asList(xRay21Description));
+            entry21.put("merchandise", Arrays.asList(xRay21Merchandise));
             listOfItems.add(entry21);
         }
         return listOfItems;
