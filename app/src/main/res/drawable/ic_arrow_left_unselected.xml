@@ -1,8 +1,10 @@
-<!-- drawable/arrow_left.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="48dp"
-    android:width="48dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-    <path android:fillColor="#99ffffff" android:pathData="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <path
+      android:pathData="M12,8a0.5,0.5 0,0 1,-0.5 0.5H5.707l2.147,2.146a0.5,0.5 0,0 1,-0.708 0.708l-3,-3a0.5,0.5 0,0 1,0 -0.708l3,-3a0.5,0.5 0,1 1,0.708 0.708L5.707,7.5H11.5a0.5,0.5 0,0 1,0.5 0.5z"
+      android:fillColor="#99ffffff"
+      android:fillType="evenOdd"/>
 </vector>
