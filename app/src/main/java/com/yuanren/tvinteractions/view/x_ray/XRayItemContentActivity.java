@@ -44,6 +44,9 @@ public class XRayItemContentActivity extends Activity {
     private ImageButton btn1;
     private ImageButton btn2;
     private ImageButton btn3;
+    private TextView price1;
+    private TextView price2;
+    private TextView price3;
 
     private Movie movie;
     private XRayItem item;
@@ -63,6 +66,9 @@ public class XRayItemContentActivity extends Activity {
         btn1 = findViewById(R.id.x_ray_btn1);
         btn2 = findViewById(R.id.x_ray_btn2);
         btn3 = findViewById(R.id.x_ray_btn3);
+        price1 = findViewById(R.id.price1);
+        price2 = findViewById(R.id.price2);
+        price3 = findViewById(R.id.price3);
 
         String[] content = item.getDescription().split("\\;"); //System.lineSeparator())
         title.setText(content[0]);
@@ -74,6 +80,7 @@ public class XRayItemContentActivity extends Activity {
         description.setText(content[2]);
 
         if (item.getType() == TYPE_ITEM_PRODUCT) {
+            // set up buttons for purchase link
             btn1.setVisibility(View.VISIBLE);
             btn2.setVisibility(View.VISIBLE);
             btn3.setVisibility(View.VISIBLE);
@@ -86,10 +93,30 @@ public class XRayItemContentActivity extends Activity {
             setUpButtons(btn1, getLink(merchandises[0]));
             setUpButtons(btn2, getLink(merchandises[1]));
             setUpButtons(btn3, getLink(merchandises[2]));
+
+            // set up price text view
+            price1.setVisibility(View.VISIBLE);
+            price2.setVisibility(View.VISIBLE);
+            price3.setVisibility(View.VISIBLE);
+
+            int min = 20;
+            int max = 40;
+            double basePrice = Float.parseFloat(content[1].substring(1));
+            double randomDelta1 = Math.random()*(max-min+1)+min;
+            double randomDelta2 = Math.random()*(max-min+1)+min;
+            price1.setText(content[1]);
+            price2.setText("$" + String.format("%.2f", basePrice + randomDelta1));
+            price3.setText("$" + String.format("%.2f", basePrice + randomDelta2));
+
         } else {
             btn1.setVisibility(View.GONE);
             btn2.setVisibility(View.GONE);
             btn3.setVisibility(View.GONE);
+
+            price1.setVisibility(View.GONE);
+            price2.setVisibility(View.GONE);
+            price3.setVisibility(View.GONE);
+
         }
     }
 

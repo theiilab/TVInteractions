@@ -62,14 +62,47 @@
         app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <TextView
+        android:id="@+id/price1"
+        android:layout_width="@dimen/x_ray_btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginLeft="@dimen/x_ray_content_margin_parent"
+        android:text="text"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintLeft_toRightOf="@id/x_ray_image_container"/>
+    <TextView
+        android:id="@+id/price2"
+        android:layout_width="@dimen/x_ray_btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginLeft="@dimen/x_ray_content_margin_between"
+        android:text="text"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintLeft_toRightOf="@id/price1"/>
+    <TextView
+        android:id="@+id/price3"
+        android:layout_width="@dimen/x_ray_btn_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginLeft="@dimen/x_ray_content_margin_between"
+        android:text="text"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintLeft_toRightOf="@id/price2"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/x_ray_btn1_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between_sm"
         android:layout_marginLeft="@dimen/x_ray_content_margin_parent"
         app:cardCornerRadius="@dimen/x_ray_btn_corner_radius"
-        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintTop_toBottomOf="@id/price1"
         app:layout_constraintLeft_toRightOf="@id/x_ray_image_container">
         <ImageButton
             android:id="@+id/x_ray_btn1"
@@ -87,10 +120,10 @@
         android:id="@+id/x_ray_btn2_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between_sm"
         android:layout_marginLeft="@dimen/x_ray_content_margin_between"
         app:cardCornerRadius="@dimen/x_ray_btn_corner_radius"
-        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintTop_toBottomOf="@id/price1"
         app:layout_constraintLeft_toRightOf="@id/x_ray_btn1_container">
         <ImageButton
             android:id="@+id/x_ray_btn2"
@@ -108,10 +141,10 @@
         android:id="@+id/x_ray_btn3_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x_ray_content_margin_between"
+        android:layout_marginTop="@dimen/x_ray_content_margin_between_sm"
         android:layout_marginLeft="@dimen/x_ray_content_margin_between"
         app:cardCornerRadius="@dimen/x_ray_btn_corner_radius"
-        app:layout_constraintTop_toBottomOf="@id/x_ray_description"
+        app:layout_constraintTop_toBottomOf="@id/price1"
         app:layout_constraintLeft_toRightOf="@id/x_ray_btn2_container" >
         <ImageButton
             android:id="@+id/x_ray_btn3"
