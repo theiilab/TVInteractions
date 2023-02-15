@@ -88,6 +88,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
             ((NavigationMenuFragment)fragment).setNavigationStateListener(this);
         } else if (fragment instanceof MoviesFragment) {
             ((MoviesFragment)fragment).setNavigationMenuCallback(this);
+        } else if (fragment instanceof TVChannelsFragment) {
+            ((TVChannelsFragment)fragment).setNavigationMenuCallback(this);
         }
     }
 
