@@ -77,7 +77,7 @@
         android:focusable="false"
         android:nextFocusUp="@id/home_IB"
         android:nextFocusLeft="@id/movies_IB"
-        android:nextFocusDown="@id/shows_IB"
+        android:nextFocusDown="@id/tv_channels_IB"
         android:tag="@string/menu_item_movies"
         app:layout_constraintTop_toBottomOf="@id/home_IB"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
 
     <!--  TV Shows  -->
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/shows_IB"
+        android:id="@+id/tv_channels_IB"
         android:layout_width="@dimen/dimens_22dp"
         android:layout_height="@dimen/dimens_22dp"
         android:layout_marginTop="@dimen/dimens_30dp"
@@ -106,23 +106,23 @@
         android:focusable="false"
         android:nextFocusUp="@id/movies_IB"
         android:nextFocusDown="@id/settings_IB"
-        android:nextFocusLeft="@id/shows_IB"
-        android:tag="@string/menu_item_tv_shows"
+        android:nextFocusLeft="@id/tv_channels_IB"
+        android:tag="@string/menu_item_tv_channels"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movies_IB"
-        app:srcCompat="@drawable/ic_shows_unselected" />
+        app:srcCompat="@drawable/ic_tv_channels_unselected" />
     <TextView
-        android:id="@+id/shows_TV"
+        android:id="@+id/tv_channels_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
-        android:text="@string/menu_item_tv_shows"
+        android:text="@string/menu_item_tv_channels"
         android:textColor="@color/navigation_menu_focus_out_color"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/shows_IB"
-        app:layout_constraintStart_toEndOf="@id/shows_IB"
-        app:layout_constraintTop_toTopOf="@id/shows_IB" />
+        app:layout_constraintBottom_toBottomOf="@id/tv_channels_IB"
+        app:layout_constraintStart_toEndOf="@id/tv_channels_IB"
+        app:layout_constraintTop_toTopOf="@id/tv_channels_IB" />
 
     <!--  Settings  -->
     <androidx.appcompat.widget.AppCompatImageButton
@@ -133,11 +133,11 @@
         android:layout_marginStart="@dimen/dimens_5dp"
         android:background="@color/transparent"
         android:focusable="false"
-        android:nextFocusUp="@id/shows_IB"
+        android:nextFocusUp="@id/tv_channels_IB"
         android:nextFocusDown="@id/settings_IB"
         android:nextFocusLeft="@id/settings_IB"
         android:tag="@string/menu_item_settings"
-        app:layout_constraintTop_toBottomOf="@id/shows_IB"
+        app:layout_constraintTop_toBottomOf="@id/tv_channels_IB"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_settings_unselected" />
     <TextView

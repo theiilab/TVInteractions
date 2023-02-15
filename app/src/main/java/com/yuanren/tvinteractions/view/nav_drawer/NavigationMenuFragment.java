@@ -36,7 +36,7 @@ public class NavigationMenuFragment extends Fragment {
     public static final int TYPE_VIEW_SEARCH = 1;
     public static final int TYPE_VIEW_HOME = 2;
     public static final int TYPE_VIEW_MOVIES = 3;
-    public static final int TYPE_VIEW_TV_SHOWS = 4;
+    public static final int TYPE_VIEW_TV_CHANNELS = 4;
     public static final int TYPE_VIEW_SETTINGS = 5;
 
     private ConstraintLayout constraintLayout;
@@ -45,12 +45,12 @@ public class NavigationMenuFragment extends Fragment {
     private ImageButton searchIB;
     private ImageButton homeIB;
     private ImageButton moviesIB;
-    private ImageButton tvShowsIB;
+    private ImageButton tvChannelsIB;
     private ImageButton settingsIB;
     private TextView searchTV;
     private TextView homeTV;
     private TextView moviesTV;
-    private TextView tvShowsTV;
+    private TextView tvChannelsTV;
     private TextView settingsTV;
 
     private int currentSelectedFragmentType;
@@ -86,12 +86,12 @@ public class NavigationMenuFragment extends Fragment {
         searchIB = view.findViewById(R.id.search_IB);
         homeIB = view.findViewById(R.id.home_IB);
         moviesIB = view.findViewById(R.id.movies_IB);
-        tvShowsIB = view.findViewById(R.id.shows_IB);
+        tvChannelsIB = view.findViewById(R.id.tv_channels_IB);
         settingsIB = view.findViewById(R.id.settings_IB);
         searchTV = view.findViewById(R.id.search_TV);
         homeTV = view.findViewById(R.id.home_TV);
         moviesTV = view.findViewById(R.id.movies_TV);
-        tvShowsTV = view.findViewById(R.id.shows_TV);
+        tvChannelsTV = view.findViewById(R.id.tv_channels_TV);
         settingsTV = view.findViewById(R.id.settings_TV);
 
         // by default selection
@@ -245,34 +245,34 @@ public class NavigationMenuFragment extends Fragment {
     }
 
     private void tvShowsListener() {
-        tvShowsIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        tvChannelsIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // check if the button is focused
                 if (b) {
                     if (isNavigationOpen()) {
-                        setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_selected);
-                        setMenuNameFocusView(tvShowsTV, true);
-                        focusIn(tvShowsIB, 0);
+                        setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_selected);
+                        setMenuNameFocusView(tvChannelsTV, true);
+                        focusIn(tvChannelsIB, 0);
                     }
                 } else {
-                    setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_unselected);
-                    setMenuNameFocusView(tvShowsTV, false);
-                    focusOut(tvShowsIB, 0);
+                    setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_unselected);
+                    setMenuNameFocusView(tvChannelsTV, false);
+                    focusOut(tvChannelsIB, 0);
                 }
             }
         });
 
-        tvShowsIB.setOnKeyListener(new View.OnKeyListener() {
+        tvChannelsIB.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {//only when key is pressed down
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
-                            lastSelectedMenuItem = TYPE_VIEW_TV_SHOWS;
+                            lastSelectedMenuItem = TYPE_VIEW_TV_CHANNELS;
                             navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
-                            fragmentChangeListener.switchFragment(TYPE_VIEW_TV_SHOWS);
+                            fragmentChangeListener.switchFragment(TYPE_VIEW_TV_CHANNELS);
                             closeNav();
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
@@ -309,9 +309,9 @@ public class NavigationMenuFragment extends Fragment {
                 moviesIB.requestFocus();
                 setMenuNameFocusView(moviesTV, true);
                 break;
-            case TYPE_VIEW_TV_SHOWS:
-                tvShowsIB.requestFocus();
-                setMenuNameFocusView(tvShowsTV, true);
+            case TYPE_VIEW_TV_CHANNELS:
+                tvChannelsIB.requestFocus();
+                setMenuNameFocusView(tvChannelsTV, true);
                 break;
             case TYPE_VIEW_SETTINGS:
                 settingsIB.requestFocus();
@@ -327,7 +327,7 @@ public class NavigationMenuFragment extends Fragment {
             searchTV.setVisibility(visibility);
             homeTV.setVisibility(visibility);
             moviesTV.setVisibility(visibility);
-            tvShowsTV.setVisibility(visibility);
+            tvChannelsTV.setVisibility(visibility);
             settingsTV.setVisibility(visibility);
         } else {
             animateMenuNamesEntry(searchTV, visibility, TYPE_VIEW_SEARCH);
@@ -353,8 +353,8 @@ public class NavigationMenuFragment extends Fragment {
                     case TYPE_VIEW_MOVIES:
                         animateMenuNamesEntry(moviesTV, visibility, viewCode + 1);
                         break;
-                    case TYPE_VIEW_TV_SHOWS:
-                        animateMenuNamesEntry(tvShowsTV, visibility, viewCode + 1);
+                    case TYPE_VIEW_TV_CHANNELS:
+                        animateMenuNamesEntry(tvChannelsTV, visibility, viewCode + 1);
                         break;
                     case TYPE_VIEW_SETTINGS:
                         animateMenuNamesEntry(settingsTV, visibility, viewCode + 1);
@@ -393,9 +393,9 @@ public class NavigationMenuFragment extends Fragment {
             setMenuIconFocusView(moviesIB, R.drawable.ic_movie_unselected);
             setMenuNameFocusView(moviesTV, false);
         }
-        if (lastSelectedMenuItem !=  TYPE_VIEW_TV_SHOWS) {
-            setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_unselected);
-            setMenuNameFocusView(tvShowsTV, false);
+        if (lastSelectedMenuItem !=  TYPE_VIEW_TV_CHANNELS) {
+            setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_unselected);
+            setMenuNameFocusView(tvChannelsTV, false);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_SETTINGS) {
             setMenuIconFocusView(settingsIB, R.drawable.ic_settings_unselected);
@@ -414,8 +414,8 @@ public class NavigationMenuFragment extends Fragment {
             case TYPE_VIEW_MOVIES:
                 setMenuIconFocusView(moviesIB, R.drawable.ic_movie_selected);
                 break;
-            case TYPE_VIEW_TV_SHOWS:
-                setMenuIconFocusView(tvShowsIB, R.drawable.ic_shows_selected);
+            case TYPE_VIEW_TV_CHANNELS:
+                setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_selected);
                 break;
             case TYPE_VIEW_SETTINGS:
                 setMenuIconFocusView(settingsIB, R.drawable.ic_settings_selected);

@@ -16,6 +16,7 @@ import com.yuanren.tvinteractions.view.movies.MoviesFragment;
 import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
 import com.yuanren.tvinteractions.view.search.SearchFragment;
+import com.yuanren.tvinteractions.view.tv_channels.TVChannelsFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +29,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
     private NavigationMenuFragment navMenuFragment;
     private MoviesFragment moviesFragment;
+    private TVChannelsFragment tvChannelsFragment;
 
     private int currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_HOME;
 
@@ -41,6 +43,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
         navMenuFragment = NavigationMenuFragment.newInstance();
         moviesFragment = MoviesFragment.newInstance();
+        tvChannelsFragment = TVChannelsFragment.newInstance();
 
 
         // avoid duplicate fragment after screen rotation
@@ -108,8 +111,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
             case NavigationMenuFragment.TYPE_VIEW_MOVIES:
                 fragment = moviesFragment;
                 break;
-            case NavigationMenuFragment.TYPE_VIEW_TV_SHOWS:
-                fragment = moviesFragment;
+            case NavigationMenuFragment.TYPE_VIEW_TV_CHANNELS:
+                fragment = tvChannelsFragment;
                 break;
             case NavigationMenuFragment.TYPE_VIEW_SETTINGS:
                 fragment = moviesFragment;
@@ -139,8 +142,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_MOVIES;
 //                    moviesFragment.selectFirstItem();
                     break;
-                case NavigationMenuFragment.TYPE_VIEW_TV_SHOWS:
-                    currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_TV_SHOWS;
+                case NavigationMenuFragment.TYPE_VIEW_TV_CHANNELS:
+                    currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_TV_CHANNELS;
 //                    moviesFragment.selectFirstItem();
                     break;
                 case NavigationMenuFragment.TYPE_VIEW_SETTINGS:
