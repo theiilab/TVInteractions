@@ -6,11 +6,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,6 +51,8 @@ public class PlaybackFragment extends Fragment {
     private ExoPlayer exoPlayer;
     private DefaultTimeBar timeBar;
     private RecyclerView recyclerView;
+    private ProgressBar loadingBar;
+
     private XRayCardListAdapter adapter;
 
     private boolean playWhenReady = true;
@@ -103,6 +104,7 @@ public class PlaybackFragment extends Fragment {
         playBtn = view.findViewById(R.id.exo_play);
         pauseBtn = view.findViewById(R.id.exo_pause);
         timeBar = view.findViewById(R.id.exo_progress);
+        loadingBar = view.findViewById(R.id.loading_bar);
 
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
@@ -181,10 +183,11 @@ public class PlaybackFragment extends Fragment {
                 switch (playbackState) {
 
                     case Player.STATE_BUFFERING:
-                        Log.d(TAG, "buffering");
+                        loadingBar.setVisibility(View.VISIBLE);
+//                        loadingBar.
                         break;
                     case Player.STATE_READY:
-                        Log.d(TAG, "ready");
+                        loadingBar.setVisibility(View.GONE);
                         break;
                     case Player.STATE_ENDED:
                         backBtn.requestFocus();
