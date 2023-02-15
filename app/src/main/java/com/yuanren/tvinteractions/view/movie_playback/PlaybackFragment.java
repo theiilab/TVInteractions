@@ -32,59 +32,6 @@ import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-//import com.google.android.exoplayer2.upstream.DataSource;
-
-//public class PlaybackFragment extends VideoSupportFragment {
-//    private static final String TAG = "PlaybackFragment";
-//
-//    private PlaybackTransportControlGlue<MediaPlayerAdapter> mTransportControlGlue;
-//    private Movie movie;
-//
-//    public PlaybackFragment() {
-//        // Required empty public constructor
-//    }
-//
-//    public static PlaybackFragment newInstance(long id) {
-//        Log.d(TAG, "Item: " + String.valueOf(id));
-//
-//        PlaybackFragment fragment = new PlaybackFragment();
-//        Bundle args = new Bundle();
-//        args.putLong(PlaybackActivity.SELECTED_MOVIE_ID, id);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        // get selected movie
-//        movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
-//
-//        // set up adapter
-//        MediaPlayerAdapter playerAdapter = new MediaPlayerAdapter(getActivity());
-//        playerAdapter.setRepeatAction(PlaybackControlsRow.RepeatAction.INDEX_NONE);
-//
-//        //set up glue and glue host
-//        VideoSupportFragmentGlueHost glueHost =
-//                new VideoSupportFragmentGlueHost(PlaybackFragment.this);
-//        mTransportControlGlue = new PlaybackTransportControlGlue<>(getActivity(), playerAdapter);
-//        mTransportControlGlue.setHost(glueHost);
-////        mTransportControlGlue.setTitle(movie.getTitle());
-////        mTransportControlGlue.setSubtitle(movie.getDescription());
-//        mTransportControlGlue.playWhenPrepared();
-//        playerAdapter.setDataSource(Uri.parse(movie.getVideoUrl()));
-//
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        if (mTransportControlGlue != null) {
-//            mTransportControlGlue.pause();
-//        }
-//    }
-//}
 public class PlaybackFragment extends Fragment {
     private static final String TAG = "PlaybackFragment";
 
