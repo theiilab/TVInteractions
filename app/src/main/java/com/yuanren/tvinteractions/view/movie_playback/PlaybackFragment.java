@@ -119,10 +119,19 @@ public class PlaybackFragment extends Fragment {
                 }
             }
         });
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void onClick(View view) {
-                getActivity().finish();
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                switch (i) {
+                    case KeyEvent.KEYCODE_ENTER:
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                    case KeyEvent.KEYCODE_BACK:
+                        getActivity().finish();
+                        break;
+                    default:
+                        Log.d(TAG, "setOnKeyListener - onKey - default");
+                }
+                return false;
             }
         });
 
@@ -151,6 +160,9 @@ public class PlaybackFragment extends Fragment {
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         // always focus on the first x-ray item
                         recyclerView.getChildAt(0).requestFocus();
+                        break;
+                    case KeyEvent.KEYCODE_BACK:
+                        getActivity().finish();
                         break;
                     default:
                         Log.d(TAG, "videoStatusIndicator - onKey - default");
