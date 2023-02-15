@@ -118,7 +118,7 @@ public final class MovieList {
                 "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose.mp4"
         };
         String bgImageUrl[] = {
-                "https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/12/kingsman-3.jpg",
+                "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
                 "https://occ-0-34-1555.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVkcDtE1_UaJBGFQUfxakjzhYdT1L4kso24uZS0ASl_faURPBSGzY_Mxbx1KEcNbZr3ZqCatG-0zi2k3L4oBXenznQrrROKJQqdu.jpg?r=590",
                 "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
                 "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/best-new-movies-on-netflix-this-week-august-5th-2022.webp",
