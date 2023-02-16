@@ -25,4 +25,12 @@
 
     <!--   x-ray content   -->
     <color name="x_ray_btn_bg_color">#000</color>
+
+    <!--   search   -->
+<!--    <color name="keyboard_bg_color">#181821</color>-->
+<!--    <color name="keyboard_key_color_unfocused">#1f1f2b</color>-->
+<!--    <color name="keyboard_key_color_focused">#30303d</color>-->
+    <color name="keyboard_bg_color">#dd161616</color>
+    <color name="keyboard_key_color_unfocused">#212121</color>
+    <color name="keyboard_key_color_focused">#30303d</color>
 </resources>

@@ -31,4 +31,14 @@
     <dimen name="media_controller_margin_between">10dp</dimen>
     <dimen name="media_controller_button_size">24dp</dimen>
     <dimen name="media_controller_text_view_size">60dp</dimen>
+
+    <!--    search    -->
+    <dimen name="search_margin_parent">24dp</dimen>
+    <dimen name="search_margin_between">24dp</dimen>
+    <!--    keyboard view    -->
+    <dimen name="keyboard_width">260dp</dimen> <!-- keyboard_row_height * 6 + 2 * margin_parent = 260 -->
+    <dimen name="keyboard_height">300dp</dimen> <!-- keyboard_row_height * 7 + 2 * margin_parent = 300 -->
+    <dimen name="keyboard_row_height">40dp</dimen>
+    <dimen name="keyboard_margin_parent">10dp</dimen>
+    <dimen name="keyboard_margin_between">1dp</dimen>
 </resources>

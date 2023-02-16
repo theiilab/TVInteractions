@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/keyboard_width"
+    android:layout_height="@dimen/keyboard_height"
+    android:background="@drawable/shape_keyboard_view_round_corner"
+    app:layout_constraintCircleRadius="10dp">
+
+    <LinearLayout
+        android:id="@+id/first_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginTop="@dimen/keyboard_margin_parent"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <ImageButton style="@style/NormalKeyStyles" android:tag="SPACE" android:src="@drawable/ic_keyboard_whitespace"/>
+        <ImageButton style="@style/NormalKeyStyles" android:tag="DEL"  android:src="@drawable/ic_keyboard_backspace"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/second_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toBottomOf="@id/first_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <!--
+        You can define the keycodes in "android:tag" using Unicode scheme or KeyEvent.KEYCODE_ scheme.
+        I will use the latter because it is easier to implement and allows greater features,
+        such as handling all special keys simultaneously and using meta keys like ctrl or alt. -->
+        <Button style="@style/NormalKeyStyles" android:tag="A" android:text="a" />
+        <Button style="@style/NormalKeyStyles" android:tag="B" android:text="b" />
+        <Button style="@style/NormalKeyStyles" android:tag="C" android:text="c" />
+        <Button style="@style/NormalKeyStyles" android:tag="D" android:text="d" />
+        <Button style="@style/NormalKeyStyles" android:tag="E" android:text="e" />
+        <Button style="@style/NormalKeyStyles" android:tag="F" android:text="f" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/third_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toBottomOf="@id/second_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button style="@style/NormalKeyStyles" android:tag="G" android:text="g" />
+        <Button style="@style/NormalKeyStyles" android:tag="H" android:text="h" />
+        <Button style="@style/NormalKeyStyles" android:tag="I" android:text="i" />
+        <Button style="@style/NormalKeyStyles" android:tag="J" android:text="j" />
+        <Button style="@style/NormalKeyStyles" android:tag="K" android:text="k" />
+        <Button style="@style/NormalKeyStyles" android:tag="L" android:text="l" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fourth_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toBottomOf="@id/third_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button style="@style/NormalKeyStyles" android:tag="M" android:text="m" />
+        <Button style="@style/NormalKeyStyles" android:tag="N" android:text="n" />
+        <Button style="@style/NormalKeyStyles" android:tag="O" android:text="o" />
+        <Button style="@style/NormalKeyStyles" android:tag="P" android:text="p" />
+        <Button style="@style/NormalKeyStyles" android:tag="Q" android:text="q" />
+        <Button style="@style/NormalKeyStyles" android:tag="R" android:text="r" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fifth_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toBottomOf="@id/fourth_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button style="@style/NormalKeyStyles" android:tag="S" android:text="s" />
+        <Button style="@style/NormalKeyStyles" android:tag="T" android:text="t" />
+        <Button style="@style/NormalKeyStyles" android:tag="U" android:text="u" />
+        <Button style="@style/NormalKeyStyles" android:tag="V" android:text="v" />
+        <Button style="@style/NormalKeyStyles" android:tag="W" android:text="w" />
+        <Button style="@style/NormalKeyStyles" android:tag="X" android:text="x" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/sixth_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        app:layout_constraintTop_toBottomOf="@id/fifth_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button style="@style/NormalKeyStyles" android:tag="Y" android:text="y" />
+        <Button style="@style/NormalKeyStyles" android:tag="Z" android:text="z" />
+        <Button style="@style/NormalKeyStyles" android:tag="1" android:text="1" />
+        <Button style="@style/NormalKeyStyles" android:tag="2" android:text="2" />
+        <Button style="@style/NormalKeyStyles" android:tag="3" android:text="3" />
+        <Button style="@style/NormalKeyStyles" android:tag="4" android:text="4" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/seventh_row"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_row_height"
+        android:layout_marginLeft="@dimen/keyboard_margin_parent"
+        android:layout_marginRight="@dimen/keyboard_margin_parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/sixth_row"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <Button style="@style/NormalKeyStyles" android:tag="5" android:text="5" />
+        <Button style="@style/NormalKeyStyles" android:tag="6" android:text="6" />
+        <Button style="@style/NormalKeyStyles" android:tag="7" android:text="7" />
+        <Button style="@style/NormalKeyStyles" android:tag="8" android:text="8" />
+        <Button style="@style/NormalKeyStyles" android:tag="9" android:text="9" />
+        <Button style="@style/NormalKeyStyles" android:tag="0" android:text="0" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

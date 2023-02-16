@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/search_margin_parent"
+    android:background="@color/background"
     tools:context=".view.search.SearchFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="search fragment"/>
+    <include layout="@layout/keyboard_view" />
+
+
     
 </androidx.constraintlayout.widget.ConstraintLayout>
