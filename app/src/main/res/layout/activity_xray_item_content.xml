@@ -91,6 +91,7 @@
         android:layout_marginTop="@dimen/x_ray_content_margin_between"
         android:layout_marginLeft="@dimen/x_ray_content_margin_between"
         android:text="text"
+        android:textSize="17sp"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/x_ray_description"
         app:layout_constraintLeft_toRightOf="@id/price2"/>

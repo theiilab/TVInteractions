@@ -7,15 +7,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
 
-    private int space;
+    private int lSpace = 0;
+    private int rSpace = 0;
+    private int tSpace = 0;
+    private int bSpace = 0;
 
     public SpaceItemDecoration(int space){
-        this.space = space;
+        this.lSpace = space;
+    }
+
+    public SpaceItemDecoration(int lSpace, int rSpace, int tSpace, int bSpace){
+        this.lSpace = lSpace;
+        this.rSpace = rSpace;
+        this.tSpace = tSpace;
+        this.bSpace = bSpace;
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        outRect.left = space;
+        outRect.left = lSpace;
+        outRect.right = rSpace;
+        outRect.top = tSpace;
+        outRect.bottom = bSpace;
     }
 }
 
