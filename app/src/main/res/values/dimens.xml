@@ -33,8 +33,9 @@
     <dimen name="media_controller_text_view_size">60dp</dimen>
 
     <!--    search    -->
-    <dimen name="search_margin_parent">24dp</dimen>
+    <dimen name="search_margin_parent">34dp</dimen>
     <dimen name="search_margin_between">24dp</dimen>
+    <dimen name="search_margin_between_sm">10dp</dimen>
     <!--    keyboard view    -->
     <dimen name="keyboard_width">260dp</dimen> <!-- keyboard_row_height * 6 + 2 * margin_parent = 260 -->
     <dimen name="keyboard_height">300dp</dimen> <!-- keyboard_row_height * 7 + 2 * margin_parent = 300 -->

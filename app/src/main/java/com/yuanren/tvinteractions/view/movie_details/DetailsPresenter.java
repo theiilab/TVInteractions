@@ -38,7 +38,7 @@ public class DetailsPresenter extends Presenter {
         detailsViewHolder.category.setText(" • " + movie.getCategory());
 
         // initially focused by default
-        detailsViewHolder.playIB.setBackground(viewHolder.view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+        detailsViewHolder.playIB.setBackground(viewHolder.view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
 
         // set listeners for image buttons
         detailsViewHolder.playIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -46,9 +46,9 @@ public class DetailsPresenter extends Presenter {
             public void onFocusChange(View view, boolean b) {
                 // is focused
                 if (b) {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
                 } else {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
                 }
             }
         });
@@ -78,10 +78,10 @@ public class DetailsPresenter extends Presenter {
             public void onFocusChange(View view, boolean b) {
                 // is focused
                 if (b) {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
                     detailsViewHolder.restartTV.setVisibility(View.VISIBLE);
                 } else {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
                     detailsViewHolder.restartTV.setVisibility(View.GONE);
                 }
             }
@@ -103,10 +103,10 @@ public class DetailsPresenter extends Presenter {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
                     detailsViewHolder.trailerTV.setVisibility(View.VISIBLE);
                 } else {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
                     detailsViewHolder.trailerTV.setVisibility(View.GONE);
                 }
             }
@@ -129,10 +129,10 @@ public class DetailsPresenter extends Presenter {
             public void onFocusChange(View view, boolean b) {
                 // is focused
                 if (b) {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_focused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
                     detailsViewHolder.myListTV.setVisibility(View.VISIBLE);
                 } else {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_round_corner_unfocused));
+                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
                     detailsViewHolder.myListTV.setVisibility(View.GONE);
                 }
             }

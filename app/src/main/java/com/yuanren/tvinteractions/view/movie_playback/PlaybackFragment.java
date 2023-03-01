@@ -25,7 +25,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.TimeBar;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
@@ -113,9 +112,9 @@ public class PlaybackFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    backBtn.setBackgroundResource(R.drawable.ic_arrow_left_selected);
+                    backBtn.setBackgroundResource(R.drawable.ic_playback_arrow_left_selected);
                 } else {
-                    backBtn.setBackgroundResource(R.drawable.ic_arrow_left_unselected);
+                    backBtn.setBackgroundResource(R.drawable.ic_playback_arrow_left_unselected);
                 }
             }
         });
@@ -216,7 +215,8 @@ public class PlaybackFragment extends Fragment {
     }
 
     private void animateVideoIndicator(int action) {
-        videoStatusIndicator.setBackground(getResources().getDrawable(R.drawable.shape_x_ray_media_controller_round_corner));
+        videoStatusIndicator.setAlpha(255);
+        videoStatusIndicator.setBackground(getResources().getDrawable(R.drawable.shape_playback_video_indicator_bg));
         switch (action) {
             case VIDEO_ACTION_PAUSE:
                 playWhenReady = false;

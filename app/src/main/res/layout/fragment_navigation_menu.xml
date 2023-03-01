@@ -23,14 +23,14 @@
         android:tag="@string/menu_item_home"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_search_unselected" />
+        app:srcCompat="@drawable/ic_nav_search_unselected" />
     <TextView
         android:id="@+id/search_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
         android:text="@string/menu_item_search"
-        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textColor="@color/nav_text_unhighlighted"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/search_IB"
@@ -52,14 +52,14 @@
         android:tag="@string/menu_item_home"
         app:layout_constraintTop_toBottomOf="@id/search_IB"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_home_unselected" />
+        app:srcCompat="@drawable/ic_nav_home_unselected" />
     <TextView
         android:id="@+id/home_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
         android:text="@string/menu_item_home"
-        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textColor="@color/nav_text_unhighlighted"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/home_IB"
@@ -81,14 +81,14 @@
         android:tag="@string/menu_item_movies"
         app:layout_constraintTop_toBottomOf="@id/home_IB"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_movie_unselected" />
+        app:srcCompat="@drawable/ic_nav_movie_unselected" />
     <TextView
         android:id="@+id/movies_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
         android:text="@string/menu_item_movies"
-        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textColor="@color/nav_text_unhighlighted"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/movies_IB"
@@ -110,14 +110,14 @@
         android:tag="@string/menu_item_tv_channels"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movies_IB"
-        app:srcCompat="@drawable/ic_tv_channels_unselected" />
+        app:srcCompat="@drawable/ic_nav_tv_channels_unselected" />
     <TextView
         android:id="@+id/tv_channels_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
         android:text="@string/menu_item_tv_channels"
-        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textColor="@color/nav_text_unhighlighted"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/tv_channels_IB"
@@ -139,14 +139,14 @@
         android:tag="@string/menu_item_settings"
         app:layout_constraintTop_toBottomOf="@id/tv_channels_IB"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_settings_unselected" />
+        app:srcCompat="@drawable/ic_nav_settings_unselected" />
     <TextView
         android:id="@+id/settings_TV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_17dp"
         android:text="@string/menu_item_settings"
-        android:textColor="@color/navigation_menu_focus_out_color"
+        android:textColor="@color/nav_text_unhighlighted"
         android:textSize="@dimen/dimens_20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/settings_IB"

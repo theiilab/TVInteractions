@@ -1,7 +1,6 @@
 package com.yuanren.tvinteractions.view.x_ray;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.XRayItem;
-import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -51,10 +49,10 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    xRayCardViewHolder.cover.setBackgroundResource(R.drawable.shape_x_ray_focused);
+                    xRayCardViewHolder.cover.setBackgroundResource(R.drawable.shape_x_ray_card_focused);
 
                 } else {
-                    xRayCardViewHolder.cover.setBackgroundResource(R.drawable.shape_x_ray_unfocused);
+                    xRayCardViewHolder.cover.setBackgroundResource(R.drawable.shape_x_ray_card_unfocused);
                 }
             }
         });

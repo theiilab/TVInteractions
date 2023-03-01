@@ -1,27 +1,32 @@
 <resources>
-    <color name="transparent">#00000000</color>
-
+    <!--   general   -->
     <color name="background">#000000</color> <!-- #0d0c10 -->
-    <color name="background2">#1d2633</color> <!-- #0d0c10 -->
+    <color name="background2">#170c2d</color> <!-- #1d2633 -->
     <color name="background_gradient_start">#FF000000</color>
     <color name="background_gradient_end">#00DDDDDD</color>
     <color name="fastlane_background">#000000</color>
+    <color name="transparent">#00000000</color>
 
-    <!--   nav menu-->
-    <color name="navigation_menu_focus_color">#ffaa3f</color>
-    <color name="navigation_menu_focus_out_color">#CECCD5</color>
+    <!--   nav menu & x-ray card  -->
+    <color name="nav_highlighted">#9979e0</color><!-- #ffaa3f -->
+    <color name="nav_unhighlighted">#d3d0f2</color>
+    <color name="nav_text_highlighted">#59429b</color><!-- #ffaa3f -->
+    <color name="nav_text_unhighlighted">#d3d0f2</color>
 
     <!--   movie item in grid   -->
-    <color name="search_opaque">#ffaa3f</color>
-    <color name="selected_background">#ffaa3f</color>
     <color name="default_background">#1c1a23</color>
+
+    <!--   movie details   -->
+    <color name="button_focused">#FFFFFF</color>
+    <color name="button_unfocused">#77FFFFFF</color>
 
     <!--   playback media control   -->
     <color name="unplayed">#45424E</color>
-    <color name="buffered">#95929F</color>
-    <color name="played">#ffaa3f</color>
-    <color name="text_highlight">#ffaa3f</color>
-    <color name="x_ray_background_color">#88303134</color>
+    <color name="buffered">#ddddd2f7</color><!-- #95929F -->
+    <color name="played">#8c56ff</color>
+    <color name="x_ray_card_background_color">#8826243d</color>
+    <!--   *** x-ray card ***   -->
+    <color name="x_ray_card_highlighted">#9979e0</color><!-- #ffaa3f -->
 
     <!--   x-ray content   -->
     <color name="x_ray_btn_bg_color">#000</color>

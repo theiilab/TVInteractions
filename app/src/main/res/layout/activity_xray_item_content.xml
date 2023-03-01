@@ -17,7 +17,7 @@
         android:id="@+id/x_ray_image"
         android:layout_width="200dp"
         android:layout_height="300dp"
-        android:src="@drawable/x_ray_figure"
+        android:src="@drawable/fig_x_ray_info_example"
         android:scaleType="centerCrop"
         />
     </androidx.cardview.widget.CardView>

@@ -10,12 +10,12 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@drawable/default_thick_background"
+        android:src="@drawable/default_background_gradient_transpatent"
         app:layout_constraintBottom_toBottomOf="parent" />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@drawable/default_thick_background_180"
+        android:src="@drawable/default_background_gradient_transpatent_180"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    movie info    -->
@@ -23,7 +23,7 @@
         android:id="@+id/back_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/ic_arrow_left_unselected"
+        android:src="@drawable/ic_playback_arrow_left_unselected"
         android:layout_marginLeft="@dimen/dimens_50dp"
         android:layout_marginTop="@dimen/dimens_50dp"
         android:background="#00000000"
@@ -71,9 +71,9 @@
             android:layout_width="@dimen/x_ray_logo_width"
             android:layout_height="@dimen/x_ray_logo_height"
             android:padding="@dimen/media_controller_margin_between"
-            android:textColor="@color/text_highlight"
+            android:textColor="@color/x_ray_card_highlighted"
             android:textAlignment="center"
-            android:background="@drawable/shape_x_ray_logo"
+            android:background="@drawable/shape_x_ray_card_logo_bg"
             android:text="X-Ray"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"

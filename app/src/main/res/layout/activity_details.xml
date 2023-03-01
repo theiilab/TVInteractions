@@ -16,11 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/movie"/>
+            android:src="@drawable/fig_movie"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/default_horizontal_thick_background"/>
+            android:src="@drawable/default_background_gradient_transpatent_horizontal_thick"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

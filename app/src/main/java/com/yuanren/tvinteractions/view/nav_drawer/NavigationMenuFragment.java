@@ -95,7 +95,7 @@ public class NavigationMenuFragment extends Fragment {
         settingsTV = view.findViewById(R.id.settings_TV);
 
         // by default selection
-        homeIB.setImageResource(R.drawable.ic_home_selected);
+        homeIB.setImageResource(R.drawable.ic_nav_home_selected);
         lastSelectedMenuItem = TYPE_VIEW_HOME;
         currentSelectedFragmentType = TYPE_VIEW_HOME;
 
@@ -125,12 +125,12 @@ public class NavigationMenuFragment extends Fragment {
                 // check if the button is focused
                 if (b) {
                     if (isNavigationOpen()) {
-                        setMenuIconFocusView(searchIB, R.drawable.ic_search_selected);
+                        setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_selected);
                         setMenuNameFocusView(searchTV, true);
                         focusIn(searchIB, 0);
                     }
                 } else {
-                    setMenuIconFocusView(searchIB, R.drawable.ic_search_unselected);
+                    setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
                     setMenuNameFocusView(searchTV, false);
                     focusOut(searchIB, 0);
                 }
@@ -167,12 +167,12 @@ public class NavigationMenuFragment extends Fragment {
                 // check if the button is focused
                 if (b) {
                     if (isNavigationOpen()) {
-                        setMenuIconFocusView(homeIB, R.drawable.ic_home_selected);
+                        setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_selected);
                         setMenuNameFocusView(homeTV, true);
                         focusIn(homeIB, 0);
                     }
                 } else {
-                    setMenuIconFocusView(homeIB, R.drawable.ic_home_unselected);
+                    setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
                     setMenuNameFocusView(homeTV, false);
                     focusOut(homeIB, 0);
                 }
@@ -209,12 +209,12 @@ public class NavigationMenuFragment extends Fragment {
                 // check if the button is focused
                 if (b) {
                     if (isNavigationOpen()) {
-                        setMenuIconFocusView(moviesIB, R.drawable.ic_movie_selected);
+                        setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_selected);
                         setMenuNameFocusView(moviesTV, true);
                         focusIn(moviesIB, 0);
                     }
                 } else {
-                    setMenuIconFocusView(moviesIB, R.drawable.ic_movie_unselected);
+                    setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
                     setMenuNameFocusView(moviesTV, false);
                     focusOut(moviesIB, 0);
                 }
@@ -251,12 +251,12 @@ public class NavigationMenuFragment extends Fragment {
                 // check if the button is focused
                 if (b) {
                     if (isNavigationOpen()) {
-                        setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_selected);
+                        setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_selected);
                         setMenuNameFocusView(tvChannelsTV, true);
                         focusIn(tvChannelsIB, 0);
                     }
                 } else {
-                    setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_unselected);
+                    setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
                     setMenuNameFocusView(tvChannelsTV, false);
                     focusOut(tvChannelsIB, 0);
                 }
@@ -382,23 +382,23 @@ public class NavigationMenuFragment extends Fragment {
 
     private void unHighlightMenuSelections(int lastSelectedMenuItem) {
         if (lastSelectedMenuItem != TYPE_VIEW_SEARCH) {
-            setMenuIconFocusView(searchIB, R.drawable.ic_search_unselected);
+            setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
             setMenuNameFocusView(searchTV, false);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_HOME) {
-            setMenuIconFocusView(homeIB, R.drawable.ic_home_unselected);
+            setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
             setMenuNameFocusView(homeTV, false);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_MOVIES) {
-            setMenuIconFocusView(moviesIB, R.drawable.ic_movie_unselected);
+            setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
             setMenuNameFocusView(moviesTV, false);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_TV_CHANNELS) {
-            setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_unselected);
+            setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
             setMenuNameFocusView(tvChannelsTV, false);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_SETTINGS) {
-            setMenuIconFocusView(settingsIB, R.drawable.ic_settings_unselected);
+            setMenuIconFocusView(settingsIB, R.drawable.ic_nav_settings_unselected);
             setMenuNameFocusView(settingsTV, false);
         }
     }
@@ -406,19 +406,19 @@ public class NavigationMenuFragment extends Fragment {
     private void highlightMenuSelection(int lastSelectedMenuItem) {
         switch (lastSelectedMenuItem) {
             case TYPE_VIEW_SEARCH:
-                setMenuIconFocusView(searchIB, R.drawable.ic_search_selected);
+                setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_selected);
                 break;
             case TYPE_VIEW_HOME:
-                setMenuIconFocusView(homeIB, R.drawable.ic_home_selected);
+                setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_selected);
                 break;
             case TYPE_VIEW_MOVIES:
-                setMenuIconFocusView(moviesIB, R.drawable.ic_movie_selected);
+                setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_selected);
                 break;
             case TYPE_VIEW_TV_CHANNELS:
-                setMenuIconFocusView(tvChannelsIB, R.drawable.ic_tv_channels_selected);
+                setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_selected);
                 break;
             case TYPE_VIEW_SETTINGS:
-                setMenuIconFocusView(settingsIB, R.drawable.ic_settings_selected);
+                setMenuIconFocusView(settingsIB, R.drawable.ic_nav_settings_selected);
                 break;
         }
     }
@@ -437,9 +437,9 @@ public class NavigationMenuFragment extends Fragment {
 
     private void setMenuNameFocusView(TextView view, boolean inFocus) {
         if (inFocus) {
-            view.setTextColor(getActivity().getColor(R.color.navigation_menu_focus_color));
+            view.setTextColor(getActivity().getColor(R.color.nav_text_highlighted));
         } else {
-            view.setTextColor(getActivity().getColor(R.color.navigation_menu_focus_out_color));
+            view.setTextColor(getActivity().getColor(R.color.nav_text_unhighlighted));
         }
     }
 

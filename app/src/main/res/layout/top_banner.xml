@@ -27,13 +27,13 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:src="@drawable/default_horizontal_background"
+        android:src="@drawable/default_background_gradient_transpatent_horizontal"
         app:layout_constraintLeft_toRightOf="@+id/black_area"
         app:layout_constraintRight_toRightOf="parent"/>
     <ImageView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:src="@drawable/default_horizontal_background"
+        android:src="@drawable/default_background_gradient_transpatent_horizontal"
         app:layout_constraintLeft_toRightOf="@+id/black_area"
         app:layout_constraintRight_toRightOf="parent"/>
     <TextView

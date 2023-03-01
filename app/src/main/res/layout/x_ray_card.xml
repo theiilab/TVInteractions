@@ -5,7 +5,7 @@
     android:layout_width="@dimen/x_ray_card_width"
     android:layout_height="@dimen/x_ray_card_height"
     android:clipChildren="true"
-    android:background="@color/x_ray_background_color"
+    android:background="@color/x_ray_card_background_color"
     app:cardCornerRadius="@dimen/x_ray_corner_radius">
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_width="40dp"
             android:layout_height="@dimen/x_ray_card_height"
             android:scaleType="centerCrop"
-            android:src="@drawable/x_ray_figure"/>
+            android:src="@drawable/fig_x_ray_info_example"/>
         <TextView
             android:id="@+id/info_details"
             android:layout_width="0dp"
@@ -25,7 +25,7 @@
             android:textAlignment="center"
             android:gravity="center"
             android:text="Example"
-            android:background="@color/x_ray_background_color"/>
+            android:background="@color/x_ray_card_background_color"/>
     </LinearLayout>
 
     <View
@@ -33,5 +33,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:background="@drawable/shape_x_ray_unfocused"/>
+        android:background="@drawable/shape_x_ray_card_unfocused"/>
 </androidx.cardview.widget.CardView>
