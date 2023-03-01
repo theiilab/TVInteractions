@@ -24,7 +24,7 @@
     <color name="unplayed">#45424E</color>
     <color name="buffered">#ddddd2f7</color><!-- #95929F -->
     <color name="played">#8c56ff</color>
-    <color name="x_ray_card_background_color">#8826243d</color>
+    <color name="x_ray_card_background_color">#aa26252d</color>
     <!--   *** x-ray card ***   -->
     <color name="x_ray_card_highlighted">#9979e0</color><!-- #ffaa3f -->
 

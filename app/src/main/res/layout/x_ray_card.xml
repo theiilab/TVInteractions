@@ -5,12 +5,13 @@
     android:layout_width="@dimen/x_ray_card_width"
     android:layout_height="@dimen/x_ray_card_height"
     android:clipChildren="true"
-    android:background="@color/x_ray_card_background_color"
+    android:background="@color/transparent"
     app:cardCornerRadius="@dimen/x_ray_corner_radius">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/transparent">
         <ImageView
             android:id="@+id/info_image"
             android:layout_width="40dp"
