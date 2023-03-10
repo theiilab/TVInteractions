@@ -11,6 +11,13 @@
     <dimen name="dimens_150dp">150dp</dimen>
     <dimen name="dimens_20sp">20sp</dimen>
 
+    <dimen name="nav_icon_size">22dp</dimen>
+    <dimen name="nav_icon_underline_height">3dp</dimen>
+    <dimen name="nav_icon_margin_parent">100dp</dimen>
+    <dimen name="nav_icon_margin_parent_side">5dp</dimen>
+    <dimen name="nav_icon_margin_between">30dp</dimen>
+    <dimen name="nav_text_margin">17dp</dimen>
+
     <dimen name="details_btn_size">40dp</dimen>
     <dimen name="details_btn_margin">20dp</dimen>
 

@@ -11,12 +11,11 @@
     <!--  Search  -->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/search_IB"
-        android:layout_width="@dimen/dimens_22dp"
-        android:layout_height="@dimen/dimens_22dp"
-        android:layout_marginTop="@dimen/dimens_100dp"
-        android:layout_marginStart="@dimen/dimens_5dp"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_size"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
         android:background="@color/transparent"
-        android:focusable="false"
         android:nextFocusUp="@id/search_IB"
         android:nextFocusLeft="@id/search_IB"
         android:nextFocusDown="@id/home_IB"
@@ -24,6 +23,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_nav_search_unselected" />
+    <ImageButton
+        android:id="@+id/search_underline_IB"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_underline_height"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent_side"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:src="@drawable/ic_nav_underline"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/search_IB"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/search_TV"
         android:layout_width="wrap_content"
@@ -53,6 +64,18 @@
         app:layout_constraintTop_toBottomOf="@id/search_IB"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_nav_home_unselected" />
+    <ImageButton
+        android:id="@+id/home_underline_IB"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_underline_height"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent_side"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:src="@drawable/ic_nav_underline"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/home_IB"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/home_TV"
         android:layout_width="wrap_content"
@@ -82,6 +105,18 @@
         app:layout_constraintTop_toBottomOf="@id/home_IB"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_nav_movie_unselected" />
+    <ImageButton
+        android:id="@+id/movie_underline_IB"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_underline_height"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent_side"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:src="@drawable/ic_nav_underline"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/movies_IB"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/movies_TV"
         android:layout_width="wrap_content"
@@ -111,6 +146,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movies_IB"
         app:srcCompat="@drawable/ic_nav_tv_channels_unselected" />
+    <ImageButton
+        android:id="@+id/tv_channels_underline_IB"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_underline_height"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent_side"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:src="@drawable/ic_nav_underline"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tv_channels_IB"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/tv_channels_TV"
         android:layout_width="wrap_content"
@@ -140,6 +187,18 @@
         app:layout_constraintTop_toBottomOf="@id/tv_channels_IB"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_nav_settings_unselected" />
+    <ImageButton
+        android:id="@+id/settings_underline_IB"
+        android:layout_width="@dimen/nav_icon_size"
+        android:layout_height="@dimen/nav_icon_underline_height"
+        android:layout_marginTop="@dimen/nav_icon_margin_parent_side"
+        android:layout_marginStart="@dimen/nav_icon_margin_parent_side"
+        android:background="@color/transparent"
+        android:focusable="false"
+        android:src="@drawable/ic_nav_underline"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/settings_IB"
+        app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/settings_TV"
         android:layout_width="wrap_content"

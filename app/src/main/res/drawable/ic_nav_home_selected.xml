@@ -1,15 +1,9 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="48dp"
     android:height="48dp"
-    android:viewportWidth="32"
-    android:viewportHeight="32">
-  <group>
-    <path
-        android:pathData="M16,2.0996L1,14L6,14L6,24L13,24L13,16L19,16L19,24L26,24L26,14L31,14L16,2.0996z"
-        android:fillColor="@android:color/white"/>
-
-    <path android:fillColor="@color/nav_icon_gradient"
-        android:pathData="M1,28v4h30L31,28L4,28z"/>
-  </group>
-
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M12,2.0996L1,12L4,12L4,21L10,21L10,15L14,15L14,21L20,21L20,12L23,12L12,2.0996z"
+      android:fillColor="@color/nav_unhighlighted"/>
 </vector>

@@ -2,6 +2,7 @@ package com.yuanren.tvinteractions.view.nav_drawer;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,15 +44,20 @@ public class NavigationMenuFragment extends Fragment {
 
     // nav menu items
     private ImageButton searchIB;
-    private ImageButton homeIB;
-    private ImageButton moviesIB;
-    private ImageButton tvChannelsIB;
-    private ImageButton settingsIB;
     private TextView searchTV;
+    private ImageButton searchUnderlineIB;
+    private ImageButton homeIB;
     private TextView homeTV;
+    private ImageButton homeUnderlineIB;
+    private ImageButton moviesIB;
     private TextView moviesTV;
+    private ImageButton moviesUnderlineIB;
+    private ImageButton tvChannelsIB;
     private TextView tvChannelsTV;
+    private ImageButton tvChannelsUnderlineIB;
+    private ImageButton settingsIB;
     private TextView settingsTV;
+    private ImageButton settingsUnderlineIB;
 
     private int currentSelectedFragmentType;
     private FragmentChangeListener fragmentChangeListener;
@@ -84,18 +90,24 @@ public class NavigationMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         constraintLayout = getActivity().findViewById(R.id.nav_drawer_details);
         searchIB = view.findViewById(R.id.search_IB);
-        homeIB = view.findViewById(R.id.home_IB);
-        moviesIB = view.findViewById(R.id.movies_IB);
-        tvChannelsIB = view.findViewById(R.id.tv_channels_IB);
-        settingsIB = view.findViewById(R.id.settings_IB);
         searchTV = view.findViewById(R.id.search_TV);
+        searchUnderlineIB = view.findViewById(R.id.search_underline_IB);
+        homeIB = view.findViewById(R.id.home_IB);
         homeTV = view.findViewById(R.id.home_TV);
+        homeUnderlineIB = view.findViewById(R.id.home_underline_IB);
+        moviesIB = view.findViewById(R.id.movies_IB);
         moviesTV = view.findViewById(R.id.movies_TV);
+        moviesUnderlineIB = view.findViewById(R.id.movie_underline_IB);
+        tvChannelsIB = view.findViewById(R.id.tv_channels_IB);
         tvChannelsTV = view.findViewById(R.id.tv_channels_TV);
+        tvChannelsUnderlineIB = view.findViewById(R.id.tv_channels_underline_IB);
+        settingsIB = view.findViewById(R.id.settings_IB);
         settingsTV = view.findViewById(R.id.settings_TV);
+        settingsUnderlineIB = view.findViewById(R.id.search_underline_IB);
 
         // by default selection
         homeIB.setImageResource(R.drawable.ic_nav_home_selected);
+        homeUnderlineIB.setVisibility(View.VISIBLE);
         lastSelectedMenuItem = TYPE_VIEW_HOME;
         currentSelectedFragmentType = TYPE_VIEW_HOME;
 
@@ -128,11 +140,13 @@ public class NavigationMenuFragment extends Fragment {
                         setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_selected);
                         setMenuNameFocusView(searchTV, true);
                         focusIn(searchIB, 0);
+                        searchUnderlineIB.setVisibility(View.VISIBLE);
                     }
                 } else {
                     setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
                     setMenuNameFocusView(searchTV, false);
                     focusOut(searchIB, 0);
+                    searchUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -170,11 +184,13 @@ public class NavigationMenuFragment extends Fragment {
                         setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_selected);
                         setMenuNameFocusView(homeTV, true);
                         focusIn(homeIB, 0);
+                        homeUnderlineIB.setVisibility(View.VISIBLE);
                     }
                 } else {
                     setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
                     setMenuNameFocusView(homeTV, false);
                     focusOut(homeIB, 0);
+                    homeUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -212,11 +228,13 @@ public class NavigationMenuFragment extends Fragment {
                         setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_selected);
                         setMenuNameFocusView(moviesTV, true);
                         focusIn(moviesIB, 0);
+                        moviesUnderlineIB.setVisibility(View.VISIBLE);
                     }
                 } else {
                     setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
                     setMenuNameFocusView(moviesTV, false);
                     focusOut(moviesIB, 0);
+                    moviesUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -254,11 +272,13 @@ public class NavigationMenuFragment extends Fragment {
                         setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_selected);
                         setMenuNameFocusView(tvChannelsTV, true);
                         focusIn(tvChannelsIB, 0);
+                        tvChannelsUnderlineIB.setVisibility(View.VISIBLE);
                     }
                 } else {
                     setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
                     setMenuNameFocusView(tvChannelsTV, false);
                     focusOut(tvChannelsIB, 0);
+                    tvChannelsUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -384,22 +404,27 @@ public class NavigationMenuFragment extends Fragment {
         if (lastSelectedMenuItem != TYPE_VIEW_SEARCH) {
             setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
             setMenuNameFocusView(searchTV, false);
+            searchUnderlineIB.setVisibility(View.GONE);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_HOME) {
             setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
             setMenuNameFocusView(homeTV, false);
+            homeUnderlineIB.setVisibility(View.GONE);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_MOVIES) {
             setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
             setMenuNameFocusView(moviesTV, false);
+            moviesUnderlineIB.setVisibility(View.GONE);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_TV_CHANNELS) {
             setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
             setMenuNameFocusView(tvChannelsTV, false);
+            tvChannelsUnderlineIB.setVisibility(View.GONE);
         }
         if (lastSelectedMenuItem !=  TYPE_VIEW_SETTINGS) {
             setMenuIconFocusView(settingsIB, R.drawable.ic_nav_settings_unselected);
             setMenuNameFocusView(settingsTV, false);
+            settingsUnderlineIB.setVisibility(View.GONE);
         }
     }
 
@@ -407,18 +432,23 @@ public class NavigationMenuFragment extends Fragment {
         switch (lastSelectedMenuItem) {
             case TYPE_VIEW_SEARCH:
                 setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_selected);
+                searchUnderlineIB.setVisibility(View.VISIBLE);
                 break;
             case TYPE_VIEW_HOME:
                 setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_selected);
+                homeUnderlineIB.setVisibility(View.VISIBLE);
                 break;
             case TYPE_VIEW_MOVIES:
                 setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_selected);
+                moviesUnderlineIB.setVisibility(View.VISIBLE);
                 break;
             case TYPE_VIEW_TV_CHANNELS:
                 setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_selected);
+                tvChannelsUnderlineIB.setVisibility(View.VISIBLE);
                 break;
             case TYPE_VIEW_SETTINGS:
                 setMenuIconFocusView(settingsIB, R.drawable.ic_nav_settings_selected);
+                tvChannelsUnderlineIB.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -438,8 +468,10 @@ public class NavigationMenuFragment extends Fragment {
     private void setMenuNameFocusView(TextView view, boolean inFocus) {
         if (inFocus) {
             view.setTextColor(getActivity().getColor(R.color.nav_text_highlighted));
+            view.setTypeface(view.getTypeface(), Typeface.NORMAL);
         } else {
             view.setTextColor(getActivity().getColor(R.color.nav_text_unhighlighted));
+            view.setTypeface(view.getTypeface(), Typeface.NORMAL);
         }
     }
 

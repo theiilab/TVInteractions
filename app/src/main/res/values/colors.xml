@@ -8,10 +8,10 @@
     <color name="transparent">#00000000</color>
 
     <!--   nav menu & x-ray card  -->
-    <color name="nav_highlighted">#9979e0</color><!-- #ffaa3f -->
-    <color name="nav_unhighlighted">#d3d0f2</color>
-    <color name="nav_text_highlighted">#59429b</color><!-- #ffaa3f -->
-    <color name="nav_text_unhighlighted">#d3d0f2</color>
+    <color name="nav_highlighted">#FFFFFF</color><!-- #9979e0 #ffaa3f -->
+    <color name="nav_unhighlighted">#FFFFFF</color><!-- #d3d0f2 -->
+    <color name="nav_text_highlighted">#FFFFFF</color><!-- #7c3eef #ffaa3f -->
+    <color name="nav_text_unhighlighted">#999390b2</color><!-- #d3d0f2 -->
 
     <!--   movie item in grid   -->
     <color name="default_background">#1c1a23</color>
@@ -26,7 +26,7 @@
     <color name="played">#8c56ff</color>
     <color name="x_ray_card_background_color">#aa26252d</color>
     <!--   *** x-ray card ***   -->
-    <color name="x_ray_card_highlighted">#9979e0</color><!-- #ffaa3f -->
+    <color name="x_ray_card_highlighted">#a060e5</color><!-- #ffaa3f -->
 
     <!--   x-ray content   -->
     <color name="x_ray_btn_bg_color">#000</color>
