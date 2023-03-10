@@ -1,5 +1,7 @@
 package com.yuanren.tvinteractions.view.movie_playback;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -113,8 +115,10 @@ public class PlaybackFragment extends Fragment {
             public void onFocusChange(View view, boolean b) {
                 if (b) {
                     backBtn.setBackgroundResource(R.drawable.ic_playback_arrow_left_selected);
+                    focusIn(backBtn, 0);
                 } else {
                     backBtn.setBackgroundResource(R.drawable.ic_playback_arrow_left_unselected);
+                    focusOut(backBtn, 0);
                 }
             }
         });
@@ -243,6 +247,23 @@ public class PlaybackFragment extends Fragment {
         animation.setDuration(1000);
         animation.setFillAfter(true);
         videoStatusIndicator.startAnimation(animation);
+    }
+
+    private void focusIn(View v, int position) {
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1f, 1.2f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1f, 1.2f);
+        AnimatorSet set = new AnimatorSet();
+        set.play(scaleX).with(scaleY);
+        set.start();
+    }
+
+    /** Set animation when focus is lost */
+    private void focusOut(View v, int position) {
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(v, "scaleX", 1.2f, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(v, "scaleY", 1.2f, 1f);
+        AnimatorSet set = new AnimatorSet();
+        set.play(scaleX).with(scaleY);
+        set.start();
     }
 
     @Override
