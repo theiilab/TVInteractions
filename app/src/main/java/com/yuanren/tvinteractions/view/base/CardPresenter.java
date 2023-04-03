@@ -28,7 +28,7 @@ public class CardPresenter extends Presenter {
         Log.d(TAG, "onBindViewHolder");
         Movie movie = (Movie) item;
         CardViewHolder cardViewHolder = (CardViewHolder) viewHolder;
-        cardViewHolder.title.setText(movie.getTitle());
+//        cardViewHolder.title.setText(movie.getTitle());
         Glide.with(viewHolder.view.getContext())
                 .load(movie.getCardImageUrl())
                 .centerCrop()
@@ -39,7 +39,7 @@ public class CardPresenter extends Presenter {
     public void onUnbindViewHolder(ViewHolder viewHolder) {
         Log.d(TAG, "onUnbindViewHolder");
         CardViewHolder cardViewHolder = (CardViewHolder) viewHolder;
-        cardViewHolder.title.setText(null);
+//        cardViewHolder.title.setText(null);
         cardViewHolder.movie.setImageDrawable(null);
     }
 }

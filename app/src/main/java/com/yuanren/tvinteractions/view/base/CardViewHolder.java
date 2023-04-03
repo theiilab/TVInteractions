@@ -10,11 +10,11 @@ import com.yuanren.tvinteractions.R;
 
 public class CardViewHolder extends Presenter.ViewHolder {
     ImageView movie;
-    TextView title;
+//    TextView title;
 
     public CardViewHolder(View view) {
         super(view);
        movie = view.findViewById(R.id.movie);
-       title = view.findViewById(R.id.title);
+//       title = view.findViewById(R.id.title);
     }
 }
