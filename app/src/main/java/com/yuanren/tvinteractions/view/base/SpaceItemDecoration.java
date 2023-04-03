@@ -1,4 +1,4 @@
-package com.yuanren.tvinteractions.view.x_ray;
+package com.yuanren.tvinteractions.view.base;
 
 import android.graphics.Rect;
 import android.view.View;

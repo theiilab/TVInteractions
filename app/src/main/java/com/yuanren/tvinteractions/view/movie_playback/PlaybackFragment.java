@@ -30,7 +30,7 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.view.x_ray.SpaceItemDecoration;
+import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
