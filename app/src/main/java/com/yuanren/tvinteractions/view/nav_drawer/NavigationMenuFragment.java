@@ -103,7 +103,7 @@ public class NavigationMenuFragment extends Fragment {
         tvChannelsUnderlineIB = view.findViewById(R.id.tv_channels_underline_IB);
         settingsIB = view.findViewById(R.id.settings_IB);
         settingsTV = view.findViewById(R.id.settings_TV);
-        settingsUnderlineIB = view.findViewById(R.id.search_underline_IB);
+        settingsUnderlineIB = view.findViewById(R.id.settings_underline_IB);
 
         // by default selection
         homeIB.setImageResource(R.drawable.ic_nav_home_selected);
@@ -135,18 +135,18 @@ public class NavigationMenuFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // check if the button is focused
-                if (b) {
-                    if (isNavigationOpen()) {
+                if (isNavigationOpen()) {
+                    if (b) {
                         setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_selected);
                         setMenuNameFocusView(searchTV, true);
                         focusIn(searchIB, 0);
                         searchUnderlineIB.setVisibility(View.VISIBLE);
+                    } else {
+                        setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
+                        setMenuNameFocusView(searchTV, false);
+                        focusOut(searchIB, 0);
+                        searchUnderlineIB.setVisibility(View.GONE);
                     }
-                } else {
-                    setMenuIconFocusView(searchIB, R.drawable.ic_nav_search_unselected);
-                    setMenuNameFocusView(searchTV, false);
-                    focusOut(searchIB, 0);
-                    searchUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -159,14 +159,14 @@ public class NavigationMenuFragment extends Fragment {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                             lastSelectedMenuItem = TYPE_VIEW_SEARCH;
-                            closeNav();
                             navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
                             fragmentChangeListener.switchFragment(TYPE_VIEW_SEARCH);
-
+                            closeNav(); // closeNav() must be called at last to avoid focus change
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
-                            closeNav();
                             navigationStateListener.onStateChanged(false, lastSelectedMenuItem);
+                            closeNav();
+                            break;
                     }
                 }
                 return false;
@@ -179,18 +179,18 @@ public class NavigationMenuFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // check if the button is focused
-                if (b) {
-                    if (isNavigationOpen()) {
+                if (isNavigationOpen()) {
+                    if (b) {
                         setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_selected);
                         setMenuNameFocusView(homeTV, true);
                         focusIn(homeIB, 0);
                         homeUnderlineIB.setVisibility(View.VISIBLE);
+                    } else {
+                        setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
+                        setMenuNameFocusView(homeTV, false);
+                        focusOut(homeIB, 0);
+                        homeUnderlineIB.setVisibility(View.GONE);
                     }
-                } else {
-                    setMenuIconFocusView(homeIB, R.drawable.ic_nav_home_unselected);
-                    setMenuNameFocusView(homeTV, false);
-                    focusOut(homeIB, 0);
-                    homeUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -223,18 +223,18 @@ public class NavigationMenuFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // check if the button is focused
-                if (b) {
-                    if (isNavigationOpen()) {
+                if (isNavigationOpen()) {
+                    if (b) {
                         setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_selected);
                         setMenuNameFocusView(moviesTV, true);
                         focusIn(moviesIB, 0);
                         moviesUnderlineIB.setVisibility(View.VISIBLE);
+                    } else {
+                        setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
+                        setMenuNameFocusView(moviesTV, false);
+                        focusOut(moviesIB, 0);
+                        moviesUnderlineIB.setVisibility(View.GONE);
                     }
-                } else {
-                    setMenuIconFocusView(moviesIB, R.drawable.ic_nav_movie_unselected);
-                    setMenuNameFocusView(moviesTV, false);
-                    focusOut(moviesIB, 0);
-                    moviesUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -267,18 +267,18 @@ public class NavigationMenuFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 // check if the button is focused
-                if (b) {
-                    if (isNavigationOpen()) {
+                if (isNavigationOpen()) {
+                    if (b) {
                         setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_selected);
                         setMenuNameFocusView(tvChannelsTV, true);
                         focusIn(tvChannelsIB, 0);
                         tvChannelsUnderlineIB.setVisibility(View.VISIBLE);
+                    } else {
+                        setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
+                        setMenuNameFocusView(tvChannelsTV, false);
+                        focusOut(tvChannelsIB, 0);
+                        tvChannelsUnderlineIB.setVisibility(View.GONE);
                     }
-                } else {
-                    setMenuIconFocusView(tvChannelsIB, R.drawable.ic_nav_tv_channels_unselected);
-                    setMenuNameFocusView(tvChannelsTV, false);
-                    focusOut(tvChannelsIB, 0);
-                    tvChannelsUnderlineIB.setVisibility(View.GONE);
                 }
             }
         });
@@ -393,11 +393,8 @@ public class NavigationMenuFragment extends Fragment {
 
         //highlighting last selected menu icon
         highlightMenuSelection(lastSelectedMenuItem);
-
         //Setting out of focus views for menu icons, names
         unHighlightMenuSelections(lastSelectedMenuItem);
-
-
     }
 
     private void unHighlightMenuSelections(int lastSelectedMenuItem) {
