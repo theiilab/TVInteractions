@@ -46,10 +46,6 @@ public class SearchListAdapter extends RecyclerView.Adapter {
                 view.getContext().startActivity(intent);
             }
         });
-
-        if (position == 0) {
-            searchMovieViewHolder.cover.requestFocus();
-        }
     }
 
     @Override

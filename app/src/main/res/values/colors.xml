@@ -11,7 +11,7 @@
     <color name="nav_highlighted">#FFFFFF</color><!-- #9979e0 #ffaa3f -->
     <color name="nav_unhighlighted">#FFFFFF</color><!-- #d3d0f2 -->
     <color name="nav_text_highlighted">#FFFFFF</color><!-- #7c3eef #ffaa3f -->
-    <color name="nav_text_unhighlighted">#999390b2</color><!-- #d3d0f2 -->
+    <color name="nav_text_unhighlighted">#666666</color><!-- #d3d0f2 -->
 
     <!--   movie item in grid   -->
     <color name="default_background">#1c1a23</color>
@@ -37,5 +37,5 @@
 <!--    <color name="keyboard_key_color_focused">#30303d</color>-->
     <color name="keyboard_bg_color">#dd161616</color>
     <color name="keyboard_key_color_unfocused">#212121</color>
-    <color name="keyboard_key_color_focused">#30303d</color>
+    <color name="keyboard_key_color_focused">#4e4e4e</color>
 </resources>

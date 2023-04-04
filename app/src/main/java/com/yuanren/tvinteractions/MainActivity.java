@@ -1,6 +1,8 @@
 package com.yuanren.tvinteractions;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -28,6 +30,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 //    private ActivityMainBinding binding;
 
     private NavigationMenuFragment navMenuFragment;
+    private SearchFragment searchFragment;
     private MoviesFragment moviesFragment;
     private TVChannelsFragment tvChannelsFragment;
 
@@ -42,6 +45,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         fragmentsLayout = findViewById(R.id.fragments);
 
         navMenuFragment = NavigationMenuFragment.newInstance();
+        searchFragment = SearchFragment.newInstance();
         moviesFragment = MoviesFragment.newInstance();
         tvChannelsFragment = TVChannelsFragment.newInstance();
 
@@ -86,6 +90,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         if (fragment instanceof NavigationMenuFragment) {
             ((NavigationMenuFragment)fragment).setFragmentChangeListener(this);
             ((NavigationMenuFragment)fragment).setNavigationStateListener(this);
+        } else if (fragment instanceof SearchFragment) {
+            ((SearchFragment)fragment).setNavigationMenuCallback(this);
         } else if (fragment instanceof MoviesFragment) {
             ((MoviesFragment)fragment).setNavigationMenuCallback(this);
         } else if (fragment instanceof TVChannelsFragment) {
@@ -104,7 +110,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
         switch (fragmentName) {
             case NavigationMenuFragment.TYPE_VIEW_SEARCH:
-                fragment = new SearchFragment();
+                fragment = searchFragment;
                 break;
             case NavigationMenuFragment.TYPE_VIEW_HOME:
                 fragment = moviesFragment;
@@ -154,5 +160,10 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     break;
             }
         }
+    }
+
+    // For keyboard OnClick callback (in keyboard.xml android:onClick="onKeyClick")
+    public void onKeyClick(View v) {
+        searchFragment.onKeyClick(v);
     }
 }

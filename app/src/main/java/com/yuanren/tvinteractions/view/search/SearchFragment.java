@@ -9,11 +9,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
@@ -28,7 +32,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class SearchFragment extends Fragment {
-    private static final String TAG = "CardPresenter";
+    private static final String TAG = "SearchFragment";
+
+    private NavigationMenuCallback navigationMenuCallback;
 
     private ConstraintLayout keyboard;
     private RecyclerView recyclerView;
@@ -36,9 +42,13 @@ public class SearchFragment extends Fragment {
     private SearchListAdapter adapter;
     private List<Movie> movies;
 
-    public static SearchFragment newInstance(String param1, String param2) {
+    public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
         return fragment;
+    }
+
+    public void setNavigationMenuCallback(NavigationMenuCallback callback) {
+        this.navigationMenuCallback = callback;
     }
 
     @Override
@@ -59,11 +69,37 @@ public class SearchFragment extends Fragment {
         movies = MovieList.getList();
 
         recyclerView = view.findViewById(R.id.search_movies);
-        GridLayoutManager gl = new GridLayoutManager(getContext(), 4);
+        GridLayoutManager gl = new GridLayoutManager(getContext(), 5);
         recyclerView.setLayoutManager(gl);
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0,
                 getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0));
         adapter = new SearchListAdapter(movies);
         recyclerView.setAdapter(adapter);
+
+        keyboard = view.findViewById(R.id.search_keyboard);
+        for (int i = 0; i < keyboard.getChildCount(); i++) {
+            View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
+            v.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_DPAD_LEFT) {
+                        Log.d(TAG, "OnKeyRight - Keyboard the most left keys pressed");
+                        navigationMenuCallback.navMenuToggle(true);
+                    }
+                    return false;
+                }
+            });
+        }
+    }
+
+    public void onKeyClick(View v) {
+        switch (v.getTag().toString()) {
+            case "A":
+            case "G":
+                Log.d(TAG, "left keys");
+                break;
+            default:
+                break;
+        }
     }
 }

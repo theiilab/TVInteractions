@@ -32,8 +32,6 @@
         android:id="@+id/search_movies"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:rowCount="4"
-        android:columnCount="3"
         android:layout_marginLeft="@dimen/search_margin_between"
         app:layout_constraintTop_toBottomOf="@id/search_input"
         app:layout_constraintBottom_toBottomOf="parent"
