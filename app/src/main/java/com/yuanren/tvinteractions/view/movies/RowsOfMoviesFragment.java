@@ -39,8 +39,7 @@ import java.util.List;
  */
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
-    private static final int NUM_ROWS = 6;
-    private static final int NUM_COLS = 15;
+    private static final int NUM_COLS = 20;
 
     private ImageView bannerBackgroundImage;
     private TextView bannerMovieTitle;
@@ -48,6 +47,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter(new RowPresenterSelector());
     private NavigationMenuCallback navigationMenuCallback;
     private List<Movie> list;
+    private List<Movie> dummyList;
 
     public RowsOfMoviesFragment() {
         // Required empty public constructor
@@ -64,6 +64,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
         // prepare for the date
         list = MovieList.setupMovies(NUM_COLS);
+        dummyList = MovieList.getDummyList();
 
         // init views on the top banner
         bannerBackgroundImage = getActivity().findViewById(R.id.background_image);
@@ -85,15 +86,17 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     private void addRowsView() {
         CardPresenter cardPresenter = new CardPresenter();
-        for (int i = 0; i < NUM_ROWS; i++) {
-//            if (i != 0) {
-//                Collections.shuffle(list);
-//            }
+        for (int i = 0; i < MovieList.NUM_MOVIE_CATEGORY; i++) {
             ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenter);
             for (int j = 0; j < NUM_COLS; j++) {
-                listRowAdapter.add(list.get(j));
+                if (j < MovieList.NUM_REAL_MOVIE) {
+                    listRowAdapter.add(list.get(i * 2 + j));
+                } else {
+                    listRowAdapter.add(dummyList.get(j - MovieList.NUM_REAL_MOVIE));
+                }
+
             }
-            HeaderItem header = new HeaderItem(i, MovieList.MOVIE_CATEGORY[i]);
+            HeaderItem header = new HeaderItem(i, (list.get(i * 2).getCategory()));
             mRowsAdapter.add(new ListRow(header, listRowAdapter));
         }
         setAdapter(mRowsAdapter);

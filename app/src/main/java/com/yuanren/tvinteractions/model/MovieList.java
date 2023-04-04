@@ -11,6 +11,18 @@ import java.util.ListIterator;
 import java.util.Map;
 
 public final class MovieList {
+    public static final int NUM_REAL_MOVIE = 2; //
+    public static final int NUM_MOVIE_CATEGORY = 10; // change MOVIE_CATEGORY accordingly
+    private static  final String KEY_TYPE = "type";
+    private static  final String KEY_NAME = "name";
+    private static  final String KEY_IMAGE = "image";
+    private static  final String KEY_DESCRIPTION = "description";
+    private static  final String KEY_MERCHANDISE = "merchandise";
+
+    private static List<Movie> list;
+    private static List<Movie> dummyList;
+
+    // change NUM_MOVIE_CATEGORY accordingly
     public static final String MOVIE_CATEGORY[] = {
             "Dramas",
             "Romance",
@@ -24,17 +36,6 @@ public final class MovieList {
             "Mysteries"
     };
 
-    private static List<Movie> list;
-    private static List<Map<String, List<String>>> xRayItems;
-    private static long count = 0;
-
-    private static  final String KEY_TYPE = "type";
-    private static  final String KEY_NAME = "name";
-    private static  final String KEY_IMAGE = "image";
-    private static  final String KEY_DESCRIPTION = "description";
-    private static  final String KEY_MERCHANDISE = "merchandise";
-
-
     public static List<Movie> getList() {
 //        if (list == null) {
 //            list = setupMovies();
@@ -42,12 +43,15 @@ public final class MovieList {
         return list;
     }
 
+    public static List<Movie> getDummyList() {
+        return dummyList;
+    }
+
     public static Movie findBy(int id) {
         if (list == null) {
             return null;
         }
 
-        Movie movie = null;
         for (int i = 0; i < list.size(); ++i) {
             if (id == list.get(i).getId()) {
                 return list.get(i);
@@ -64,12 +68,6 @@ public final class MovieList {
                 "Jumanji",
                 "Uncharted",
                 "The Devil Wears Prada",
-
-                "Bad Guys",
-                "The Lord Of The Rings",
-                "Doctor Strange III",
-                "Groot's First Steps",
-                "Luck"
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -84,12 +82,6 @@ public final class MovieList {
                 "Columbia Pictures",
                 "Columbia Pictures",
                 "20th Century Fox",
-
-                "Studio Zero",
-                "Studio One",
-                "Studio Two",
-                "Studio Three",
-                "Studio Four"
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -97,12 +89,6 @@ public final class MovieList {
                 MOVIE_CATEGORY[6],
                 MOVIE_CATEGORY[6],
                 MOVIE_CATEGORY[2],
-
-                "Category Zero",
-                "Category One",
-                "Category Two",
-                "Category Three",
-                "Category Four"
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -110,12 +96,6 @@ public final class MovieList {
                 "https://streamable.com/l/efmzs7/mp4-high.mp4",
                 "https://streamable.com/l/xuehud/mp4-high.mp4",
                 "https://streamable.com/l/60r3my/mp4-high.mp4",
-
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole.mp4",
-                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose.mp4"
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -123,12 +103,6 @@ public final class MovieList {
                 "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
                 "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/best-new-movies-on-netflix-this-week-august-5th-2022.webp",
                 "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/998E2A4163BD5059543900BC44B16BF2F46009A87A16886F46E1323A39CA167E/scale?width=1200&aspectRatio=1.78&format=jpeg",
-
-                "https://thumb.canalplus.pro/http/unsafe/2560x1440/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/108431902",
-                "https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/10/Rings-of-Power.jpg",
-                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg",
-                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/9bColKVEAaWfmOLiLZoUhdYfevy.jpg",
-                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/3VQj6m0I6gkuRaljmhNZl0XR3by.jpg"
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -136,30 +110,25 @@ public final class MovieList {
                 "https://occ-0-622-299.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABUd8TVjXGgyMY5xgsqWKbpbKx4XgKm5vXsFRSWUhoYE52kJvEcjqFjfIuAGnjh5NWWLUlfG_mMyALnqZOW67muP5zYH4WGte6YGj.jpg",
                 "https://www.waukeepubliclibrary.org/sites/default/files/Event%20Images/Adult%20Events/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ%40%40._V1_FMjpg_UX1000_.jpg",
                 "https://m.media-amazon.com/images/M/MV5BZjQ3ZTIzOTItMGNjNC00MWRmLWJlMGEtMjJmMDM5ZDIzZGM3XkEyXkFqcGdeQXVyMTkzODUwNzk@._V1_.jpg",
-
-                "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/81e8eaf4-42df-45fe-8eb9-f7596ba98246/df0ekt5-005cce1b-568a-4f4e-bdc3-a4879be52c8a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzgxZThlYWY0LTQyZGYtNDVmZS04ZWI5LWY3NTk2YmE5ODI0NlwvZGYwZWt0NS0wMDVjY2UxYi01NjhhLTRmNGUtYmRjMy1hNDg3OWJlNTJjOGEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.U-5Y35kKoLSzjlhoUWLpBQOi2fZtcA9erkGynkC-VlI",
-                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWYFYyopTx6Ltjw_L84nqjkEMjc9_cylZgXQNq1xBHmujrjTbKog8pl_cPhotXVj1D1clWla7AImkDVATweq4AB0qk8DcgMvsaoSInPBvecwQxolSGT7lz8pgAUajuLJC2X-zr2r1z0UvKxVa-4GnLUb4WNXFjXRfuZalMo8Sn4mDefdMhGU4OjQlu/w1200-h630-p-k-no-nu/Rings%20of%20Power.jpg",
-                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
-                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1ifiV9ZJD4tC3tRYcnLIzH0meaB.jpg",
-                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1HOYvwGFioUFL58UVvDRG6beEDm.jpg"
         };
-
-        xRayItems = setUpXRayItems();
 
         int n = title.length;
         for (int index = 0; index < length; ++index) {
             list.add(
                     buildMovieInfo(
-                            (long) index,
+                            (long) index % n,
                             title[index % n],
                             description,
                             studio[index % n],
                             category[index % n],
                             videoUrl[index % n],
                             cardImageUrl[index % n],
-                            bgImageUrl[index % n]));
+                            bgImageUrl[index % n],
+                            setUpXRayItems()));
         }
 
+        // set up make up dummy movies for each category (only 2 real movie in each category)
+        setUpDummyMovies(length - NUM_REAL_MOVIE);
         return list;
     }
 
@@ -171,7 +140,8 @@ public final class MovieList {
             String category,
             String videoUrl,
             String cardImageUrl,
-            String backgroundImageUrl) {
+            String backgroundImageUrl,
+            List<Map<String, List<String>>> xRayItems) {
         Movie movie = new Movie();
 //        movie.setId(count++);
         movie.setId(id);
@@ -183,7 +153,7 @@ public final class MovieList {
         movie.setBackgroundImageUrl(backgroundImageUrl);
         movie.setVideoUrl(videoUrl);
 
-        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue() % 8));
+        Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue()));
 //        Map<String, List<String>> xRayItemForMovie = xRayItems.get(0);
         List<String> types = xRayItemForMovie.get(KEY_TYPE);
         List<String> names = xRayItemForMovie.get(KEY_NAME);
@@ -203,9 +173,6 @@ public final class MovieList {
 
     private static List<Map<String, List<String>>> setUpXRayItems() {
         List<Map<String, List<String>>> listOfItems = new ArrayList<>();
-        List<String> xRayName = new ArrayList<>();
-        List<List<String>> xRayImageUrl = new ArrayList<>();
-        List<List<String>> xRayLinks = new ArrayList<>();
 
         // The king's Man
         String xRay1Type[] = {
@@ -501,14 +468,87 @@ public final class MovieList {
         entry5.put(KEY_MERCHANDISE, Arrays.asList(xRay5Merchandise));
         listOfItems.add(entry5);
 
+        return listOfItems;
+    }
 
+    public static List<Movie> setUpDummyMovies(int length) {
+        dummyList = new ArrayList<>();
+        String title[] = {
+                "Bad Guys",
+                "The Lord Of The Rings",
+                "Doctor Strange III",
+                "Groot's First Steps",
+                "Luck"
+        };
 
+        String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
+                + "Donec tristique, orci sed semper lacinia, quam erat rhoncus massa, non congue tellus est "
+                + "quis tellus. Sed mollis orci venenatis quam scelerisque accumsan. Curabitur a massa sit "
+                + "amet mi accumsan mollis sed et magna. Vivamus sed aliquam risus. Nulla eget dolor in elit "
+                + "facilisis mattis. Ut aliquet luctus lacus. Phasellus nec commodo erat. Praesent tempus id "
+                + "lectus ac scelerisque. Maecenas pretium cursus lectus id volutpat.";
+        String studio[] = {
+                "Studio Zero",
+                "Studio One",
+                "Studio Two",
+                "Studio Three",
+                "Studio Four"
+        };
+        String category[] = {
+                "Category Zero",
+                "Category One",
+                "Category Two",
+                "Category Three",
+                "Category Four"
+        };
+        String videoUrl[] = {
+                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
+                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
+                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue.mp4",
+                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole.mp4",
+                "http://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose.mp4"
+        };
+        String bgImageUrl[] = {
+                "https://thumb.canalplus.pro/http/unsafe/2560x1440/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/108431902",
+                "https://static1.colliderimages.com/wordpress/wp-content/uploads/2022/10/Rings-of-Power.jpg",
+                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/wcKFYIiVDvRURrzglV9kGu7fpfY.jpg",
+                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/9bColKVEAaWfmOLiLZoUhdYfevy.jpg",
+                "https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/3VQj6m0I6gkuRaljmhNZl0XR3by.jpg"
+        };
+        String cardImageUrl[] = {
+                "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/81e8eaf4-42df-45fe-8eb9-f7596ba98246/df0ekt5-005cce1b-568a-4f4e-bdc3-a4879be52c8a.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzgxZThlYWY0LTQyZGYtNDVmZS04ZWI5LWY3NTk2YmE5ODI0NlwvZGYwZWt0NS0wMDVjY2UxYi01NjhhLTRmNGUtYmRjMy1hNDg3OWJlNTJjOGEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.U-5Y35kKoLSzjlhoUWLpBQOi2fZtcA9erkGynkC-VlI",
+                "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWYFYyopTx6Ltjw_L84nqjkEMjc9_cylZgXQNq1xBHmujrjTbKog8pl_cPhotXVj1D1clWla7AImkDVATweq4AB0qk8DcgMvsaoSInPBvecwQxolSGT7lz8pgAUajuLJC2X-zr2r1z0UvKxVa-4GnLUb4WNXFjXRfuZalMo8Sn4mDefdMhGU4OjQlu/w1200-h630-p-k-no-nu/Rings%20of%20Power.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1ifiV9ZJD4tC3tRYcnLIzH0meaB.jpg",
+                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1HOYvwGFioUFL58UVvDRG6beEDm.jpg"
+        };
+
+        int n = title.length;
+        for (int index = 0; index < length; ++index) {
+            dummyList.add(
+                    buildMovieInfo(
+                            (long) index,
+                            title[index % n],
+                            description,
+                            studio[index % n],
+                            category[index % n],
+                            videoUrl[index % n],
+                            cardImageUrl[index % n],
+                            bgImageUrl[index % n],
+                            setUpDummyXRayItems(length)));
+        }
+
+        return dummyList;
+    }
+
+    private static List<Map<String, List<String>>> setUpDummyXRayItems(int length) {
+        List<Map<String, List<String>>> listOfItems = new ArrayList<>();
 
         // random x-ray for placeholders
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < length; ++i) {
             String xRay21Type[] = {
-                "0",
-                "0",
+                    "0",
+                    "0",
             };
             String xRay21Name[] = {
                     "Tom Cruise",
@@ -523,16 +563,16 @@ public final class MovieList {
                     ""
             };
             String xRay21Merchandise[] = {
-                "",
-                ""
+                    "",
+                    ""
             };
-            Map<String, List<String>> entry21 = new HashMap<>();
-            entry21.put(KEY_TYPE, Arrays.asList(xRay21Type));
-            entry21.put(KEY_NAME, Arrays.asList(xRay21Name));
-            entry21.put(KEY_IMAGE, Arrays.asList(xRay21ImageUrl));
-            entry21.put(KEY_DESCRIPTION, Arrays.asList(xRay21Description));
-            entry21.put(KEY_MERCHANDISE, Arrays.asList(xRay21Merchandise));
-            listOfItems.add(entry21);
+            Map<String, List<String>> entry = new HashMap<>();
+            entry.put(KEY_TYPE, Arrays.asList(xRay21Type));
+            entry.put(KEY_NAME, Arrays.asList(xRay21Name));
+            entry.put(KEY_IMAGE, Arrays.asList(xRay21ImageUrl));
+            entry.put(KEY_DESCRIPTION, Arrays.asList(xRay21Description));
+            entry.put(KEY_MERCHANDISE, Arrays.asList(xRay21Merchandise));
+            listOfItems.add(entry);
         }
         return listOfItems;
     }
