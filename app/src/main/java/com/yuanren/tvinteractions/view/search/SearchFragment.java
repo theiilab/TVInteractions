@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.yuanren.tvinteractions.R;
@@ -38,9 +41,11 @@ public class SearchFragment extends Fragment {
 
     private ConstraintLayout keyboard;
     private RecyclerView recyclerView;
+    private EditText inputField;
 
     private SearchListAdapter adapter;
     private List<Movie> movies;
+    private StringBuilder userInput = new StringBuilder();
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -68,14 +73,15 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         movies = MovieList.getList();
 
+        // grid of movies
         recyclerView = view.findViewById(R.id.search_movies);
         GridLayoutManager gl = new GridLayoutManager(getContext(), 5);
         recyclerView.setLayoutManager(gl);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0,
-                getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0, getResources().getDimensionPixelSize(R.dimen.search_margin_between_sm),0));
         adapter = new SearchListAdapter(movies);
         recyclerView.setAdapter(adapter);
 
+        // set up listeners for keyboard
         keyboard = view.findViewById(R.id.search_keyboard);
         for (int i = 0; i < keyboard.getChildCount(); i++) {
             View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
@@ -90,16 +96,37 @@ public class SearchFragment extends Fragment {
                 }
             });
         }
+
+        // manage input watcher
+        inputField = view.findViewById(R.id.search_input);
+        inputField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Log.d(TAG, "Input text changed");
+            }
+        });
     }
 
     public void onKeyClick(View v) {
-        switch (v.getTag().toString()) {
-            case "A":
-            case "G":
-                Log.d(TAG, "left keys");
-                break;
-            default:
-                break;
+        if (v.getTag().toString().equals("SPACE")) {
+            userInput.append(" ");
+        } else if (v.getTag().toString().equals("DEL")) {
+            if (userInput.length() > 0 ) {
+                userInput.deleteCharAt(userInput.length() - 1);
+            }
+        } else {
+            userInput.append(v.getTag().toString().toLowerCase());
         }
+        inputField.setText(userInput.toString());
     }
 }
