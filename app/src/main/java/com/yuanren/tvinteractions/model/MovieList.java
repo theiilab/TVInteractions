@@ -69,6 +69,8 @@ public final class MovieList {
                 "Uncharted",
                 "The Devil Wears Prada",
                 "The Wolf of Wall Street",
+                "Venom",
+
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -84,6 +86,7 @@ public final class MovieList {
                 "Columbia Pictures",
                 "20th Century Fox",
                 "Red Granite Pictures",
+                "Sony Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -92,31 +95,45 @@ public final class MovieList {
                 MOVIE_CATEGORY[6],
                 MOVIE_CATEGORY[2],
                 MOVIE_CATEGORY[2],
+                MOVIE_CATEGORY[0],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
                 "https://streamable.com/l/46vm7y/mp4-high.mp4",
+
                 "https://streamable.com/l/efmzs7/mp4-high.mp4",
                 "https://streamable.com/l/xuehud/mp4-high.mp4",
+
                 "https://streamable.com/l/60r3my/mp4-high.mp4",
                 "https://streamable.com/l/fivagj/mp4-high.mp4",
+
+                "https://streamable.com/l/mhrrwj/mp4-high.mp4",
+
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
                 "https://occ-0-34-1555.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVkcDtE1_UaJBGFQUfxakjzhYdT1L4kso24uZS0ASl_faURPBSGzY_Mxbx1KEcNbZr3ZqCatG-0zi2k3L4oBXenznQrrROKJQqdu.jpg?r=590",
+
                 "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
                 "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/best-new-movies-on-netflix-this-week-august-5th-2022.webp",
+
                 "https://www.refinery29.com/images/8436438.jpg?crop=40%3A21",
                 "https://assets.playbill.com/editorial/a728180f0359e96ac3b95916cda901ce-the-wolf-of-wall-street.-London-immersive-production-2019.-Credit-photography-by-Michael-Wharley-design-by-Rebecca-Pitt.jpg",
+
+                "https://www.justwatch.com/images/backdrop/83182674/s1920/venom-2018.webp",
 
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
                 "https://cinemagic.ir/upload/image/movie/2021/11/red-notice-2021.jpg",
+
                 "https://occ-0-622-299.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABUd8TVjXGgyMY5xgsqWKbpbKx4XgKm5vXsFRSWUhoYE52kJvEcjqFjfIuAGnjh5NWWLUlfG_mMyALnqZOW67muP5zYH4WGte6YGj.jpg",
                 "https://www.waukeepubliclibrary.org/sites/default/files/Event%20Images/Adult%20Events/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ%40%40._V1_FMjpg_UX1000_.jpg",
+
                 "https://image.tmdb.org/t/p/original/8912AsVuS7Sj915apArUFbv6F9L.jpg",
                 "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_FMjpg_UX1000_.jpg",
+
+                "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/venom_onesheet_1400x2100_rated.png?itok=0tO6umMg",
 
         };
 
@@ -272,7 +289,7 @@ public final class MovieList {
         String xRay2Description[] = {
                 "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
                 "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
-                "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4,995;• Outer: Cotton 100%\n• Lining: Cupro 100%\n• Dry Clean Only\n\nMade in Italy.",
+                "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4,995;• Outer: 100% Cotton\n• Lining: 100% Cupro\n• Dry Clean Only\n\nMade in Italy.",
                 "Suunto Core Alu Deep Black;$229;• Measurements: 49.1 x 49.1 x 14.5 mm\n• Weight: 79 g\n• Bezel material: Aluminum\n• Glass material: Mineral crystal\n\nSuunto Core Premium combines modern design with the essential outdoor functions. Choose rigid natural stainless steel with sapphire crystal glass for added durability, or the elegant aluminum cases for less weight on the wrist.",
                 "iPhone SE; $479; • Size: 128 GB\n• Color: Midnight\n• Display:4.7-inch Retina HD display with True Tone\n• Height:138.4 mm\n• Width: 67.3 mm\n• Depth: 7.3 mm\n• Weight: 144 g",
                 "iPad Mini 2;• $649; • Size: 256 GB\n• Color: Space Grey\n• Display: 8.3” Liquid Retina display² True Tone\n• Height: 7.87 inches (200 mm)\n• Width: 134.7 mm\n• Depth: .5 mm\n• Weight: 331 g",
@@ -395,7 +412,7 @@ public final class MovieList {
                 "Tom Holland ;• Born in Kingston upon Thames, United Kingdom\n• Age: 26 (1996)\n• Height: 5′ 8″\n• Nationality: British;Thomas Stanley Holland is an English actor. His accolades include a British Academy Film Award, three Saturn Awards, a Guinness World Record and an appearance on the Forbes 30 Under 30 Europe list. Some publications have called him one of the most popular actors of his generation.",
                 "Ryan Reynolds;• Born in San Diego, CA, American\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Sophia Taylor Ramsey Ali is an American actress. She is best known for her work in the MTV romantic comedy series Faking It, the ABC medical drama series Grey's Anatomy, and The Wilds.",
                 "Mark Wahlberg;• Born in Boston, MA, American\n• Age: 51 (1971)\n• Height: 5′ 8″\n• Nationality: American;Mark Robert Michael Wahlberg, former stage name Marky Mark, is an American actor, businessman, and former rapper. His work as a leading man spans the comedy, drama, and action genres.",
-                "Neck Ruffle Fit and Flare Dress;$128;• Polyester/Rayon 100%\n• Length: Regular 36, Petite 34\n\nThis one features fun ruffle details and a flattering fit and flare style. This piece perfectly pairs with heels or booties for your next event.",
+                "Neck Ruffle Fit and Flare Dress;$128;• 100% Polyester/Rayon\n• Length: Regular 36, Petite 34\n\nThis one features fun ruffle details and a flattering fit and flare style. This piece perfectly pairs with heels or booties for your next event.",
                 "Vegan Leather Moto Jacket;$128;• Machine wash cold, tumble dry low\n\nWater resistant outer shell for extra protection against inclement weather.",
                 "The Boulevard Bomber; $89; • 60% Cotton, 40% Nylon\n• Dry clean only\n\nClassic bomber style with rib collar, cuff and hem | Single welt hand pockets with snap | Water repellent | Fully lined.",
                 "Relax Fit Men's Jeans;• $69.5; • 1% elastane (Lycra®), 100% cotton\n• Zip fly\n• 5-pocket styling\n• Machine wash cold\n\nA comfortable classic, introduced in 1985 and loved ever since. After the '70s were over, things got more relaxed, including Levi's® jeans. This pair features extra room throughout with a slight, tailor-like taper at the leg.",
@@ -453,8 +470,8 @@ public final class MovieList {
         String xRay5Description[] = {
                 "Anne Hathaway;• Born in New York, NY, American\n• Age: 40 (1982)\n• Height: 5′ 8″\n• Nationality: American;Anne Jacqueline Hathaway is an American actress. The recipient of various accolades, including an Academy Award, a Golden Globe Award, and a Primetime Emmy Award, she was among the world's highest-paid actresses in 2015.",
                 "Meryl Streep;• Born in Summit, NJ, American\n• Age: 73 (1949)\n• Height: 5′ 6″\n• Nationality: American;Mary Louise Streep is an American actress. Often described as \"the best actress of her generation\", Streep is particularly known for her versatility and accent adaptability.",
-                "Green 1950S Leopard Patchwork Button Coat;$99.99;• Polyester 100%\n• Length: Knee-Length\n• No Stretch\n\nThe 1950s vintage green button coat is to tribute to the movie The Devil Wears Prado. It can keep your retro feminine charm in cold winter! It's a coat that can change between two collar styles. You can button up all the leopard buttons and the unique leopard neckline that wraps around your neck for warmth and elegance.",
-                "Double Breasted Slant Pockets Coat;$82.99;• Polyester 100%\n• Button closure\n• Machine wash cold\n\nTake on chilly winter with this stylish midi length coat with its chic stand collar design and double breasted details.",
+                "Green 1950S Leopard Patchwork Button Coat;$99.99;• 100% Polyester\n• Length: Knee-Length\n• No Stretch\n\nThe 1950s vintage green button coat is to tribute to the movie The Devil Wears Prado. It can keep your retro feminine charm in cold winter! It's a coat that can change between two collar styles. You can button up all the leopard buttons and the unique leopard neckline that wraps around your neck for warmth and elegance.",
+                "Double Breasted Slant Pockets Coat;$82.99;• 100% Polyester\n• Button closure\n• Machine wash cold\n\nTake on chilly winter with this stylish midi length coat with its chic stand collar design and double breasted details.",
                 "Wool Alpaca Mohair Coat;$871; • 48% wool, 22% alpaca, 15% nylon, 15% mohair\n• Length: 125 cm\n• Do not wash, do not bleach\n\nWool, alpaca and mohair coat featuring wide lapels, kimono sleeves and welt pockets. The central rear vent and waist tie belt enhance the garment’s flared fit.",
                 "Black Wool Trench Coat;$179; • 100% Wool Blend\n• Front: Double Breasted Button Closure\n• Collar: Wide Lapel Style\n• Pockets: One Inside Pocket\n• Handwash only\n\nAn elegant addition to your fall wardrobe, this coat is crafted from a blend of premium quality wool. This coat can be worn to work, brunch, or a night out.",
                 "Shiny Leather Coat;$6900;• 100% Lambskin\n• Half lined\n• Regular fit\n\nCrafted in buttery lambskin, this coat takes styling directions from the classic trench — but with added femininity"
@@ -510,7 +527,7 @@ public final class MovieList {
         String xRay6Description[] = {
                 "Leonardo DiCaprio;• Born in Los Angeles, CA, American\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
                 "Kyle Chandler;• Born in Buffalo, NY, American\n• Age: 57 (1965)\n• Height: 6′ 0″\n• Nationality: American;Kyle Martin Chandler is an American actor. Making his screen acting debut in a 1988 television film, Quiet Victory: The Charlie Wedemeyer Story, Chandler's first regular television role was in the ABC drama Homefront.",
-                "The Iconic Mesh Polo Shirt;$110;• Cotton 100%\n• Length: 28.5\" front & 29.5\" back\n• Machine washable\n\nOver the decades, Ralph Lauren has reimagined his signature style in a wide array of colors and fits, yet all retain the quality and attention to detail of the iconic original. This relaxed version is made with our highly breathable cotton mesh, which offers a textured look and a soft feel. ",
+                "The Iconic Mesh Polo Shirt;$110;• 100% Cotton\n• Length: 28.5\" front & 29.5\" back\n• Machine washable\n\nOver the decades, Ralph Lauren has reimagined his signature style in a wide array of colors and fits, yet all retain the quality and attention to detail of the iconic original. This relaxed version is made with our highly breathable cotton mesh, which offers a textured look and a soft feel. ",
                 "TAG Heuer Professional 1000;$3850;• Brand: TAG Heuer\n• Band/Strap: Bracelet\n• Case Material: Gold Plated\n• Case Size: 38 mm\n\nFor more than 160 years, TAG Heuer has led, never followed, setting its own rules and driving watchmaking into uncharted territories. Its timepieces are not faithful reflections of tradition, but true representatives of design and engineering at their most innovative and awe-inspiring.",
                 "Ray-Ban ® RB4147 sunglasses;$151;• Frame shape: Square\n• Frame color: Polished Black\n• Frame material: Nylon\n• Len height: 48.5mm\n• Bridge width: 60 15mm\n\nRay-Ban ® RB4147 sunglasses are fashionable and bold with larger rounded square lenses in propionate plastic frames which offer maximum sun protection while embracing a chic Hollywood look.",
                 "Ralph Lauren Polo Soft Wool Oxford Suit Jacket;$698;• Shell: wool\n• Undercollar: mulberry silk\n• Length: 30\" front & 29.5\" back\n• Double vent\n\nThis Polo Soft jacket is tailored from lightweight wool oxford that's both breathable and wrinkle-resistant. Its fit puts a modern spin on classic preppy style with a natural shoulder and a half-canvassed construction.",
@@ -532,6 +549,64 @@ public final class MovieList {
         entry6.put(KEY_DESCRIPTION, Arrays.asList(xRay6Description));
         entry6.put(KEY_MERCHANDISE, Arrays.asList(xRay6Merchandise));
         listOfItems.add(entry6);
+
+
+
+
+        // Venom
+        String xRay7Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay7Name[] = {
+                "Tom Hardy",
+                "Michelle Williams",
+
+                "Painted Flower Dress",
+                "Carry Secret Clutch",
+                "Stretch Zip Hoodie",
+                "Slub Crew Tee",
+                "Dark Slim Straight Jeans"
+        };
+        String xRay7ImageUrl[] = {
+                "https://hips.hearstapps.com/hmg-prod/images/tom-hardy-attends-the-premiere-of-columbia-pictures-venom-news-photo-1587931757.jpg?crop=1.00xw:0.722xh;0,0.00980xh&resize=1200:*",
+                "https://image.tmdb.org/t/p/w500/jn3BVMVbIptz2gc6Fhxo1qwJVvW.jpg",
+                "https://www.evachic.com/wp-content/uploads/2017/08/Marc-Jacobs-Painted-Flower-Wrap-Dress-9.jpg",
+                "https://www.net-a-porter.com/variants/images/46376663162442686/bk/w920_q60.jpg",
+                "https://cdn.shopify.com/s/files/1/0021/2602/0666/products/ST-2061_Microfleece_Hoodie_ArmyGreen_A_800x.jpg?v=1642528019",
+                "https://americangiant.imgix.net/products/M2-2G-1A-IR_v2070.jpg?v=1652816356&auto=format,compress&w=3000",
+                "https://img.hollisterco.com/is/image/anf/KIC_331-6104-0978-276_prod1?policy=product-large"
+        };
+        String xRay7Description[] = {
+                "Tom Hardy;• Born in London, United Kingdom\n• Age: 45 (1977)\n• Height: 5′ 9″\n• Nationality: British;Edward Thomas Hardy CBE is an English actor. After studying acting at the Drama Centre London, he made his film debut in Ridley Scott's Black Hawk Down.",
+                "Michelle Williams;• Born in Kalispell, MT, American\n• Age: 42 (1980)\n• Height: 5′ 4″\n• Nationality: American;Michelle Ingrid Williams is an American actress. Known primarily for starring in small-scale independent films with dark or tragic themes, she has received various accolades, including two Golden Globe Awards and a Primetime Emmy Award, in addition to nominations for five Academy Awards and a Tony Award.",
+                "Marc Jacobs Painted Flower Wrap Dress;$695;• Silk 100%\n• Brand: Marc Jacobs\n• Length: 112 cm\n• Waist tie detail, surplice front\n• Dry clean only\n\nThis Marc Jacobs Painted Flower Wrap Dress is a colorful fashion statement featuring dark florals and a sleek wrap silhouette at midi length. Crafted from finest quality silk, it is easy-to-pack and multi-purpose, especially in vacation time.",
+                "Valentino Garavani Carry Secrets Clutch;$2280;• Brand: Valentino Garavani \n• Black and gold leather (Goat), gold-tone metal\n• Clasp fastening at top\n• Made in Italy\n\nValentino Garavani's 'Carry Secrets' clutch will keep your treasured possessions safe. Crafted from leather with a structured gold-tone metal frame, it's embellished with countless crystals to depict a dragon motif that was originally showcased in 1969. Let yours be the focal point of an all-black outfit.",
+                "Stretch Zip Hoodie;$99;• 100% Wool\n• 2 front pockets for comfort\n• Machine Wash Cold\n\nThe go everywear hoodie now in our exclusive stretch fleece.",
+                "Premium Slub Crew Grey Tee;$50;• 100% Cotton\n• 6.6 oz./sq. yard\n• Premium slub jersey\n• Machine wash\n\nMade with our substantial and custom premium slub fabric that we spent over a year developing. This fabric is non-see through and non-torquing compared to other fabrics on the market. Rich, varied texture that holds its shape. A polished look that looks great on its own or under a jacket.",
+                "Dark Wash Slim Straight Jeans;$49.5;• 95% Cotton\n• 4% Polyester\n• 1% Elastane\n• Machine Wash Cold\n\nDesigned with a slim fit through the hip and thigh with a 15.5” leg opening, featuring dark wash denim made with Hollister Epic Flex stretch, fading and whiskering, a right coin pocket and iconic back pocket embroidery."
+        };
+        String xRay7Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry7 = new HashMap<>();
+        entry7.put(KEY_TYPE, Arrays.asList(xRay7Type));
+        entry7.put(KEY_NAME, Arrays.asList(xRay7Name));
+        entry7.put(KEY_IMAGE, Arrays.asList(xRay7ImageUrl));
+        entry7.put(KEY_DESCRIPTION, Arrays.asList(xRay7Description));
+        entry7.put(KEY_MERCHANDISE, Arrays.asList(xRay7Merchandise));
+        listOfItems.add(entry7);
 
         return listOfItems;
     }
