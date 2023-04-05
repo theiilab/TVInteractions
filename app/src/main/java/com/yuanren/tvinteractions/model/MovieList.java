@@ -106,7 +106,7 @@ public final class MovieList {
                 "https://occ-0-34-1555.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVkcDtE1_UaJBGFQUfxakjzhYdT1L4kso24uZS0ASl_faURPBSGzY_Mxbx1KEcNbZr3ZqCatG-0zi2k3L4oBXenznQrrROKJQqdu.jpg?r=590",
                 "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
                 "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/best-new-movies-on-netflix-this-week-august-5th-2022.webp",
-                "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/998E2A4163BD5059543900BC44B16BF2F46009A87A16886F46E1323A39CA167E/scale?width=1200&aspectRatio=1.78&format=jpeg",
+                "https://www.refinery29.com/images/8436438.jpg?crop=40%3A21",
                 "https://assets.playbill.com/editorial/a728180f0359e96ac3b95916cda901ce-the-wolf-of-wall-street.-London-immersive-production-2019.-Credit-photography-by-Michael-Wharley-design-by-Rebecca-Pitt.jpg",
 
         };
@@ -115,7 +115,7 @@ public final class MovieList {
                 "https://cinemagic.ir/upload/image/movie/2021/11/red-notice-2021.jpg",
                 "https://occ-0-622-299.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABUd8TVjXGgyMY5xgsqWKbpbKx4XgKm5vXsFRSWUhoYE52kJvEcjqFjfIuAGnjh5NWWLUlfG_mMyALnqZOW67muP5zYH4WGte6YGj.jpg",
                 "https://www.waukeepubliclibrary.org/sites/default/files/Event%20Images/Adult%20Events/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ%40%40._V1_FMjpg_UX1000_.jpg",
-                "https://m.media-amazon.com/images/M/MV5BZjQ3ZTIzOTItMGNjNC00MWRmLWJlMGEtMjJmMDM5ZDIzZGM3XkEyXkFqcGdeQXVyMTkzODUwNzk@._V1_.jpg",
+                "https://image.tmdb.org/t/p/original/8912AsVuS7Sj915apArUFbv6F9L.jpg",
                 "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_FMjpg_UX1000_.jpg",
 
         };
