@@ -68,6 +68,7 @@ public final class MovieList {
                 "Jumanji",
                 "Uncharted",
                 "The Devil Wears Prada",
+                "The Wolf of Wall Street",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -82,12 +83,14 @@ public final class MovieList {
                 "Columbia Pictures",
                 "Columbia Pictures",
                 "20th Century Fox",
+                "Red Granite Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
                 MOVIE_CATEGORY[3],
                 MOVIE_CATEGORY[6],
                 MOVIE_CATEGORY[6],
+                MOVIE_CATEGORY[2],
                 MOVIE_CATEGORY[2],
         };
         String videoUrl[] = {
@@ -96,6 +99,7 @@ public final class MovieList {
                 "https://streamable.com/l/efmzs7/mp4-high.mp4",
                 "https://streamable.com/l/xuehud/mp4-high.mp4",
                 "https://streamable.com/l/60r3my/mp4-high.mp4",
+                "https://streamable.com/l/fivagj/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -103,6 +107,8 @@ public final class MovieList {
                 "https://imageio.forbes.com/blogs-images/scottmendelson/files/2017/12/1511829518078_215329_cops_21-1200x588.jpg?format=jpg&width=1200",
                 "https://www.whats-on-netflix.com/wp-content/uploads/2022/08/best-new-movies-on-netflix-this-week-august-5th-2022.webp",
                 "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/998E2A4163BD5059543900BC44B16BF2F46009A87A16886F46E1323A39CA167E/scale?width=1200&aspectRatio=1.78&format=jpeg",
+                "https://assets.playbill.com/editorial/a728180f0359e96ac3b95916cda901ce-the-wolf-of-wall-street.-London-immersive-production-2019.-Credit-photography-by-Michael-Wharley-design-by-Rebecca-Pitt.jpg",
+
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -110,6 +116,8 @@ public final class MovieList {
                 "https://occ-0-622-299.1.nflxso.net/dnm/api/v6/evlCitJPPCVCry0BZlEFb5-QjKc/AAAABUd8TVjXGgyMY5xgsqWKbpbKx4XgKm5vXsFRSWUhoYE52kJvEcjqFjfIuAGnjh5NWWLUlfG_mMyALnqZOW67muP5zYH4WGte6YGj.jpg",
                 "https://www.waukeepubliclibrary.org/sites/default/files/Event%20Images/Adult%20Events/MV5BMWEwNjhkYzYtNjgzYy00YTY2LThjYWYtYzViMGJkZTI4Y2MyXkEyXkFqcGdeQXVyNTM0OTY1OQ%40%40._V1_FMjpg_UX1000_.jpg",
                 "https://m.media-amazon.com/images/M/MV5BZjQ3ZTIzOTItMGNjNC00MWRmLWJlMGEtMjJmMDM5ZDIzZGM3XkEyXkFqcGdeQXVyMTkzODUwNzk@._V1_.jpg",
+                "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_FMjpg_UX1000_.jpg",
+
         };
 
         int n = title.length;
@@ -467,6 +475,63 @@ public final class MovieList {
         entry5.put(KEY_DESCRIPTION, Arrays.asList(xRay5Description));
         entry5.put(KEY_MERCHANDISE, Arrays.asList(xRay5Merchandise));
         listOfItems.add(entry5);
+
+
+
+
+        // The Wolf of Wall Street
+        String xRay6Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay6Name[] = {
+                "Leonardo DiCaprio",
+                "Kyle Chandler",
+                "Ralph Lauren Polo Shirt",
+                "TAG Heuer Watch",
+                "Ray-Ban sunglasses",
+                "Ralph Lauren Polo Jacket",
+                "Navy Blue Tie"
+        };
+        String xRay6ImageUrl[] = {
+                "https://cdn.britannica.com/65/227665-050-D74A477E/American-actor-Leonardo-DiCaprio-2016.jpg",
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcSZQi9n4LfoBoYKtwNkFRAiXqyZQdOcNS3moOVtUa5Uz-MB2n6S-l8ewE5LBLkvc9NjqJMOv-2wlaUQvtg",
+                "https://www.rlmedia.io/is/image/PoloGSI/s7-1266689_alternate10?$rl_df_pdp_5_7_a10$",
+                "https://media.gq-magazine.co.uk/photos/5fa9640bab4311e33c32f637/master/w_1920,h_1280,c_limit/WOLFOFWALLSTREETWATCH_2.jpg",
+                "https://images.ray-ban.com/is/image/RayBan/805289391616_0001.png?impolicy=SEO_1x1",
+                "https://www.rlmedia.io/is/image/PoloGSI/s7-1337387_alternate10?$rl_df_pdp_5_7_a10$",
+                "https://i.etsystatic.com/23311721/r/il/4506a5/2645644622/il_1588xN.2645644622_kle6.jpg"
+        };
+        String xRay6Description[] = {
+                "Leonardo DiCaprio;• Born in Los Angeles, CA, American\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
+                "Kyle Chandler;• Born in Buffalo, NY, American\n• Age: 57 (1965)\n• Height: 6′ 0″\n• Nationality: American;Kyle Martin Chandler is an American actor. Making his screen acting debut in a 1988 television film, Quiet Victory: The Charlie Wedemeyer Story, Chandler's first regular television role was in the ABC drama Homefront.",
+                "The Iconic Mesh Polo Shirt;$110;• Cotton 100%\n• Length: 28.5\" front & 29.5\" back\n• Machine washable\n\nOver the decades, Ralph Lauren has reimagined his signature style in a wide array of colors and fits, yet all retain the quality and attention to detail of the iconic original. This relaxed version is made with our highly breathable cotton mesh, which offers a textured look and a soft feel. ",
+                "TAG Heuer Professional 1000;$3850;• Brand: TAG Heuer\n• Band/Strap: Bracelet\n• Case Material: Gold Plated\n• Case Size: 38 mm\n\nFor more than 160 years, TAG Heuer has led, never followed, setting its own rules and driving watchmaking into uncharted territories. Its timepieces are not faithful reflections of tradition, but true representatives of design and engineering at their most innovative and awe-inspiring.",
+                "Ray-Ban ® RB4147 sunglasses;$151;• Frame shape: Square\n• Frame color: Polished Black\n• Frame material: Nylon\n• Len height: 48.5mm\n• Bridge width: 60 15mm\n\nRay-Ban ® RB4147 sunglasses are fashionable and bold with larger rounded square lenses in propionate plastic frames which offer maximum sun protection while embracing a chic Hollywood look.",
+                "Ralph Lauren Polo Soft Wool Oxford Suit Jacket;$698;• Shell: wool\n• Undercollar: mulberry silk\n• Length: 30\" front & 29.5\" back\n• Double vent\n\nThis Polo Soft jacket is tailored from lightweight wool oxford that's both breathable and wrinkle-resistant. Its fit puts a modern spin on classic preppy style with a natural shoulder and a half-canvassed construction.",
+                "Navy Blue Tie;$38.5;• 100% Silk\n• Blade width: 7.6 cm\n• Handmade\n\nThis Navy & White Circles Silk Tie is simple but  perfect pair for a navy suit as it compliments rather than clash. This tie is also 100% Macclesfield Silk."
+        };
+        String xRay6Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry6 = new HashMap<>();
+        entry6.put(KEY_TYPE, Arrays.asList(xRay6Type));
+        entry6.put(KEY_NAME, Arrays.asList(xRay6Name));
+        entry6.put(KEY_IMAGE, Arrays.asList(xRay6ImageUrl));
+        entry6.put(KEY_DESCRIPTION, Arrays.asList(xRay6Description));
+        entry6.put(KEY_MERCHANDISE, Arrays.asList(xRay6Merchandise));
+        listOfItems.add(entry6);
 
         return listOfItems;
     }
