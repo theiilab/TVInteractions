@@ -70,6 +70,7 @@ public final class MovieList {
                 "The Devil Wears Prada",
                 "The Wolf of Wall Street",
                 "Venom",
+                "Iron man",
 
         };
 
@@ -87,6 +88,7 @@ public final class MovieList {
                 "20th Century Fox",
                 "Red Granite Pictures",
                 "Sony Pictures",
+                "Marvel Studios",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -95,6 +97,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[6],
                 MOVIE_CATEGORY[2],
                 MOVIE_CATEGORY[2],
+                MOVIE_CATEGORY[0],
                 MOVIE_CATEGORY[0],
         };
         String videoUrl[] = {
@@ -108,6 +111,9 @@ public final class MovieList {
                 "https://streamable.com/l/fivagj/mp4-high.mp4",
 
                 "https://streamable.com/l/mhrrwj/mp4-high.mp4",
+                "https://streamable.com/l/oohm1o/mp4-high.mp4",
+
+
 
         };
         String bgImageUrl[] = {
@@ -121,6 +127,7 @@ public final class MovieList {
                 "https://assets.playbill.com/editorial/a728180f0359e96ac3b95916cda901ce-the-wolf-of-wall-street.-London-immersive-production-2019.-Credit-photography-by-Michael-Wharley-design-by-Rebecca-Pitt.jpg",
 
                 "https://www.justwatch.com/images/backdrop/83182674/s1920/venom-2018.webp",
+                "https://www.quirkybyte.com/wp-content/uploads/2016/08/iron-man.png",
 
         };
         String cardImageUrl[] = {
@@ -134,6 +141,9 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_FMjpg_UX1000_.jpg",
 
                 "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/venom_onesheet_1400x2100_rated.png?itok=0tO6umMg",
+                "https://toplist.vn/images/800px/iron-man-2008-863125.jpg",
+
+
 
         };
 
@@ -607,6 +617,66 @@ public final class MovieList {
         entry7.put(KEY_DESCRIPTION, Arrays.asList(xRay7Description));
         entry7.put(KEY_MERCHANDISE, Arrays.asList(xRay7Merchandise));
         listOfItems.add(entry7);
+
+
+
+
+        // Iron man
+        String xRay8Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay8Name[] = {
+                "Robert Downey Jr",
+                "Terrence Howard",
+
+                "Racer Jacket",
+                "Painted T-Shirt",
+                "Air Force Army Jacket",
+                "Bvlgari Diagono Moonphase",
+                "Cashmere Crewneck Sweater",
+        };
+        String xRay8ImageUrl[] = {
+                "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQijI6Sf7U-nKAfhHFmFBhVVVIxOfzI3QBeHqEjXJ7qcqbu98eqykx0UdmHrvt9Wx5hKilfZROD0mR85gk",
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcThc7oo4fMr_4pDB10xmnt2EYxddGujH8hxr9Ctr3Y41iEJsme3vpiOdMmkZmufBgOdbLxSxz67nv0GNXI",
+
+                "https://cdn.shopify.com/s/files/1/0419/1525/products/1024x1024-Men-Racer-Black-122122-1_1024x1024.jpg?v=1672325278",
+                "https://cdn11.bigcommerce.com/s-ehg1rcbvlr/images/stencil/1280x1280/products/1019/2716/WhatIStandFor__87211.1583772186.jpg?c=1",
+                "https://cdn.shopify.com/s/files/1/2015/7431/products/product-image-462094998_360x.jpg?v=1571609572",
+                "https://cdn.shopify.com/s/files/1/0297/3584/5948/products/W2229-02_5sx7wrirk_1024x1024@2x.jpg?v=1637209917",
+                "https://www.jcrew.com/s7-img-facade/BE895_GY5980?hei=850&crop=0,0,680,0"
+        };
+        String xRay8Description[] = {
+                "Robert Downey Jr;• Born in New York, NY, American\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
+                "Terrence Howard;• Born in Chicago, IL, American\n• Age: 54 (1969)\n• Height: 6′ 0″\n• Nationality: American;Terrence Dashon Howard is an American actor, rapper, singer, and producer. Having his first major roles in the 1995 films Dead Presidents and Mr. Holland's Opus, Howard broke into the mainstream with a succession of television and cinema roles between 2004 and 2006. ",
+
+                "Racer Jacket;$349;• Premium Black Lambskin Leather\n• Plush Polyester Interior with Leather Trimmings\n• Long-Lasting Metal Zipper\n• Banded Collar with Ideal® Snap Button\n• Dry clean only\n\nThis streamlined leather jacket has been thoughtfully handcrafted to let the quality of the materials speak for themselves. With twin side torso welt pockets, a snap buttoned collar and premium lambskin leather, this represents Thursday versatility at its finest.",
+                "Painted Grey T-Shirt;$28;• Brand: Valentino Garavani \n• 50% Polyester\n• 25% Rayon\n• 25% Cotton\n• Machine wash cold\n\nThese grey t-shirts feature a quote by Wendell Berry that reads \"What I Stand For is What I Stand On\"",
+                "Air Force Army Jacket;$85.99;• Material: Polyester,Cotton\n• Thickness: Standard\n• Detachable Part: Hat Detachable\n• Machine Wash Cold\n\nPerfect for a day at the range, smores around the campfire, or training on the toughest terrains.",
+                "Bvlgari Diagono Retrograde Moonphase;$19980;• Model: DGP42GMP\n• Movement: Automatic\n• Case: 18K rose gold, 42mm\n• Dial: Black with gold batons and Arabic numerals\n• Strap: Brown crocodile with deployant buckle \n• Special Features: Moon phase calendar, day, date, second hand\n\n",
+                "Cashmere Crewneck Sweater;$138;• 100% Cashmere\n• Crewneck\n• Hand wash\n\nWe source cashmere that is certified to the AbTF's The Good Cashmere Standard®, which ensures the welfare of the cashmere goats, protects natural resources and improves the working conditions of farmers and farmworkers in Inner Mongolia."
+        };
+        String xRay8Merchandise[] = {
+                "",
+                "",
+                "amazon target walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "costco amazon target",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry8 = new HashMap<>();
+        entry8.put(KEY_TYPE, Arrays.asList(xRay8Type));
+        entry8.put(KEY_NAME, Arrays.asList(xRay8Name));
+        entry8.put(KEY_IMAGE, Arrays.asList(xRay8ImageUrl));
+        entry8.put(KEY_DESCRIPTION, Arrays.asList(xRay8Description));
+        entry8.put(KEY_MERCHANDISE, Arrays.asList(xRay8Merchandise));
+        listOfItems.add(entry8);
 
         return listOfItems;
     }
