@@ -71,7 +71,7 @@ public final class MovieList {
                 "The Wolf of Wall Street",
                 "Venom",
                 "Iron man",
-
+                "Harry Potter and the Prisoner of Azkaban",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -89,6 +89,7 @@ public final class MovieList {
                 "Red Granite Pictures",
                 "Sony Pictures",
                 "Marvel Studios",
+                "Warner Bros. Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -99,6 +100,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[2],
                 MOVIE_CATEGORY[0],
                 MOVIE_CATEGORY[0],
+                MOVIE_CATEGORY[7],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -113,7 +115,7 @@ public final class MovieList {
                 "https://streamable.com/l/mhrrwj/mp4-high.mp4",
                 "https://streamable.com/l/oohm1o/mp4-high.mp4",
 
-
+                "https://streamable.com/l/mnxbn8/mp4-high.mp4",
 
         };
         String bgImageUrl[] = {
@@ -129,6 +131,8 @@ public final class MovieList {
                 "https://www.justwatch.com/images/backdrop/83182674/s1920/venom-2018.webp",
                 "https://www.quirkybyte.com/wp-content/uploads/2016/08/iron-man.png",
 
+                "https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/05/harry-potter-and-the-prisoner-of-azkaban-1400x700.jpg",
+
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -143,7 +147,7 @@ public final class MovieList {
                 "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/venom_onesheet_1400x2100_rated.png?itok=0tO6umMg",
                 "https://toplist.vn/images/800px/iron-man-2008-863125.jpg",
 
-
+                "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Harry_Potter_and_the_Prisoner_of_Azkaban_poster.jpeg/revision/latest?cb=20220922141058",
 
         };
 
@@ -677,6 +681,66 @@ public final class MovieList {
         entry8.put(KEY_DESCRIPTION, Arrays.asList(xRay8Description));
         entry8.put(KEY_MERCHANDISE, Arrays.asList(xRay8Merchandise));
         listOfItems.add(entry8);
+
+
+
+
+        // Harry Potter and the Prisoner of Azkaban
+        String xRay9Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay9Name[] = {
+                "Daniel Radcliff",
+                "Emma Watson",
+
+                "Time Turner™ Necklace",
+                "Zip Hooded Sweatshirt Top",
+                "Stretch Juniors Jeans",
+                "Poly-Tech Jacket",
+                "Robertson Heather Ringer Tee"
+        };
+        String xRay9ImageUrl[] = {
+                "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTwLzKRSurTa6uHBKBS4Wzu2EEFRcDtl4VTvy7GABg36SFElOlg8rAKbSjMr8PN3u7LU4cOfjWbtjNGTr7JIw97nloYX15l00hqNMjxEhDG",
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ5gpvmOl83tBZMpEoS_iC4AJQ0X8l2LuB6wPhBm5e_3L-06OnVgH2Uk_W_gT7R8XF8URSll1CfeClGP2g",
+
+                "https://shop.universalorlando.com/merchimages/p-time-turner-necklace-1349252.jpg",
+                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/51jFuzVdufL._AC_UY1000_.jpg",
+                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81n-twKyfpL._AC_UX679_.jpg",
+                "https://i5.walmartimages.com/asr/2d28a7d6-1e9c-41f2-864f-101de497940e.d0b15b0b19cebb02d346747d3138ff95.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/71QgSP73vDL._AC_UX679_.jpg"
+        };
+        String xRay9Description[] = {
+                "Daniel Radcliff;• Born in London, United Kingdom\n• Age: 33 (1989)\n• Height: 5′ 5″\n• Nationality: British;Daniel Jacob Radcliffe is an English actor. He rose to fame at age twelve, when he began portraying Harry Potter in the film series of the same name. Over his career, Radcliffe has received various awards and nominations.",
+                "Emma Watson;• Born in Paris, France\n• Age: 32 (1990)\n• Height: 5′ 5″\n• Nationality: British;Emma Charlotte Duerre Watson is an English actress, model and activist. Known for her roles in both blockbusters and independent films, as well as for her women's rights work, she has received a selection of accolades, including a Young Artist Award and three MTV Movie Awards.",
+
+                "Time-Turner™ Necklace;$50;• Approx. 16\" L (chain length)\n• Antiqued, gold-tone plated metal\n• Rotating inner rings with hourglass\n• Drawstring bag included\n\nAuthentic replica of Hermione's Time-Turner necklace, as seen in the Harry Potter™ film series. Intricately detailed necklace includes working miniature hourglass, rotating inner rings with etched inscriptions, adjustable chain, and a The Wizarding World of Harry Potter™ drawstring bag for storage.",
+                "Zip Hooded Sweatshirt Top;$46.5;• 50% Cotton, 50% Polyester \n• Metal zipper\n• Pouch pockets\n• Machine wash\n\nUnlined hood with color-matched drawcord; Double-needle stitching at waistband and cuffs; 1x1 rib with spandex; Overlapped fabric across zipper allows full front printing.",
+                "Mid-Rise Stretch Juniors Jeans ;$40;• 74% Cotton, 24% Polyester, 2% Spandex\n• Zipper closure\n• Machine wash\n\nContoured waist (no more waist gap!), roomier in the hips and thighs and 5-pocket styling. We are size inclusive, which means – Made for Every Body – Great jeans for all women.",
+                "Poly-Tech Full-Zip Track Jacket;$50.63;• 100% polyester fleece\n• 1x1 ribbing at cuffs & waistband\n• Regular fit\n• Machine wash\n\nThis fleece adds a nice touch of cozy warmth on any cold day, wet, windy, or otherwise. Fleece is your plush, warm and dry answer to mother nature’s version of cold liquid sunshine and wind. It’s a super lightweight and convenient piece for all year around.",
+                "Robertson Heather Ringer Tee;$12.5;• 52% combed and ring-spun cotton \n• 48% Polyester\n• Machine Wash Cold\n\n"
+        };
+        String xRay9Merchandise[] = {
+                "",
+                "",
+                "target amazon walmart",
+                "amazon target walmart",
+                "amazon target walmart",
+                "walmart amazon target",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry9 = new HashMap<>();
+        entry9.put(KEY_TYPE, Arrays.asList(xRay9Type));
+        entry9.put(KEY_NAME, Arrays.asList(xRay9Name));
+        entry9.put(KEY_IMAGE, Arrays.asList(xRay9ImageUrl));
+        entry9.put(KEY_DESCRIPTION, Arrays.asList(xRay9Description));
+        entry9.put(KEY_MERCHANDISE, Arrays.asList(xRay9Merchandise));
+        listOfItems.add(entry9);
 
         return listOfItems;
     }
