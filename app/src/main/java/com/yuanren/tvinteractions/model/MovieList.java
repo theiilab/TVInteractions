@@ -75,6 +75,7 @@ public final class MovieList {
                 "Fantastic Beasts and Where to Find Them",
                 "Insomnia",
                 "Fall",
+                "Mamamia",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -96,6 +97,7 @@ public final class MovieList {
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
                 "Tea Shop Productions",
+                "Universal Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -110,6 +112,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[7],
                 MOVIE_CATEGORY[4],
                 MOVIE_CATEGORY[4],
+                MOVIE_CATEGORY[8],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -129,6 +132,8 @@ public final class MovieList {
 
                 "https://streamable.com/l/slxtfy/mp4-high.mp4",
                 "https://streamable.com/l/h43q1z/mp4-high.mp4",
+
+                "https://streamable.com/l/cleqsc/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -148,6 +153,8 @@ public final class MovieList {
 
                 "https://i0.wp.com/moviesandmania.com/wp-content/uploads/2020/11/Insomnia-movie-film-thriller-murder-mystery-2002-Christopher-Nolan-reviews-Al-Pacino.png?fit=3052%2C1318&ssl=1",
                 "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/460/files/2022/09/banner-fall.jpg",
+
+                "https://cache.pressmailing.net/content/179a4950-52c1-4799-9068-6bef6958e96e/RTLZWEI_Mamma-Mia.jpg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -167,6 +174,8 @@ public final class MovieList {
 
                 "https://m.media-amazon.com/images/I/A1vHJnCYNRL._RI_.jpg",
                 "https://deadline.com/wp-content/uploads/2023/03/fyuoirKpkTIjKPf88C81FkGdAVo-1.jpg?w=683",
+
+                "https://www.usmagazine.com/wp-content/uploads/2020/11/Mamma-Mia-Cast-Where-Are-They-Now-Feature.jpg?quality=40&strip=all",
         };
 
         int n = title.length;
@@ -939,6 +948,71 @@ public final class MovieList {
         entry12.put(KEY_DESCRIPTION, Arrays.asList(xRay12Description));
         entry12.put(KEY_MERCHANDISE, Arrays.asList(xRay12Merchandise));
         listOfItems.add(entry12);
+
+
+
+
+        // Mamamia
+        String xRay13Type[] = {
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay13Name[] = {
+                "Amanda Seyfried",
+                "Michelle Williams",
+                "Ashley Lilley",
+
+                "Smiling Eyes Top",
+                "The A-Line Denim Short",
+                "Printed Floral Shirt",
+                "Duke University Shirt",
+                "Floral Spiral Notebook"
+        };
+        String xRay13ImageUrl[] = {
+                "https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTVutBFshbcg-C7GOr6BkZhnbF3eCzgOP3-YY5wvziH8XJaP_8o6T7Zn5rk1z6XcQvm5w1mcFEoS3LwGWU",
+                "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTH8E9zXz5yArTPZDbXFQLtrzMhP_sYs37nDAhMwi9kBOHcG1EqGjMZz7B3ECQ08_yZoFpydtu3mAdUDIo",
+                "https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcSW4da8xMn0EiKpnSdv-P7yZd4lRexlS0ZV31_zn0B4B2yObH5i5-u2Cf8qMqSqsiDD",
+
+                "https://www.lulus.com/images/product/xlarge/2453892_432832.jpg?w=560&hdpi=1",
+                "https://media.everlane.com/image/upload/c_fill,w_1200,ar_807:807,q_auto,dpr_1.0,f_auto,fl_progressive:steep/i/6f30f32a_103e",
+                "https://litb-cgis.rightinthebox.com/images/640x853/202109/bps/product/inc/feguhm1630918483880.jpg",
+                "https://i.etsystatic.com/29249582/r/il/89ed83/3920469229/il_1588xN.3920469229_244f.jpg",
+                "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRvTsG4Xjs8Ni3-T3-jCZbBBOgYvp7welcKqPDNTUokSIL1YYpFE1l0JToU1eDJaJQl7ocEkE1GdJuKt-38Q1oBjwdziK4UIHw7KowobCzf"
+        };
+        String xRay13Description[] = {
+                "Amanda Seyfried;• Born in Allentown, PA, American\n• Age: 37 (1985)\n• Height: 5′ 2″\n• Nationality: American;Amanda Michelle Seyfried is an American actress. Born and raised in Allentown, Pennsylvania, she began modeling at age 11 and ventured into acting at 15, with recurring roles as Lucy Montgomery on the CBS soap opera As the World Turns and Joni Stafford on the ABC soap opera All My Children.",
+                "Rachel McDowall;• Born in Liverpool, United Kingdom\n• Age: 38 (1984)\n• Height: 6′ 0″\n• Nationality: British;Rachel Anne McDowall made her film debut as Lisa in the 2008 film Mamma Mia! The Movie, and had her last of eight film or television roles in a 2016 episode of Zoe Ever After. On stage, she played Swedish woman Ulla in Mel Brooks' musical The Producers in the West End and Velma Kelly in productions of the musical Chicago, in the West End and at the Cambridge Theatre in 2008 and the Garrick Theatre in 2012.",
+                "Ashley Lilley;• Born in Rothesay, United Kingdom\n• Age: 37 (1986)\n• Height: 5′ 9″\n• Nationality: British;Ashley-Anne Lilley is a Scottish actress and singer. She made her debut in the 2008 film Mamma Mia!",
+
+                "Smiling Eyes Blue and White Embroidered Top;$48;• 100% Rayon\n• Unlined\n• Hand Wash Cold\n\nThe Smiling Eyes Blue and White Embroidered Top is what you need to complete your next Boho ensemble! Gauzy white woven rayon, with blue embroidery, shapes a relaxed bodice with a rounded neckline, front cutout, and tasseled ties. Long sleeves have elastic cuffs.",
+                "The A-Line Denim Short;$68;• 100% Organic Cotton\n• High-rise\n• Zipper fly\n• Machine wash cold. Tumble dry low.\n\nThe A-Line Denim Short features a waist-nipping high rise, a zip-fly closure, an easy 5.5\" inseam, and a flattering A-line shape. Plus, it’s made of premium non-stretch organic cotton, which means it has a gutsy feel that will stand the test of time.",
+                "Print Green Blue Pink Floral Shirt;$20;• 100% Polyester\n• Round neck, long sleeve\n• Machine Wash Cold\n\n",
+                "Duke University shirt;$20;• 100% Cotton\n• Light fabric (142 g/m²)\n• Tear away label\n• Handmade\n• Machine wash\n\nThis classic unisex jersey short sleeve tee fits like a well-loved favorite. Soft cotton and quality print make users fall in love with it over and over again.",
+                "Floral Spiral Notebook;$12.5;• Size: 5.99\" x 8.25\" (A5)\n• Thick: 7.34 mm\n• Cover: 0.5 mm\n• 90gsm Paper\n\nSpring Floral Spiral Notebook with dark pink background."
+        };
+        String xRay13Merchandise[] = {
+                "",
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry13 = new HashMap<>();
+        entry13.put(KEY_TYPE, Arrays.asList(xRay13Type));
+        entry13.put(KEY_NAME, Arrays.asList(xRay13Name));
+        entry13.put(KEY_IMAGE, Arrays.asList(xRay13ImageUrl));
+        entry13.put(KEY_DESCRIPTION, Arrays.asList(xRay13Description));
+        entry13.put(KEY_MERCHANDISE, Arrays.asList(xRay13Merchandise));
+        listOfItems.add(entry13);
 
         return listOfItems;
     }
