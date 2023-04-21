@@ -26,6 +26,7 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
+import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
@@ -199,7 +200,6 @@ public class PlaybackFragment extends Fragment {
 
                     case Player.STATE_BUFFERING:
                         loadingBar.setVisibility(View.VISIBLE);
-//                        loadingBar.
                         break;
                     case Player.STATE_READY:
                         loadingBar.setVisibility(View.GONE);
@@ -210,6 +210,13 @@ public class PlaybackFragment extends Fragment {
                         Log.d(TAG, "default");
                         break;
                 }
+            }
+        });
+        // set focus every time controller is hidden and shown
+        playerView.setControllerVisibilityListener(new PlayerControlView.VisibilityListener() {
+            @Override
+            public void onVisibilityChange(int visibility) {
+                videoStatusIndicator.requestFocus();
             }
         });
         // Prepare the player.
@@ -275,6 +282,9 @@ public class PlaybackFragment extends Fragment {
 //            exoPlayer.prepare();
             exoPlayer.play();
         }
+
+        // focused by default on the center of the screen
+        videoStatusIndicator.requestFocus();
     }
 
     @Override
