@@ -72,6 +72,9 @@ public final class MovieList {
                 "Venom",
                 "Iron man",
                 "Harry Potter and the Prisoner of Azkaban",
+                "Fantastic Beasts and Where to Find Them",
+                "Insomnia",
+                "Fall",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -90,6 +93,9 @@ public final class MovieList {
                 "Sony Pictures",
                 "Marvel Studios",
                 "Warner Bros. Pictures",
+                "Warner Bros. Pictures",
+                "Warner Bros. Pictures",
+                "Tea Shop Productions",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -101,6 +107,9 @@ public final class MovieList {
                 MOVIE_CATEGORY[0],
                 MOVIE_CATEGORY[0],
                 MOVIE_CATEGORY[7],
+                MOVIE_CATEGORY[7],
+                MOVIE_CATEGORY[4],
+                MOVIE_CATEGORY[4],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -116,7 +125,10 @@ public final class MovieList {
                 "https://streamable.com/l/oohm1o/mp4-high.mp4",
 
                 "https://streamable.com/l/mnxbn8/mp4-high.mp4",
+                "https://streamable.com/l/ir57yd/mp4-high.mp4",
 
+                "https://streamable.com/l/slxtfy/mp4-high.mp4",
+                "https://streamable.com/l/h43q1z/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -132,7 +144,10 @@ public final class MovieList {
                 "https://www.quirkybyte.com/wp-content/uploads/2016/08/iron-man.png",
 
                 "https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/05/harry-potter-and-the-prisoner-of-azkaban-1400x700.jpg",
+                "https://media.glamour.com/photos/595a489b76072428dce95d1f/master/w_2560%2Cc_limit/fantastic%2520beasts%2520lede.jpg",
 
+                "https://i0.wp.com/moviesandmania.com/wp-content/uploads/2020/11/Insomnia-movie-film-thriller-murder-mystery-2002-Christopher-Nolan-reviews-Al-Pacino.png?fit=3052%2C1318&ssl=1",
+                "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/460/files/2022/09/banner-fall.jpg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -148,7 +163,10 @@ public final class MovieList {
                 "https://toplist.vn/images/800px/iron-man-2008-863125.jpg",
 
                 "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Harry_Potter_and_the_Prisoner_of_Azkaban_poster.jpeg/revision/latest?cb=20220922141058",
+                "https://m.media-amazon.com/images/M/MV5BMjMxOTM1OTI4MV5BMl5BanBnXkFtZTgwODE5OTYxMDI@._V1_FMjpg_UX1000_.jpg",
 
+                "https://m.media-amazon.com/images/I/A1vHJnCYNRL._RI_.jpg",
+                "https://deadline.com/wp-content/uploads/2023/03/fyuoirKpkTIjKPf88C81FkGdAVo-1.jpg?w=683",
         };
 
         int n = title.length;
@@ -741,6 +759,186 @@ public final class MovieList {
         entry9.put(KEY_DESCRIPTION, Arrays.asList(xRay9Description));
         entry9.put(KEY_MERCHANDISE, Arrays.asList(xRay9Merchandise));
         listOfItems.add(entry9);
+
+
+
+
+        // Fantastic Beasts and Where to Find Them
+        String xRay10Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay10Name[] = {
+                "Eddie Redmayne",
+                "Dan Fogler",
+
+                "Wool Coat",
+                "Wand",
+                "Vintiquewise Suitcase",
+                "Lace Up Boot",
+                "Slim Vest Waistcoat"
+        };
+        String xRay10ImageUrl[] = {
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcRkWTMilN3jaIVZIuzhdkIs5ck2FXH1ACAtaraw051KgS6NJ5l0CCGW5dloGSurSH83gBXs-I2TCav0dLA",
+                "https://flxt.tmsimg.com/assets/493325_v9_bd.jpg",
+
+                "https://m.media-amazon.com/images/I/416RRX7XtGL._AC_.jpg",
+                "https://shop.universalorlando.com/merchimages/p-interactive-fantastic-beasts-newt-scamander-wand-1346044.jpg",
+                "http://t0.gstatic.com/images?q=tbn:ANd9GcQmFRV_NQMWNslzL8mcZOZ0YRoN-TQUoFbngSNcVSgyhBhtJF4Y",
+                "https://mobile.yoox.com/images/items/17/17052275RG_14_f.jpg?impolicy=crop&width=387&height=490",
+                "https://m.media-amazon.com/images/I/716giK7TpbL._AC_SL1500_.jpg"
+        };
+        String xRay10Description[] = {
+                "Eddie Redmayne;• Born in London, United Kingdom\n• Age: 41 (1982)\n• Height: 6′ 0″\n• Nationality: British;Edward John David Redmayne OBE is an English actor. Known primarily for his role in biopics, he has received various accolades, including an Academy Award, a Tony Award, a BAFTA Award, and two Olivier Awards.",
+                "Dan Fogler;• Born in New York, NY, American\n• Age: 46 (1976)\n• Height: 5′ 7″\n• Nationality: American;Daniel Kevin Fogler is an American actor, comedian and writer. He has appeared in films including Balls of Fury, Good Luck Chuck, Fantastic Beasts and Where to Find Them series",
+
+                "Wool Coat;$559.99;• 100% Wool\n• Lapel collar\n• 2 side pockets\n• Dry Clean Only\n• Dry clean only\n\nTransform yourself into the most famous Magizoologist in the history of wizardry with this jacket from Fantastic Beasts And Where To Find Them.",
+                "Wand;$39;• Brand: Valentino Garavani \n• Material: Resin\n• Style: Antique\n• Length: 35cm\n\nThe Wand of Newt Scamander in Collector's Box is a meticulous recreation of the wand prop used in Fantastic Beasts and Where to Find Them, crafted with high quality materials. Officially licensed by Warner Bros.",
+                "Vintiquewise Old Style Suitcase;$69.51;• Material: Wood, Polywood Faux Leathe\n• Size: 13” x 8.5” x 4.5”\n\nOur warm and welcoming steamer trunk brings back days of old time. Remember how excited you are when you were a little kid to look into your grandma's old chest, our decorative trunks will bring back those memories and help you create some new ones too.",
+                "Lace Up Boot;$150;• 100% Leather\n• Heel 1.25\"\n• Synthetic sole\n\nThe lightly distressed leather upper on this boot from Frye gives it a natural, broken-in-look that's amazingly hip and stylish. A fully laced vamp, a breathable, leather-lined footbed, and stacked wooden heel combine together for a look that is versatile, sophisticated, and charming.",
+                "Slim Fit Western Vest Waistcoat;$49.5;• 95% Polyester\n• West cowboy style\n• Slim fit\n• Machine Wash Cold\n\nThis mens suede vest is western cowboy style.It shows the handsomeness and free-and-easy personality of the American west cowboy style. You can pair this suede vest with dress shirt, jacket, jeans, western cowboy hat, stilt felt hat and boots."
+        };
+        String xRay10Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry10 = new HashMap<>();
+        entry10.put(KEY_TYPE, Arrays.asList(xRay10Type));
+        entry10.put(KEY_NAME, Arrays.asList(xRay10Name));
+        entry10.put(KEY_IMAGE, Arrays.asList(xRay10ImageUrl));
+        entry10.put(KEY_DESCRIPTION, Arrays.asList(xRay10Description));
+        entry10.put(KEY_MERCHANDISE, Arrays.asList(xRay10Merchandise));
+        listOfItems.add(entry10);
+
+
+
+
+        // Insomnia
+        String xRay11Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay11Name[] = {
+                "Tom Hardy",
+                "Michelle Williams",
+
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+        String xRay11ImageUrl[] = {
+                "",
+                "",
+
+                "",
+                "",
+                "",
+                "",
+                ""
+        };
+        String xRay11Description[] = {
+                "Tom Hardy;• Born in London, United Kingdom\n• Age: 45 (1977)\n• Height: 5′ 9″\n• Nationality: British;",
+                "Michelle Williams;• Born in Kalispell, MT, American\n• Age: 42 (1980)\n• Height: 5′ 4″\n• Nationality: American;",
+
+                "Marc Jacobs;$695;• Silk 100%\n• Brand: Marc Jacobs\n• Length: 112 cm\n• Waist tie detail, surplice front\n• Dry clean only\n\n",
+                "Valentino Garavani;$2280;• Brand: Valentino Garavani \n• Black and gold leather (Goat), gold-tone metal\n• Clasp fastening at top\n• Made in Italy\n\n",
+                "Stretch Zip Hoodie;$99;• 100% Wool\n• 2 front pockets for comfort\n• Machine Wash Cold\n\n",
+                "Premium Slub Crew Grey Tee;$50;• 100% Cotton\n• 6.6 oz./sq. yard\n• Premium slub jersey\n• Machine wash\n\n",
+                "Dark Wash Slim Straight Jeans;$49.5;• 95% Cotton\n• 4% Polyester\n• 1% Elastane\n• Machine Wash Cold\n\n"
+        };
+        String xRay11Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry11 = new HashMap<>();
+        entry11.put(KEY_TYPE, Arrays.asList(xRay11Type));
+        entry11.put(KEY_NAME, Arrays.asList(xRay11Name));
+        entry11.put(KEY_IMAGE, Arrays.asList(xRay11ImageUrl));
+        entry11.put(KEY_DESCRIPTION, Arrays.asList(xRay11Description));
+        entry11.put(KEY_MERCHANDISE, Arrays.asList(xRay11Merchandise));
+        listOfItems.add(entry11);
+
+
+
+
+        // Fall
+        String xRay12Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay12Name[] = {
+                "Virginia Gardner",
+                "Grace Fulton",
+
+                "iPhone SE",
+                "DEERC D20 Mini Drone",
+                "lululemon High-Rise Pant",
+                "Sunchaser UPF Tank",
+                "Seamless Ribbed Bodysuit"
+        };
+        String xRay12ImageUrl[] = {
+                "https://www.freewalldownload.com/virginia-gardner/latest-virginia-gardner-actress-hot-hd-wallpaper.jpg",
+                "https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcRHj2VLck51dvEOQURFiljqWAgiOfznIYYqCpIJmvbcEv7-CZISeMym1izH2PjpdoEjzQf0pYGyH8UH2Zg",
+
+                "https://t-mobile.scene7.com/is/image/Tmusprod/Apple-iPhone-SE-3rd-gen-Midnight-frontimage",
+                "https://m.media-amazon.com/images/I/61Kfx5PPZ4L._AC_SL1100_.jpg",
+                "https://images.lululemon.com/is/image/lululemon/LW5FJTS_034204_1?wid=1600&op_usm=0.5,2,10,0&fmt=webp&qlt=80,1&fit=constrain,0&op_sharpen=0&resMode=sharp2&iccEmbed=0&printRes=72",
+                "https://athleta.gap.com/webcontent/0029/208/879/cn29208879.jpg",
+                "https://www.forever21.com/dw/image/v2/BFKH_PRD/on/demandware.static/-/Sites-f21-master-catalog/default/dw0eeed4bc/1_front_750/00471548-06.jpg?sw=1000&sh=1500"
+        };
+        String xRay12Description[] = {
+                "Virginia Gardner;• Born in Sacramento, CA, American\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Virginia Elizabeth Gardner is an American actress who played Karolina Dean in the Hulu original series Marvel's Runaways, Vicky in David Gordon Green's horror film Halloween and Hunter Shiloh in Lionsgate's survival film Fall.",
+                "Grace Fulton;• Born in American\n• Age: 26 (1996)\n• Height: 5′ 7″\n• Nationality: American;Grace Caroline Currey is an American actress and dancer. She is best known for playing Mary Bromfield in the DC Extended Universe films Shazam! and reprising the role in Shazam! Fury of the Gods. She also joined the The Conjuring Universe in Annabelle: Creation as Carol.",
+
+                "iPhone SE;$479;• Size: 128 GB\n• Color: Midnight\n• 4.7-inch Retina HD display\n• Up to 15 hours of video playback\n• A15 Bionic chip for lightning-fast performance\n• 7MP FaceTime HD camera with Smart HDR 4, Photographic Styles, Portrait mode, and 1080p video recording\n\n",
+                "DEERC D20 Mini Drone;$50;• Brand: Valentino Garavani \n• Black and gold leather (Goat), gold-tone metal\n• Clasp fastening at top\n• Made in Italy\n\n",
+                "lululemon Align™ Ribbed High-Rise Pant;$99;• High Rise, 25\" Length\n• Designed for Yoga\n• Buttery-Soft, Ribbed Nulu™ Fabric\n\nThis collection’s great for low-impact workouts like yoga or whenever you want to feel really, really comfortable.",
+                "Sunchaser UPF Tank;$59;• 100% Recycled Polyester/Spandex\n• UPF 50+ sun protection \n• Semi-fitted\n• 25.75 Body length\n\nFor m edium to high impact workouts at the gym, studio, or outdoors",
+                "Seamless Ribbed Bodysuit;$14.21;• 92% nylon, 8% spandex\n• Slim-fitted\n•  Hand wash cold\n\nA ribbed knit bodysuit featuring a seamless fit and a halter neckline."
+        };
+        String xRay12Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry12 = new HashMap<>();
+        entry12.put(KEY_TYPE, Arrays.asList(xRay12Type));
+        entry12.put(KEY_NAME, Arrays.asList(xRay12Name));
+        entry12.put(KEY_IMAGE, Arrays.asList(xRay12ImageUrl));
+        entry12.put(KEY_DESCRIPTION, Arrays.asList(xRay12Description));
+        entry12.put(KEY_MERCHANDISE, Arrays.asList(xRay12Merchandise));
+        listOfItems.add(entry12);
 
         return listOfItems;
     }
