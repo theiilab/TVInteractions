@@ -49,6 +49,8 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private List<Movie> list;
     private List<Movie> dummyList;
 
+    private Row currentSelectedRow;
+
     public RowsOfMoviesFragment() {
         // Required empty public constructor
     }
@@ -113,7 +115,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     public void selectFirstItem() {
         setSelectedPosition(
-                0,
+                (int) currentSelectedRow.getId(),
                 true, new ListRowPresenter.SelectItemViewHolderTask(0) {
                     @Override
                     public void run(Presenter.ViewHolder holder) {
@@ -144,6 +146,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 updateBannerView((Movie) item);
 
                 // set listener for nav menu toggle
+                currentSelectedRow = row;  // record the current row for auto focus when quite from nav menu
                 int indexOfItem = ((ArrayObjectAdapter)((ListRow)row).getAdapter()).indexOf(item);
                 itemViewHolder.view.setOnKeyListener(new View.OnKeyListener() {
                     @Override

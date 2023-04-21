@@ -61,4 +61,10 @@ public class MoviesFragment extends Fragment {
     public void setNavigationMenuCallback(NavigationMenuCallback callback) {
         this.navigationMenuCallback = callback;
     }
+
+    public void selectFirstItem() {
+        if (rowsOfMoviesFragment != null) {
+            rowsOfMoviesFragment.selectFirstItem();
+        }
+    }
 }

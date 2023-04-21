@@ -140,23 +140,20 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
             switch (currentSelectedFragment) {
                 case NavigationMenuFragment.TYPE_VIEW_SEARCH:
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_SEARCH;
-//                    moviesFragment.selectFirstItem();
                     break;
                 case NavigationMenuFragment.TYPE_VIEW_HOME:
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_HOME;
-//                    moviesFragment.selectFirstItem();
+                    moviesFragment.selectFirstItem();
                     break;
                 case NavigationMenuFragment.TYPE_VIEW_MOVIES:
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_MOVIES;
-//                    moviesFragment.selectFirstItem();
+                    moviesFragment.selectFirstItem();
                     break;
                 case NavigationMenuFragment.TYPE_VIEW_TV_CHANNELS:
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_TV_CHANNELS;
-//                    moviesFragment.selectFirstItem();
                     break;
                 case NavigationMenuFragment.TYPE_VIEW_SETTINGS:
                     currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_SETTINGS;
-//                    moviesFragment.selectFirstItem();
                     break;
             }
         }
