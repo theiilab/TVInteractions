@@ -78,6 +78,7 @@ public final class MovieList {
                 "Mamamia",
                 "Lala Land",
                 "Sherlock Holmes",
+                "The Da Vinci Code",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -101,7 +102,8 @@ public final class MovieList {
                 "Tea Shop Productions",
                 "Universal Pictures",
                 "Lionsgate",
-                "Lionsgate",
+                "Silver Pictures",
+                "Columbia Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -118,6 +120,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[4],
                 MOVIE_CATEGORY[8],
                 MOVIE_CATEGORY[8],
+                MOVIE_CATEGORY[9],
                 MOVIE_CATEGORY[9],
         };
         String videoUrl[] = {
@@ -143,6 +146,7 @@ public final class MovieList {
                 "https://streamable.com/l/w3xnvp/mp4-high.mp4",
 
                 "https://streamable.com/l/ypqkr3/mp4-high.mp4",
+                "https://streamable.com/l/uzr6i2/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -167,6 +171,7 @@ public final class MovieList {
                 "https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images.jpeg",
 
                 "https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/02/sherlock-holmes-jude-law-robert-downey-jr.jpg",
+                "https://imgsrc.cineserie.com/2021/10/822467.jpg?ver=1",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -191,6 +196,7 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
 
                 "https://images.moviesanywhere.com/b9a3188acb29ea7a1878f410cad0cf45/5188ee57-26c5-4a7a-b64d-7b3e842a7e9b.jpg",
+                "https://cdnb.artstation.com/p/assets/images/images/046/288/721/large/julian-vanden-bossche-affiche-langdon-min.jpg?1644764038",
         };
 
         int n = title.length;
@@ -1148,6 +1154,67 @@ public final class MovieList {
         entry15.put(KEY_DESCRIPTION, Arrays.asList(xRay15Description));
         entry15.put(KEY_MERCHANDISE, Arrays.asList(xRay15Merchandise));
         listOfItems.add(entry15);
+
+
+
+
+
+        // The Da Vinci Code
+        String xRay16Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay16Name[] = {
+                "Tom Hanks",
+                "Audrey Tautou",
+
+                "LED UV Flashlight",
+                "The Relaxed Oxford Shirt",
+                "Lauren Conrad Fitted Blazer",
+                "French Dress Shirt",
+                "Classic Fit Suit"
+        };
+        String xRay16ImageUrl[] = {
+                "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1257937597.jpg?resize=1200:*",
+                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/S/pv-target-images/e4882ea15573335f25a13a82c55fb3bdeb5e8f5eee08e4ba17cb9ddc6403e6a0.jpg",
+
+                "https://i5.walmartimages.com/asr/6d522a53-a8ed-4e97-9bdf-dee3b23e4d09.87bb462f27c6133ab8ce3adea82e579c.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+                "https://media.everlane.com/image/upload/c_fill,w_828,ar_1:1,q_auto,dpr_1.0,f_auto,fl_progressive:steep/i/c91d1081_64c7",
+                "https://media.kohlsimg.com/is/image/kohls/3633856_Dull_Black?wid=600&hei=600&op_sharpen=1",
+                "https://s7images.paulfredrick.com/is/image/PaulFredrick/DT3503_BLK?$SH_PDPmain_xl$",
+                "https://image.josbank.com/is/image/JosBank/33RF_01_1905_BLACK_MAIN?$JABPDPSharpen$&hei=1080&wid=800&align=0,-1"
+        };
+        String xRay16Description[] = {
+                "Tom Hanks;• Born in Concord, CA\n• Age: 66 (1956)\n• Height: 6′ 0″\n• Nationality: American;Thomas Jeffrey Hanks is an American actor and filmmaker. Known for both his comedic and dramatic roles, he is one of the most popular and recognizable film stars worldwide, and is regarded as an American cultural icon.",
+                "Audrey Tautou;• Born in Beaumont, France\n• Age: 46 (1976)\n• Height: 5′ 3″\n• Nationality: French;Audrey Justine Tautou is a French actress. She made her acting debut at the age of 18 on television and her feature film debut in Venus Beauty Institute, for which she received critical acclaim and won the César Award for Most Promising Actress.",
+
+                "LED UV Flashlight;$8.99;• Material: Aluminum\n• Power Source: Battery powered\n• Dimensions: 1.2\"D x 1.08\"W x 3.74\"H\n\nVansky UV flashlight black light is Perfect for Revealing Dry Dog, Cat and Rodent Stains and smudgy Spots that Couldn't See With the Naked Eye. Easily Spot Scorpions, Authenticate currency,Official Identification cards,Passports.The black light can also act as Nail Dryer.",
+                "The Relaxed Oxford Shirt;$88;• 100% Organic Cotton\n• Relaxed fit\n• Machine wash cold, tumble dry low\n• Relaxed fit\n• Machine wash\n\nThis style uses organic cotton. Organic cotton is better for the soil and water, and it’s safer for the workers.",
+                "Lauren Conrad Fitted Blazer;$58;• Polyester, rayon, spandex\n• Button front\n• Rolled 3/4-length sleeves\n• Machine wash\n\nWhether you dress it up or down, this women's LC Lauren Conrad blazer is a charming choice.",
+                "French Dress Shirt;$95;• 100% Non-iron 2-ply cotton\n• Straight collar\n• French cuffs\n• Break resistant buttons\n• Dry clean only\n\nCut generously for a fit that offers maximum comfort.",
+                "Classic Fit Suit Separates Tuxedo Coat;$334.99;• 100% wool\n• Two button\n• Satin notch lapel\n• Side vents\n• Dry clean only\n\nCreate a memorable formal look with this fine wool tuxedo coat from Lauren By Ralph Lauren. With suit separates you can choose coat, pant, and/or vest sizes separately for an ideal fit. This fine coat features 100% wool fabric woven with natural stretch for the best fit and comfort."
+        };
+        String xRay16Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry16 = new HashMap<>();
+        entry16.put(KEY_TYPE, Arrays.asList(xRay16Type));
+        entry16.put(KEY_NAME, Arrays.asList(xRay16Name));
+        entry16.put(KEY_IMAGE, Arrays.asList(xRay16ImageUrl));
+        entry16.put(KEY_DESCRIPTION, Arrays.asList(xRay16Description));
+        entry16.put(KEY_MERCHANDISE, Arrays.asList(xRay16Merchandise));
+        listOfItems.add(entry16);
 
         return listOfItems;
     }
