@@ -76,6 +76,7 @@ public final class MovieList {
                 "Insomnia",
                 "Fall",
                 "Mamamia",
+                "Lala Land",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -98,6 +99,7 @@ public final class MovieList {
                 "Warner Bros. Pictures",
                 "Tea Shop Productions",
                 "Universal Pictures",
+                "Lionsgate",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -112,6 +114,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[7],
                 MOVIE_CATEGORY[4],
                 MOVIE_CATEGORY[4],
+                MOVIE_CATEGORY[8],
                 MOVIE_CATEGORY[8],
         };
         String videoUrl[] = {
@@ -134,6 +137,7 @@ public final class MovieList {
                 "https://streamable.com/l/h43q1z/mp4-high.mp4",
 
                 "https://streamable.com/l/cleqsc/mp4-high.mp4",
+                "https://streamable.com/l/w3xnvp/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -155,6 +159,7 @@ public final class MovieList {
                 "https://media.socastsrm.com/wordpress/wp-content/blogs.dir/460/files/2022/09/banner-fall.jpg",
 
                 "https://cache.pressmailing.net/content/179a4950-52c1-4799-9068-6bef6958e96e/RTLZWEI_Mamma-Mia.jpg",
+                "https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images.jpeg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -176,6 +181,7 @@ public final class MovieList {
                 "https://deadline.com/wp-content/uploads/2023/03/fyuoirKpkTIjKPf88C81FkGdAVo-1.jpg?w=683",
 
                 "https://www.usmagazine.com/wp-content/uploads/2020/11/Mamma-Mia-Cast-Where-Are-They-Now-Feature.jpg?quality=40&strip=all",
+                "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
         };
 
         int n = title.length;
@@ -1013,6 +1019,66 @@ public final class MovieList {
         entry13.put(KEY_DESCRIPTION, Arrays.asList(xRay13Description));
         entry13.put(KEY_MERCHANDISE, Arrays.asList(xRay13Merchandise));
         listOfItems.add(entry13);
+
+
+
+
+        // Lala Land
+        String xRay14Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay14Name[] = {
+                "Emma Stone",
+                "Ryan Gosling",
+
+                "Cocktail Floral Party Dress",
+                "Mollie Tote",
+                "Chelsea satin sandals",
+                "The Perfect White Shirt",
+                "Leather Tap Shoes"
+        };
+        String xRay14ImageUrl[] = {
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQNFLNCZ6Z1gG0oBmIMZ2kZEg1sAiEqZEfjTJNOT3X3YbdHqzCQNpM_JQdjdrljb4Yz-FMdpvhUncoAA2I",
+                "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQJiEVUzLlly5B3wiUHTfUdys_FZ69ihj61IjZV4hyrnfYpl70NrjNd0Ftvoht_iL72ckAQ0d3EV7K1GG0",
+
+                "https://m.media-amazon.com/images/I/51YSZu-nxtL._AC_UY879_.jpg",
+                "https://images.coach.com/is/image/Coach/1671_imp1y_a0?$desktopProduct$",
+                "https://cdna.lystit.com/520/650/n/photos/7a3c-2015/12/13/kurt-geiger-london-chelsea-glitter-high-heel-sandals-product-0-702994492-normal.jpeg",
+                "https://cdn.shopify.com/s/files/1/0224/9225/products/RT10_White_2035_lores_1400x.jpg?v=1670449052",
+                "https://cdn1.discountdance.com/image/1395x1860/ls3004l_1.jpg"
+        };
+        String xRay14Description[] = {
+                "Emma Stone;• Born in Scottsdale, AZ, American\n• Age: 34 (1989)\n• Height: 5′ 6″\n• Nationality: American;Emily Jean \"Emma\" Stone is an American actress. She is the recipient of various accolades, including an Academy Award, a British Academy Film Award, and a Golden Globe Award. In 2017, she was the world's highest-paid actress and named by Time magazine as one of the 100 most influential people in the world.",
+                "Ryan Gosling;• Born in London, Canada\n• Age: 42 (1980)\n• Height: 6′ 0″\n• Nationality: Canadian;Ryan Thomas Gosling is a Canadian actor. Prominent in both independent film and major studio features of varying genres, his films have accrued a worldwide box office gross of over 1.9 billion USD.",
+
+                "Cocktail Floral Party Dress;$25.9;• 95% Polyester, 5% Spandex\n• Elastic closure\n• Featuring square neck\n• Adorable cap sleeves\n• Dry clean only\n\n",
+                "Mollie Tote;$428;• Double face leather \n• Zip-top closure, fabric lining\n• Handles with 10.25\" drop\n• 13.25\" (L) x 11\" (H) x 5\" (W)\n\nThis impeccably-crafted tote by Coach features signature chambray and smooth leather, a zip-top closure, fabric lining, side open compartments, and comfortable 4 3/4\" handles with a detachable 22\" strap for crossbody wear.",
+                "Kurt Geiger Chelsea satin sandals;$220;• Upper: fabric\n• Lining: leather\n• 95mm-heel sandal\n\nThe undeniably striking Chelsea from Kurt Geiger ticks all the city-girl style boxes. Designed in must-have sleek blue and featuring intricate gold-tone heel tip, this sandal demands attention.",
+                "The Perfect White Shirt;$125;• 98% Cotton, 2% Lycra\n• Spread Collar\n• Mitered Barrel Cuff\n• Stretch\n\nWoven of a cutting-edge, high density luxurious fabric, it eliminates see-through. A touch of lycra lends stretch to make even the longest business trip less tiresome. The no wrinkle, non-iron technology ensures that you always look crisp and pulled together, even when stepping off a plane after many hours aboard. ",
+                "Leather Giordano Spectator Tap Shoes;$200;• 100% leather\n• Padded sock liner\n• Cushioned heel bed\n\nThis Giordano Spectator Tap features genuine full-grain leather and Leo's biggest sounding Ultratone screw on taps. Other features include a two-piece leather sole for a flexible arch and a one-half stitched on rubber sole with non-slip traction."
+        };
+        String xRay14Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry14 = new HashMap<>();
+        entry14.put(KEY_TYPE, Arrays.asList(xRay14Type));
+        entry14.put(KEY_NAME, Arrays.asList(xRay14Name));
+        entry14.put(KEY_IMAGE, Arrays.asList(xRay14ImageUrl));
+        entry14.put(KEY_DESCRIPTION, Arrays.asList(xRay14Description));
+        entry14.put(KEY_MERCHANDISE, Arrays.asList(xRay14Merchandise));
+        listOfItems.add(entry14);
 
         return listOfItems;
     }
