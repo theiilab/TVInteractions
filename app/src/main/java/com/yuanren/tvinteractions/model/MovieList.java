@@ -77,6 +77,7 @@ public final class MovieList {
                 "Fall",
                 "Mamamia",
                 "Lala Land",
+                "Sherlock Holmes",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -100,6 +101,7 @@ public final class MovieList {
                 "Tea Shop Productions",
                 "Universal Pictures",
                 "Lionsgate",
+                "Lionsgate",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -116,6 +118,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[4],
                 MOVIE_CATEGORY[8],
                 MOVIE_CATEGORY[8],
+                MOVIE_CATEGORY[9],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -138,6 +141,8 @@ public final class MovieList {
 
                 "https://streamable.com/l/cleqsc/mp4-high.mp4",
                 "https://streamable.com/l/w3xnvp/mp4-high.mp4",
+
+                "https://streamable.com/l/ypqkr3/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -160,6 +165,8 @@ public final class MovieList {
 
                 "https://cache.pressmailing.net/content/179a4950-52c1-4799-9068-6bef6958e96e/RTLZWEI_Mamma-Mia.jpg",
                 "https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images.jpeg",
+
+                "https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/02/sherlock-holmes-jude-law-robert-downey-jr.jpg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -182,6 +189,8 @@ public final class MovieList {
 
                 "https://www.usmagazine.com/wp-content/uploads/2020/11/Mamma-Mia-Cast-Where-Are-They-Now-Feature.jpg?quality=40&strip=all",
                 "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
+
+                "https://images.moviesanywhere.com/b9a3188acb29ea7a1878f410cad0cf45/5188ee57-26c5-4a7a-b64d-7b3e842a7e9b.jpg",
         };
 
         int n = title.length;
@@ -1079,6 +1088,66 @@ public final class MovieList {
         entry14.put(KEY_DESCRIPTION, Arrays.asList(xRay14Description));
         entry14.put(KEY_MERCHANDISE, Arrays.asList(xRay14Merchandise));
         listOfItems.add(entry14);
+
+
+
+
+        // Sherlock Holmes
+        String xRay15Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay15Name[] = {
+                "Robert Downey Jr.",
+                "Jude Law",
+
+                "John Bull Top Hat",
+                "Double Breasted Wool Coat",
+                "Wool Suit",
+                "Luther Blend Overcoat",
+                "Engrave Handle"
+        };
+        String xRay15ImageUrl[] = {
+                "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQijI6Sf7U-nKAfhHFmFBhVVVIxOfzI3QBeHqEjXJ7qcqbu98eqykx0UdmHrvt9Wx5hKilfZROD0mR85gk",
+                "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcT6yLZJDe27K2ZWNIIWZFywSs76i2EfgQhIiWIEs276vI-FuJ1kAbeHNuun4ypXDyWmom9SrhwVCni5-jw",
+
+                "https://m.media-amazon.com/images/I/41G3j9swTPL._SS768_.jpg",
+                "https://www.angeljackets.com/product_images/s/914/Mens_Brown_Wool_Coat__45659_std.jpg",
+                "https://images.hugoboss.com/is/image/boss/hbna50391090_032_300?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&wid=1600&hei=2424&fmt=webp",
+                "https://slimages.macysassets.com/is/image/MCY/products/8/optimized/20006988_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
+                "https://cdn.shopify.com/s/files/1/0320/1712/1413/products/eng_cfad5697-5a7e-4e50-9a03-bf6ed10a06c7_large.jpg?v=1677598865"
+        };
+        String xRay15Description[] = {
+                "Robert Downey Jr;• Born in New York, NY, American\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
+                "Jude Law;• Born in London, United Kingdom\n• Age: 50 (1972)\n• Height: 5′ 10″\n• Nationality: British;David Jude Heyworth Law is an English actor. He received a British Academy Film Award, as well as nominations for two Academy Awards, two Tony Awards, and four Golden Globe Awards. In 2007, he received an Honorary César and was named a knight of the Order of Arts and Letters by the French government.",
+
+                "John Bull Top Hat;$89.95;• 100% Wool\n•  2.5-inch brim\n• 6.5-inch flared crown\n• 2-inch grosgrain hat band\n• Dry clean only\n\n100 percent wool felt body and smooth leather sweatband makes this the perfect men’s top hat for serious collectors and formal wear lovers.",
+                "Double Breasted Long Wool Coat;$229;• 100% Wool\n• Double breasted style with wide notch lapel\n• Two exterior and two inside pockets\n• Chocolate brown color finishing\n\nThis chocolate brown wool coat is constructed from premium quality wool blend and classic fit to give you warmth and style altogether.This coat will keep you cozy during hours of wear on a cold and windy days.",
+                "Wool Suit;$895;• 100% Wool\n• Fit back length: 74 cm\n• Fit foot width: 36 cm\n• Notched lapels\n• Welt chest pockets\n\nA two-piece suit created in virgin wool by BOSS Menswear. Offering reliable wearing comfort thanks to the natural stretch in the fabric, this narrow-cut ensemble comprises pants with a hook-and-zipper closure, and a two-button jacket with notch lapels and flap pockets.",
+                "Luther Blend Overcoat;$495;• 100% Cotton\n• Three-button closure, four-button cuffs\n• Notched lapel\n• Dry clean\n\nAdd a touch of class to your cold-weather look with the classic fit and warm design of this Luther overcoat from Lauren Ralph Lauren.",
+                "Chrome Fritz Custom Engrave Handle;$68;• 100% brass hanle\n• 3 engraving options\n\nTake personalization to the next level with this gorgeous cane that has an engraving plate right in the handle. With three engraving styles to choose from, this stylish 100% brass handle is chrome plated and has an ornate scroll design that's sure to wow all who see it."
+        };
+        String xRay15Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry15 = new HashMap<>();
+        entry15.put(KEY_TYPE, Arrays.asList(xRay15Type));
+        entry15.put(KEY_NAME, Arrays.asList(xRay15Name));
+        entry15.put(KEY_IMAGE, Arrays.asList(xRay15ImageUrl));
+        entry15.put(KEY_DESCRIPTION, Arrays.asList(xRay15Description));
+        entry15.put(KEY_MERCHANDISE, Arrays.asList(xRay15Merchandise));
+        listOfItems.add(entry15);
 
         return listOfItems;
     }
