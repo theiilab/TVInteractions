@@ -2,6 +2,8 @@ package com.yuanren.tvinteractions.view.movie_playback;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,6 +35,7 @@ import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
+import com.yuanren.tvinteractions.view.x_ray.XRayItemContentActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,9 +59,7 @@ public class PlaybackFragment extends Fragment {
     private ProgressBar loadingBar;
 
     private XRayCardListAdapter adapter;
-
     private boolean playWhenReady = true;
-
     private Movie movie;
 
     public PlaybackFragment() {
@@ -285,6 +286,15 @@ public class PlaybackFragment extends Fragment {
 
         // focused by default on the center of the screen
         videoStatusIndicator.requestFocus();
+
+        // set selected x-ray item focused after back from x-ray content activity
+        if (recyclerView != null & adapter != null) {
+            int id = adapter.getSelectedXRayItemId();
+            View xRayItem = recyclerView.getChildAt(id);
+            if (xRayItem != null) {
+                xRayItem.requestFocus();
+            }
+        }
     }
 
     @Override

@@ -20,6 +20,7 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
     private static final String TAG = "XRayCardListAdapter";
 
     private List<XRayItem> data;
+    private int selectedXRayItemId = 0;
 
     public XRayCardListAdapter(List<XRayItem> data) {
         this.data = data;
@@ -63,6 +64,7 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
                 Intent intent = new Intent(view.getContext(), XRayItemContentActivity.class);
                 intent.putExtra(XRayItemContentActivity.SELECTED_MOVIE_ID, item.getMovieId());
                 intent.putExtra(XRayItemContentActivity.SELECTED_XRAY_ITEM_ID, item.getItemId());
+                selectedXRayItemId = (int) item.getItemId();
 
                 view.getContext().startActivity(intent);
             }
@@ -72,5 +74,9 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public int getSelectedXRayItemId() {
+        return selectedXRayItemId;
     }
 }
