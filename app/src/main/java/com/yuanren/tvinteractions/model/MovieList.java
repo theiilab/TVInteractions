@@ -82,6 +82,7 @@ public final class MovieList {
                 "Flipped",
                 "Crazy Rich Asians",
                 "Inception",
+                "The Adam Project"
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -110,6 +111,7 @@ public final class MovieList {
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
+                "Netflix"
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -130,6 +132,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[9],
                 MOVIE_CATEGORY[1],
                 MOVIE_CATEGORY[1],
+                MOVIE_CATEGORY[5],
                 MOVIE_CATEGORY[5],
         };
         String videoUrl[] = {
@@ -161,6 +164,7 @@ public final class MovieList {
                 "https://streamable.com/l/uo7yb6/mp4-high.mp4",
 
                 "https://streamable.com/l/qc8dio/mp4-high.mp4",
+                "https://streamable.com/l/khdme4/mp4-high.mp4"
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -191,6 +195,7 @@ public final class MovieList {
                 "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/06/21122846/Crazy-Rich-Asians-background.jpg",
 
                 "https://i4.hurimg.com/i/hurriyet/75/1200x675/5f5965580f25440e585d7e6f.jpg",
+                "https://i0.wp.com/615film.com/wp-content/uploads/2022/03/the-adam-project-header-image.jpg?fit=1280%2C720&ssl=1"
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -221,6 +226,7 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_.jpg",
 
                 "https://assets.mycast.io/posters/inception-2-the-big-under-2023-fan-casting-poster-66202-large.jpg?1605643123",
+                "https://image.tmdb.org/t/p/original/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg"
         };
 
         int n = title.length;
@@ -1424,6 +1430,66 @@ public final class MovieList {
         entry19.put(KEY_DESCRIPTION, Arrays.asList(xRay19Description));
         entry19.put(KEY_MERCHANDISE, Arrays.asList(xRay19Merchandise));
         listOfItems.add(entry19);
+
+
+
+
+        // The Adam Project
+        String xRay20Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay20Name[] = {
+                "Ryan Reynolds",
+                "Walker Scobell",
+
+                "Tactical Flashlights Torch",
+                "Deluxe Blended Coveralls",
+                "Vest Gilet",
+                "Flannel Plaid Casual Shirt",
+                "Stainless Photo Necklace"
+        };
+        String xRay20ImageUrl[] = {
+                "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcRDIJ-PkZ_U6WOLo7fm-UVwSZbyFb8fu5TVmvvErBzsxb_TmMMdJEyOMBT53C7zqxvuqDATtVONl_l5zPM",
+                "https://m.media-amazon.com/images/M/MV5BYjVjYTQ4MDYtYzYxOC00NGYyLWE0YTAtM2Q2YjViYmI4ZTg5XkEyXkFqcGdeQXVyMTI0MDc3MjA0._V1_.jpg",
+
+                "https://m.media-amazon.com/images/I/71ZUoJVwf4L._AC_SX679_PIbundle-2,TopRight,0,0_SH20_.jpg",
+                "https://i5.walmartimages.com/asr/e4c25301-5516-4dde-8fa2-ee0ae429daf7_1.23520519ba84b36b1388104edb1b376d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+                "https://litb-cgis.rightinthebox.com/images/640x640/202208/bps/product/inc/pxehak1659347813002.jpg",
+                "https://m.media-amazon.com/images/I/71gEorVExpL._AC_UX679_.jpg",
+                "https://cdn.shopify.com/s/files/1/0266/8842/1959/products/NL11476_2229b390-deb8-40c5-a7ea-3402ae30d54b_650x650.jpg?v=1681760653"
+        };
+        String xRay20Description[] = {
+                "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
+                "Walker Scobell;• Born in Los Angeles, CA, American\n• Age: 14 (2009)\n• Height: 4′ 11″\n• Nationality: American;Walker Scobell is best recognized for his role in the sci-fi film The Adam Project. He also appeared in the film Secret Headquarters in the same year. He began acting while in elementary school.",
+
+                "Tactical Flashlights Torch;$14.99;• Super bright with 5 Modes\n• Adjustable focus-adjustable focus for Use in different situations\n• Waterproof\n• Widely Use-easy to carry with you as a backup\n\n",
+                "Deluxe Blended Coveralls;$54.99;• 65% Polyester, 35% cotton\n• Double-ended zipper\n\n These men's long sleeve coveralls are spacious enough to layer underneath and are comfortable enough to wear during long, tough days. Put them on to work on vehicles and other tasks.",
+                "Vest Gilet;$55.98;• 100% Polyester\n• Micro-elastic\n• Regular Fit\n• Machine wash cold\n\nOutdoor work fishing travel photo vest perfect for casual daily wear and outdoor activities, such as traveling, safari, cycling, camping, hiking, sports, working, fishing, photography, sightseeing, hunting, bird watching, river guide adventures, and any other activities.",
+                "Flannel Plaid Casual Shirt;$18.49;• 100% Cotton\n• Flannel\n• Button closure\n• Machine wash\n\nClassically styled with a pointed collar and button front, long sleeve, chest pocket, curved shirttail hem, suitable for both boys and girls from little, big to youth.",
+                "Stainless Photo Necklace;$69.3;• Custom photo pendant\n• Engraving options\n• Variety of rolo chain lengths\n\nCreate a unique dog tag photo necklace with Eve's Addiction's new photo jewelry. This stunning Stainless Photo Necklace can be customized in seconds with your own photo!"
+        };
+        String xRay20Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "walmart amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry20 = new HashMap<>();
+        entry20.put(KEY_TYPE, Arrays.asList(xRay20Type));
+        entry20.put(KEY_NAME, Arrays.asList(xRay20Name));
+        entry20.put(KEY_IMAGE, Arrays.asList(xRay20ImageUrl));
+        entry20.put(KEY_DESCRIPTION, Arrays.asList(xRay20Description));
+        entry20.put(KEY_MERCHANDISE, Arrays.asList(xRay20Merchandise));
+        listOfItems.add(entry20);
 
         return listOfItems;
     }
