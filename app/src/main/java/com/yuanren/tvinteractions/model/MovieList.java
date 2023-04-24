@@ -80,6 +80,7 @@ public final class MovieList {
                 "Sherlock Holmes",
                 "The Da Vinci Code",
                 "Flipped",
+                "Crazy Rich Asians",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -106,6 +107,7 @@ public final class MovieList {
                 "Silver Pictures",
                 "Columbia Pictures",
                 "Warner Bros. Pictures",
+                "Warner Bros. Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -124,6 +126,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[8],
                 MOVIE_CATEGORY[9],
                 MOVIE_CATEGORY[9],
+                MOVIE_CATEGORY[1],
                 MOVIE_CATEGORY[1],
         };
         String videoUrl[] = {
@@ -152,6 +155,7 @@ public final class MovieList {
                 "https://streamable.com/l/uzr6i2/mp4-high.mp4",
 
                 "https://streamable.com/l/mpid4f/mp4-high.mp4",
+                "https://streamable.com/l/uo7yb6/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -179,6 +183,7 @@ public final class MovieList {
                 "https://imgsrc.cineserie.com/2021/10/822467.jpg?ver=1",
 
                 "https://images-3.wuaki.tv/system/shots/184836/original/snapshot-1590658133.jpeg",
+                "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/06/21122846/Crazy-Rich-Asians-background.jpg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -206,6 +211,9 @@ public final class MovieList {
                 "https://cdnb.artstation.com/p/assets/images/images/046/288/721/large/julian-vanden-bossche-affiche-langdon-min.jpg?1644764038",
 
                 "https://www.tvguide.com/a/img/catalog/provider/1/2/1-172519842.jpg",
+                "https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_.jpg",
+
+
         };
 
         int n = title.length;
@@ -1284,6 +1292,71 @@ public final class MovieList {
         entry17.put(KEY_DESCRIPTION, Arrays.asList(xRay17Description));
         entry17.put(KEY_MERCHANDISE, Arrays.asList(xRay17Merchandise));
         listOfItems.add(entry17);
+
+
+
+
+        // Crazy Rich Asians
+        String xRay18Type[] = {
+                "0",
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay18Name[] = {
+                "Constance Wu",
+                "Henry Golding",
+                "Awkwafina",
+
+                "Lurex Maxi Dress",
+                "Jil Sander Disc Earrings",
+                "Audi R8 Coupe",
+                "Delave Sport Coat",
+                "Stripe-Trim Silk Blouse"
+        };
+        String xRay18ImageUrl[] = {
+                "https://de.web.img3.acsta.net/pictures/19/10/15/22/54/2715291.jpg",
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQSmEFRqQUT3_8mkOWGU_D_PcvwZ_bBr72rw83NXEyXL62xU6dxwwwz0tlwqQ5trmAUT5UzaHkA_j7-RuI",
+                "https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcQ6V4ut50RTK_XFCW80J1VMN3KDZGjrIk8hGvHp_EhMUfh_howo1KxoUed9xCI5qgra4Uo9QnEO94xZXe8",
+
+                "https://i.redd.it/l0k4kqbocwo71.jpg",
+                "https://www.ekseption.com/media/catalog/product/cache/2d278355bb18eedbbf016ac97d4c613d/2/7/270296-1.jpg",
+                "https://mediaservice.audi.com/media/fast/H4sIAAAAAAAAAFvzloG1tIiBOTrayfuvpGh6-m1zJgaGigIGBgZGoDhTtNOaz-I_2DhCHkCFGWczsJSnJhUwAlW4MXFl5iamp-qDBPgZuYssdFMrSnTzUnPz2YHS3DxTwqcXLEttz73ur_z5F8MBzRVM4isYeLoDKnzuLZnAKLYny4zvRNfl_Yv25THw7GTq5Fv-qvrrVdl_99t1A3-eLzPhYeCZlffhqr27uHRWj2VoXeu0Le-UOjcw8PROW_q3p-TY8dSwqY-TXwdu_PTp-noGnk1Lf_bONn3u8uhcI_fq6ZbdCkL_cxl45FnOXlGZmTn51MovZa2RKpGsYob3GHgOqui3-c9YXVMbxLDk47QrqTn73fYy8OytUPzNEmchcPPJicudf0_Kpl-3EGTg6TmnLzm983uWZ-CMm6UFqyaZfGq_wcATL1pr0rB1a2SGWHM_IwvLFPWirgMMrMBgYfkNIiKBBLcgkOBQYwCTQIK5HRRqm0F85nBmoLwDkNHCAAJ8wqVFOQWJRYm5ekWpxQX5ecWZZamCGgZEAmFWH8dI1yAABmAHuM4BAAA?wid=2388",
+                "https://cdn.shopify.com/s/files/1/0021/6229/4829/products/Delave-Linen-Sport-Coat-Brilliant-White-Cubavera-Collection_1080x.jpg?v=1631839644",
+                "https://images.bergdorfgoodman.com/ca/1/product_assets/W/0/F/X/G/BGW0FXG_mu.jpg"
+        };
+        String xRay18Description[] = {
+                "Constance Wu;• Born in Richmond, VA, American\n• Age: 41 (1982)\n• Height: 5′ 1″\n• Nationality: American;Constance Wu is an American actress. Wu was included on Time magazine's list of the 100 most influential people in the world in 2017. She has earned several accolades, including nominations for a Golden Globe Award, four Critics' Choice Awards, a Screen Actors Guild Award, and two TCA Awards.",
+                "Henry Golding;• Born in Betong, Malaysia\n• Age: 36 (1987)\n• Height: 6′ 1″\n• Nationality: British, Malaysian;Henry Ewan Golding is a Malaysian and British actor and television host. Golding has been a presenter on BBC's The Travel Show since 2014.",
+                "Awkwafina;• Born in Stony Brook, NY, American\n• Age: 34 (1988)\n• Height: 5′ 1″\n• Nationality: American;Nora Lum, known professionally as Awkwafina, is an American actress, rapper, and comedian who rose to prominence in 2012 when her rap song \"My Vag\" became popular on YouTube. She then released her debut album, Yellow Ranger, and appeared on the MTV comedy series Girl Code.",
+
+                "Lurex Maxi Dress;$995;• Brand: M Missoni\n• 100% Silk\n• V-neck\n• Sleeveless\n• Specialist Cleaning\n\nSensual maxi dress detailed with faded colour striped pattern embellished with all-over gold tone lurex inserts and detailed with double spaghetti strap creating a criss cross effect at back, fitted high waist and flared skirt",
+                "Jil Sander Disc Earrings;$532;• Material: 100% 925 silver\n• Diameter: 6 cm\n\nJil Sander pair of disc earrings in in golden silver featuring engraved logo and snap closure. For pierced ears only. Antioxidant treatment and nickel tested.",
+                "Audi R8 Coupe;$158600;• 562 hp V10\n• 20\" 5-V-spoke-evo design wheels, bi-color anthracite finish\n• Sport suspension for RWD\n• Audi virtual cockpit with Sport mode\n• 18-way power seats with pneumatic side and leg bolsters\n\n",
+                "Delave Linen Sport Coat;$225;• 100% Linen\n• Tailored fit\n• Notched collar\n• Boat-shaped chest pockets\n\nA smart and timeless tailored piece, this lightweight men’s sport coat is cut from 100% Delave linen - a top tier linen with a high-low heathered look and unique texture.",
+                "Stripe-Trim Dog-Print Silk Blouse;$49.5;• 100% Silk\n• Spread collar, hidden placket\n• Long sleeves, button cuffs\n• Relaxed silhouette\n\nStella McCartney dog-print blouse with striped collar, sleeve, and cuff."
+        };
+        String xRay18Merchandise[] = {
+                "",
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "costco target amazon",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry18 = new HashMap<>();
+        entry18.put(KEY_TYPE, Arrays.asList(xRay18Type));
+        entry18.put(KEY_NAME, Arrays.asList(xRay18Name));
+        entry18.put(KEY_IMAGE, Arrays.asList(xRay18ImageUrl));
+        entry18.put(KEY_DESCRIPTION, Arrays.asList(xRay18Description));
+        entry18.put(KEY_MERCHANDISE, Arrays.asList(xRay18Merchandise));
+        listOfItems.add(entry18);
 
         return listOfItems;
     }
