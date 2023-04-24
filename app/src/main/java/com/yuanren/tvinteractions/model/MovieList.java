@@ -79,6 +79,7 @@ public final class MovieList {
                 "Lala Land",
                 "Sherlock Holmes",
                 "The Da Vinci Code",
+                "Flipped",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -104,6 +105,7 @@ public final class MovieList {
                 "Lionsgate",
                 "Silver Pictures",
                 "Columbia Pictures",
+                "Warner Bros. Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -122,6 +124,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[8],
                 MOVIE_CATEGORY[9],
                 MOVIE_CATEGORY[9],
+                MOVIE_CATEGORY[1],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -147,6 +150,8 @@ public final class MovieList {
 
                 "https://streamable.com/l/ypqkr3/mp4-high.mp4",
                 "https://streamable.com/l/uzr6i2/mp4-high.mp4",
+
+                "https://streamable.com/l/mpid4f/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -172,6 +177,8 @@ public final class MovieList {
 
                 "https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/02/sherlock-holmes-jude-law-robert-downey-jr.jpg",
                 "https://imgsrc.cineserie.com/2021/10/822467.jpg?ver=1",
+
+                "https://images-3.wuaki.tv/system/shots/184836/original/snapshot-1590658133.jpeg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -197,6 +204,8 @@ public final class MovieList {
 
                 "https://images.moviesanywhere.com/b9a3188acb29ea7a1878f410cad0cf45/5188ee57-26c5-4a7a-b64d-7b3e842a7e9b.jpg",
                 "https://cdnb.artstation.com/p/assets/images/images/046/288/721/large/julian-vanden-bossche-affiche-langdon-min.jpg?1644764038",
+
+                "https://www.tvguide.com/a/img/catalog/provider/1/2/1-172519842.jpg",
         };
 
         int n = title.length;
@@ -1215,6 +1224,66 @@ public final class MovieList {
         entry16.put(KEY_DESCRIPTION, Arrays.asList(xRay16Description));
         entry16.put(KEY_MERCHANDISE, Arrays.asList(xRay16Merchandise));
         listOfItems.add(entry16);
+
+
+
+
+        // Flipped
+        String xRay17Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay17Name[] = {
+                "Madeline Carroll",
+                "Callan McAuliffe",
+
+                "Button Knit Cardigan",
+                "School Uniform Shirt",
+                "A-Line Vintage Skirt",
+                "Striped Knit Oxford Shirt",
+                "Flex Taper Pants"
+        };
+        String xRay17ImageUrl[] = {
+                "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcS9JKZ7KYxtTjVPaSeFkDtI0BR_jrtlbhNUdqOSjSdoMbW27NQy7VUriA8CefTkbV_NXK5_fUuCWU3Bss8",
+                "https://media1.popsugar-assets.com/files/thumbor/c7lZbPtG9q7QBf_n-vPyvjNd76c/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/05/17/103/n/44701584/bd6b6eb5bb8bf2d7_GettyImages-1125246559/i/Callan-McAuliffe-Taylor.jpg",
+
+                "https://st.mngbcn.com/rcs/pics/static/T3/fotos/S20/37054377_16_B.jpg?ts=1662386484065&imwidth=571&imdensity=2",
+                "https://cdn.shopify.com/s/files/1/0268/0854/9559/products/6803073710003070_001.jpg?v=1666642827&width=1944",
+                "https://m.media-amazon.com/images/I/81hWZqlOscL._AC_SL1500_.jpg",
+                "https://www.rlmedia.io/is/image/PoloGSI/s7-1253259_lifestyle?$rl_df_pdp_5_7_lif$",
+                "https://oldnavy.gap.com/webcontent/0050/540/273/cn50540273.jpg"
+        };
+        String xRay17Description[] = {
+                "Madeline Carroll;• Born in Los Angeles, CA, American\n• Age: 27 (1996)\n• Height: 5′ 4″\n• Nationality: American;Madeline Carroll is an American actress known for starring as Juli Baker in Flipped, as Molly Johnson in Swing Vote, as Farren in The Spy Next Door, and as Willow O'Neil in The Magic of Belle Isle.",
+                "Callan McAuliffe;• Born in Clontarf, Australia\n• Age: 28 (1995)\n• Height: 5′ 10″\n• Nationality: Australian;Callan Ryan Claude McAuliffe is an Australian actor, known for his roles as Bryce Loski in Flipped and Sam Goode in I Am Number Four. He appeared as young Jay Gatsby in the 2013 film The Great Gatsby. From 2017 to 2022 he starred on The Walking Dead as Alden.",
+
+                "Button Knit Cardigan;$39.99;• 90% polyester,10% polyamide\n• Knitted braided fabric\n• V-neck\n• Long sleeve\n• Button up\n\nRecycled polyester is obtained from polyester textile waste, marine litter or PET plastic bottles that are used to produce new fabric.",
+                "School Uniform Yellow Long Sleeve Shirt;$9.99;• 60% Cotton, 40% polyester\n• Polo collar\n• Tapout\n\nTopped with a flat-knit collar and three-button placket, this polo shirt is crafted in organic cotton with a bubble structure.",
+                "A-Line Vintage Skirt;$45;• 50% Cotton, 50% polyester\n• One pocket in each side\n• A-line silhouette\n• Classic plaid pattern\n\nBrown and multicolor vintage knee-length pleated skirt featuring plaid pattern throughout, tonal stitching and concealed hook-and-eye closure at waist front.",
+                "Striped Knit Oxford Shirt;$69.99;• 100% Cotton\n• Slim fit\n• Button-down point collar\n• Machine wash\n\nAlthough it takes its name from England's most famous academic institution, the oxford shirt has its origins on the backs of early British polo players, who wore shirts made from oxford cloth on the field and used pins to keep their collars in place during rigorous play.",
+                "Flex Taper Pants;$18;• 98% Cotton, 2% spandex\n• Elasticized comfort waistband\n• Straight through hip and thigh\n• Machine wash\n\nWith an easy elasticized waistband, OGC pants are the ultimate combo of comfort chops & style cred. Dressier than sweats, relaxier than dress pants"
+        };
+        String xRay17Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry17 = new HashMap<>();
+        entry17.put(KEY_TYPE, Arrays.asList(xRay17Type));
+        entry17.put(KEY_NAME, Arrays.asList(xRay17Name));
+        entry17.put(KEY_IMAGE, Arrays.asList(xRay17ImageUrl));
+        entry17.put(KEY_DESCRIPTION, Arrays.asList(xRay17Description));
+        entry17.put(KEY_MERCHANDISE, Arrays.asList(xRay17Merchandise));
+        listOfItems.add(entry17);
 
         return listOfItems;
     }
