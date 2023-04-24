@@ -81,6 +81,7 @@ public final class MovieList {
                 "The Da Vinci Code",
                 "Flipped",
                 "Crazy Rich Asians",
+                "Inception",
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -108,6 +109,7 @@ public final class MovieList {
                 "Columbia Pictures",
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
+                "Warner Bros. Pictures",
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -128,6 +130,7 @@ public final class MovieList {
                 MOVIE_CATEGORY[9],
                 MOVIE_CATEGORY[1],
                 MOVIE_CATEGORY[1],
+                MOVIE_CATEGORY[5],
         };
         String videoUrl[] = {
                 "https://streamable.com/l/ksya4v/mp4-high.mp4",
@@ -156,6 +159,8 @@ public final class MovieList {
 
                 "https://streamable.com/l/mpid4f/mp4-high.mp4",
                 "https://streamable.com/l/uo7yb6/mp4-high.mp4",
+
+                "https://streamable.com/l/qc8dio/mp4-high.mp4",
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -184,6 +189,8 @@ public final class MovieList {
 
                 "https://images-3.wuaki.tv/system/shots/184836/original/snapshot-1590658133.jpeg",
                 "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/06/21122846/Crazy-Rich-Asians-background.jpg",
+
+                "https://i4.hurimg.com/i/hurriyet/75/1200x675/5f5965580f25440e585d7e6f.jpg",
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -213,7 +220,7 @@ public final class MovieList {
                 "https://www.tvguide.com/a/img/catalog/provider/1/2/1-172519842.jpg",
                 "https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_.jpg",
 
-
+                "https://assets.mycast.io/posters/inception-2-the-big-under-2023-fan-casting-poster-66202-large.jpg?1605643123",
         };
 
         int n = title.length;
@@ -1357,6 +1364,66 @@ public final class MovieList {
         entry18.put(KEY_DESCRIPTION, Arrays.asList(xRay18Description));
         entry18.put(KEY_MERCHANDISE, Arrays.asList(xRay18Merchandise));
         listOfItems.add(entry18);
+
+
+
+
+        // Inception
+        String xRay19Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay19Name[] = {
+                "Leonardo DiCaprio",
+                "Elliot Page",
+
+                "British Style Tea Set",
+                "Button-Front Cardigan",
+                "Stand Collar Silk Blouse",
+                "Oxford Shirt",
+                "Roughneck Chore Jacket"
+        };
+        String xRay19ImageUrl[] = {
+                "https://cdn.britannica.com/65/227665-050-D74A477E/American-actor-Leonardo-DiCaprio-2016.jpg",
+                "https://cdn.thehollywoodgossip.com/uploads/2020/12/elliot-page-photo.jpg",
+
+                "https://m.media-amazon.com/images/I/A1EWEloIIAL._AC_SX679_.jpg",
+                "https://oldnavy.gap.com/webcontent/0018/874/657/cn18874657.jpg",
+                "https://www.lilysilk.com/media/catalog/product/m1/8783/silver/stand-krave-lange-a-ermer-silke-bluse-silver-xs-01.jpg?quality=90&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
+                "https://images.lululemon.com/is/image/lululemon/LM3COWS_054238_1?wid=1280&op_usm=0.5,2,10,0&fmt=webp&qlt=80,1&fit=constrain,0&op_sharpen=0&resMode=sharp2&iccEmbed=0&printRes=72",
+                "https://americangiant.imgix.net/products/M4-3H-7-VIN_7369.jpg?v=1658253598&auto=format,compress&w=1592"
+        };
+        String xRay19Description[] = {
+                "Leonardo DiCaprio;• Born in Los Angeles, CA, American\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
+                "Elliot Page;• Born in Municipality, Canada\n• Age: 36 (1987)\n• Height: 5′ 1″\n• Nationality: Canadian;Elliot Page is a Canadian actor. He has received various accolades, including an Academy Award nomination, two BAFTA Awards and Primetime Emmy Award nominations, and a Satellite Award. Page was assigned female at birth, and later publicly came out as a trans man in December 2020.",
+
+                "British Style Tea Set;$24.99;• Set Of 6 Fine White Porcelain Cups & Saucers Set\n• Fine And High Quality Lead -Free Porcelain\n• Dishwasher, and microwave safe\n\n",
+                "Button-Front Cardigan;$99;• 100% Cotton\n• Crew neck\n• Long sleeves\n• Machine wash cold\n\nThis comfortable, casual, elegant and classy cardigan sweater comes in multiple colors, making it a perfect fit for any occasion. This soft fitted knit cardigan sweaters are made out of high quality material.",
+                "Stand Collar Long Sleeves Silk Blouse;$129;• 90% Mulberry silk, 10% spandex\n• Regular Fit\n• Stretchable\n\nMade from light and soft, breathable silk fabric with elasticity, this blouse will seamlessly become part of your everyday wardrobe and will guarantee you comfort without even noticing it.",
+                "Commission Long-Sleeve Oxford Shirt;$118;• 95% Cotton, 4% polyester\n• Four-way stretch fabric\n• Classic fit\n• Machine Wash Cold\n\nThis garment was treated with our No-Stink Zinc™ technology to inhibit the growth of odour-causing bacteria on the fabric.",
+                "Roughneck Chore Jacket;$200;• 98% Cotton, 2% spandex\n• 9.5 oz/sq yd\n• Garment dye\n• Machine wash cold\n\nThe same rugged canvas in our best-selling Roughneck Pant, now in a timeless and versatile chore jacket. Features an unlined, durable canvas cotton shell for lightweight layering and pocket detailing for easy storage.",
+        };
+        String xRay19Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "costco amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry19 = new HashMap<>();
+        entry19.put(KEY_TYPE, Arrays.asList(xRay19Type));
+        entry19.put(KEY_NAME, Arrays.asList(xRay19Name));
+        entry19.put(KEY_IMAGE, Arrays.asList(xRay19ImageUrl));
+        entry19.put(KEY_DESCRIPTION, Arrays.asList(xRay19Description));
+        entry19.put(KEY_MERCHANDISE, Arrays.asList(xRay19Merchandise));
+        listOfItems.add(entry19);
 
         return listOfItems;
     }
