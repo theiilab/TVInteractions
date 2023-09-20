@@ -36,8 +36,8 @@ public class DetailsViewHolder extends Presenter.ViewHolder {
         playTV = view.findViewById(R.id.play_TV);
         restartIB = view.findViewById(R.id.restart_IB);
         restartTV = view.findViewById(R.id.restart_TV);
-        trailerIB = view.findViewById(R.id.trailer_IB);
-        trailerTV = view.findViewById(R.id.trailer_TV);
+//        trailerIB = view.findViewById(R.id.trailer_IB);
+//        trailerTV = view.findViewById(R.id.trailer_TV);
         myListIB = view.findViewById(R.id.watch_list_IB);
         myListTV = view.findViewById(R.id.watch_list_TV);
     }

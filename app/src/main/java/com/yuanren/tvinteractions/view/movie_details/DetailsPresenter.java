@@ -99,31 +99,31 @@ public class DetailsPresenter extends Presenter {
                 return false;
             }
         });
-        detailsViewHolder.trailerIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
-                    detailsViewHolder.trailerTV.setVisibility(View.VISIBLE);
-                } else {
-                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
-                    detailsViewHolder.trailerTV.setVisibility(View.GONE);
-                }
-            }
-        });
-        detailsViewHolder.trailerIB.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (i) {
-                        case KeyEvent.KEYCODE_DPAD_DOWN:
-                            detailsCallback.backgroundToggle();
-                            break;
-                    }
-                }
-                return false;
-            }
-        });
+//        detailsViewHolder.trailerIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if (b) {
+//                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_focused));
+//                    detailsViewHolder.trailerTV.setVisibility(View.VISIBLE);
+//                } else {
+//                    view.setBackground(view.getContext().getDrawable(R.drawable.shape_details_round_corner_unfocused));
+//                    detailsViewHolder.trailerTV.setVisibility(View.GONE);
+//                }
+//            }
+//        });
+//        detailsViewHolder.trailerIB.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+//                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+//                    switch (i) {
+//                        case KeyEvent.KEYCODE_DPAD_DOWN:
+//                            detailsCallback.backgroundToggle();
+//                            break;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
         detailsViewHolder.myListIB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {

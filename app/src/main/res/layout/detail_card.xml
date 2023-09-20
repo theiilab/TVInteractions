@@ -105,28 +105,28 @@
             app:layout_constraintLeft_toLeftOf="@id/restart_IB"
             app:layout_constraintTop_toBottomOf="@id/restart_IB"/>
 
-        <ImageButton
-            android:id="@+id/trailer_IB"
-            android:layout_width="@dimen/details_btn_size"
-            android:layout_height="@dimen/details_btn_size"
-            android:layout_marginLeft="@dimen/details_btn_margin"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_details_round_corner_unfocused"
-            android:src="@drawable/ic_details_trailer"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            app:layout_constraintLeft_toRightOf="@id/restart_IB"
-            app:layout_constraintTop_toTopOf="parent"/>
-        <TextView
-            android:id="@+id/trailer_TV"
-            android:layout_width="@dimen/details_btn_size"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="Trailor"
-            android:visibility="gone"
-            app:layout_constraintLeft_toLeftOf="@id/trailer_IB"
-            app:layout_constraintTop_toBottomOf="@id/trailer_IB"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/trailer_IB"-->
+<!--            android:layout_width="@dimen/details_btn_size"-->
+<!--            android:layout_height="@dimen/details_btn_size"-->
+<!--            android:layout_marginLeft="@dimen/details_btn_margin"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:background="@drawable/shape_details_round_corner_unfocused"-->
+<!--            android:src="@drawable/ic_details_trailer"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/restart_IB"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/trailer_TV"-->
+<!--            android:layout_width="@dimen/details_btn_size"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="10sp"-->
+<!--            android:text="Trailor"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintLeft_toLeftOf="@id/trailer_IB"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/trailer_IB"/>-->
 
         <ImageButton
             android:id="@+id/watch_list_IB"
@@ -138,7 +138,7 @@
             android:src="@drawable/ic_details_playlist"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            app:layout_constraintLeft_toRightOf="@id/trailer_IB"
+            app:layout_constraintLeft_toRightOf="@id/restart_IB"
             app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:id="@+id/watch_list_TV"
