@@ -28,6 +28,7 @@ import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
+import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
 
 import java.util.Collections;
 import java.util.List;
@@ -155,9 +156,11 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItem == 0) {
                                 Log.d(TAG, "OnKeyRight - ItemViewSelectedListener");
                                 navigationMenuCallback.navMenuToggle(true);
+                            } else if (i == KeyEvent.KEYCODE_DPAD_UP && ((Movie) item).getId() == 0) { // navigate up on the first movie
+                                return true; // handle it by self view, do nothing, so that the focus won't change or lost
                             }
                         }
-                        return false;
+                        return false; // handle the UI behavior by parent
                     }
                 });
             }
