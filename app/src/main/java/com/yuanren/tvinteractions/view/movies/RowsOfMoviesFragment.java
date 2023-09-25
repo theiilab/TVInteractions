@@ -147,16 +147,18 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 updateBannerView((Movie) item);
 
                 // set listener for nav menu toggle
-                currentSelectedRow = row;  // record the current row for auto focus when quite from nav menu
-                int indexOfItem = ((ArrayObjectAdapter)((ListRow)row).getAdapter()).indexOf(item);
+                currentSelectedRow = row;  // record the current row for auto focus when quit from nav menu
+                int indexOfItemInRow = ((ArrayObjectAdapter)((ListRow)row).getAdapter()).indexOf(item);
+                Log.d(TAG, "Row: " + row.getId() + ", Col: " + String.valueOf(indexOfItemInRow));
+
                 itemViewHolder.view.setOnKeyListener(new View.OnKeyListener() {
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                            if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItem == 0) {
+                            if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItemInRow == 0) {
                                 Log.d(TAG, "OnKeyRight - ItemViewSelectedListener");
                                 navigationMenuCallback.navMenuToggle(true);
-                            } else if (i == KeyEvent.KEYCODE_DPAD_UP && ((Movie) item).getId() == 0) { // navigate up on the first movie
+                            } else if (i == KeyEvent.KEYCODE_DPAD_UP && row.getId() == 0) { // navigate up on the first movie
                                 return true; // handle it by self view, do nothing, so that the focus won't change or lost
                             }
                         }
