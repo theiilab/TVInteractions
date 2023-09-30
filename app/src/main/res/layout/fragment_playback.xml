@@ -12,7 +12,10 @@
         app:auto_show="true"
         app:surface_type="surface_view"
         app:use_controller="true"
+        app:show_timeout="0"
         app:controller_layout_id="@layout/playback_media_controller" />
+
+<!--    show_timeout - The time between the last user interaction and the controls being automatically hidden, in milliseconds. Use zero if the controls should not automatically timeout-->
 
     <ProgressBar
         android:id="@+id/loading_bar"
