@@ -29,7 +29,7 @@ public class TVChannelsFragment extends Fragment {
     private static final String TAG = "TVChannelsFragment";
     private NavigationMenuCallback navigationMenuCallback;
     private TextView tvChannelsTV;
-    private int channel = 15;
+    private int channel = 1;
 
     public TVChannelsFragment() {
         // Required empty public constructor
