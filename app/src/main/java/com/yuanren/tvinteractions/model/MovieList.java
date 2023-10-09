@@ -136,35 +136,35 @@ public final class MovieList {
                 MOVIE_CATEGORY[5],
         };
         String videoUrl[] = {
-                "https://streamable.com/l/ksya4v/mp4-high.mp4",
-                "https://streamable.com/l/46vm7y/mp4-high.mp4",
+                "https://streamable.com/l/59by34/mp4-high.mp4",  // Kings Man
+                "https://streamable.com/l/v9e0nk/mp4-high.mp4",  // Red Notice
 
-                "https://streamable.com/l/efmzs7/mp4-high.mp4",
-                "https://streamable.com/l/xuehud/mp4-high.mp4",
+                "https://streamable.com/l/oxud0a/mp4-high.mp4",  // Jumanji
+                "https://streamable.com/l/xuehud/mp4-high.mp4",  // Uncharted
 
-                "https://streamable.com/l/60r3my/mp4-high.mp4",
-                "https://streamable.com/l/fivagj/mp4-high.mp4",
+                "https://streamable.com/l/5srodl/mp4-high.mp4",  // The Devil Wears Prada
+                "https://streamable.com/l/fivagj/mp4-high.mp4",  // The wolf of Wall Street
 
-                "https://streamable.com/l/mhrrwj/mp4-high.mp4",
-                "https://streamable.com/l/oohm1o/mp4-high.mp4",
+                "https://streamable.com/l/mhrrwj/mp4-high.mp4",  // Venom
+                "https://streamable.com/l/oohm1o/mp4-high.mp4",  // Iron Man
 
-                "https://streamable.com/l/mnxbn8/mp4-high.mp4",
-                "https://streamable.com/l/ir57yd/mp4-high.mp4",
+                "https://streamable.com/l/mnxbn8/mp4-high.mp4",  // Harry Potter 3
+                "https://streamable.com/l/2l37xs/mp4-high.mp4",  // Fantastic Beasts 1
 
-                "https://streamable.com/l/slxtfy/mp4-high.mp4",
-                "https://streamable.com/l/h43q1z/mp4-high.mp4",
+                "https://streamable.com/l/slxtfy/mp4-high.mp4",  // Insomnia
+                "https://streamable.com/l/h43q1z/mp4-high.mp4",  // Fall
 
-                "https://streamable.com/l/cleqsc/mp4-high.mp4",
-                "https://streamable.com/l/w3xnvp/mp4-high.mp4",
+                "https://streamable.com/l/cleqsc/mp4-high.mp4",  // Mama Mia
+                "https://streamable.com/l/w3xnvp/mp4-high.mp4",  // Lala Land
 
-                "https://streamable.com/l/ypqkr3/mp4-high.mp4",
-                "https://streamable.com/l/uzr6i2/mp4-high.mp4",
+                "https://streamable.com/l/ypqkr3/mp4-high.mp4",  // Sherlock Holmes
+                "https://streamable.com/l/uzr6i2/mp4-high.mp4",  // The Da Vinci Code
 
-                "https://streamable.com/l/mpid4f/mp4-high.mp4",
-                "https://streamable.com/l/uo7yb6/mp4-high.mp4",
+                "https://streamable.com/l/mpid4f/mp4-high.mp4",  // Flipped
+                "https://streamable.com/l/24bwrf/mp4-high.mp4",  // Crazy Rich Asians
 
-                "https://streamable.com/l/qc8dio/mp4-high.mp4",
-                "https://streamable.com/l/khdme4/mp4-high.mp4"
+                "https://streamable.com/l/r5v0uu/mp4-high.mp4",  // Inception
+                "https://streamable.com/l/p0qlbd/mp4-high.mp4"   // The Adam Project
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -894,34 +894,35 @@ public final class MovieList {
                 "1"
         };
         String xRay11Name[] = {
-                "Tom Hardy",
-                "Michelle Williams",
+                "Al Pacino",
+                "Hilary Swank",
 
-                "",
-                "",
-                "",
-                "",
-                ""
+                "TAG HEUER Carrera Watch",
+                "Lined Journal Notebook",
+                "Modern Classic Suit Jacket",
+                "Classic Jackie Cardigan",
+                "Bryce Glasses"
         };
         String xRay11ImageUrl[] = {
-                "",
-                "",
+                "https://pyxis.nymag.com/v1/imgs/bc9/ccb/936534d0b82b77cf0ffbac92010ee38ea3-06-al-pacino.2x.rvertical.w512.jpg",
+                "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTLVhxwTlQ9UnDG2AvjQ-rR7Y6QlKr3hweWUmxstYQHMTMPQ9oS2rfrHyP9mvDvP4Adve-Dp6XWova_kyg",
 
-                "",
-                "",
-                "",
-                "",
-                ""
+                "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dwb6bed08e/TAG_Heuer_Carrera/WBN2111.BA0639/WBN2111.BA0639_0913.png?impolicy=th-pdp-gallery-full",
+                "https://m.media-amazon.com/images/I/71YBEL+Kk+L._AC_SX679_.jpg",
+                "https://bananarepublicfactory.gapfactory.com/webcontent/0053/909/981/cn53909981.jpg",
+                "https://media.kohlsimg.com/is/image/kohls/6304183_Black?wid=805&hei=805&op_sharpen=1",
+                "https://img.ebdcdn.com/product/model/portrait/mt6340_m0.jpg?im=Resize,width=500,height=600,aspect=fill;UnsharpMask,sigma=1.0,gain=1.0&q=85"
         };
         String xRay11Description[] = {
-                "Tom Hardy;• Born in London, United Kingdom\n• Age: 45 (1977)\n• Height: 5′ 9″\n• Nationality: British;",
-                "Michelle Williams;• Born in Kalispell, MT, American\n• Age: 42 (1980)\n• Height: 5′ 4″\n• Nationality: American;",
+                "Alfredo James Pacino;• Born in East Harlem, New York, NY, American\n• Age: 83 (1940)\n• Height: 5′ 6″\n• Nationality: American;Alfredo James Pacino is an American actor. Considered one of the greatest and most influential actors of the 20th century, Pacino has received numerous accolades: including an Academy Award, two Tony Awards, and two Primetime Emmy Awards, making him one of the few performers to have achieved the Triple Crown of Acting.",
+                "Michelle Williams;• Born in Lincoln, NE, American\n• Age: 49 (1974)\n• Height: 5′ 6″\n• Nationality: American;Hilary Ann Swank is an American actress and film producer. Swank first became known in 1992 for her role on the television series Camp Wilder and made her film debut with a minor role in Buffy the Vampire Slayer.",
 
-                "Marc Jacobs;$695;• Silk 100%\n• Brand: Marc Jacobs\n• Length: 112 cm\n• Waist tie detail, surplice front\n• Dry clean only\n\n",
-                "Valentino Garavani;$2280;• Brand: Valentino Garavani \n• Black and gold leather (Goat), gold-tone metal\n• Clasp fastening at top\n• Made in Italy\n\n",
-                "Stretch Zip Hoodie;$99;• 100% Wool\n• 2 front pockets for comfort\n• Machine Wash Cold\n\n",
-                "Premium Slub Crew Grey Tee;$50;• 100% Cotton\n• 6.6 oz./sq. yard\n• Premium slub jersey\n• Machine wash\n\n",
-                "Dark Wash Slim Straight Jeans;$49.5;• 95% Cotton\n• 4% Polyester\n• 1% Elastane\n• Machine Wash Cold\n\n"
+                "TAG HEUER Carrera Date Watch;$3200;• Type: Automatic Watch\n• Size: 39 mm\n• Material: Steel\n\nThis TAG Heuer Carrera is ready for anything. Its brushed silver sunray dial is a statement of luxury, beautifully highlighted by the functional and elegant rhodium-plated TAG Heuer logo and Super-Luminova® hands and indexes.",
+                "Lined Journal Notebook;$8.99;• 5-x-8-inch inches\n• Faux Leather\n\nThis lined journal notebook features durable and water-resistant vegan leather cover, can protect the pages inside for years and provide a comfortable writing surface.rounded corners, 160 pages, ribbon bookmark & elastic closure band.",
+                "Modern Classic Wave Suit Jacket;$150;• 30% recycled polyester\n• Notch lapel with 2-button front closure\n• Double back vent\n• Three exterior pockets, two interior pockets\n\nDiscover the heritage craftsmanship of this timeless piece with its soft, smooth, blended luxe fabrication and wrinkle-resistant properties.",
+                "Classic Jackie Cardigan;$99;• 100% Wool\n• Ribbed cuffs\n• Machine Wash Cold\n\nStay warm while keeping your style in tact in this women's Croft & Barrow cardigan.",
+                "Bryce Glasses;$25;• Size: 53-18-138 (mm)\n• Weight: 14g\n• Material: metal\n• Shape: Rectangle\n• Rim: Full-Rim\n\nThe classy, minimalist look of Bryce is perfect for neatening up any outfit. The Silver metal construction of this frame give it a bold and defined look, while the thin temples and lens frames make them lightweight and comfortable."
+
         };
         String xRay11Merchandise[] = {
                 "",
