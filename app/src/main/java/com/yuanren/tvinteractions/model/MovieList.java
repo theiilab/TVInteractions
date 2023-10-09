@@ -327,7 +327,7 @@ public final class MovieList {
                 "Navy Wool-Blend Tailored Suit;$311;• 43% Virgin Wool\n• 53% Polyester\n• 4% Lycra\n• Weight: 280 Gms\n\nDurable and lightweight, this two-piece navy suit is ideal for business trips abroad. Designed on Savile Row, it has contrast burgundy lining and features elastane within the fabric composition – allowing any creases to drop out easily.",
                 "Edward in Black Calf with Rubber Sole Shoes;£575;• Leather linings\n• Comes with Dust bags\n• Handmade in England\n\nThese black calf Oxford semi-brogues featuring brogue detail on cap, vamp & top of quarters is a essential business shoe. Flawlessly hand-finished in England in a round-toe shape, this slick pair will put you in good stead for years to come.",
                 "Navy and Blue Stripe Repp Silk Tie;$225;• 100% Silk\n• Handmade in London, England\n• 8cm x 147cm\n\nA striped repp silk tie is one of the most enduring pieces of neckwear available, redolent of earlier periods of style, while retaining a distinctly modern feel.",
-                "Tag Heuer Connected Modular 45 Watch;$2,050;• Calibre E4 - 45 mm\n\nStriking the perfect blend between innovation and high-end watchmaking, this TAG Heuer Connected Watch reveals an elegant 45mm steel case with sharp and sporty lugs, and integrated steel chronograph pushers. A new dimension where luxury meets performance."
+                "Tag Heuer Connected Modular 45 Watch;$2050;• Calibre E4 - 45 mm\n\nStriking the perfect blend between innovation and high-end watchmaking, this TAG Heuer Connected Watch reveals an elegant 45mm steel case with sharp and sporty lugs, and integrated steel chronograph pushers. A new dimension where luxury meets performance."
         };
         String xRay1Merchandise[] = {
                 "",
@@ -381,10 +381,10 @@ public final class MovieList {
         String xRay2Description[] = {
                 "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
                 "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
-                "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4,995;• Outer: 100% Cotton\n• Lining: 100% Cupro\n• Dry Clean Only\n\nMade in Italy.",
+                "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4995;• Outer: 100% Cotton\n• Lining: 100% Cupro\n• Dry Clean Only\n\nMade in Italy.",
                 "Suunto Core Alu Deep Black;$229;• Measurements: 49.1 x 49.1 x 14.5 mm\n• Weight: 79 g\n• Bezel material: Aluminum\n• Glass material: Mineral crystal\n\nSuunto Core Premium combines modern design with the essential outdoor functions. Choose rigid natural stainless steel with sapphire crystal glass for added durability, or the elegant aluminum cases for less weight on the wrist.",
-                "iPhone SE; $479; • Size: 128 GB\n• Color: Midnight\n• Display:4.7-inch Retina HD display with True Tone\n• Height:138.4 mm\n• Width: 67.3 mm\n• Depth: 7.3 mm\n• Weight: 144 g",
-                "iPad Mini 2;• $649; • Size: 256 GB\n• Color: Space Grey\n• Display: 8.3” Liquid Retina display² True Tone\n• Height: 7.87 inches (200 mm)\n• Width: 134.7 mm\n• Depth: .5 mm\n• Weight: 331 g",
+                "iPhone SE;$479;• Size: 128 GB\n• Color: Midnight\n• Display:4.7-inch Retina HD display with True Tone\n• Height:138.4 mm\n• Width: 67.3 mm\n• Depth: 7.3 mm\n• Weight: 144 g",
+                "iPad Mini 2;$649;• Size: 256 GB\n• Color: Space Grey\n• Display: 8.3” Liquid Retina display² True Tone\n• Height: 7.87 inches (200 mm)\n• Width: 134.7 mm\n• Depth: .5 mm\n• Weight: 331 g",
                 "Gitzo Camera Tripod;$1616.88;• Dimensions: 30.9 x 7.6 x 6.6 inches\n• Weight: 5.8 pounds\n\nThe Gitzo Carbon Fiber Tripod with  3-Way Fluid Head Kit is a 4-section support with carbon fiber eXact tubing-constructed legs. The twist leg locks unlock with a quarter turn, enabling you to extend the legs along with the rapid center column"
         };
         String xRay2Merchandise[] = {
@@ -423,9 +423,9 @@ public final class MovieList {
                 "Kevin Hart",
                 "Karen Gillan",
                 "Timberland Mill Shirt ",
-                "Riparo Motorsports Half Finger Gloves",
+                "Riparo Half Finger Gloves",
                 "Army Camo Multicam Pants",
-                "Tru-Spec Men's Gen-ii Adjustable Boonie",
+                "Tru-Spec Men's Gen-ii Boonie",
                 "Fitted Short Sleeve Crop Top",
         };
         String xRay3ImageUrl[] = {
@@ -435,7 +435,7 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/I/713Gok5YfvL._AC_UY879_.jpg",
                 "https://m.media-amazon.com/images/I/81QqXeRio+L._AC_SX679_.jpg",
                 "https://m.media-amazon.com/images/I/718UGtRaAlL._AC_UY879_.jpg",
-                "https://m.media-amazon.com/images/I/91ELqVs25HL._AC_UX679_.jpg",
+                "https://assets.cat5.com/images/catalog/products/5/9/9/9/2/0-650-tru-spec-poly-cotton-ripstop-gen-ii-adjustable-boonie-khaki.jpg",
                 "https://m.media-amazon.com/images/I/610b7cSuRaL._AC_UY879_.jpg"
         };
         String xRay3Description[] = {
@@ -443,9 +443,9 @@ public final class MovieList {
                 "Kevin Hart;• Born in Philadelphia, PA, American\n• Age: 43 (1979)\n• Height: 5′ 2″\n• Nationality: American;Kevin Darnell Hart is an American comedian and actor. Originally known as a stand-up comedian, he has since starred in Hollywood films and on TV. He has also released several well-received comedy albums.",
                 "Karen Gillan;• Born in Inverness, United Kingdom\n• Age: 35 (1987)\n• Height: 5′ 11″\n• Nationality:British, Scottish;Karen Sheila Gillan is a Scottish actress. She gained recognition for her work in British film and television, particularly for playing Amy Pond, a primary companion to the Eleventh Doctor in the science fiction series Doctor Who, for which she received several awards and nominations.",
                 "Timberland Mill River Linen Cargo SS Shirt ;$90;• Cotton: 100%\n• Machine Wash\n\nThis durable short-sleeve work shirt comes standard with built-in stretch, so whatever you're doing, it's easier to do.",
-                "Riparo Motorsports Half Finger Leather Gloves;$41.5;• Material: Leather\n• Color: Black\n• Sport Type: Cycling\n\nThese genuine leather gloves have the quality and the features you would expect from a pair of quality driving gloves , including soft supple leather and a snap closure on the wrist strap.",
-                "Army Camo Multicam Pants; 99.99; • 50% cotton\n• 50% nylon\n• Machine Wash\n\nThere are some core features include: double layer seat /knee areas for durability ,a rugged metal YKK zipper is used for the fly, knees are slightly articulated, and a simple velcro strap system in built into the waist to allow for size adjustments.",
-                "Tru-Spec Men's Gen-ii Adjustable Boonie;• $16.5;• 100% Cotton\n• Hand Wash Only\n\nThese stylish hats that meet US military specs are constructed from 65/35 poly-cotton rip-stop with an flexible drawstring chin strap with cardlock for an easy fit",
+                "Riparo Motorsports Half Finger Gloves;$41.5;• Material: Leather\n• Color: Black\n• Sport Type: Cycling\n\nThese genuine leather gloves have the quality and the features you would expect from a pair of quality driving gloves , including soft supple leather and a snap closure on the wrist strap.",
+                "Army Camo Multicam Pants;$99.99;• 50% cotton\n• 50% nylon\n• Machine Wash\n\nThere are some core features include: double layer seat /knee areas for durability ,a rugged metal YKK zipper is used for the fly, knees are slightly articulated, and a simple velcro strap system in built into the waist to allow for size adjustments.",
+                "Tru-Spec Men's Gen-ii Adjustable Boonie;$16.5;• 100% Cotton\n• Hand Wash Only\n\nThese stylish hats that meet US military specs are constructed from 65/35 poly-cotton rip-stop with an flexible drawstring chin strap with cardlock for an easy fit",
                 "Fitted Short Sleeve Crop Top;$17.99;• 63% Rayon\n• 33% Polyester\n• 4% Spandex\n• Hand Wash Only\n\nThis round neck short sleeve crop top will have you feeling wild for it. Keep it trendy and pair it with our flowy ankle length maxi skirt or for a more casual look wear it with our favorite high waisted skinny jeans."
         };
         String xRay3Merchandise[] = {
@@ -506,8 +506,8 @@ public final class MovieList {
                 "Mark Wahlberg;• Born in Boston, MA, American\n• Age: 51 (1971)\n• Height: 5′ 8″\n• Nationality: American;Mark Robert Michael Wahlberg, former stage name Marky Mark, is an American actor, businessman, and former rapper. His work as a leading man spans the comedy, drama, and action genres.",
                 "Neck Ruffle Fit and Flare Dress;$128;• 100% Polyester/Rayon\n• Length: Regular 36, Petite 34\n\nThis one features fun ruffle details and a flattering fit and flare style. This piece perfectly pairs with heels or booties for your next event.",
                 "Vegan Leather Moto Jacket;$128;• Machine wash cold, tumble dry low\n\nWater resistant outer shell for extra protection against inclement weather.",
-                "The Boulevard Bomber; $89; • 60% Cotton, 40% Nylon\n• Dry clean only\n\nClassic bomber style with rib collar, cuff and hem | Single welt hand pockets with snap | Water repellent | Fully lined.",
-                "Relax Fit Men's Jeans;• $69.5; • 1% elastane (Lycra®), 100% cotton\n• Zip fly\n• 5-pocket styling\n• Machine wash cold\n\nA comfortable classic, introduced in 1985 and loved ever since. After the '70s were over, things got more relaxed, including Levi's® jeans. This pair features extra room throughout with a slight, tailor-like taper at the leg.",
+                "The Boulevard Bomber;$89;• 60% Cotton, 40% Nylon\n• Dry clean only\n\nClassic bomber style with rib collar, cuff and hem | Single welt hand pockets with snap | Water repellent | Fully lined.",
+                "Relax Fit Men's Jeans;$69.5;• 1% elastane (Lycra®), 100% cotton\n• Zip fly\n• 5-pocket styling\n• Machine wash cold\n\nA comfortable classic, introduced in 1985 and loved ever since. After the '70s were over, things got more relaxed, including Levi's® jeans. This pair features extra room throughout with a slight, tailor-like taper at the leg.",
                 "Uncharted Grey Hoodie;$39;• Color: Vintage Heather\n• Style: Classic Hoodie\n• Cotton/Poly fleece blend\n\nSuper warm and cozy fleece lining with an adjustable hood and banded cuffs to keep in the heat."
         };
         String xRay4Merchandise[] = {
@@ -564,8 +564,8 @@ public final class MovieList {
                 "Meryl Streep;• Born in Summit, NJ, American\n• Age: 73 (1949)\n• Height: 5′ 6″\n• Nationality: American;Mary Louise Streep is an American actress. Often described as \"the best actress of her generation\", Streep is particularly known for her versatility and accent adaptability.",
                 "Green 1950S Leopard Patchwork Button Coat;$99.99;• 100% Polyester\n• Length: Knee-Length\n• No Stretch\n\nThe 1950s vintage green button coat is to tribute to the movie The Devil Wears Prado. It can keep your retro feminine charm in cold winter! It's a coat that can change between two collar styles. You can button up all the leopard buttons and the unique leopard neckline that wraps around your neck for warmth and elegance.",
                 "Double Breasted Slant Pockets Coat;$82.99;• 100% Polyester\n• Button closure\n• Machine wash cold\n\nTake on chilly winter with this stylish midi length coat with its chic stand collar design and double breasted details.",
-                "Wool Alpaca Mohair Coat;$871; • 48% wool, 22% alpaca, 15% nylon, 15% mohair\n• Length: 125 cm\n• Do not wash, do not bleach\n\nWool, alpaca and mohair coat featuring wide lapels, kimono sleeves and welt pockets. The central rear vent and waist tie belt enhance the garment’s flared fit.",
-                "Black Wool Trench Coat;$179; • 100% Wool Blend\n• Front: Double Breasted Button Closure\n• Collar: Wide Lapel Style\n• Pockets: One Inside Pocket\n• Handwash only\n\nAn elegant addition to your fall wardrobe, this coat is crafted from a blend of premium quality wool. This coat can be worn to work, brunch, or a night out.",
+                "Wool Alpaca Mohair Coat;$871;• 48% wool, 22% alpaca, 15% nylon, 15% mohair\n• Length: 125 cm\n• Do not wash, do not bleach\n\nWool, alpaca and mohair coat featuring wide lapels, kimono sleeves and welt pockets. The central rear vent and waist tie belt enhance the garment’s flared fit.",
+                "Black Wool Trench Coat;$179;• 100% Wool Blend\n• Front: Double Breasted Button Closure\n• Collar: Wide Lapel Style\n• Pockets: One Inside Pocket\n• Handwash only\n\nAn elegant addition to your fall wardrobe, this coat is crafted from a blend of premium quality wool. This coat can be worn to work, brunch, or a night out.",
                 "Shiny Leather Coat;$6900;• 100% Lambskin\n• Half lined\n• Regular fit\n\nCrafted in buttery lambskin, this coat takes styling directions from the classic trench — but with added femininity"
         };
         String xRay5Merchandise[] = {
@@ -728,8 +728,8 @@ public final class MovieList {
                 "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcThc7oo4fMr_4pDB10xmnt2EYxddGujH8hxr9Ctr3Y41iEJsme3vpiOdMmkZmufBgOdbLxSxz67nv0GNXI",
 
                 "https://cdn.shopify.com/s/files/1/0419/1525/products/1024x1024-Men-Racer-Black-122122-1_1024x1024.jpg?v=1672325278",
-                "https://cdn11.bigcommerce.com/s-ehg1rcbvlr/images/stencil/1280x1280/products/1019/2716/WhatIStandFor__87211.1583772186.jpg?c=1",
-                "https://cdn.shopify.com/s/files/1/2015/7431/products/product-image-462094998_360x.jpg?v=1571609572",
+                "https://dd4784dac49866101be5-b98bf53fe71a9e56b6bc9ef824d36d5b.ssl.cf1.rackcdn.com/productImage_0-UJbj4AKZ-zoom.jpg",
+                "https://footnycs.com/cdn/shop/products/1d554141-f453-4b02-bef3-3ec3f9673c8a.jpg?v=1671445185&width=493",
                 "https://cdn.shopify.com/s/files/1/0297/3584/5948/products/W2229-02_5sx7wrirk_1024x1024@2x.jpg?v=1637209917",
                 "https://www.jcrew.com/s7-img-facade/BE895_GY5980?hei=850&crop=0,0,680,0"
         };
@@ -788,10 +788,10 @@ public final class MovieList {
                 "https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQ5gpvmOl83tBZMpEoS_iC4AJQ0X8l2LuB6wPhBm5e_3L-06OnVgH2Uk_W_gT7R8XF8URSll1CfeClGP2g",
 
                 "https://shop.universalorlando.com/merchimages/p-time-turner-necklace-1349252.jpg",
-                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/51jFuzVdufL._AC_UY1000_.jpg",
-                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81n-twKyfpL._AC_UX679_.jpg",
+                "https://i5.walmartimages.com/asr/c249ec41-ea63-4d6d-ac45-0a824a67eeb3.9dc9d8740a644e65cbc73dd078971cc2.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+                "https://jcpenney.scene7.com/is/image/JCPenney/DP1122202209035515M?hei=550&wid=550&op_usm=.4%2C.8%2C0%2C0&resmode=sharp2&op_sharpen=1",
                 "https://i5.walmartimages.com/asr/2d28a7d6-1e9c-41f2-864f-101de497940e.d0b15b0b19cebb02d346747d3138ff95.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/71QgSP73vDL._AC_UX679_.jpg"
+                "https://www.jcrew.com/s7-img-facade/BH180_PP3190?hei=975&crop=0,0,780,0"
         };
         String xRay9Description[] = {
                 "Daniel Radcliff;• Born in London, United Kingdom\n• Age: 33 (1989)\n• Height: 5′ 5″\n• Nationality: British;Daniel Jacob Radcliffe is an English actor. He rose to fame at age twelve, when he began portraying Harry Potter in the film series of the same name. Over his career, Radcliffe has received various awards and nominations.",
@@ -1153,10 +1153,10 @@ public final class MovieList {
                 "https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcT6yLZJDe27K2ZWNIIWZFywSs76i2EfgQhIiWIEs276vI-FuJ1kAbeHNuun4ypXDyWmom9SrhwVCni5-jw",
 
                 "https://m.media-amazon.com/images/I/41G3j9swTPL._SS768_.jpg",
-                "https://www.angeljackets.com/product_images/s/914/Mens_Brown_Wool_Coat__45659_std.jpg",
+                "https://image.msscdn.net/images/goods_img/20220914/2791379/2791379_16932919445877_500.jpg",
                 "https://images.hugoboss.com/is/image/boss/hbna50391090_032_300?$re_fullPageZoom$&qlt=85&fit=crop,1&align=1,1&wid=1600&hei=2424&fmt=webp",
                 "https://slimages.macysassets.com/is/image/MCY/products/8/optimized/20006988_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-                "https://cdn.shopify.com/s/files/1/0320/1712/1413/products/eng_cfad5697-5a7e-4e50-9a03-bf6ed10a06c7_large.jpg?v=1677598865"
+                "https://fashionablecanes.com/cdn/shop/products/royal-canes-walking-cane-engraving-chrome-fritz-custom-engrave-handle-walking-cane-16344820809861.jpg?v=1693414279"
         };
         String xRay15Description[] = {
                 "Robert Downey Jr;• Born in New York, NY, American\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
@@ -1205,13 +1205,13 @@ public final class MovieList {
 
                 "LED UV Flashlight",
                 "The Relaxed Oxford Shirt",
-                "Lauren Conrad Fitted Blazer",
+                "Lauren Conrad Blazer",
                 "French Dress Shirt",
                 "Classic Fit Suit"
         };
         String xRay16ImageUrl[] = {
                 "https://hips.hearstapps.com/hmg-prod/images/gettyimages-1257937597.jpg?resize=1200:*",
-                "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/S/pv-target-images/e4882ea15573335f25a13a82c55fb3bdeb5e8f5eee08e4ba17cb9ddc6403e6a0.jpg",
+                "https://m.media-amazon.com/images/M/MV5BMTYzOTgyNjk1Nl5BMl5BanBnXkFtZTcwNjMwMjI1OQ@@._V1_.jpg",
 
                 "https://i5.walmartimages.com/asr/6d522a53-a8ed-4e97-9bdf-dee3b23e4d09.87bb462f27c6133ab8ce3adea82e579c.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
                 "https://media.everlane.com/image/upload/c_fill,w_828,ar_1:1,q_auto,dpr_1.0,f_auto,fl_progressive:steep/i/c91d1081_64c7",
@@ -1396,7 +1396,7 @@ public final class MovieList {
         };
         String xRay19ImageUrl[] = {
                 "https://cdn.britannica.com/65/227665-050-D74A477E/American-actor-Leonardo-DiCaprio-2016.jpg",
-                "https://cdn.thehollywoodgossip.com/uploads/2020/12/elliot-page-photo.jpg",
+                "https://m.media-amazon.com/images/M/MV5BNmNhZmFjM2ItNTlkNi00ZTQ4LTk3NzYtYTgwNTJiMTg4OWQzXkEyXkFqcGdeQXVyMTM1MjAxMDc3._V1_FMjpg_UX1000_.jpg",
 
                 "https://m.media-amazon.com/images/I/A1EWEloIIAL._AC_SX679_.jpg",
                 "https://oldnavy.gap.com/webcontent/0018/874/657/cn18874657.jpg",
@@ -1469,7 +1469,7 @@ public final class MovieList {
                 "Walker Scobell;• Born in Los Angeles, CA, American\n• Age: 14 (2009)\n• Height: 4′ 11″\n• Nationality: American;Walker Scobell is best recognized for his role in the sci-fi film The Adam Project. He also appeared in the film Secret Headquarters in the same year. He began acting while in elementary school.",
 
                 "Tactical Flashlights Torch;$14.99;• Super bright with 5 Modes\n• Adjustable focus-adjustable focus for Use in different situations\n• Waterproof\n• Widely Use-easy to carry with you as a backup\n\n",
-                "Deluxe Blended Coveralls;$54.99;• 65% Polyester, 35% cotton\n• Double-ended zipper\n\n These men's long sleeve coveralls are spacious enough to layer underneath and are comfortable enough to wear during long, tough days. Put them on to work on vehicles and other tasks.",
+                "Deluxe Blended Coveralls;$54.99;• 65% Polyester, 35% cotton\n• Double-ended zipper\n\nThese men's long sleeve coveralls are spacious enough to layer underneath and are comfortable enough to wear during long, tough days. Put them on to work on vehicles and other tasks.",
                 "Vest Gilet;$55.98;• 100% Polyester\n• Micro-elastic\n• Regular Fit\n• Machine wash cold\n\nOutdoor work fishing travel photo vest perfect for casual daily wear and outdoor activities, such as traveling, safari, cycling, camping, hiking, sports, working, fishing, photography, sightseeing, hunting, bird watching, river guide adventures, and any other activities.",
                 "Flannel Plaid Casual Shirt;$18.49;• 100% Cotton\n• Flannel\n• Button closure\n• Machine wash\n\nClassically styled with a pointed collar and button front, long sleeve, chest pocket, curved shirttail hem, suitable for both boys and girls from little, big to youth.",
                 "Stainless Photo Necklace;$69.3;• Custom photo pendant\n• Engraving options\n• Variety of rolo chain lengths\n\nCreate a unique dog tag photo necklace with Eve's Addiction's new photo jewelry. This stunning Stainless Photo Necklace can be customized in seconds with your own photo!"
