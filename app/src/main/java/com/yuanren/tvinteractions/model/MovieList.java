@@ -363,6 +363,7 @@ public final class MovieList {
         String xRay2Name[] = {
                 "Dwayne Johnson",
                 "Ryan Reynolds",
+
                 "Brunello Cucinelli Blazer",
                 "Suunto Core Watch",
                 "iPhone SE",
@@ -372,10 +373,11 @@ public final class MovieList {
         String xRay2ImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/235135_v9_bb.jpg",
                 "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcRDIJ-PkZ_U6WOLo7fm-UVwSZbyFb8fu5TVmvvErBzsxb_TmMMdJEyOMBT53C7zqxvuqDATtVONl_l5zPM",
+
                 "https://cdn-images.farfetch-contents.com/18/64/56/76/18645676_41150734_1000.jpg",
                 "https://www.suunto.com/globalassets/productimages/suunto-core-alu-deep-black/suunto-core-alu-deep-black-3946.png?height=1100&format=jpg&bgcolor=f6f6f6",
                 "https://m.media-amazon.com/images/I/61TOWf11+jL.jpg",
-                "https://bestphone.ru/upload/resize_cache/iblock/0dc/1200_1200_140cd750bba9870f18aada2478b24840a/p0zihiqy743eb8fc2aomrmdju08572er.jpg",
+                "https://www.att.com/scmsassets/global/devices/tablets/apple/apple-ipad-mini-2021/defaultimage/purple-hero-zoom.png",
                 "https://m.media-amazon.com/images/I/41qqMswbp4L._AC_SX679_.jpg"
         };
         String xRay2Description[] = {
