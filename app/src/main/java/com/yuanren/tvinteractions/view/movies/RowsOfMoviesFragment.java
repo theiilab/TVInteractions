@@ -131,6 +131,26 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 });
     }
 
+    /** This is only used for restrict the tv app from restoring its ancestor item (memorize selected item between rows).
+     * Used for user study, and should be remove for regular use */
+    public void selectRowItemByCol(int row, int col) {
+        setSelectedPosition(
+                row,
+                true,
+                new ListRowPresenter.SelectItemViewHolderTask(col) {
+                    @Override
+                    public void run(Presenter.ViewHolder holder) {
+                        super.run(holder);
+                        holder.view.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                holder.view.requestFocus();
+                            }
+                        }, 200);
+                    }
+                });
+    }
+
     // called when user navigate to the item and focus on it
     private final class ItemViewSelectedListener implements OnItemViewSelectedListener {
         @Override
@@ -160,6 +180,16 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                                 navigationMenuCallback.navMenuToggle(true);
                             } else if (i == KeyEvent.KEYCODE_DPAD_UP && row.getId() == 0) { // navigate up on the first movie
                                 return true; // handle it by self view, do nothing, so that the focus won't change or lost
+                            }/** Below are only used for restrict the tv app from restoring its ancestor item (memorize selected item between rows).
+                             * Used for user study, and should be remove for regular use */
+                            else if (i == KeyEvent.KEYCODE_DPAD_UP) {
+                                int rowIndex = (int) Math.max(0, row.getId() - 1);
+                                selectRowItemByCol(rowIndex, indexOfItemInRow);
+                                return true;
+                            } else if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
+                                int rowIndex = (int) Math.min(MovieList.NUM_MOVIE_CATEGORY - 1, row.getId() + 1);
+                                selectRowItemByCol(rowIndex, indexOfItemInRow);
+                                return true;
                             }
                         }
                         return false; // handle the UI behavior by parent
