@@ -21,6 +21,7 @@ import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.model.Movie;
@@ -110,6 +111,8 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         bannerMovieDescription.setText(movie.getDescription());
         Glide.with(this)
                 .load(movie.getBackgroundImageUrl())
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(bannerBackgroundImage);
     }
@@ -146,7 +149,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             public void run() {
                                 holder.view.requestFocus();
                             }
-                        }, 200);
+                        }, 10);
                     }
                 });
     }

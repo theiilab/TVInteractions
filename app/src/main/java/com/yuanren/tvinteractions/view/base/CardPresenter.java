@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.leanback.widget.Presenter;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 
@@ -31,6 +32,8 @@ public class CardPresenter extends Presenter {
 //        cardViewHolder.title.setText(movie.getTitle());
         Glide.with(viewHolder.view.getContext())
                 .load(movie.getCardImageUrl())
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(cardViewHolder.movie);
     }

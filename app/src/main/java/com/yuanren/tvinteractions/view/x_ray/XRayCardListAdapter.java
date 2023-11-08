@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.XRayItem;
 
@@ -43,6 +44,8 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
         xRayCardViewHolder.name.setText(item.getName());
         Glide.with(xRayCardViewHolder.itemView.getContext())
                 .load(item.getImageUrl())
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(xRayCardViewHolder.image);
 

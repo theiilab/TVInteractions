@@ -21,6 +21,7 @@ import androidx.leanback.widget.Presenter;
 import androidx.leanback.widget.Row;
 import androidx.leanback.widget.RowPresenter;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
 import com.yuanren.tvinteractions.model.Movie;
@@ -86,6 +87,8 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
         Glide.with(getContext())
                 .load(movie.getBackgroundImageUrl())
                 .centerCrop()
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(backgroundImage);
 
         addRowView();

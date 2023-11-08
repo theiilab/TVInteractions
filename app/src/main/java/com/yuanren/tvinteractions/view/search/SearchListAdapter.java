@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
@@ -35,6 +36,8 @@ public class SearchListAdapter extends RecyclerView.Adapter {
         SearchMovieViewHolder searchMovieViewHolder = (SearchMovieViewHolder) holder;
         Glide.with(holder.itemView.getContext())
                 .load(movie.getCardImageUrl())
+                .thumbnail(0.1f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(searchMovieViewHolder.image);
 
