@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -21,8 +22,10 @@ import android.widget.LinearLayout;
 
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
+import com.yuanren.tvinteractions.base.SocketUpdateCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
+import com.yuanren.tvinteractions.utils.NetworkUtils;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +37,7 @@ import java.util.List;
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SocketUpdateCallback {
     private static final String TAG = "SearchFragment";
 
     private NavigationMenuCallback navigationMenuCallback;
@@ -115,6 +118,9 @@ public class SearchFragment extends Fragment {
                 Log.d(TAG, "Input text changed");
             }
         });
+
+        NetworkUtils.setSocketUpdateCallback(this);
+        NetworkUtils.start();
     }
 
     public void onKeyClick(View v) {
@@ -128,5 +134,29 @@ public class SearchFragment extends Fragment {
             userInput.append(v.getTag().toString().toLowerCase());
         }
         inputField.setText(userInput.toString());
+    }
+
+    // for smartwatch inu[put
+    @Override
+    public void update(Handler handler, String text) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                inputField.setText(text);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        NetworkUtils.setSocketUpdateCallback(this);
+        NetworkUtils.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        NetworkUtils.stop();
     }
 }
