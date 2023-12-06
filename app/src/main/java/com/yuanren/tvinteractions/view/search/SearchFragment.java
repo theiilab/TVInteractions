@@ -1,5 +1,6 @@
 package com.yuanren.tvinteractions.view.search;
 
+import android.content.pm.ModuleInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,14 @@ import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -116,6 +124,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
             @Override
             public void afterTextChanged(Editable editable) {
                 Log.d(TAG, "Input text changed");
+                adapter.update(getSearchResult(editable.toString()));
             }
         });
 
@@ -134,6 +143,55 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
             userInput.append(v.getTag().toString().toLowerCase());
         }
         inputField.setText(userInput.toString());
+    }
+
+    private List<Movie> getSearchResult(String searchName) {
+        List<Movie> result = new ArrayList<>();
+        Map<Movie, Integer> map = new HashMap<>();
+
+        for (Movie movie: movies) {
+            int score = minDistance(movie.getTitle().toLowerCase(), searchName);
+            map.put(movie, score);
+        }
+
+        // Create a list from elements of HashMap
+        List<Map.Entry<Movie, Integer> > list =
+                new LinkedList<Map.Entry<Movie, Integer>>(map.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Movie, Integer> >() {
+            @Override
+            public int compare(Map.Entry<Movie, Integer> o1, Map.Entry<Movie, Integer> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        for (int i = 0; i < list.size(); ++i) {
+            result.add(list.get(i).getKey());
+        }
+
+        return result;
+    }
+
+    private int minDistance(String s1, String s2) {
+        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+
+        for (int i = 0; i < s1.length() + 1; ++i) {
+            dp[i][0] = i;
+        }
+
+        for (int j = 0; j < s2.length() + 1; ++j) {
+            dp[0][j] = j;
+        }
+
+        for (int i = 1; i < s1.length() + 1; ++i) {
+            for (int j = 1; j < s2.length() + 1; ++j) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + 1;
+                }
+            }
+        }
+        return dp[s1.length()][s2.length()];
     }
 
     // for smartwatch inu[put

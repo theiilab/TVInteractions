@@ -23,6 +23,12 @@ public class SearchListAdapter extends RecyclerView.Adapter {
     public SearchListAdapter(List<Movie> data) {
         this.data = data;
     }
+
+    public void update(List<Movie> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
