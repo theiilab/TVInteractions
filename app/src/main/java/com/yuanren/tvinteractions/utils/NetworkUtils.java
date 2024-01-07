@@ -100,11 +100,8 @@ public class NetworkUtils {
                     Log.i(TAG,"Client : " + read);
 
                     // update message on UI Thread
-
-                    if (!read.equals("")) {
-                        String text = loadActionData(read);
-                        socketUpdateCallback.update(handler, text);
-                    }
+                    String text = loadActionData(read);
+                    socketUpdateCallback.update(handler, text);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
