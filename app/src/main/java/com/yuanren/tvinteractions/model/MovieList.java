@@ -12,7 +12,7 @@ import java.util.Map;
 
 public final class MovieList {
     public static final int NUM_REAL_MOVIE = 2; //
-    public static final int NUM_MOVIE_CATEGORY = 10; // change MOVIE_CATEGORY accordingly
+    public static final int NUM_MOVIE_CATEGORY = 11; // change MOVIE_CATEGORY accordingly
     private static  final String KEY_TYPE = "type";
     private static  final String KEY_NAME = "name";
     private static  final String KEY_IMAGE = "image";
@@ -33,7 +33,8 @@ public final class MovieList {
             "Adventure",
             "Fantasy",
             "Musicals",
-            "Mysteries"
+            "Mysteries",
+            "Sports"
     };
 
     public static List<Movie> getList() {
@@ -60,7 +61,7 @@ public final class MovieList {
         return null;
     }
 
-    public static List<Movie> setupMovies(int length) {
+    public static List<Movie> setupMovies() {
         list = new ArrayList<>();
         String title[] = {
                 "The King's Man",
@@ -82,7 +83,9 @@ public final class MovieList {
                 "Flipped",
                 "Crazy Rich Asians",
                 "Inception",
-                "The Adam Project"
+                "The Adam Project",
+                "Space Jam",
+                "Million Dollar Baby"
         };
 
         String description = "Fusce id nisi turpis. Praesent viverra bibendum semper. "
@@ -111,7 +114,9 @@ public final class MovieList {
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
                 "Warner Bros. Pictures",
-                "Netflix"
+                "Netflix",
+                "Warner Bros. Pictures",
+                "Warner Bros. Pictures"
         };
         String category[] = {
                 MOVIE_CATEGORY[3],
@@ -134,6 +139,8 @@ public final class MovieList {
                 MOVIE_CATEGORY[1],
                 MOVIE_CATEGORY[5],
                 MOVIE_CATEGORY[5],
+                MOVIE_CATEGORY[10],
+                MOVIE_CATEGORY[10]
         };
         String videoUrl[] = {
                 "https://streamable.com/l/59by34/mp4-high.mp4",  // Kings Man
@@ -164,7 +171,10 @@ public final class MovieList {
                 "https://streamable.com/l/24bwrf/mp4-high.mp4",  // Crazy Rich Asians
 
                 "https://streamable.com/l/r5v0uu/mp4-high.mp4",  // Inception
-                "https://streamable.com/l/p0qlbd/mp4-high.mp4"   // The Adam Project
+                "https://streamable.com/l/p0qlbd/mp4-high.mp4",   // The Adam Project
+
+                "https://streamable.com/l/p0qlbd/mp4-high.mp4", // Space Jam
+                "https://streamable.com/l/p0qlbd/mp4-high.mp4" // Million Dollar Baby
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
@@ -195,7 +205,10 @@ public final class MovieList {
                 "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2020/06/21122846/Crazy-Rich-Asians-background.jpg",
 
                 "https://i4.hurimg.com/i/hurriyet/75/1200x675/5f5965580f25440e585d7e6f.jpg",
-                "https://i0.wp.com/615film.com/wp-content/uploads/2022/03/the-adam-project-header-image.jpg?fit=1280%2C720&ssl=1"
+                "https://i0.wp.com/615film.com/wp-content/uploads/2022/03/the-adam-project-header-image.jpg?fit=1280%2C720&ssl=1",
+
+                "https://cdn.mos.cms.futurecdn.net/aj3sYEDRRaEaaUfK29ae9Y.jpg",
+                "https://static.filmin.es/images/media/4226/5/still_0_3_790x398.webp"
         };
         String cardImageUrl[] = {
                 "https://flxt.tmsimg.com/assets/p10672282_p_v8_ad.jpg",
@@ -226,26 +239,29 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/M/MV5BMTYxNDMyOTAxN15BMl5BanBnXkFtZTgwMDg1ODYzNTM@._V1_.jpg",
 
                 "https://assets.mycast.io/posters/inception-2-the-big-under-2023-fan-casting-poster-66202-large.jpg?1605643123",
-                "https://image.tmdb.org/t/p/original/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg"
+                "https://image.tmdb.org/t/p/original/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg",
+
+                "https://m.media-amazon.com/images/M/MV5BOWEzNTQxZDctZTcwOS00Zjk4LWExMGMtYjg1NDNjZDZlMDg4XkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg",
+                "https://m.media-amazon.com/images/S/pv-target-images/7bb2b7fca3e3f959747c580286668aa470c9ed2547d07c6bc45da49a01381246.jpg"
         };
 
         int n = title.length;
-        for (int index = 0; index < length; ++index) {
+        for (int index = 0; index < n; ++index) {
             list.add(
                     buildMovieInfo(
-                            (long) index % n,
-                            title[index % n],
+                            (long) index,
+                            title[index],
                             description,
-                            studio[index % n],
-                            category[index % n],
-                            videoUrl[index % n],
-                            cardImageUrl[index % n],
-                            bgImageUrl[index % n],
+                            studio[index],
+                            category[index],
+                            videoUrl[index],
+                            cardImageUrl[index],
+                            bgImageUrl[index],
                             setUpXRayItems()));
         }
 
         // set up make up dummy movies for each category (only 2 real movie in each category)
-        setUpDummyMovies(length - NUM_REAL_MOVIE);
+        setUpDummyMovies(n - NUM_REAL_MOVIE);
         return list;
     }
 
@@ -381,8 +397,9 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/I/41qqMswbp4L._AC_SX679_.jpg"
         };
         String xRay2Description[] = {
-                "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
+                "Dwayne Johnson;• Born in Hayward, CA, America\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
                 "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
+
                 "Brunello Cucinelli Silk-Lapel Single-Breasted Llazer;$4995;• Outer: 100% Cotton\n• Lining: 100% Cupro\n• Dry Clean Only\n\nMade in Italy.",
                 "Suunto Core Alu Deep Black;$229;• Measurements: 49.1 x 49.1 x 14.5 mm\n• Weight: 79 g\n• Bezel material: Aluminum\n• Glass material: Mineral crystal\n\nSuunto Core Premium combines modern design with the essential outdoor functions. Choose rigid natural stainless steel with sapphire crystal glass for added durability, or the elegant aluminum cases for less weight on the wrist.",
                 "iPhone SE;$479;• Size: 128 GB\n• Color: Midnight\n• Display:4.7-inch Retina HD display with True Tone\n• Height:138.4 mm\n• Width: 67.3 mm\n• Depth: 7.3 mm\n• Weight: 144 g",
@@ -441,9 +458,10 @@ public final class MovieList {
                 "https://m.media-amazon.com/images/I/610b7cSuRaL._AC_UY879_.jpg"
         };
         String xRay3Description[] = {
-                "Dwayne Johnson;• Born in Hayward, CA, American\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
-                "Kevin Hart;• Born in Philadelphia, PA, American\n• Age: 43 (1979)\n• Height: 5′ 2″\n• Nationality: American;Kevin Darnell Hart is an American comedian and actor. Originally known as a stand-up comedian, he has since starred in Hollywood films and on TV. He has also released several well-received comedy albums.",
+                "Dwayne Johnson;• Born in Hayward, CA, America\n• Age: 50 (1972)\n• Height: 6′ 5″\n• Nationality: American;Dwayne Douglas Johnson, also known by his ring name The Rock, is an American actor and former professional wrestler.",
+                "Kevin Hart;• Born in Philadelphia, PA, America\n• Age: 43 (1979)\n• Height: 5′ 2″\n• Nationality: American;Kevin Darnell Hart is an American comedian and actor. Originally known as a stand-up comedian, he has since starred in Hollywood films and on TV. He has also released several well-received comedy albums.",
                 "Karen Gillan;• Born in Inverness, United Kingdom\n• Age: 35 (1987)\n• Height: 5′ 11″\n• Nationality:British, Scottish;Karen Sheila Gillan is a Scottish actress. She gained recognition for her work in British film and television, particularly for playing Amy Pond, a primary companion to the Eleventh Doctor in the science fiction series Doctor Who, for which she received several awards and nominations.",
+
                 "Timberland Mill River Linen Cargo SS Shirt ;$90;• Cotton: 100%\n• Machine Wash\n\nThis durable short-sleeve work shirt comes standard with built-in stretch, so whatever you're doing, it's easier to do.",
                 "Riparo Motorsports Half Finger Gloves;$41.5;• Material: Leather\n• Color: Black\n• Sport Type: Cycling\n\nThese genuine leather gloves have the quality and the features you would expect from a pair of quality driving gloves , including soft supple leather and a snap closure on the wrist strap.",
                 "Army Camo Multicam Pants;$99.99;• 50% cotton\n• 50% nylon\n• Machine Wash\n\nThere are some core features include: double layer seat /knee areas for durability ,a rugged metal YKK zipper is used for the fly, knees are slightly articulated, and a simple velcro strap system in built into the waist to allow for size adjustments.",
@@ -504,8 +522,9 @@ public final class MovieList {
         };
         String xRay4Description[] = {
                 "Tom Holland;• Born in Kingston upon Thames, United Kingdom\n• Age: 26 (1996)\n• Height: 5′ 8″\n• Nationality: British;Thomas Stanley Holland is an English actor. His accolades include a British Academy Film Award, three Saturn Awards, a Guinness World Record and an appearance on the Forbes 30 Under 30 Europe list. Some publications have called him one of the most popular actors of his generation.",
-                "Sophia Ali;• Born in San Diego, CA, American\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Sophia Taylor Ramsey Ali is an American actress. She is best known for her work in the MTV romantic comedy series Faking It, the ABC medical drama series Grey's Anatomy, and The Wilds.",
-                "Mark Wahlberg;• Born in Boston, MA, American\n• Age: 51 (1971)\n• Height: 5′ 8″\n• Nationality: American;Mark Robert Michael Wahlberg, former stage name Marky Mark, is an American actor, businessman, and former rapper. His work as a leading man spans the comedy, drama, and action genres.",
+                "Sophia Ali;• Born in San Diego, CA, America\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Sophia Taylor Ramsey Ali is an American actress. She is best known for her work in the MTV romantic comedy series Faking It, the ABC medical drama series Grey's Anatomy, and The Wilds.",
+                "Mark Wahlberg;• Born in Boston, MA, America\n• Age: 51 (1971)\n• Height: 5′ 8″\n• Nationality: American;Mark Robert Michael Wahlberg, former stage name Marky Mark, is an American actor, businessman, and former rapper. His work as a leading man spans the comedy, drama, and action genres.",
+
                 "Neck Ruffle Fit and Flare Dress;$128;• 100% Polyester/Rayon\n• Length: Regular 136cm, Petite 134cm\n\nThis one features fun ruffle details and a flattering fit and flare style. This piece perfectly pairs with heels or booties for your next event.",
                 "Vegan Leather Moto Jacket;$128;• Machine wash cold, tumble dry low\n\nWater resistant outer shell for extra protection against inclement weather.",
                 "The Boulevard Bomber;$89;• 60% Cotton, 40% Nylon\n• Dry clean only\n\nClassic bomber style with rib collar, cuff and hem | Single welt hand pockets with snap | Water repellent | Fully lined.",
@@ -562,8 +581,9 @@ public final class MovieList {
                 "https://bottega-veneta.dam.kering.com/m/743220d2534df4b0/Large-713813VKLC02164_A.jpg?v=2"
         };
         String xRay5Description[] = {
-                "Anne Hathaway;• Born in New York, NY, American\n• Age: 40 (1982)\n• Height: 5′ 8″\n• Nationality: American;Anne Jacqueline Hathaway is an American actress. The recipient of various accolades, including an Academy Award, a Golden Globe Award, and a Primetime Emmy Award, she was among the world's highest-paid actresses in 2015.",
-                "Meryl Streep;• Born in Summit, NJ, American\n• Age: 73 (1949)\n• Height: 5′ 6″\n• Nationality: American;Mary Louise Streep is an American actress. Often described as \"the best actress of her generation\", Streep is particularly known for her versatility and accent adaptability.",
+                "Anne Hathaway;• Born in New York, NY, America\n• Age: 40 (1982)\n• Height: 5′ 8″\n• Nationality: American;Anne Jacqueline Hathaway is an American actress. The recipient of various accolades, including an Academy Award, a Golden Globe Award, and a Primetime Emmy Award, she was among the world's highest-paid actresses in 2015.",
+                "Meryl Streep;• Born in Summit, NJ, America\n• Age: 73 (1949)\n• Height: 5′ 6″\n• Nationality: American;Mary Louise Streep is an American actress. Often described as \"the best actress of her generation\", Streep is particularly known for her versatility and accent adaptability.",
+
                 "Green 1950S Leopard Patchwork Button Coat;$99.99;• 100% Polyester\n• Length: Knee-Length\n• No Stretch\n\nThe 1950s vintage green button coat is to tribute to the movie The Devil Wears Prado. It can keep your retro feminine charm in cold winter! It's a coat that can change between two collar styles. You can button up all the leopard buttons and the unique leopard neckline that wraps around your neck for warmth and elegance.",
                 "Double Breasted Slant Pockets Coat;$82.99;• 100% Polyester\n• Button closure\n• Machine wash cold\n\nTake on chilly winter with this stylish midi length coat with its chic stand collar design and double breasted details.",
                 "Wool Alpaca Mohair Coat;$871;• 48% wool, 22% alpaca, 15% nylon, 15% mohair\n• Length: 125 cm\n• Do not wash, do not bleach\n\nWool, alpaca and mohair coat featuring wide lapels, kimono sleeves and welt pockets. The central rear vent and waist tie belt enhance the garment’s flared fit.",
@@ -619,8 +639,8 @@ public final class MovieList {
                 "https://i.etsystatic.com/23311721/r/il/4506a5/2645644622/il_1588xN.2645644622_kle6.jpg"
         };
         String xRay6Description[] = {
-                "Leonardo DiCaprio;• Born in Los Angeles, CA, American\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
-                "Kyle Chandler;• Born in Buffalo, NY, American\n• Age: 57 (1965)\n• Height: 6′ 0″\n• Nationality: American;Kyle Martin Chandler is an American actor. Making his screen acting debut in a 1988 television film, Quiet Victory: The Charlie Wedemeyer Story, Chandler's first regular television role was in the ABC drama Homefront.",
+                "Leonardo DiCaprio;• Born in Los Angeles, CA, America\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
+                "Kyle Chandler;• Born in Buffalo, NY, America\n• Age: 57 (1965)\n• Height: 6′ 0″\n• Nationality: American;Kyle Martin Chandler is an American actor. Making his screen acting debut in a 1988 television film, Quiet Victory: The Charlie Wedemeyer Story, Chandler's first regular television role was in the ABC drama Homefront.",
                 "The Iconic Mesh Polo Shirt;$110;• 100% Cotton\n• Length: 28.5\" front & 29.5\" back\n• Machine washable\n\nOver the decades, Ralph Lauren has reimagined his signature style in a wide array of colors and fits, yet all retain the quality and attention to detail of the iconic original. This relaxed version is made with our highly breathable cotton mesh, which offers a textured look and a soft feel. ",
                 "TAG Heuer Professional 1000;$3850;• Brand: TAG Heuer\n• Band/Strap: Bracelet\n• Case Material: Gold Plated\n• Case Size: 38 mm\n\nFor more than 160 years, TAG Heuer has led, never followed, setting its own rules and driving watchmaking into uncharted territories. Its timepieces are not faithful reflections of tradition, but true representatives of design and engineering at their most innovative and awe-inspiring.",
                 "Ray-Ban ® RB4147 Sunglasses;$151;• Frame shape: Square\n• Frame color: Polished Black\n• Frame material: Nylon\n• Len height: 48.5mm\n• Bridge width: 60 15mm\n\nRay-Ban ® RB4147 sunglasses are fashionable and bold with larger rounded square lenses in propionate plastic frames which offer maximum sun protection while embracing a chic Hollywood look.",
@@ -678,7 +698,8 @@ public final class MovieList {
         };
         String xRay7Description[] = {
                 "Tom Hardy;• Born in London, United Kingdom\n• Age: 45 (1977)\n• Height: 5′ 9″\n• Nationality: British;Edward Thomas Hardy CBE is an English actor. After studying acting at the Drama Centre London, he made his film debut in Ridley Scott's Black Hawk Down.",
-                "Michelle Williams;• Born in Kalispell, MT, American\n• Age: 42 (1980)\n• Height: 5′ 4″\n• Nationality: American;Michelle Ingrid Williams is an American actress. Known primarily for starring in small-scale independent films with dark or tragic themes, she has received various accolades, including two Golden Globe Awards and a Primetime Emmy Award, in addition to nominations for five Academy Awards and a Tony Award.",
+                "Michelle Williams;• Born in Kalispell, MT, America\n• Age: 42 (1980)\n• Height: 5′ 4″\n• Nationality: American;Michelle Ingrid Williams is an American actress. Known primarily for starring in small-scale independent films with dark or tragic themes, she has received various accolades, including two Golden Globe Awards and a Primetime Emmy Award, in addition to nominations for five Academy Awards and a Tony Award.",
+
                 "Marc Jacobs Painted Flower Wrap Dress;$695;• 100% Silk\n• Brand: Marc Jacobs\n• Length: 112 cm\n• Waist tie detail, surplice front\n• Dry clean only\n\nThis Marc Jacobs Painted Flower Wrap Dress is a colorful fashion statement featuring dark florals and a sleek wrap silhouette at midi length. Crafted from finest quality silk, it is easy-to-pack and multi-purpose, especially in vacation time.",
                 "Valentino Garavani Carry Secrets Clutch;$2280;• Brand: Valentino Garavani \n• Black and gold leather (Goat), gold-tone metal\n• Clasp fastening at top\n• Made in Italy\n\nValentino Garavani's 'Carry Secrets' clutch will keep your treasured possessions safe. Crafted from leather with a structured gold-tone metal frame, it's embellished with countless crystals to depict a dragon motif that was originally showcased in 1969. Let yours be the focal point of an all-black outfit.",
                 "Stretch Zip Hoodie;$99;• 100% Wool\n• 2 front pockets for comfort\n• Machine Wash Cold\n\nThe go everywear hoodie now in our exclusive stretch fleece.",
@@ -736,8 +757,8 @@ public final class MovieList {
                 "https://www.jcrew.com/s7-img-facade/BE895_GY5980?hei=850&crop=0,0,680,0"
         };
         String xRay8Description[] = {
-                "Robert Downey Jr;• Born in New York, NY, American\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
-                "Terrence Howard;• Born in Chicago, IL, American\n• Age: 54 (1969)\n• Height: 6′ 0″\n• Nationality: American;Terrence Dashon Howard is an American actor, rapper, singer, and producer. Having his first major roles in the 1995 films Dead Presidents and Mr. Holland's Opus, Howard broke into the mainstream with a succession of television and cinema roles between 2004 and 2006. ",
+                "Robert Downey Jr;• Born in New York, NY, America\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
+                "Terrence Howard;• Born in Chicago, IL, America\n• Age: 54 (1969)\n• Height: 6′ 0″\n• Nationality: American;Terrence Dashon Howard is an American actor, rapper, singer, and producer. Having his first major roles in the 1995 films Dead Presidents and Mr. Holland's Opus, Howard broke into the mainstream with a succession of television and cinema roles between 2004 and 2006. ",
 
                 "Racer Jacket;$349;• Outer: Lambskin leather\n• Inner: Polyester Interior with Leather Trimmings\n• Long-Lasting Metal Zipper\n• Banded Collar with Ideal® Snap Button\n• Dry clean only\n\nThis streamlined leather jacket has been thoughtfully handcrafted to let the quality of the materials speak for themselves. With twin side torso welt pockets, a snap buttoned collar and premium lambskin leather, this represents Thursday versatility at its finest.",
                 "Painted Grey T-Shirt;$28;• Brand: Levi's \n• 50% Polyester\n• 25% Rayon\n• 25% Cotton\n• Machine wash cold\n\nThese grey t-shirts feature a quote by Wendell Berry that reads \"What I Stand For is What I Stand On\"",
@@ -857,7 +878,7 @@ public final class MovieList {
         };
         String xRay10Description[] = {
                 "Eddie Redmayne;• Born in London, United Kingdom\n• Age: 41 (1982)\n• Height: 6′ 0″\n• Nationality: British;Edward John David Redmayne OBE is an English actor. Known primarily for his role in biopics, he has received various accolades, including an Academy Award, a Tony Award, a BAFTA Award, and two Olivier Awards.",
-                "Dan Fogler;• Born in New York, NY, American\n• Age: 46 (1976)\n• Height: 5′ 7″\n• Nationality: American;Daniel Kevin Fogler is an American actor, comedian and writer. He has appeared in films including Balls of Fury, Good Luck Chuck, Fantastic Beasts and Where to Find Them series",
+                "Dan Fogler;• Born in New York, NY, America\n• Age: 46 (1976)\n• Height: 5′ 7″\n• Nationality: American;Daniel Kevin Fogler is an American actor, comedian and writer. He has appeared in films including Balls of Fury, Good Luck Chuck, Fantastic Beasts and Where to Find Them series",
 
                 "Wool Coat;$559.99;• 100% Wool\n• Lapel collar\n• 2 side pockets\n• Dry Clean Only\n• Dry clean only\n\nTransform yourself into the most famous Magizoologist in the history of wizardry with this jacket from Fantastic Beasts And Where To Find Them.",
                 "Wand;$39;• Material: Resin\n• Style: Antique\n• Length: 35cm\n\nThe Wand of Newt Scamander in Collector's Box is a meticulous recreation of the wand prop used in Fantastic Beasts and Where to Find Them, crafted with high quality materials. Officially licensed by Warner Bros.",
@@ -916,8 +937,8 @@ public final class MovieList {
                 "https://img.ebdcdn.com/product/model/portrait/mt6340_m0.jpg?im=Resize,width=500,height=600,aspect=fill;UnsharpMask,sigma=1.0,gain=1.0&q=85"
         };
         String xRay11Description[] = {
-                "Alfredo James Pacino;• Born in East Harlem, New York, NY, American\n• Age: 83 (1940)\n• Height: 5′ 6″\n• Nationality: American;Alfredo James Pacino is an American actor. Considered one of the greatest and most influential actors of the 20th century, Pacino has received numerous accolades: including an Academy Award, two Tony Awards, and two Primetime Emmy Awards, making him one of the few performers to have achieved the Triple Crown of Acting.",
-                "Hilary Swank;• Born in Lincoln, NE, American\n• Age: 49 (1974)\n• Height: 5′ 6″\n• Nationality: American;Hilary Ann Swank is an American actress and film producer. Swank first became known in 1992 for her role on the television series Camp Wilder and made her film debut with a minor role in Buffy the Vampire Slayer.",
+                "Alfredo James Pacino;• Born in East Harlem, New York, NY, America\n• Age: 83 (1940)\n• Height: 5′ 6″\n• Nationality: American;Alfredo James Pacino is an American actor. Considered one of the greatest and most influential actors of the 20th century, Pacino has received numerous accolades: including an Academy Award, two Tony Awards, and two Primetime Emmy Awards, making him one of the few performers to have achieved the Triple Crown of Acting.",
+                "Hilary Swank;• Born in Lincoln, NE, America\n• Age: 49 (1974)\n• Height: 5′ 6″\n• Nationality: American;Hilary Ann Swank is an American actress and film producer. Swank first became known in 1992 for her role on the television series Camp Wilder and made her film debut with a minor role in Buffy the Vampire Slayer.",
 
                 "TAG HEUER Carrera Date Watch;$3200;• Type: Automatic Watch\n• Size: 39 mm\n• Material: Steel\n\nThis TAG Heuer Carrera is ready for anything. Its brushed silver sunray dial is a statement of luxury, beautifully highlighted by the functional and elegant rhodium-plated TAG Heuer logo and Super-Luminova® hands and indexes.",
                 "Lined Journal Notebook;$8.99;• 5-x-8-inch inches\n• Faux Leather\n\nThis lined journal notebook features durable and water-resistant vegan leather cover, can protect the pages inside for years and provide a comfortable writing surface.rounded corners, 160 pages, ribbon bookmark & elastic closure band.",
@@ -977,7 +998,7 @@ public final class MovieList {
                 "https://www.forever21.com/dw/image/v2/BFKH_PRD/on/demandware.static/-/Sites-f21-master-catalog/default/dw0eeed4bc/1_front_750/00471548-06.jpg?sw=1000&sh=1500"
         };
         String xRay12Description[] = {
-                "Virginia Gardner;• Born in Sacramento, CA, American\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Virginia Elizabeth Gardner is an American actress who played Karolina Dean in the Hulu original series Marvel's Runaways, Vicky in David Gordon Green's horror film Halloween and Hunter Shiloh in Lionsgate's survival film Fall.",
+                "Virginia Gardner;• Born in Sacramento, CA, America\n• Age: 27 (1995)\n• Height: 5′ 8″\n• Nationality: American;Virginia Elizabeth Gardner is an American actress who played Karolina Dean in the Hulu original series Marvel's Runaways, Vicky in David Gordon Green's horror film Halloween and Hunter Shiloh in Lionsgate's survival film Fall.",
                 "Grace Fulton;• Born in American\n• Age: 26 (1996)\n• Height: 5′ 7″\n• Nationality: American;Grace Caroline Currey is an American actress and dancer. She is best known for playing Mary Bromfield in the DC Extended Universe films Shazam! and reprising the role in Shazam! Fury of the Gods. She also joined the The Conjuring Universe in Annabelle: Creation as Carol.",
 
                 "iPhone SE;$479;• Size: 128 GB\n• Color: Midnight\n• 4.7-inch Retina HD display\n• Up to 15 hours of video playback\n• A15 Bionic chip for lightning-fast performance\n• 7MP FaceTime HD camera with Smart HDR 4, Photographic Styles, Portrait mode, and 1080p video recording\n\n",
@@ -1040,7 +1061,7 @@ public final class MovieList {
                 "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRvTsG4Xjs8Ni3-T3-jCZbBBOgYvp7welcKqPDNTUokSIL1YYpFE1l0JToU1eDJaJQl7ocEkE1GdJuKt-38Q1oBjwdziK4UIHw7KowobCzf"
         };
         String xRay13Description[] = {
-                "Amanda Seyfried;• Born in Allentown, PA, American\n• Age: 37 (1985)\n• Height: 5′ 2″\n• Nationality: American;Amanda Michelle Seyfried is an American actress. Born and raised in Allentown, Pennsylvania, she began modeling at age 11 and ventured into acting at 15, with recurring roles as Lucy Montgomery on the CBS soap opera As the World Turns and Joni Stafford on the ABC soap opera All My Children.",
+                "Amanda Seyfried;• Born in Allentown, PA, America\n• Age: 37 (1985)\n• Height: 5′ 2″\n• Nationality: American;Amanda Michelle Seyfried is an American actress. Born and raised in Allentown, Pennsylvania, she began modeling at age 11 and ventured into acting at 15, with recurring roles as Lucy Montgomery on the CBS soap opera As the World Turns and Joni Stafford on the ABC soap opera All My Children.",
                 "Rachel McDowall;• Born in Liverpool, United Kingdom\n• Age: 38 (1984)\n• Height: 6′ 0″\n• Nationality: British;Rachel Anne McDowall made her film debut as Lisa in the 2008 film Mamma Mia! The Movie, and had her last of eight film or television roles in a 2016 episode of Zoe Ever After. On stage, she played Swedish woman Ulla in Mel Brooks' musical The Producers in the West End and Velma Kelly in productions of the musical Chicago, in the West End and at the Cambridge Theatre in 2008 and the Garrick Theatre in 2012.",
                 "Ashley Lilley;• Born in Rothesay, United Kingdom\n• Age: 37 (1986)\n• Height: 5′ 9″\n• Nationality: British;Ashley-Anne Lilley is a Scottish actress and singer. She made her debut in the 2008 film Mamma Mia!",
 
@@ -1102,7 +1123,7 @@ public final class MovieList {
                 "https://cdn1.discountdance.com/image/1395x1860/ls3004l_1.jpg"
         };
         String xRay14Description[] = {
-                "Emma Stone;• Born in Scottsdale, AZ, American\n• Age: 34 (1989)\n• Height: 5′ 6″\n• Nationality: American;Emily Jean \"Emma\" Stone is an American actress. She is the recipient of various accolades, including an Academy Award, a British Academy Film Award, and a Golden Globe Award. In 2017, she was the world's highest-paid actress and named by Time magazine as one of the 100 most influential people in the world.",
+                "Emma Stone;• Born in Scottsdale, AZ, America\n• Age: 34 (1989)\n• Height: 5′ 6″\n• Nationality: American;Emily Jean \"Emma\" Stone is an American actress. She is the recipient of various accolades, including an Academy Award, a British Academy Film Award, and a Golden Globe Award. In 2017, she was the world's highest-paid actress and named by Time magazine as one of the 100 most influential people in the world.",
                 "Ryan Gosling;• Born in London, Canada\n• Age: 42 (1980)\n• Height: 6′ 0″\n• Nationality: Canadian;Ryan Thomas Gosling is a Canadian actor. Prominent in both independent film and major studio features of varying genres, his films have accrued a worldwide box office gross of over 1.9 billion USD.",
 
                 "Cocktail Floral Party Dress;$25.9;• 95% Polyester, 5% Spandex\n• Elastic closure\n• Featuring square neck\n• Adorable cap sleeves\n• Machine wash\n\n",
@@ -1162,7 +1183,7 @@ public final class MovieList {
                 "https://fashionablecanes.com/cdn/shop/products/royal-canes-walking-cane-engraving-chrome-fritz-custom-engrave-handle-walking-cane-16344820809861.jpg?v=1693414279"
         };
         String xRay15Description[] = {
-                "Robert Downey Jr;• Born in New York, NY, American\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
+                "Robert Downey Jr;• Born in New York, NY, America\n• Age: 58 (1965)\n• Height: 5′ 8″\n• Nationality: American;Robert John Downey Jr. is an American actor and producer. His career has been characterized by critical and popular success in his youth, followed by a period of substance abuse and legal troubles, before a resurgence of commercial success later in his career.",
                 "Jude Law;• Born in London, United Kingdom\n• Age: 50 (1972)\n• Height: 5′ 10″\n• Nationality: British;David Jude Heyworth Law is an English actor. He received a British Academy Film Award, as well as nominations for two Academy Awards, two Tony Awards, and four Golden Globe Awards. In 2007, he received an Honorary César and was named a knight of the Order of Arts and Letters by the French government.",
 
                 "John Bull Top Hat;$89.95;• 100% Wool\n• 2.5-inch brim\n• 6.5-inch flared crown\n• 2-inch grosgrain hat band\n• Dry clean only\n\n100 percent wool felt body and smooth leather sweatband makes this the perfect men’s top hat for serious collectors and formal wear lovers.",
@@ -1223,7 +1244,7 @@ public final class MovieList {
                 "https://image.josbank.com/is/image/JosBank/33RF_01_1905_BLACK_MAIN?$JABPDPSharpen$&hei=1080&wid=800&align=0,-1"
         };
         String xRay16Description[] = {
-                "Tom Hanks;• Born in Concord, CA\n• Age: 66 (1956)\n• Height: 6′ 0″\n• Nationality: American;Thomas Jeffrey Hanks is an American actor and filmmaker. Known for both his comedic and dramatic roles, he is one of the most popular and recognizable film stars worldwide, and is regarded as an American cultural icon.",
+                "Tom Hanks;• Born in Concord, CA, America\n• Age: 66 (1956)\n• Height: 6′ 0″\n• Nationality: American;Thomas Jeffrey Hanks is an American actor and filmmaker. Known for both his comedic and dramatic roles, he is one of the most popular and recognizable film stars worldwide, and is regarded as an American cultural icon.",
                 "Audrey Tautou;• Born in Beaumont, France\n• Age: 46 (1976)\n• Height: 5′ 3″\n• Nationality: French;Audrey Justine Tautou is a French actress. She made her acting debut at the age of 18 on television and her feature film debut in Venus Beauty Institute, for which she received critical acclaim and won the César Award for Most Promising Actress.",
 
                 "LED UV Flashlight;$8.99;• Material: Aluminum\n• Power Source: Battery powered\n• Dimensions: 1.2\"D x 1.08\"W x 3.74\"H\n\nVansky UV flashlight black light is Perfect for Revealing Dry Dog, Cat and Rodent Stains and smudgy Spots that Couldn't See With the Naked Eye. Easily Spot Scorpions, Authenticate currency,Official Identification cards,Passports.The black light can also act as Nail Dryer.",
@@ -1283,7 +1304,7 @@ public final class MovieList {
                 "https://oldnavy.gap.com/webcontent/0050/540/273/cn50540273.jpg"
         };
         String xRay17Description[] = {
-                "Madeline Carroll;• Born in Los Angeles, CA, American\n• Age: 27 (1996)\n• Height: 5′ 4″\n• Nationality: American;Madeline Carroll is an American actress known for starring as Juli Baker in Flipped, as Molly Johnson in Swing Vote, as Farren in The Spy Next Door, and as Willow O'Neil in The Magic of Belle Isle.",
+                "Madeline Carroll;• Born in Los Angeles, CA, America\n• Age: 27 (1996)\n• Height: 5′ 4″\n• Nationality: American;Madeline Carroll is an American actress known for starring as Juli Baker in Flipped, as Molly Johnson in Swing Vote, as Farren in The Spy Next Door, and as Willow O'Neil in The Magic of Belle Isle.",
                 "Callan McAuliffe;• Born in Clontarf, Australia\n• Age: 28 (1995)\n• Height: 5′ 10″\n• Nationality: Australian;Callan Ryan Claude McAuliffe is an Australian actor, known for his roles as Bryce Loski in Flipped and Sam Goode in I Am Number Four. He appeared as young Jay Gatsby in the 2013 film The Great Gatsby. From 2017 to 2022 he starred on The Walking Dead as Alden.",
 
                 "Button Knit Cardigan;$39.99;• 90% polyester,10% polyamide\n• Knitted braided fabric\n• V-neck\n• Long sleeve\n• Button up\n\nRecycled polyester is obtained from polyester textile waste, marine litter or PET plastic bottles that are used to produce new fabric.",
@@ -1346,9 +1367,9 @@ public final class MovieList {
                 "https://images.bergdorfgoodman.com/ca/1/product_assets/W/0/F/X/G/BGW0FXG_mu.jpg"
         };
         String xRay18Description[] = {
-                "Constance Wu;• Born in Richmond, VA, American\n• Age: 41 (1982)\n• Height: 5′ 1″\n• Nationality: American;Constance Wu is an American actress. Wu was included on Time magazine's list of the 100 most influential people in the world in 2017. She has earned several accolades, including nominations for a Golden Globe Award, four Critics' Choice Awards, a Screen Actors Guild Award, and two TCA Awards.",
+                "Constance Wu;• Born in Richmond, VA, America\n• Age: 41 (1982)\n• Height: 5′ 1″\n• Nationality: American;Constance Wu is an American actress. Wu was included on Time magazine's list of the 100 most influential people in the world in 2017. She has earned several accolades, including nominations for a Golden Globe Award, four Critics' Choice Awards, a Screen Actors Guild Award, and two TCA Awards.",
                 "Henry Golding;• Born in Betong, Malaysia\n• Age: 36 (1987)\n• Height: 6′ 1″\n• Nationality: British, Malaysian;Henry Ewan Golding is a Malaysian and British actor and television host. Golding has been a presenter on BBC's The Travel Show since 2014.",
-                "Awkwafina;• Born in Stony Brook, NY, American\n• Age: 34 (1988)\n• Height: 5′ 1″\n• Nationality: American;Nora Lum, known professionally as Awkwafina, is an American actress, rapper, and comedian who rose to prominence in 2012 when her rap song \"My Vag\" became popular on YouTube. She then released her debut album, Yellow Ranger, and appeared on the MTV comedy series Girl Code.",
+                "Awkwafina;• Born in Stony Brook, NY, America\n• Age: 34 (1988)\n• Height: 5′ 1″\n• Nationality: American;Nora Lum, known professionally as Awkwafina, is an American actress, rapper, and comedian who rose to prominence in 2012 when her rap song \"My Vag\" became popular on YouTube. She then released her debut album, Yellow Ranger, and appeared on the MTV comedy series Girl Code.",
 
                 "Lurex Maxi Dress;$995;• Brand: M Missoni\n• 100% Silk\n• V-neck\n• Sleeveless\n• Specialist Cleaning\n\nSensual maxi dress detailed with faded colour striped pattern embellished with all-over gold tone lurex inserts and detailed with double spaghetti strap creating a criss cross effect at back, fitted high waist and flared skirt",
                 "Jil Sander Disc Earrings;$532;• Material: 100% 925 silver\n• Diameter: 6 cm\n\nJil Sander pair of disc earrings in in golden silver featuring engraved logo and snap closure. For pierced ears only. Antioxidant treatment and nickel tested.",
@@ -1408,7 +1429,7 @@ public final class MovieList {
                 "https://americangiant.imgix.net/products/M4-3H-7-VIN_7369.jpg?v=1658253598&auto=format,compress&w=1592"
         };
         String xRay19Description[] = {
-                "Leonardo DiCaprio;• Born in Los Angeles, CA, American\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
+                "Leonardo DiCaprio;• Born in Los Angeles, CA, America\n• Age: 48 (1974)\n• Height: 6′ 0″\n• Nationality: American;Leonardo Wilhelm DiCaprio is an American actor and film producer. Known for his work in biographical and period films, he is the recipient of numerous accolades, including an Academy Award, a British Academy Film Award and three Golden Globe Awards.",
                 "Elliot Page;• Born in Municipality, Canada\n• Age: 36 (1987)\n• Height: 5′ 1″\n• Nationality: Canadian;Elliot Page is a Canadian actor. He has received various accolades, including an Academy Award nomination, two BAFTA Awards and Primetime Emmy Award nominations, and a Satellite Award. Page was assigned female at birth, and later publicly came out as a trans man in December 2020.",
 
                 "British Style Tea Set;$24.99;• Set Of 6 Fine White Porcelain Cups & Saucers Set\n• Fine And High Quality Lead -Free Porcelain\n• Dishwasher, and microwave safe\n\n",
@@ -1469,7 +1490,7 @@ public final class MovieList {
         };
         String xRay20Description[] = {
                 "Ryan Reynolds;• Born in Vancouver, Canada\n• Age: 46 (1976)\n• Height: 6′ 2″\n• Nationality: American, Canadian;Ryan Rodney Reynolds began his career starring in the Canadian teen soap opera Hillside, and had minor roles before landing the lead role on the sitcom Two Guys and a Girl between 1998 and 2001.",
-                "Walker Scobell;• Born in Los Angeles, CA, American\n• Age: 14 (2009)\n• Height: 4′ 11″\n• Nationality: American;Walker Scobell is best recognized for his role in the sci-fi film The Adam Project. He also appeared in the film Secret Headquarters in the same year. He began acting while in elementary school.",
+                "Walker Scobell;• Born in Los Angeles, CA, America\n• Age: 14 (2009)\n• Height: 4′ 11″\n• Nationality: American;Walker Scobell is best recognized for his role in the sci-fi film The Adam Project. He also appeared in the film Secret Headquarters in the same year. He began acting while in elementary school.",
 
                 "Tactical Flashlights Torch;$14.99;• Super bright with 5 Modes\n• Adjustable focus-adjustable focus for Use in different situations\n• Waterproof\n• Widely use-easy to carry with you as a backup\n\n",
                 "Deluxe Blended Coveralls;$54.99;• 65% Polyester, 35% cotton\n• Double-ended zipper\n\nThese men's long sleeve coveralls are spacious enough to layer underneath and are comfortable enough to wear during long, tough days. Put them on to work on vehicles and other tasks.",
@@ -1493,6 +1514,126 @@ public final class MovieList {
         entry20.put(KEY_DESCRIPTION, Arrays.asList(xRay20Description));
         entry20.put(KEY_MERCHANDISE, Arrays.asList(xRay20Merchandise));
         listOfItems.add(entry20);
+
+
+
+
+        // Space Jam
+        String xRay21Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay21Name[] = {
+                "Michael Jordan",
+                "Wayne Knight",
+
+                "Basketball",
+                "Jordan Grey Tank",
+                "Jordan Brooklyn Fleece",
+                "Air Jordan 9 OG",
+                "Morrow Glasses"
+        };
+        String xRay21ImageUrl[] = {
+                "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg",
+                "https://static.wikia.nocookie.net/jurassicpark/images/d/d0/Wayne_Knight.png/revision/latest?cb=20190112092853",
+
+                "https://target.scene7.com/is/image/Target/GUEST_20affc7e-e0d7-4eb6-a6f3-68d13520f8be?wid=1200&hei=1200&qlt=80&fmt=webp",
+                "https://i5.walmartimages.com/seo/Air-Jordan-Men-s-All-Season-Compression-Tank-Grey-Black-642349-091_dbe4f903-6453-47ea-bc48-0fdb7e13c33b.0fdfae6d251319bd0effd634d132ea68.jpeg?odnHeight=640&odnWidth=640&odnBg=FFFFFF",
+                "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/cf40ce48-b28e-4086-8dee-347d6bfef60c/jordan-brooklyn-fleece-mens-shorts-nPMdCB.png",
+                "https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/nfo8pqgxlpmpeftollgc/air-jordan-9-retro-og-white-black-2016-release-date.jpg",
+                "https://img.ebdcdn.com/product/model/portrait/pm0488_m0.jpg?im=Resize,width=500,height=600,aspect=fill;UnsharpMask,sigma=1.0,gain=1.0&q=85"
+        };
+        String xRay21Description[] = {
+                "Michael Jordan;• Born in Brooklyn, NY, America\n• Age: 60 (1963)\n• Height: 6′ 6″\n• Nationality: American;Michael Jeffrey Jordan, also known by his initials MJ, is an American businessman and former professional basketball player. He played fifteen seasons in the National Basketball Association from 1984 to 2003, winning six NBA championships with the Chicago Bulls.",
+                "Wayne Knight;• Born in New York, NY, America\n• Age: 68 (1955)\n• Height: 5′ 7″\n• Nationality: American;Wayne Elliot Knight is an American actor. In television, he played recurring roles such as Newman on the NBC sitcom Seinfeld and Officer Don Orville on the NBC sitcom 3rd Rock from the Sun. He also voiced Igor on Toonsylvania, Mr. Blik on Catscratch and Baron Von Sheldgoose on Legend of the Three Caballeros.",
+
+                "Basketball;$12.99;• Shell material: composite\n• Fill material: butyl bladder\n• Size: 29.5\"\n\nInspired by the drive that lives inside every NBA hopeful. The Wilson NBA DRV Basketball is designed for outdoor play and built to stand up to the elements. Inflation retention lining creates longer lasting air retention with this ball designed for ultimate outdoor durability.",
+                "Jordan Grey Tank;$24.99;• Material: 84% polyester and 16% spandex\n• Brand: Jordan\n\nJordan 23 Pro Dry Men's Tank provides a compressive fit with sweat-wicking stretch fabric to help keep you dry and moving freely during a workout",
+                "Jordan Brooklyn Fleece;$45;• Body: 82% cotton, 18% polyester\n• Pocket: 100% cotton\n• Machine wash\n\nMake these shorts your go-to pair. Made from brushed French terry fleece, they have a relaxed fit and a secure, adjustable waistband. They're authenticated with MJ's embroidered signature.",
+                "Air Jordan 9 OG;$190;• Sole Material: Rubber sole\n• Series: Air Jordan 9\n• Heel type: flat\n• Toe type: round\n\nThe Air Jordan IX arrived during MJ’s first retirement from the league. The classic design took inspiration from MJ’s global appeal with a unique outsole design and clean lines. ",
+                "Morrow Glasses;$35;• Material: acetate-metal\n• Size: 133 cm (W) x 42 mm (H)\n• Weight: 15g\n• Shape: square\n• Rim: Full-Rim\n\nLook to the future with Morrow, an urban-styled frame characterized by its true black hue and rectangle lenses. A perfect choice for the streetwise."
+        };
+        String xRay21Merchandise[] = {
+                "",
+                "",
+                "target walmart costco",
+                "walmart amazon target",
+                "amazon target walmart",
+                "amazon walmart costco",
+                "target walmart amazon"
+        };
+        Map<String, List<String>> entry21 = new HashMap<>();
+        entry21.put(KEY_TYPE, Arrays.asList(xRay21Type));
+        entry21.put(KEY_NAME, Arrays.asList(xRay21Name));
+        entry21.put(KEY_IMAGE, Arrays.asList(xRay21ImageUrl));
+        entry21.put(KEY_DESCRIPTION, Arrays.asList(xRay21Description));
+        entry21.put(KEY_MERCHANDISE, Arrays.asList(xRay21Merchandise));
+        listOfItems.add(entry21);
+
+
+
+
+        // Million Dollar Baby
+        String xRay22Type[] = {
+                "0",
+                "0",
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+        };
+        String xRay22Name[] = {
+                "Clint Eastwood",
+                "Walker Scobell",
+
+                "Pro Speed ball",
+                "Boxing Gloves",
+                "Boxing Punching Mitts",
+                "Jump Rope",
+                "Nike Tank Top"
+        };
+        String xRay22ImageUrl[] = {
+                "https://cdn.britannica.com/75/152975-050-99123EE6/Clint-Eastwood-2008.jpg",
+                "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTLVhxwTlQ9UnDG2AvjQ-rR7Y6QlKr3hweWUmxstYQHMTMPQ9oS2rfrHyP9mvDvP4Adve-Dp6XWova_kyg",
+
+                "https://www.modestvintageplayer.com/cdn/shop/products/pro-heritage-brown-leather-boxing-speed-ball-608859_1800x1800.jpg?v=1702649867",
+                "https://superareshop.com/cdn/shop/files/vseriesgloves_red1_600x_17584a3c-8299-4f6b-971f-716def7fcde0_250x.jpg?v=1696050193",
+                "https://m.media-amazon.com/images/I/81aGfZrlrNL._AC_SX679_.jpg",
+                "https://m.media-amazon.com/images/I/71wm42EtoNL._AC_SX679_.jpg",
+                "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c0d08804-46b1-4a4f-a7e2-8bffeb6d70a4/zenvy-womens-light-support-padded-longline-sports-bra-cGHGFX.png"
+        };
+        String xRay22Description[] = {
+                "Clint Eastwood;• Born in San Francisco, CA, America\n• Age: 93 (1930)\n• Height: 6′ 2″\n• Nationality: American;Clinton Eastwood Jr. (born May 31, 1930) is an American actor and film director. After achieving success in the Western TV series Rawhide, Eastwood rose to international fame with his role as the \"Man with No Name\" in Sergio Leone's Dollars Trilogy of spaghetti Westerns during the mid-1960s",
+                "Hilary Swank;• Born in Lincoln, NE, America\n• Age: 49 (1974)\n• Height: 5′ 6″\n• Nationality: American;Hilary Ann Swank is an American actress and film producer. Swank first became known in 1992 for her role on the television series Camp Wilder and made her film debut with a minor role in Buffy the Vampire Slayer.",
+
+                "Pro Leather Boxing Speed Ball;$85;• Material: 100% Cow Leather\n• Size: 25cm(H) x 15cm(Diameter)\n\nThe perfect addition to any gym or man-cave, quality hand-made vintage inspired Heritage Brown leather speed ball by The MVP crafted from premium full grain cowhide with a soft, supple feel and perfect rebound.\n",
+                "Boxing Gloves;$89.99;• Size: medium\n• Weight: 14 oz\n\nS4 Boxing Gloves offer everything you need to begin your boxing journey. Perfect for bagwork and drills, this glove protects your knuckles and keeps you comfortable while you hone your technique.",
+                "Boxing Punching Mitts;$19.99;• Material: faux leather, leather\n• Hand Orientation: Ambidextrous\n• Glove Type: Punching\n\nMade with high-quality synthetic leather, this punching pad offers exceptional durability and long-lasting performance.",
+                "Jump Rope;$8.99;• Material: Alloy Steel, PVC\n• Length: 170cm\n\nThis jump rope is made of steel wires that are coated with strong PVC material, making it durable even after a long time exercising.",
+                "Nike Tank Top;$65;• Body: 63% nylon, 37% spandex\n• Lining: 82% polyester, 18% spandex.\n• Pad: 100% polyurethane\n\n sewn-in 1-piece pad and longline silhouette offer enhanced coverage and shaping while sweat-wicking technology keeps you cool and comfortable."
+        };
+        String xRay22Merchandise[] = {
+                "",
+                "",
+                "target costco walmart",
+                "walmart amazon target",
+                "amazon target walmart",
+                "amazon costco walmart",
+                "amazon target walmart"
+        };
+        Map<String, List<String>> entry22 = new HashMap<>();
+        entry22.put(KEY_TYPE, Arrays.asList(xRay22Type));
+        entry22.put(KEY_NAME, Arrays.asList(xRay22Name));
+        entry22.put(KEY_IMAGE, Arrays.asList(xRay22ImageUrl));
+        entry22.put(KEY_DESCRIPTION, Arrays.asList(xRay22Description));
+        entry22.put(KEY_MERCHANDISE, Arrays.asList(xRay22Merchandise));
+        listOfItems.add(entry22);
 
         return listOfItems;
     }

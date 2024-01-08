@@ -67,7 +67,8 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         super.onCreate(savedInstanceState);
 
         // prepare for the date
-        list = MovieList.setupMovies(NUM_COLS);
+        list = MovieList.setupMovies();
+        Log.d(TAG, "list size" + list.size());
         dummyList = MovieList.getDummyList();
 
         // init views on the top banner
