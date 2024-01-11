@@ -1,6 +1,5 @@
 package com.yuanren.tvinteractions.view.search;
 
-import android.content.pm.ModuleInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,13 +25,12 @@ import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.SocketUpdateCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.utils.NetworkUtils;
+import com.yuanren.tvinteractions.network.SearchSocketService;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -128,7 +126,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
             }
         });
 
-        NetworkUtils.setSocketUpdateCallback(this);
+        SearchSocketService.setSocketUpdateCallback(this);
+        SearchSocketService.start();
     }
 
     public void onKeyClick(View v) {
@@ -207,11 +206,13 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
     @Override
     public void onResume() {
         super.onResume();
-        NetworkUtils.setSocketUpdateCallback(this);
+        SearchSocketService.setSocketUpdateCallback(this);
+        SearchSocketService.start();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        SearchSocketService.stop();
     }
 }

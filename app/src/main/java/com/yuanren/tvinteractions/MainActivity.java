@@ -1,7 +1,6 @@
 package com.yuanren.tvinteractions;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,9 +13,8 @@ import androidx.fragment.app.FragmentActivity;
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
-import com.yuanren.tvinteractions.utils.NetworkUtils;
+import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
-import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
 import com.yuanren.tvinteractions.view.search.SearchFragment;
 import com.yuanren.tvinteractions.view.tv_channels.TVChannelsFragment;
@@ -65,7 +63,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         }
 
         // start my socket channle to send random positions of movies to watch side
-        NetworkUtils.start();
+        RandomPositionSocketService.start();
     }
 
     @Override
@@ -171,18 +169,18 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
     @Override
     protected void onResume() {
         super.onResume();
-        NetworkUtils.start();
+        RandomPositionSocketService.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        NetworkUtils.stop();
+        RandomPositionSocketService.stop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        NetworkUtils.stop();
+        RandomPositionSocketService.stop();
     }
 }
