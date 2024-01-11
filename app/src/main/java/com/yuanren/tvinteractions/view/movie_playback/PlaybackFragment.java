@@ -34,6 +34,7 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
+import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 import com.yuanren.tvinteractions.view.x_ray.XRayItemContentActivity;
 
@@ -88,7 +89,7 @@ public class PlaybackFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // get selected movie
-        movie = MovieList.findBy((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+        movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         // set x-ray row dynamically
         recyclerView = view.findViewById(R.id.x_ray_container);

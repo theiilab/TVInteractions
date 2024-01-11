@@ -1,6 +1,7 @@
 package com.yuanren.tvinteractions.view.movies;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.leanback.app.RowsSupportFragment;
 import androidx.leanback.widget.ArrayObjectAdapter;
@@ -23,16 +25,13 @@ import androidx.leanback.widget.RowPresenter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.SplashActivity;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
-import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,8 +42,6 @@ import java.util.List;
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
     private static final int NUM_COLS = 20;
-
-    public static int[] randoms; // random position
 
     private ImageView bannerBackgroundImage;
     private TextView bannerMovieTitle;
@@ -65,14 +62,13 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         return fragment;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // prepare for the date
-        randoms = SplashActivity.randoms;
-        list = MovieList.setUpMovies(randoms);
-//        dummyList = MovieList.getDummyList();
+        list = MovieList.setUpMovies();
 
         // init views on the top banner
         bannerBackgroundImage = getActivity().findViewById(R.id.background_image);

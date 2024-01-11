@@ -129,7 +129,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
         });
 
         NetworkUtils.setSocketUpdateCallback(this);
-        NetworkUtils.start();
     }
 
     public void onKeyClick(View v) {
@@ -209,12 +208,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
     public void onResume() {
         super.onResume();
         NetworkUtils.setSocketUpdateCallback(this);
-        NetworkUtils.start();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        NetworkUtils.stop();
     }
 }

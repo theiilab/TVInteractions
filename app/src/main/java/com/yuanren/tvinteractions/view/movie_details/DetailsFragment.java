@@ -79,7 +79,7 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
 
         // get movies list and selected movie
         list = MovieList.getList();
-        movie = MovieList.findBy((int)getArguments().getLong(DetailsActivity.SELECTED_MOVIE_ID));
+        movie = MovieList.getMovie((int)getArguments().getLong(DetailsActivity.SELECTED_MOVIE_ID));
 
         backgroundContainer = getActivity().findViewById(R.id.background_container);
         originalY = backgroundContainer.getY();
