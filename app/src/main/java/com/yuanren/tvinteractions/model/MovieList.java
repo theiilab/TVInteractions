@@ -1,5 +1,10 @@
 package com.yuanren.tvinteractions.model;
 
+import android.util.Log;
+
+import androidx.leanback.widget.HeaderItem;
+import androidx.leanback.widget.ListRow;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,10 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.SplittableRandom;
 
 public final class MovieList {
     public static final int NUM_REAL_MOVIE = 2; //
     public static final int NUM_MOVIE_CATEGORY = 12; // change MOVIE_CATEGORY accordingly
+    public static final int NUM_COLS = 20;
     private static  final String KEY_TYPE = "type";
     private static  final String KEY_NAME = "name";
     private static  final String KEY_IMAGE = "image";
@@ -20,7 +27,7 @@ public final class MovieList {
     private static  final String KEY_MERCHANDISE = "merchandise";
 
     private static List<Movie> list;
-    private static List<Movie> dummyList;
+    private static List<Movie> realMovies;
 
     // change NUM_MOVIE_CATEGORY accordingly
     public static final String MOVIE_CATEGORY[] = {
@@ -45,9 +52,13 @@ public final class MovieList {
         return list;
     }
 
-    public static List<Movie> getDummyList() {
-        return dummyList;
+    public static List<Movie> getRealList() {
+//        if (list == null) {
+//            list = setupMovies();
+//        }
+        return realMovies;
     }
+
 
     public static Movie findBy(int id) {
         if (list == null) {
@@ -62,8 +73,39 @@ public final class MovieList {
         return null;
     }
 
-    public static List<Movie> setupMovies() {
+    public static List<Movie> setUpMovies(int[] randomPositions) {
+        /** fill real movies at the random position and dummy movies in the rest */
         list = new ArrayList<>();
+        realMovies = setUpRealMovies();
+        ListIterator<Movie> reals = realMovies.listIterator();
+        ListIterator<Movie> dummies = setUpDummyMovies((NUM_COLS - NUM_REAL_MOVIE) * NUM_MOVIE_CATEGORY).listIterator();
+
+        for (int row = 0; row < NUM_MOVIE_CATEGORY; ++row) {
+            for (int col = 0; col < NUM_COLS; ++col) {
+                if (col == randomPositions[row * 2] || col == randomPositions[row * 2 + 1]) {
+                    Movie movie = reals.next();
+                    movie.setPosition(col);
+                    list.add(movie);
+                } else {
+                    list.add(dummies.next());
+                }
+            }
+        }
+        return list;
+    }
+
+    public static String getRandomPosString(int[] data) {
+        String s = "";
+        for (int i = 0; i < data.length - 1; ++i) {
+            s += data[i] + ", ";
+        }
+
+        s += data[data.length - 1];
+        return s;
+    }
+
+    public static List<Movie> setUpRealMovies() {
+        List<Movie> reals = new ArrayList<>();
         String title[] = {
                 "The King's Man",
                 "Red Notice",
@@ -263,7 +305,7 @@ public final class MovieList {
 
         int n = title.length;
         for (int index = 0; index < n; ++index) {
-            list.add(
+            reals.add(
                     buildMovieInfo(
                             (long) index,
                             title[index],
@@ -275,10 +317,7 @@ public final class MovieList {
                             bgImageUrl[index],
                             setUpXRayItems()));
         }
-
-        // set up make up dummy movies for each category (only 2 real movie in each category)
-        setUpDummyMovies(n - NUM_REAL_MOVIE);
-        return list;
+        return reals;
     }
 
     private static Movie buildMovieInfo(
@@ -1776,7 +1815,7 @@ public final class MovieList {
     }
 
     public static List<Movie> setUpDummyMovies(int length) {
-        dummyList = new ArrayList<>();
+        List<Movie> dummies = new ArrayList<>();
         String title[] = {
                 "Bad Guys",
                 "The Lord Of The Rings",
@@ -1829,7 +1868,7 @@ public final class MovieList {
 
         int n = title.length;
         for (int index = 0; index < length; ++index) {
-            dummyList.add(
+            dummies.add(
                     buildMovieInfo(
                             (long) index,
                             title[index % n],
@@ -1842,7 +1881,7 @@ public final class MovieList {
                             setUpDummyXRayItems(length)));
         }
 
-        return dummyList;
+        return dummies;
     }
 
     private static List<Map<String, List<String>>> setUpDummyXRayItems(int length) {

@@ -20,7 +20,7 @@
         android:theme="@style/Theme.TVInteractions"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:banner="@drawable/logo_app_launch"
             android:exported="true"
             android:icon="@drawable/logo_app_launch"
@@ -34,6 +34,7 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".view.movie_details.DetailsActivity" />
         <activity android:name=".view.movie_playback.PlaybackActivity" />
         <activity android:name=".view.x_ray.XRayItemContentActivity" />

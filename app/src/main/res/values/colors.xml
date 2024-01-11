@@ -1,5 +1,6 @@
 <resources>
     <!--   general   -->
+    <color name="primaryColor">#8c56ff</color>
     <color name="background">#000000</color> <!-- #0d0c10 -->
     <color name="background2">#170c2d</color> <!-- #1d2633 -->
     <color name="background_gradient_start">#FF000000</color>

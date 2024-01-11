@@ -23,6 +23,7 @@ import androidx.leanback.widget.RowPresenter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.SplashActivity;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
@@ -43,13 +44,15 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
     private static final int NUM_COLS = 20;
 
+    public static int[] randoms; // random position
+
     private ImageView bannerBackgroundImage;
     private TextView bannerMovieTitle;
     private TextView bannerMovieDescription;
     private ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter(new RowPresenterSelector());
     private NavigationMenuCallback navigationMenuCallback;
     private List<Movie> list;
-    private List<Movie> dummyList;
+//    private List<Movie> dummyList;
 
     private Row currentSelectedRow;
 
@@ -67,9 +70,9 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         super.onCreate(savedInstanceState);
 
         // prepare for the date
-        list = MovieList.setupMovies();
-        Log.d(TAG, "list size" + list.size());
-        dummyList = MovieList.getDummyList();
+        randoms = SplashActivity.randoms;
+        list = MovieList.setUpMovies(randoms);
+//        dummyList = MovieList.getDummyList();
 
         // init views on the top banner
         bannerBackgroundImage = getActivity().findViewById(R.id.background_image);
@@ -94,14 +97,14 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         for (int i = 0; i < MovieList.NUM_MOVIE_CATEGORY; i++) {
             ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenter);
             for (int j = 0; j < NUM_COLS; j++) {
-                if (j < MovieList.NUM_REAL_MOVIE) {
-                    listRowAdapter.add(list.get(i * 2 + j));
-                } else {
-                    listRowAdapter.add(dummyList.get(j - MovieList.NUM_REAL_MOVIE));
-                }
-
+//                if (j < MovieList.NUM_REAL_MOVIE) {
+//                    listRowAdapter.add(list.get(i * 2 + j));
+//                } else {
+//                    listRowAdapter.add(dummyList.get(j - MovieList.NUM_REAL_MOVIE));
+//                }
+                listRowAdapter.add(list.get(i * NUM_COLS + j));
             }
-            HeaderItem header = new HeaderItem(i, (list.get(i * 2).getCategory()));
+            HeaderItem header = new HeaderItem(i, MovieList.MOVIE_CATEGORY[i]);
             mRowsAdapter.add(new ListRow(header, listRowAdapter));
         }
         setAdapter(mRowsAdapter);
