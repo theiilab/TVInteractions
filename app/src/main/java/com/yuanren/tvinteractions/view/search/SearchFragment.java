@@ -122,7 +122,12 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
             @Override
             public void afterTextChanged(Editable editable) {
                 Log.d(TAG, "Input text changed");
-                adapter.update(getSearchResult(editable.toString()));
+
+                if (editable.toString().equals("")) {
+                    adapter.update(movies);
+                } else {
+                    adapter.update(getSearchResult(editable.toString()));
+                }
             }
         });
 
@@ -218,6 +223,9 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
     @Override
     public void onResume() {
         super.onResume();
+        // clear the search result in text field and grid because setText will call afterTextChange and reset the movie grid
+        inputField.setText("");
+
         SearchSocketService.setSocketUpdateCallback(this);
         SearchSocketService.start();
     }
