@@ -23,13 +23,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
@@ -47,6 +52,15 @@ public class PlaybackFragment extends Fragment {
     private static final int VIDEO_ACTION_FORWARD = 2;
     private static final int VIDEO_ACTION_REWIND = 3;
     private static final int VIDEO_TIME_DELTA = 5000; // 5s
+
+    //Minimum Video you want to buffer while Playing (ms)
+    private static int MIN_BUFFER_DURATION = 6000;
+    //Max Video you want to buffer during PlayBack
+    private static int MAX_BUFFER_DURATION = 9000;
+    //Min Video you want to buffer before start Playing it
+    private static int MIN_PLAYBACK_START_BUFFER = 6000;
+    //Min video You want to buffer when user resumes video
+    private static int MIN_PLAYBACK_RESUME_BUFFER = 3000;
 
     private PlayerView playerView;
     private TextView title;
@@ -184,7 +198,18 @@ public class PlaybackFragment extends Fragment {
     }
 
     private void initializePlayer(String url) {
-        exoPlayer = new ExoPlayer.Builder(getContext()).build();
+        LoadControl loadControl = new DefaultLoadControl.Builder()
+                .setAllocator(new DefaultAllocator(true, 16))
+                .setBufferDurationsMs(MIN_BUFFER_DURATION,
+                        MAX_BUFFER_DURATION,
+                        MIN_PLAYBACK_START_BUFFER,
+                        MIN_PLAYBACK_RESUME_BUFFER)
+                .setTargetBufferBytes(-1)
+                .setPrioritizeTimeOverSizeThresholds(true).createDefaultLoadControl();
+
+        TrackSelector trackSelector = new DefaultTrackSelector();
+
+        exoPlayer = new ExoPlayer.Builder(getContext()).setLoadControl(loadControl).setTrackSelector(trackSelector).build();
         // Bind the player to the view.
         playerView.setPlayer(exoPlayer);
         // resize and rescale the video to fit the screen
