@@ -198,6 +198,7 @@ public class PlaybackFragment extends Fragment {
     }
 
     private void initializePlayer(String url) {
+        // customize load control
         LoadControl loadControl = new DefaultLoadControl.Builder()
                 .setAllocator(new DefaultAllocator(true, 16))
                 .setBufferDurationsMs(MIN_BUFFER_DURATION,
@@ -207,7 +208,7 @@ public class PlaybackFragment extends Fragment {
                 .setTargetBufferBytes(-1)
                 .setPrioritizeTimeOverSizeThresholds(true).createDefaultLoadControl();
 
-        TrackSelector trackSelector = new DefaultTrackSelector();
+        TrackSelector trackSelector = new DefaultTrackSelector(getContext());
 
         exoPlayer = new ExoPlayer.Builder(getContext()).setLoadControl(loadControl).setTrackSelector(trackSelector).build();
         // Bind the player to the view.
