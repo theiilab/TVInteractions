@@ -251,41 +251,41 @@ public final class MovieList {
                 MOVIE_CATEGORY[11]
         };
         String videoUrl[] = {
-                "https://streamable.com/l/59by34/mp4-high.mp4",  // Kings Man
-                "https://streamable.com/l/v9e0nk/mp4-high.mp4",  // Red Notice
+                "https://streamable.com/l/59by34/mp4.mp4",  // Kings Man
+                "https://streamable.com/l/v9e0nk/mp4.mp4",  // Red Notice
 
-                "https://streamable.com/l/oxud0a/mp4-high.mp4",  // Jumanji
-                "https://streamable.com/l/xuehud/mp4-high.mp4",  // Uncharted
+                "https://streamable.com/l/oxud0a/mp4.mp4",  // Jumanji
+                "https://streamable.com/l/xuehud/mp4.mp4",  // Uncharted
 
-                "https://streamable.com/l/5srodl/mp4-high.mp4",  // The Devil Wears Prada
-                "https://streamable.com/l/fivagj/mp4-high.mp4",  // The wolf of Wall Street
+                "https://streamable.com/l/5srodl/mp4.mp4",  // The Devil Wears Prada
+                "https://streamable.com/l/fivagj/mp4.mp4",  // The wolf of Wall Street
 
                 "https://streamable.com/l/mhrrwj/mp4-high.mp4",  // Venom
-                "https://streamable.com/l/oohm1o/mp4-high.mp4",  // Iron Man
+                "https://streamable.com/l/oohm1o/mp4.mp4",  // Iron Man
 
-                "https://streamable.com/l/mnxbn8/mp4-high.mp4",  // Harry Potter 3
-                "https://streamable.com/l/2l37xs/mp4-high.mp4",  // Fantastic Beasts 1
+                "https://streamable.com/l/mnxbn8/mp4.mp4",  // Harry Potter 3
+                "https://streamable.com/l/2l37xs/mp4.mp4",  // Fantastic Beasts 1
 
-                "https://streamable.com/l/slxtfy/mp4-high.mp4",  // Insomnia
-                "https://streamable.com/l/h43q1z/mp4-high.mp4",  // Fall
+                "https://streamable.com/l/slxtfy/mp4.mp4",  // Insomnia
+                "https://streamable.com/l/h43q1z/mp4.mp4",  // Fall
 
-                "https://streamable.com/l/cleqsc/mp4-high.mp4",  // Mama Mia
-                "https://streamable.com/l/w3xnvp/mp4-high.mp4",  // Lala Land
+                "https://streamable.com/l/cleqsc/mp4.mp4",  // Mama Mia
+                "https://streamable.com/l/w3xnvp/mp4.mp4",  // Lala Land
 
-                "https://streamable.com/l/ypqkr3/mp4-high.mp4",  // Sherlock Holmes
-                "https://streamable.com/l/uzr6i2/mp4-high.mp4",  // The Da Vinci Code
+                "https://streamable.com/l/ypqkr3/mp4.mp4",  // Sherlock Holmes
+                "https://streamable.com/l/uzr6i2/mp4.mp4",  // The Da Vinci Code
 
-                "https://streamable.com/l/mpid4f/mp4-high.mp4",  // Flipped
-                "https://streamable.com/l/24bwrf/mp4-high.mp4",  // Crazy Rich Asians
+                "https://streamable.com/l/mpid4f/mp4.mp4",  // Flipped
+                "https://streamable.com/l/24bwrf/mp4.mp4",  // Crazy Rich Asians
 
-                "https://streamable.com/l/r5v0uu/mp4-high.mp4",  // Inception
-                "https://streamable.com/l/p0qlbd/mp4-high.mp4",   // The Adam Project
+                "https://streamable.com/l/r5v0uu/mp4.mp4",  // Inception
+                "https://streamable.com/l/p0qlbd/mp4.mp4",   // The Adam Project
 
-                "https://streamable.com/l/h8d1dw/mp4-high.mp4", // Space Jam
-                "https://streamable.com/l/pefotk/mp4-high.mp4", // Million Dollar Baby
+                "https://streamable.com/l/h8d1dw/mp4.mp4", // Space Jam
+                "https://streamable.com/l/pefotk/mp4.mp4", // Million Dollar Baby
 
-                "https://streamable.com/l/xzy8gi/mp4-high.mp4", // Death on the Nile
-                "https://streamable.com/l/49qarq/mp4-high.mp4" // Pain Hustler
+                "https://streamable.com/l/xzy8gi/mp4.mp4", // Death on the Nile
+                "https://streamable.com/l/49qarq/mp4.mp4" // Pain Hustler
         };
         String bgImageUrl[] = {
                 "https://orgoglionerd.it/wp-content/uploads/2021/12/kingsman-3.jpg",
