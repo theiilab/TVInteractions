@@ -2,8 +2,6 @@ package com.yuanren.tvinteractions.view.movie_playback;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,10 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -39,9 +39,7 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
-import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
-import com.yuanren.tvinteractions.view.x_ray.XRayItemContentActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,7 +58,7 @@ public class PlaybackFragment extends Fragment {
     //Min Video you want to buffer before start Playing it
     private static int MIN_PLAYBACK_START_BUFFER = 6000;
     //Min video You want to buffer when user resumes video
-    private static int MIN_PLAYBACK_RESUME_BUFFER = 3000;
+    private static int MIN_PLAYBACK_RESUME_BUFFER = 0;
 
     private PlayerView playerView;
     private TextView title;
@@ -210,7 +208,13 @@ public class PlaybackFragment extends Fragment {
 
         TrackSelector trackSelector = new DefaultTrackSelector(getContext());
 
-        exoPlayer = new ExoPlayer.Builder(getContext()).setLoadControl(loadControl).setTrackSelector(trackSelector).build();
+        RenderersFactory renderersFactory = new DefaultRenderersFactory(getContext()).setEnableAudioTrackPlaybackParams(true);
+
+        exoPlayer = new ExoPlayer.Builder(getContext())
+                .setLoadControl(loadControl)
+                .setTrackSelector(trackSelector)
+                .setRenderersFactory(renderersFactory)
+                .build();
         // Bind the player to the view.
         playerView.setPlayer(exoPlayer);
         // resize and rescale the video to fit the screen
@@ -249,6 +253,8 @@ public class PlaybackFragment extends Fragment {
         });
         // Prepare the player.
         exoPlayer.prepare();
+        // Whether playback should proceed when ready
+        exoPlayer.setPlayWhenReady(true);
         // Start the playback.
         exoPlayer.play();
     }
