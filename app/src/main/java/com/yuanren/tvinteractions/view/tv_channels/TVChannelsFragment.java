@@ -86,4 +86,13 @@ public class TVChannelsFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // reset channel
+        channel = 1;
+        tvChannelsTV.setText(String.valueOf(channel));
+    }
 }
