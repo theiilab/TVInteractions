@@ -1,5 +1,6 @@
 package com.yuanren.tvinteractions;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -7,12 +8,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
+import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
 import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
@@ -35,6 +38,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
     private int currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_HOME;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     .add(R.id.fragments, moviesFragment)
                     .commit();
         }
+
+        MovieList.setUpMovies();
 
         // start my socket channle to send random positions of movies to watch side
         RandomPositionSocketService.start();

@@ -68,7 +68,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         super.onCreate(savedInstanceState);
 
         // prepare for the date
-        list = MovieList.setUpMovies();
+        list = MovieList.getList();
 
         // init views on the top banner
         bannerBackgroundImage = getActivity().findViewById(R.id.background_image);
