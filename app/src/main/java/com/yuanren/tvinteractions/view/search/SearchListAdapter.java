@@ -1,11 +1,14 @@
 package com.yuanren.tvinteractions.view.search;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +18,8 @@ import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import java.util.List;
+import java.util.Random;
+import java.util.SplittableRandom;
 
 public class SearchListAdapter extends RecyclerView.Adapter {
 
@@ -36,20 +41,35 @@ public class SearchListAdapter extends RecyclerView.Adapter {
         return new SearchMovieViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Movie movie = data.get(position);
         SearchMovieViewHolder searchMovieViewHolder = (SearchMovieViewHolder) holder;
-        Glide.with(holder.itemView.getContext())
-                .load(movie.getCardImageUrl())
-                .thumbnail(0.1f)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .into(searchMovieViewHolder.image);
+        searchMovieViewHolder.title.setText(movie.getDummyTitle());
+
+        if (movie.getId() != -1) { // real movie, set background
+            Glide.with(holder.itemView.getContext())
+                    .load(movie.getCardImageUrl())
+                    .thumbnail(0.1f)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .into(searchMovieViewHolder.image);
+            searchMovieViewHolder.image.setBackgroundColor(holder.itemView.getContext().getColor(R.color.transparent));
+        } else {// 226 search dummy movies, set random purple background color within a range
+            SplittableRandom random = new SplittableRandom();
+            int g = random.nextInt(1,125);
+            searchMovieViewHolder.image.setBackgroundColor(Color.rgb(125, g, 250));
+            searchMovieViewHolder.image.setImageResource(android.R.color.transparent);
+        }
+
 
         searchMovieViewHolder.cover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (movie.getId() == -1) {
+                    return;
+                }
                 Intent intent = new Intent(view.getContext(), DetailsActivity.class);
                 intent.putExtra(DetailsActivity.SELECTED_MOVIE_ID, movie.getId());
                 view.getContext().startActivity(intent);

@@ -9,6 +9,15 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/fig_movie"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:text="test"/>
     <View
         android:id="@+id/selectable_cover"
         android:layout_width="match_parent"

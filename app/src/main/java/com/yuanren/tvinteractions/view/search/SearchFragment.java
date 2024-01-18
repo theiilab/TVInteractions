@@ -80,7 +80,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        movies = MovieList.getRealList();
+        movies = MovieList.setUpSearchDummyMovies();
+        movies.addAll(MovieList.getRealList());
 
         // grid of movies
         recyclerView = view.findViewById(R.id.search_movies);
