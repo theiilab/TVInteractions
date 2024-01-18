@@ -156,7 +156,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
         for (Movie movie: movies) {
 //            int score = minDistance(movie.getTitle().toLowerCase(), searchName);
             int score = prefixMatch(movie.getTitle().toLowerCase(), searchName);
-            map.put(movie, score);
+
+            if (score != 0) {
+                map.put(movie, score);
+            }
         }
 
         // Create a list from elements of HashMap
