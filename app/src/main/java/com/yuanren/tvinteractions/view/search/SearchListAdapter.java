@@ -58,8 +58,10 @@ public class SearchListAdapter extends RecyclerView.Adapter {
             searchMovieViewHolder.image.setBackgroundColor(holder.itemView.getContext().getColor(R.color.transparent));
         } else {// 226 search dummy movies, set random purple background color within a range
             SplittableRandom random = new SplittableRandom();
-            int g = random.nextInt(1,125);
-            searchMovieViewHolder.image.setBackgroundColor(Color.rgb(125, g, 250));
+            int r = random.nextInt(125,175);
+            int g = random.nextInt(75,125);
+            int b = random.nextInt(225,255);
+            searchMovieViewHolder.image.setBackgroundColor(Color.rgb(r, g, b));
             searchMovieViewHolder.image.setImageResource(android.R.color.transparent);
         }
 
