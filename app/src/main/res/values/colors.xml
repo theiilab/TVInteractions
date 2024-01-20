@@ -1,6 +1,14 @@
 <resources>
     <!--   general   -->
-    <color name="primaryColor">#8c56ff</color>
+    <color name="primary_color">#BB86FC</color>
+    <color name="primary_color_opaque">#99BB86FC</color>
+    <color name="secondary_color">#7F39FB</color>
+    <color name="secondary_color_opaque">#997F39FB</color>
+    <color name="alternative_color">#281254</color>
+    <color name="alternative_color_opaque">#99281254</color>
+    <color name="primary_text_color">#F2E6FE</color>
+    <color name="secondary_text_color">#908899</color>
+
     <color name="background">#000000</color> <!-- #0d0c10 -->
     <color name="background2">#170c2d</color> <!-- #1d2633 -->
     <color name="background_gradient_start">#FF000000</color>

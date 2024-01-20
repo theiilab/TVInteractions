@@ -15,12 +15,22 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class RandomPositionSocketService {
-    public static final String TAG = "NetworkUtils";
+    public static final String TAG = "RandomPositionSocketService";
     public static final int SERVER_PORT = 5051;
     private static ServerSocket serverSocket;
     private static Socket clientSocket;
     private static Thread serverThread = null; //here it sets the Thread initially to null
     private static Handler handler = new Handler();
+
+    private static String participant = "";
+    private static String session = "";
+    private static String method = "";
+
+    public static void setLogBasic(String pid, String sid, String mid) {
+        participant = pid;
+        session = sid;
+        method = mid;
+    }
 
     public static void start() {
         if (serverThread != null) {
@@ -96,7 +106,10 @@ public class RandomPositionSocketService {
                     Log.i(TAG,"Interrupted, client close connection");
                     break;
                 }
-                output.println(MovieList.getRandomPosString(MovieList.randomPositions));
+
+                String basic = participant + "," + session + "," + method + ";";
+                output.println(basic + MovieList.getRandomPosString(MovieList.randomPositions));
+                Log.d(TAG, "Server sent: " + basic + MovieList.getRandomPosString(MovieList.randomPositions));
             }
         }
     }
