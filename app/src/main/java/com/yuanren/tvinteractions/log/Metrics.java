@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Metrics extends Application {
     public int pid = 0;
+    public String method = "";
     public int session = 0;
     public int block = 0;
     public String movie = "";
@@ -24,6 +25,6 @@ public class Metrics extends Application {
     @NonNull
     @Override
     public String toString() {
-        return "" + pid + "," + session + "," + block + "," + movie + "," + task + "," + actionsPerTask + "," + taskCompletionTime + "," + actionsNeeded + "," + startTime + "," + endTime + "\n";
+        return "" + pid + "," + method + "," + session + "," + block + "," + movie + "," + task + "," + actionsPerTask + "," + taskCompletionTime + "," + actionsNeeded + "," + startTime + "," + endTime + "\n";
     }
 }

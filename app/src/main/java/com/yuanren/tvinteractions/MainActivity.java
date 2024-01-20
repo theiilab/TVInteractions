@@ -2,6 +2,7 @@ package com.yuanren.tvinteractions;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
@@ -68,8 +70,11 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
         MovieList.setUpMovies();
 
-        // start my socket channle to send random positions of movies to watch side
+        // start my socket channel to send random positions of movies to watch side
         RandomPositionSocketService.start();
+
+        Metrics metrics = (Metrics)getApplicationContext();
+        Log.d(TAG, metrics.method);
     }
 
     @Override

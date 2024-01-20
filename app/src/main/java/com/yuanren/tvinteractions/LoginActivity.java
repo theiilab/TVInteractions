@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    pid = participantET.getText().toString();
+                    pid = v.getText().toString();
                     return true;
                 }
                 return false;
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    session = sessionET.getText().toString();
+                    session = v.getText().toString();
                     return true;
                 }
                 return false;
@@ -96,6 +96,12 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /** -------- log -------- */
+                Metrics metrics = (Metrics) getApplicationContext();
+                metrics.pid = Integer.parseInt(pid);
+                metrics.method = method;
+                metrics.session = Integer.parseInt(session);
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
