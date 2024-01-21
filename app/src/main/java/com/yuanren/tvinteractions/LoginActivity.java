@@ -31,9 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     private ToggleButton methodBtn;
     private Button button;
 
-    String pid = "";
-    String session = "";
-    String method = "";
+    String pid = "0";
+    String session = "0";
+    String method = "Remote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         methodBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                method = buttonView.getText().toString();
-                method = method.equals("Remote") ? "Smartwatch" : "Remote"; // don't know why, text was switched
+                method = isChecked ? "Smartwatch" : "Remote";
                 buttonView.requestFocus();
             }
         });
