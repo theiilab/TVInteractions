@@ -26,8 +26,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
+import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
@@ -41,6 +43,7 @@ import java.util.List;
  */
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
+    private static final String TYPE_TASK_FIND = "Find Titles";
     private static final int NUM_COLS = 20;
 
     private ImageView bannerBackgroundImage;
@@ -53,6 +56,12 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     private Row currentSelectedRow;
 
+    /** ----- log ----- */
+    private Long startTime;
+    private Long endTime;
+    private boolean findFlag = false;
+    private int actionCount = 0;
+
     public RowsOfMoviesFragment() {
         // Required empty public constructor
     }
@@ -62,7 +71,6 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         return fragment;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +162,15 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        startTime = 0L;
+        endTime = 0L;
+        findFlag = false;
+        actionCount = 0;
+    }
+
     // called when user navigate to the item and focus on it
     private final class ItemViewSelectedListener implements OnItemViewSelectedListener {
         @Override
@@ -178,6 +195,13 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                            /** ----- log ----- */
+                            if (!findFlag) {
+                                findFlag = true;
+                                startTime = System.currentTimeMillis();
+                            }
+                            actionCount++;
+
                             if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItemInRow == 0) {
                                 Log.d(TAG, "OnKeyRight - ItemViewSelectedListener");
                                 navigationMenuCallback.navMenuToggle(true);
@@ -208,6 +232,22 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         @Override
         public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
             if (item instanceof Movie) {
+                /** ----- log ----- */
+                endTime = System.currentTimeMillis();
+                Metrics metrics = (Metrics)getActivity().getApplicationContext();
+                metrics.targetMovie = "not finished yet";
+                metrics.selectedMovie = ((Movie) item).getTitle();
+                metrics.task = TYPE_TASK_FIND;
+                metrics.actionsPerTask = actionCount;
+                metrics.taskCompletionTime = endTime - startTime;
+                metrics.actionsNeeded = 0;
+                metrics.startTime = startTime;
+                metrics.endTime = endTime;
+                metrics.errorRate = 0;
+
+                FileUtils.write(getContext(), metrics);
+                metrics.next();
+
                 Movie movie = (Movie) item;
                 Log.d(TAG, "Item: " + item.toString());
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);

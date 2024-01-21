@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     pid = v.getText().toString();
+                    sessionET.requestFocus();
                     return true;
                 }
                 return false;
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     session = v.getText().toString();
+                    methodBtn.requestFocus();
                     return true;
                 }
                 return false;
@@ -89,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 method = buttonView.getText().toString();
+                method = method.equals("Remote") ? "Smartwatch" : "Remote"; // don't know why, text was switched
                 buttonView.requestFocus();
             }
         });

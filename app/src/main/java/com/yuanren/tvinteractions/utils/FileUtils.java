@@ -3,6 +3,9 @@ package com.yuanren.tvinteractions.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.yuanren.tvinteractions.log.Action;
+import com.yuanren.tvinteractions.log.Metrics;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,17 +13,29 @@ import java.io.IOException;
 public class FileUtils {
     private static final String TAG = "FileUtils";
     private static final String extension = ".csv";
-    public static final String logHeader = "Participant,Action Id,Method,Action,Task Completion Time (ms),Action Completion Time (ms),Error Rate,Distance Swiped (px),Angle Tilted (degree),Force Changed\n";
-    public static final String logRawHeader = "Participant,Action Id,Method,Action,Task Start Time,Task End Time,Action Start Time,Action End Time,Error Rate,From X,From Y,To X,To Y,Start Angle,End Angle,Min Force, Max Force\n";
+    public static final String logHeader1 = "Participant,Method,Session,Block,Target Movie,Selected Movie,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader2 = "Participant,Method,Session,Block,Target Movie,Selected Movie,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader3 = "Participant,Method,Session,Block,Target Movie,Selected Movie,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logRawHeader = "Participant,Method,Session,Block,Scope,Action,Start Time,End Time\n";
 
 
-    public static void write(Context context, int pid, String method, String data) {
-        String filename = "P" + pid + "-" + method + extension;
+    public static void write(Context context, Metrics metrics) {
+        String filename = "P" + metrics.pid + "-" + metrics.method + extension;
 
         File file = new File(context.getFilesDir(), filename);
+
+        String data = "";
         if (!file.exists()) {
-            data = logHeader + data;
+            if (metrics.session == 1) {
+                data = logHeader1;
+            } else if (metrics.session == 2) {
+                data = logHeader2;
+            } else {
+                data = logHeader3;
+            }
         }
+        data += metrics.toString();
+
         try {
             FileOutputStream stream = new FileOutputStream(file, true);
             stream.write(data.getBytes());
@@ -32,13 +47,17 @@ public class FileUtils {
         Log.d(TAG, "Data written");
     }
 
-    public static void writeRaw(Context context, int pid, String method, String data) {
-        String filename = "P" + pid + "-" + method + extension;
+    public static void writeRaw(Context context, Action action) {
+        String filename = "P" + action.pid + "-" + action.method + extension;
 
         File file = new File(context.getFilesDir(), filename);
+
+        String data = "";
         if (!file.exists()) {
-            data = logRawHeader + data;
+            data = logRawHeader;
         }
+        data += action.toString();
+
         try {
             FileOutputStream stream = new FileOutputStream(file, true);
             stream.write(data.getBytes());
@@ -46,5 +65,6 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d(TAG, "Raw data written");
     }
 }
