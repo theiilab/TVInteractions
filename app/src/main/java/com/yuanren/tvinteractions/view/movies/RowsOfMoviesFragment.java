@@ -27,6 +27,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.TaskType;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.utils.FileUtils;
@@ -43,7 +44,6 @@ import java.util.List;
  */
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
-    private static final String TYPE_TASK_FIND = "Find Titles";
     private static final int NUM_COLS = 20;
 
     private ImageView bannerBackgroundImage;
@@ -244,13 +244,13 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 endTime = System.currentTimeMillis();
                 Metrics metrics = (Metrics)getActivity().getApplicationContext();
                 metrics.selectedMovie = ((Movie) item).getTitle();
-                metrics.task = TYPE_TASK_FIND;
+                metrics.task = TaskType.TYPE_TASK_FIND.name();
                 metrics.actionsPerTask = actionCount;
                 metrics.taskCompletionTime = endTime - startTime;
-                metrics.actionsNeeded = 0;
+                metrics.actionsNeeded = metrics.calculateActionsNeeded();
                 metrics.startTime = startTime;
                 metrics.endTime = endTime;
-                metrics.errorRate = 0;
+                metrics.errorRate = ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded;
 
                 FileUtils.write(getContext(), metrics);
                 /** --------------- */

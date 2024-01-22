@@ -4,7 +4,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
+import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,13 +57,28 @@ public class Metrics extends Application {
             "Million Dollar Baby",
             "Pain Hustler"};
 
-
     @NonNull
     @Override
     public String toString() {
         targetMovie = targetMovies[block - 1];
         movieLength = MovieList.getMovie(targetMovie).getLength();
         return "" + pid + "," + method + "," + session + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+    }
+
+    public int calculateActionsNeeded() {
+        targetMovie = targetMovies[block - 1];
+        Movie movie = MovieList.getMovie(targetMovie);
+        if (task == TaskType.TYPE_TASK_FIND.name()) {
+            if (block <= 1) {
+                actionsNeeded = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
+            } else {
+                Movie prevMovie = MovieList.getMovie(targetMovies[block - 2]);
+                int prevActionsNeeded = prevMovie.getCategoryIndex() + prevMovie.getPosition();
+                int curActionsNeeded = movie.getCategoryIndex() + movie.getPosition();
+                actionsNeeded = Math.abs(curActionsNeeded - prevActionsNeeded) + 1;
+            }
+        }
+        return actionsNeeded;
     }
 
     public void next() {

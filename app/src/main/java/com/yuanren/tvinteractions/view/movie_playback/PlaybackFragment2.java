@@ -1,11 +1,8 @@
 package com.yuanren.tvinteractions.view.movie_playback;
 
-import static java.util.Map.entry;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,21 +36,15 @@ import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.log.Metrics;
-import com.yuanren.tvinteractions.log.TaskType;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class PlaybackFragment extends Fragment {
-    private static final String TAG = "PlaybackFragment";
+public class PlaybackFragment2 extends Fragment {
+    private static final String TAG = "PlaybackFragment2";
     private static final int VIDEO_ACTION_PLAY = 0;
     private static final int VIDEO_ACTION_PAUSE = 1;
     private static final int VIDEO_ACTION_FORWARD = 2;
@@ -84,55 +75,14 @@ public class PlaybackFragment extends Fragment {
     private boolean playWhenReady = true;
     private Movie movie;
 
-    /** ----- log ----- */
-    private int actionCount = 0;
-    private Long playStartTime = 0L;
-    private Long playEndTime = 0L;
-    private boolean playFlag = false;
-
-    private Long changeVolumeStartTime = 0L;
-    private Long changeVolumeEndTime = 0L;
-    private boolean changeVolumeFlag = false;
-
-    private Long forwardStartTime = 0L;
-    private Long forwardEndTime = 0L;
-    private boolean forwardFlag = false;
-
-    private Long pauseStartTime = 0L;
-    private Long pauseEndTime = 0L;
-    private boolean pauseFlag = false;
-
-    private Long backwardStartTime = 0L;
-    private Long backwardEndTime = 0L;
-    private boolean backwardFlag = false;
-    private boolean forwardDoneFlag = false;
-    private boolean backwardDoneFlag = false;
-
-    private Long goToEndStartTime = 0L;
-    private Long goToEndEndTime = 0L;
-    private boolean goToEndFlag = false;
-
-    private Long goToStartStartTime = 0L;
-    private Long goToStartEndTime = 0L;
-    private boolean goToStartFlag = false;
-
-    private Map<TaskType, Integer> actionsNeeded = new HashMap<TaskType, Integer>() {{
-        put(TaskType.TYPE_TASK_PLAY_5_SEC, 0);
-        put(TaskType.TYPE_TASK_CHANGE_VOLUME, 2);
-        put(TaskType.TYPE_TASK_FORWARD, 2);
-        put(TaskType.TYPE_TASK_PAUSE, 2);
-        put(TaskType.TYPE_TASK_BACKWARD, 2);
-    }};
-    /** --------------- */
-
-    public PlaybackFragment() {
+    public PlaybackFragment2() {
         // Required empty public constructor
     }
 
-    public static PlaybackFragment newInstance(long id) {
+    public static PlaybackFragment2 newInstance(long id) {
         Log.d(TAG, "Item: " + String.valueOf(id));
 
-        PlaybackFragment fragment = new PlaybackFragment();
+        PlaybackFragment2 fragment = new PlaybackFragment2();
         Bundle args = new Bundle();
         args.putLong(PlaybackActivity.SELECTED_MOVIE_ID, id);
         fragment.setArguments(args);
@@ -152,10 +102,6 @@ public class PlaybackFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // get selected movie
         movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
-        /** ----- log ----- */
-        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / 5 + 1);
-        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / 5 + 1);
-        /** --------------- */
 
         // set x-ray row dynamically
         recyclerView = view.findViewById(R.id.x_ray_container);
@@ -221,85 +167,20 @@ public class PlaybackFragment extends Fragment {
                     case KeyEvent.KEYCODE_ENTER:
                     case KeyEvent.KEYCODE_DPAD_CENTER:
                         animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
-
-                        /** ----- log ----- */
-                        if (!pauseFlag && forwardFlag) {
-                            pauseFlag = true;
-                            setLogData(TaskType.TYPE_TASK_FORWARD, forwardStartTime, forwardEndTime);
-
-                            actionCount = 0;
-                            pauseStartTime = System.currentTimeMillis();
-                        }
-                        actionCount++;
-                        pauseEndTime = System.currentTimeMillis();
                         break;
                     case KeyEvent.KEYCODE_DPAD_LEFT:
                         Log.d(TAG, "rewind");
                         animateVideoIndicator(VIDEO_ACTION_REWIND);
-
-                        /** ----- log ----- */
-                        if (!backwardDoneFlag) {
-                            if (!backwardFlag && pauseFlag) {
-                                backwardFlag = true;
-                                forwardDoneFlag = true;
-                                setLogData(TaskType.TYPE_TASK_PAUSE, pauseStartTime, pauseEndTime);
-
-                                actionCount = 0;
-                                backwardStartTime = System.currentTimeMillis();
-                            }
-                            actionCount++;
-                            backwardEndTime = System.currentTimeMillis();
-                        } else {
-                            if (!goToStartFlag && goToEndFlag) {
-                                goToStartFlag = true;
-                                setLogData(TaskType.TYPE_TASK_GO_TO_END, goToEndStartTime, goToEndEndTime);
-
-                                actionCount = 0;
-                                goToStartStartTime = System.currentTimeMillis();
-                            }
-                            actionCount++;
-                            goToStartEndTime = System.currentTimeMillis();
-                        }
                         break;
                     case KeyEvent.KEYCODE_DPAD_RIGHT:
                         Log.d(TAG, "forward");
                         animateVideoIndicator(VIDEO_ACTION_FORWARD);
-
-                        /** ----- log ----- */
-                        if (!forwardDoneFlag) {
-                            if (!forwardFlag && changeVolumeFlag) {
-                                forwardFlag = true;
-                                setLogData(TaskType.TYPE_TASK_CHANGE_VOLUME, changeVolumeStartTime, changeVolumeEndTime);
-
-                                actionCount = 0;
-                                forwardStartTime = System.currentTimeMillis();
-                            }
-                            actionCount++;
-                            forwardEndTime = System.currentTimeMillis();
-                        } else {
-                            if (!goToEndFlag && backwardFlag) {
-                                goToEndFlag = true;
-                                backwardDoneFlag = true;
-                                setLogData(TaskType.TYPE_TASK_BACKWARD, backwardStartTime, backwardEndTime);
-
-                                actionCount = 0;
-                                goToEndStartTime = System.currentTimeMillis();
-                            }
-                            actionCount++;
-                            goToEndEndTime = System.currentTimeMillis();
-                        }
-
                         break;
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         // always focus on the first x-ray item
                         recyclerView.getChildAt(0).requestFocus();
-                        actionCount++;
                         break;
                     case KeyEvent.KEYCODE_BACK:
-                        /** ----- log ----- */
-                        setLogData(TaskType.TYPE_TASK_GO_TO_START, goToStartStartTime, goToStartEndTime);
-                        /** --------------- */
-
                         getActivity().finish();
                         break;
                     default:
@@ -355,13 +236,6 @@ public class PlaybackFragment extends Fragment {
                         break;
                     case Player.STATE_READY:
                         loadingBar.setVisibility(View.GONE);
-
-                        /** ----- log ----- */
-                        if (!playFlag) {
-                            playFlag = true;
-                            playStartTime = System.currentTimeMillis();
-                        }
-                        /** --------------- */
                         break;
                     case Player.STATE_ENDED:
                         backBtn.requestFocus();
@@ -369,24 +243,6 @@ public class PlaybackFragment extends Fragment {
                         Log.d(TAG, "default");
                         break;
                 }
-            }
-
-            @Override
-            public void onDeviceVolumeChanged(int volume, boolean muted) {
-                Player.Listener.super.onDeviceVolumeChanged(volume, muted);
-
-                /** ----- log ----- */
-                Log.d(TAG, "device volume changed: " + volume);
-                if (!changeVolumeFlag && playFlag) {
-                    changeVolumeFlag = true;
-                    playEndTime = System.currentTimeMillis();
-                    setLogData(TaskType.TYPE_TASK_PLAY_5_SEC, playStartTime, playEndTime);
-
-                    actionCount = 0;
-                    changeVolumeStartTime = System.currentTimeMillis();
-                }
-                actionCount++;
-                changeVolumeEndTime = System.currentTimeMillis();
             }
         });
         // set focus every time controller is hidden and shown
@@ -475,55 +331,6 @@ public class PlaybackFragment extends Fragment {
         }
     }
 
-    private void setLogData(TaskType task, Long startTime, Long endTime) {
-        Metrics metrics = (Metrics) getActivity().getApplicationContext();
-        metrics.selectedMovie = movie.getTitle();
-        metrics.task = task.name();
-        metrics.actionsPerTask = actionCount;
-        metrics.taskCompletionTime = endTime - startTime;
-        metrics.actionsNeeded = actionsNeeded.get(task);
-        metrics.startTime = startTime;
-        metrics.endTime = endTime;
-        metrics.errorRate = metrics.actionsNeeded != 0 ? ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded : 0;
-
-        FileUtils.write(getContext(), metrics);
-    }
-
-    private void clearLogData() {
-        actionCount = 0;
-
-        playStartTime = 0L;
-        playEndTime = 0L;
-        playFlag = false;
-
-        changeVolumeStartTime = 0L;
-        changeVolumeEndTime = 0L;
-        changeVolumeFlag = false;
-
-        forwardStartTime = 0L;
-        forwardEndTime = 0L;
-        forwardFlag = false;
-
-        pauseStartTime = 0L;
-        pauseEndTime = 0L;
-        pauseFlag = false;
-
-        backwardStartTime = 0L;
-        backwardEndTime = 0L;
-        backwardFlag = false;
-
-        forwardDoneFlag = false;
-        backwardDoneFlag = false;
-
-        goToEndStartTime = 0L;
-        goToEndEndTime = 0L;
-        goToEndFlag = false;
-
-        goToStartStartTime = 0L;
-        goToStartEndTime = 0L;
-        goToStartFlag = false;
-    }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -541,8 +348,5 @@ public class PlaybackFragment extends Fragment {
         super.onDestroy();
         exoPlayer.release();
         exoPlayer = null;
-
-        /** ----- log ----- */
-        clearLogData();
     }
 }

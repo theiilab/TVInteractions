@@ -17,6 +17,8 @@ public class Movie implements Serializable {
     private String videoUrl;
     private String studio;
     private String category;
+
+    private int categoryIndex;
     private int position;
     private List<XRayItem> xRayItems;
 
@@ -101,6 +103,14 @@ public class Movie implements Serializable {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public int getCategoryIndex() {
+        return categoryIndex;
+    }
+
+    public void setCategoryIndex(int categoryIndex) {
+        this.categoryIndex = categoryIndex;
     }
 
     public List<XRayItem> getXRayItems() {

@@ -409,6 +409,7 @@ public final class MovieList {
                             videoUrl[index],
                             cardImageUrl[index],
                             bgImageUrl[index],
+                            index / 2,
                             setUpXRayItems()));
         }
         return reals;
@@ -424,6 +425,7 @@ public final class MovieList {
             String videoUrl,
             String cardImageUrl,
             String backgroundImageUrl,
+            int categoryIndex,
             List<Map<String, List<String>>> xRayItems) {
         Movie movie = new Movie();
 //        movie.setId(count++);
@@ -1977,6 +1979,7 @@ public final class MovieList {
                             videoUrl[index % n],
                             cardImageUrl[index % n],
                             bgImageUrl[index % n],
+                            index,
                             setUpDummyXRayItems(length)));
         }
 
@@ -2037,6 +2040,7 @@ public final class MovieList {
                             "",
                             "",
                             "",
+                            0,
                             null));
         }
 
