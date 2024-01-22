@@ -46,9 +46,9 @@ public class SearchListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Movie movie = data.get(position);
         SearchMovieViewHolder searchMovieViewHolder = (SearchMovieViewHolder) holder;
-        searchMovieViewHolder.title.setText(movie.getDummyTitle());
 
         if (movie.getId() != -1) { // real movie, set background
+            searchMovieViewHolder.title.setText("");
             Glide.with(holder.itemView.getContext())
                     .load(movie.getCardImageUrl())
                     .thumbnail(0.1f)
@@ -57,6 +57,7 @@ public class SearchListAdapter extends RecyclerView.Adapter {
                     .into(searchMovieViewHolder.image);
             searchMovieViewHolder.image.setBackgroundColor(holder.itemView.getContext().getColor(R.color.transparent));
         } else {// 226 search dummy movies, set random purple background color within a range
+            searchMovieViewHolder.title.setText(movie.getTitle());
             SplittableRandom random = new SplittableRandom();
             int r = random.nextInt(125,175);
             int g = random.nextInt(75,125);
