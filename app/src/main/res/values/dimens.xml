@@ -11,7 +11,7 @@
     <dimen name="dimens_150dp">150dp</dimen>
     <dimen name="dimens_20sp">20sp</dimen>
 
-    <dimen name="login_margin_parent">100dp</dimen>
+    <dimen name="login_margin_parent">50dp</dimen>
     <dimen name="login_margin_between">50dp</dimen>
     <dimen name="login_item_width">200dp</dimen>
     <dimen name="login_label_width">130dp</dimen>

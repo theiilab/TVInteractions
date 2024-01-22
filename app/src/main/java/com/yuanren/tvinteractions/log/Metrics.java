@@ -15,6 +15,8 @@ public class Metrics extends Application {
     public int pid = 0;
     public String method = "";
     public int session = 0;
+    public int dataSet = 0;
+    public int searchDataSet = 0;
     public int block = 1;
     public String targetMovie = "";
     public int movieLength = 0;
@@ -60,17 +62,24 @@ public class Metrics extends Application {
     @NonNull
     @Override
     public String toString() {
-        targetMovie = targetMovies[block - 1];
+        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
         movieLength = MovieList.getMovie(targetMovie).getLength();
-        return "" + pid + "," + method + "," + session + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+
+        String res;
+        if (session == 1) {
+            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+        } else {
+            res = "" + pid + "," + method + "," + session + "," + searchDataSet + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+        }
+        return res;
     }
 
     public String getFirstTargetMovie() {
-        return targetMovies[0];
+        return dataSet == 0 ? targetMovies[0] : targetMovies2[0];
     }
 
     public int calculateActionsNeeded() {
-        targetMovie = targetMovies[block - 1];
+        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
         Movie movie = MovieList.getMovie(targetMovie);
         if (task == TaskType.TYPE_TASK_FIND.name()) {
             if (block <= 1) {
@@ -87,13 +96,14 @@ public class Metrics extends Application {
 
     public void next() {
         block = block > targetMovies.length ? block : block + 1;
-        targetMovie = targetMovies[block - 1];
+        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
         selectedMovie = "";
         task = "";
-        actionsPerTask = 0;
         taskCompletionTime = 0L;
-        actionsNeeded = 0;
         startTime = 0L;
         endTime = 0L;
+        actionsPerTask = 0;
+        actionsNeeded = 0;
+        errorRate = 0;
     }
 }

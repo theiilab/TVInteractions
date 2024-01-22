@@ -109,7 +109,6 @@
             android:textColor="@color/primary_text_color"
             android:textSize="@dimen/login_text_size"
             android:textAlignment="textEnd"
-
             android:text="Method: " />
 
         <ToggleButton
@@ -126,18 +125,89 @@
             app:layout_constraintRight_toRightOf="parent" />
     </LinearLayout>
 
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="330dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="@dimen/login_margin_between"
-            android:background="@drawable/effect_login_btn"
-            android:gravity="center"
+    <FrameLayout
+        android:id="@+id/placeHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_margin_between"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="@dimen/login_label_width"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
             android:textSize="@dimen/login_text_size"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:text="SUBMIT"
-            app:layout_constraintTop_toBottomOf="@id/layout3"
+            android:textAlignment="textEnd"
+            android:text="Data Set: " />
+
+        <ToggleButton
+            android:id="@+id/dataSet"
+            android:layout_width="@dimen/login_item_width"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/alternative_color_opaque"
+            android:textSize="@dimen/login_text_size"
+            android:textOff="0"
+            android:textOn="1"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_margin_between"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="@dimen/login_label_width"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/login_text_size"
+            android:textAlignment="textEnd"
+            android:text="Data Set: " />
+
+        <EditText
+            android:id="@+id/searchDataSet"
+            android:layout_width="@dimen/login_item_width"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/alternative_color_opaque"
+            android:textCursorDrawable="@color/primary_color"
+            android:textColor="@color/primary_text_color"
+            android:textAlignment="center"
+            android:textSize="@dimen/login_text_size"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/pid"
+            app:layout_constraintRight_toRightOf="parent" />
+    </LinearLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/login_margin_between"
+        android:background="@drawable/effect_login_btn"
+        android:gravity="center"
+        android:textSize="@dimen/login_text_size"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="SUBMIT"
+        app:layout_constraintTop_toBottomOf="@id/placeHolder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

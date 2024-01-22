@@ -13,9 +13,9 @@ import java.io.IOException;
 public class FileUtils {
     private static final String TAG = "FileUtils";
     private static final String extension = ".csv";
-    public static final String logHeader1 = "Participant,Method,Session,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
-    public static final String logHeader2 = "Participant,Method,Session,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
-    public static final String logHeader3 = "Participant,Method,Session,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader3 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
     public static final String logRawHeader = "Participant,Method,Session,Block,Scope,Action,Start Time,End Time\n";
 
 
