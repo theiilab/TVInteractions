@@ -61,6 +61,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private Long endTime;
     private boolean findFlag = false;
     private int actionCount = 0;
+    /** --------------- */
 
     public RowsOfMoviesFragment() {
         // Required empty public constructor
@@ -165,6 +166,12 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        /** ----- log ----- */
+        clearLogData();
+    }
+
+    private void clearLogData() {
         startTime = 0L;
         endTime = 0L;
         findFlag = false;
@@ -201,6 +208,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                                 startTime = System.currentTimeMillis();
                             }
                             actionCount++;
+                            /** --------------- */
 
                             if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItemInRow == 0) {
                                 Log.d(TAG, "OnKeyRight - ItemViewSelectedListener");
@@ -235,7 +243,6 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 /** ----- log ----- */
                 endTime = System.currentTimeMillis();
                 Metrics metrics = (Metrics)getActivity().getApplicationContext();
-                metrics.targetMovie = "not finished yet";
                 metrics.selectedMovie = ((Movie) item).getTitle();
                 metrics.task = TYPE_TASK_FIND;
                 metrics.actionsPerTask = actionCount;
@@ -246,7 +253,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 metrics.errorRate = 0;
 
                 FileUtils.write(getContext(), metrics);
-                metrics.next();
+                /** --------------- */
 
                 Movie movie = (Movie) item;
                 Log.d(TAG, "Item: " + item.toString());

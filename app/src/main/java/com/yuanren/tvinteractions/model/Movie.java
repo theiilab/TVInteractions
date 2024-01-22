@@ -10,6 +10,7 @@ public class Movie implements Serializable {
     static final long serialVersionUID = 727566175075960653L;
     private long id;
     private String title;
+    private int length;
     private String description;
     private String bgImageUrl;
     private String cardImageUrl;
@@ -36,6 +37,14 @@ public class Movie implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 
     public String getDescription() {

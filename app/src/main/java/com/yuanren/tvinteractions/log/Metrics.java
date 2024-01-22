@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.yuanren.tvinteractions.model.MovieList;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Metrics extends Application {
     public int session = 0;
     public int block = 1;
     public String targetMovie = "";
+    public int movieLength = 0;
     public String selectedMovie = "";
     public String task = "";
     public Long taskCompletionTime = 0L;
@@ -57,7 +60,8 @@ public class Metrics extends Application {
     @Override
     public String toString() {
         targetMovie = targetMovies[block - 1];
-        return "" + pid + "," + method + "," + session + "," + block + "," + targetMovie + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+        movieLength = MovieList.getMovie(targetMovie).getLength();
+        return "" + pid + "," + method + "," + session + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
     }
 
     public void next() {
