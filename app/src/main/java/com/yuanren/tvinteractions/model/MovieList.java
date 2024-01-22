@@ -367,7 +367,6 @@ public final class MovieList {
                     buildMovieInfo(
                             (long) index,
                             title[index],
-                            "",
                             description,
                             studio[index],
                             category[index],
@@ -382,7 +381,6 @@ public final class MovieList {
     private static Movie buildMovieInfo(
             Long id,
             String title,
-            String dummyTitle,
             String description,
             String studio,
             String category,
@@ -394,7 +392,6 @@ public final class MovieList {
 //        movie.setId(count++);
         movie.setId(id);
         movie.setTitle(title);
-        movie.setDummyTitle(dummyTitle);
         movie.setDescription(description);
         movie.setStudio(studio);
         movie.setCategory(category);
@@ -1935,7 +1932,6 @@ public final class MovieList {
                     buildMovieInfo(
                             (long) index,
                             title[index % n],
-                            "",
                             description,
                             studio[index % n],
                             category[index % n],
@@ -1994,7 +1990,6 @@ public final class MovieList {
             searchDummies.add(
                     buildMovieInfo(
                             (long) -1,
-                            s,
                             s,
                             "",
                             "",
