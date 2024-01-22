@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.leanback.app.RowsSupportFragment;
@@ -44,6 +45,7 @@ import java.util.List;
  */
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
+    public static final int RESULT_CODE_DETAILS = 101;
     private static final int NUM_COLS = 20;
 
     private ImageView bannerBackgroundImage;
@@ -166,9 +168,18 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     @Override
     public void onResume() {
         super.onResume();
+    }
 
+    public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
         /** ----- log ----- */
-        clearLogData();
+        if (requestCode == RESULT_CODE_DETAILS) {
+            Metrics metrics = (Metrics)getActivity().getApplicationContext();
+            if (metrics.targetMovie.equals(metrics.selectedMovie)) {
+                clearLogData();
+                metrics.next();
+            }
+            actionCount++;  // for press back button from the wrong movie details
+        }
     }
 
     private void clearLogData() {
@@ -243,16 +254,19 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 /** ----- log ----- */
                 endTime = System.currentTimeMillis();
                 Metrics metrics = (Metrics)getActivity().getApplicationContext();
-                metrics.selectedMovie = ((Movie) item).getTitle();
-                metrics.task = TaskType.TYPE_TASK_FIND.name();
-                metrics.actionsPerTask = actionCount;
-                metrics.taskCompletionTime = endTime - startTime;
-                metrics.actionsNeeded = metrics.calculateActionsNeeded();
-                metrics.startTime = startTime;
-                metrics.endTime = endTime;
-                metrics.errorRate = ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded;
+                String selectedMovie = ((Movie) item).getTitle();
+                if (metrics.targetMovie.equals(selectedMovie)) {
+                    metrics.selectedMovie = selectedMovie;
+                    metrics.task = TaskType.TYPE_TASK_FIND.name();
+                    metrics.actionsPerTask = actionCount;
+                    metrics.taskCompletionTime = endTime - startTime;
+                    metrics.actionsNeeded = metrics.calculateActionsNeeded();
+                    metrics.startTime = startTime;
+                    metrics.endTime = endTime;
+                    metrics.errorRate = ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded;
 
-                FileUtils.write(getContext(), metrics);
+                    FileUtils.write(getContext(), metrics);
+                }
                 /** --------------- */
 
                 Movie movie = (Movie) item;
@@ -266,7 +280,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 //                        ((CardViewHolder) itemViewHolder).view.get,
 //                        DetailsActivity.SHARED_ELEMENT_NAME)
 //                        .toBundle();
-                getActivity().startActivity(intent);
+                getActivity().startActivityForResult(intent, RESULT_CODE_DETAILS);
             }
         }
     }

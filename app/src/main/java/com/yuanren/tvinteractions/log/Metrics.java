@@ -65,6 +65,10 @@ public class Metrics extends Application {
         return "" + pid + "," + method + "," + session + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
     }
 
+    public String getFirstTargetMovie() {
+        return targetMovies[0];
+    }
+
     public int calculateActionsNeeded() {
         targetMovie = targetMovies[block - 1];
         Movie movie = MovieList.getMovie(targetMovie);
@@ -82,6 +86,8 @@ public class Metrics extends Application {
     }
 
     public void next() {
+        block = block > targetMovies.length ? block : block + 1;
+        targetMovie = targetMovies[block - 1];
         selectedMovie = "";
         task = "";
         actionsPerTask = 0;
@@ -89,6 +95,5 @@ public class Metrics extends Application {
         actionsNeeded = 0;
         startTime = 0L;
         endTime = 0L;
-        block++;
     }
 }

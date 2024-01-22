@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 metrics.pid = Integer.parseInt(pid);
                 metrics.method = method;
                 metrics.session = Integer.parseInt(session);
+                metrics.targetMovie = metrics.getFirstTargetMovie(); // must set!
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

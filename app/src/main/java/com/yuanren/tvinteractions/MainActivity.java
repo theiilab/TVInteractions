@@ -1,5 +1,6 @@
 package com.yuanren.tvinteractions;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -20,6 +22,7 @@ import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
+import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 import com.yuanren.tvinteractions.view.nav_drawer.NavigationMenuFragment;
 import com.yuanren.tvinteractions.view.search.SearchFragment;
 import com.yuanren.tvinteractions.view.tv_channels.TVChannelsFragment;
@@ -175,6 +178,15 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
     // For keyboard OnClick callback (in keyboard.xml android:onClick="onKeyClick")
     public void onKeyClick(View v) {
         searchFragment.onKeyClick(v);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /** -------- log -------- */
+        if (requestCode == RowsOfMoviesFragment.RESULT_CODE_DETAILS) {
+            moviesFragment.onResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
