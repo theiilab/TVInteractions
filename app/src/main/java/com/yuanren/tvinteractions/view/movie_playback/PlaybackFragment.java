@@ -110,6 +110,7 @@ public class PlaybackFragment extends Fragment {
 
     private Long goToEndStartTime = 0L;
     private Long goToEndEndTime = 0L;
+    private Long goToEndCurTimeIndex = 0L;
     private boolean goToEndFlag = false;
 
     private Long goToStartStartTime = 0L;
@@ -153,8 +154,8 @@ public class PlaybackFragment extends Fragment {
         // get selected movie
         movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
         /** ----- log ----- */
-        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / 5 + 1);
-        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / 5 + 1);
+        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
+        actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         /** --------------- */
 
         // set x-ray row dynamically
@@ -252,6 +253,7 @@ public class PlaybackFragment extends Fragment {
                         } else {
                             if (!goToStartFlag && goToEndFlag) {
                                 goToStartFlag = true;
+                                actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, (int) (movie.getLength() - goToEndCurTimeIndex) / (VIDEO_TIME_DELTA / 1000) + 1);
                                 setLogData(TaskType.TYPE_TASK_GO_TO_END, goToEndStartTime, goToEndEndTime);
 
                                 actionCount = 0;
@@ -284,11 +286,11 @@ public class PlaybackFragment extends Fragment {
 
                                 actionCount = 0;
                                 goToEndStartTime = System.currentTimeMillis();
+                                goToEndCurTimeIndex = exoPlayer.getCurrentPosition() / 1000;
                             }
                             actionCount++;
                             goToEndEndTime = System.currentTimeMillis();
                         }
-
                         break;
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         // always focus on the first x-ray item
@@ -475,6 +477,7 @@ public class PlaybackFragment extends Fragment {
         }
     }
 
+    /** ----- log ----- */
     private void setLogData(TaskType task, Long startTime, Long endTime) {
         Metrics metrics = (Metrics) getActivity().getApplicationContext();
         metrics.selectedMovie = movie.getTitle();
@@ -489,6 +492,7 @@ public class PlaybackFragment extends Fragment {
         FileUtils.write(getContext(), metrics);
     }
 
+    /** ----- log ----- */
     private void clearLogData() {
         actionCount = 0;
 
@@ -517,6 +521,7 @@ public class PlaybackFragment extends Fragment {
 
         goToEndStartTime = 0L;
         goToEndEndTime = 0L;
+        goToEndCurTimeIndex = 0L;
         goToEndFlag = false;
 
         goToStartStartTime = 0L;
