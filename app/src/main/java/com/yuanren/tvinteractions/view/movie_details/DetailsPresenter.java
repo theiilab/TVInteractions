@@ -11,7 +11,11 @@ import androidx.leanback.widget.Presenter;
 
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
+import com.yuanren.tvinteractions.log.Action;
+import com.yuanren.tvinteractions.log.ActionType;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
+import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.movie_playback.PlaybackActivity;
 
 public class DetailsPresenter extends Presenter {
@@ -68,6 +72,25 @@ public class DetailsPresenter extends Presenter {
                             detailsViewHolder.view.getContext().startActivity(intent);
                             break;
                     }
+                } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    /** ----- log ----- */
+                    Metrics metrics = (Metrics) view.getContext().getApplicationContext();
+                    Action action;
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_ENTER.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_BACK:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_BACK.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        default:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_DIRECTION.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                    }
+                    FileUtils.writeRaw(view.getContext(), action);
                 }
                 return false;
             }

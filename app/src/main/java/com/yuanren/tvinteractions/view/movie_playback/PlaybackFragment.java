@@ -41,6 +41,8 @@ import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.log.Action;
+import com.yuanren.tvinteractions.log.ActionType;
 import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.log.TaskType;
 import com.yuanren.tvinteractions.model.Movie;
@@ -219,9 +221,44 @@ public class PlaybackFragment extends Fragment {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 Log.d(TAG, "Key action: " + String.valueOf(i));
                 // filter out the function call for KEY_DOWN event, only working for KEY_UP event to avoid two-times calling
-                if (keyEvent.getAction()!=KeyEvent.ACTION_DOWN) {
+                Metrics metrics = (Metrics) getActivity().getApplicationContext();
+                if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    /** ----- raw log ----- */
+                    Action action = null;
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_LEFT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_RIGHT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_UP:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_UP.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_DOWN.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_ENTER.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        case KeyEvent.KEYCODE_BACK:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_BACK.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                            break;
+                        default:
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_DIRECTION.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                    }
+                    FileUtils.writeRaw(getContext(), action);
                     return true;
                 }
+                /** --------------- */
 
                 switch (i) {
                     case KeyEvent.KEYCODE_ENTER:
@@ -315,6 +352,7 @@ public class PlaybackFragment extends Fragment {
                     case KeyEvent.KEYCODE_BACK:
                         /** ----- log ----- */
                         setLogData(TaskType.TYPE_TASK_GO_TO_START, goToStartStartTime, goToStartEndTime);
+                        clearLogData();
                         /** --------------- */
 
                         getActivity().finish();
@@ -413,6 +451,12 @@ public class PlaybackFragment extends Fragment {
                 }
                 actionCount++;
                 changeVolumeEndTime = System.currentTimeMillis();
+
+                // raw
+                Metrics metrics = (Metrics) getActivity().getApplicationContext();
+                Action action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_VOLUME.name(), TAG, System.currentTimeMillis(), System.currentTimeMillis());
+                FileUtils.writeRaw(getContext(), action);
             }
         });
         // set focus every time controller is hidden and shown
