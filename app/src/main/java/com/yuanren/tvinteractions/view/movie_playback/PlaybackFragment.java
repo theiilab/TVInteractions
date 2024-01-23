@@ -5,6 +5,8 @@ import static java.util.Map.entry;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -85,6 +87,8 @@ public class PlaybackFragment extends Fragment {
     private Movie movie;
 
     /** ----- log ----- */
+    private TextView taskReminder;
+    private Handler timeHandler = new Handler(Looper.getMainLooper());
     private int actionCount = 0;
     private Long playStartTime = 0L;
     private Long playEndTime = 0L;
@@ -176,6 +180,7 @@ public class PlaybackFragment extends Fragment {
         pauseBtn = view.findViewById(R.id.exo_pause);
         timeBar = view.findViewById(R.id.exo_progress);
         loadingBar = view.findViewById(R.id.loading_bar);
+        taskReminder = view.findViewById(R.id.task_reminder);
 
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
@@ -230,6 +235,8 @@ public class PlaybackFragment extends Fragment {
 
                             actionCount = 0;
                             pauseStartTime = System.currentTimeMillis();
+
+                            taskReminder.setText("5. Backward by 10 seconds");
                         }
                         actionCount++;
                         pauseEndTime = System.currentTimeMillis();
@@ -247,6 +254,8 @@ public class PlaybackFragment extends Fragment {
 
                                 actionCount = 0;
                                 backwardStartTime = System.currentTimeMillis();
+
+                                taskReminder.setText("6. Go to the end");
                             }
                             actionCount++;
                             backwardEndTime = System.currentTimeMillis();
@@ -258,6 +267,8 @@ public class PlaybackFragment extends Fragment {
 
                                 actionCount = 0;
                                 goToStartStartTime = System.currentTimeMillis();
+                                taskReminder.setText("8. Back" +
+                                        "");
                             }
                             actionCount++;
                             goToStartEndTime = System.currentTimeMillis();
@@ -275,6 +286,8 @@ public class PlaybackFragment extends Fragment {
 
                                 actionCount = 0;
                                 forwardStartTime = System.currentTimeMillis();
+
+                                taskReminder.setText("4. Pause");
                             }
                             actionCount++;
                             forwardEndTime = System.currentTimeMillis();
@@ -287,6 +300,8 @@ public class PlaybackFragment extends Fragment {
                                 actionCount = 0;
                                 goToEndStartTime = System.currentTimeMillis();
                                 goToEndCurTimeIndex = exoPlayer.getCurrentPosition() / 1000;
+
+                                taskReminder.setText("7. Go to the start");
                             }
                             actionCount++;
                             goToEndEndTime = System.currentTimeMillis();
@@ -362,6 +377,13 @@ public class PlaybackFragment extends Fragment {
                         if (!playFlag) {
                             playFlag = true;
                             playStartTime = System.currentTimeMillis();
+
+                            timeHandler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    taskReminder.setText("2. Change volume by 2 units");
+                                }
+                            }, 5000);
                         }
                         /** --------------- */
                         break;
@@ -386,6 +408,8 @@ public class PlaybackFragment extends Fragment {
 
                     actionCount = 0;
                     changeVolumeStartTime = System.currentTimeMillis();
+
+                    taskReminder.setText("3. Forward by 10 seconds");
                 }
                 actionCount++;
                 changeVolumeEndTime = System.currentTimeMillis();
