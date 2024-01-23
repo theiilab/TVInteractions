@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     session = v.getText().toString();
 
-                    if (session.equals("1")) {
+                    if (session.equals("1") || session.equals("2")) {
                         layout4.setVisibility(View.VISIBLE);
                         layout5.setVisibility(View.GONE);
                     } else if (session.equals("3")){
