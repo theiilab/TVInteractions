@@ -75,9 +75,6 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
         // start my socket channel to send random positions of movies to watch side
         RandomPositionSocketService.start();
-
-        Metrics metrics = (Metrics)getApplicationContext();
-        Log.d(TAG, metrics.method);
     }
 
     @Override
