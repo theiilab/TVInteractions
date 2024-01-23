@@ -43,7 +43,7 @@ import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-public class PlaybackFragment2 extends Fragment {
+public class PlaybackFragment0 extends Fragment {
     private static final String TAG = "PlaybackFragment2";
     private static final int VIDEO_ACTION_PLAY = 0;
     private static final int VIDEO_ACTION_PAUSE = 1;
@@ -75,14 +75,14 @@ public class PlaybackFragment2 extends Fragment {
     private boolean playWhenReady = true;
     private Movie movie;
 
-    public PlaybackFragment2() {
+    public PlaybackFragment0() {
         // Required empty public constructor
     }
 
-    public static PlaybackFragment2 newInstance(long id) {
+    public static PlaybackFragment0 newInstance(long id) {
         Log.d(TAG, "Item: " + String.valueOf(id));
 
-        PlaybackFragment2 fragment = new PlaybackFragment2();
+        PlaybackFragment0 fragment = new PlaybackFragment0();
         Bundle args = new Bundle();
         args.putLong(PlaybackActivity.SELECTED_MOVIE_ID, id);
         fragment.setArguments(args);
