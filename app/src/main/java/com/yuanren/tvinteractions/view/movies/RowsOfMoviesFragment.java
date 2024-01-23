@@ -293,12 +293,15 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                     metrics.task = TaskType.TYPE_TASK_FIND.name();
                     metrics.actionsPerTask = actionCount;
                     metrics.taskCompletionTime = endTime - startTime;
-                    metrics.actionsNeeded = metrics.calculateActionsNeeded();
+                    metrics.actionsNeeded = metrics.calculateSession1ActionsNeeded();
                     metrics.startTime = startTime;
                     metrics.endTime = endTime;
                     metrics.errorRate = ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded;
 
-                    FileUtils.write(getContext(), metrics);
+                    // only reflect navigation time in log for session 1
+                    if (metrics.session == 1) {
+                        FileUtils.write(getContext(), metrics);
+                    }
                 }
                 /** --------------- */
 
