@@ -1,13 +1,10 @@
 package com.yuanren.tvinteractions.view.movie_playback;
 
-import static java.util.Map.entry;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,6 +75,7 @@ public class PlaybackFragment extends Fragment {
     private TextView title;
     private ImageButton backBtn;
     private ImageButton videoStatusIndicator;
+    private ConstraintLayout xRayLayout;
     private ImageButton playBtn;
     private ImageButton pauseBtn;
     private ExoPlayer exoPlayer;
@@ -178,6 +177,7 @@ public class PlaybackFragment extends Fragment {
         title = view.findViewById(R.id.title);
         backBtn = view.findViewById(R.id.back_btn);
         videoStatusIndicator = view.findViewById(R.id.video_status_indicator);
+        xRayLayout = view.findViewById(R.id.x_ray);
         playBtn = view.findViewById(R.id.exo_play);
         pauseBtn = view.findViewById(R.id.exo_pause);
         timeBar = view.findViewById(R.id.exo_progress);
@@ -185,7 +185,12 @@ public class PlaybackFragment extends Fragment {
         taskReminder = view.findViewById(R.id.task_reminder);
 
         title.setText(movie.getTitle());
+        xRayLayout.setVisibility(View.GONE);
         initializePlayer(movie.getVideoUrl());
+
+        /** ----- log ----- */
+        taskReminder.setText("1. Play for 5 seconds");
+        /** --------------- */
 
         backBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
