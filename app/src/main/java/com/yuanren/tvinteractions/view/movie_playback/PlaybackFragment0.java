@@ -75,6 +75,10 @@ public class PlaybackFragment0 extends Fragment {
     private boolean playWhenReady = true;
     private Movie movie;
 
+    /** ----- log ----- */
+    private TextView taskReminder;
+    /** --------------- */
+
     public PlaybackFragment0() {
         // Required empty public constructor
     }
@@ -121,9 +125,13 @@ public class PlaybackFragment0 extends Fragment {
         pauseBtn = view.findViewById(R.id.exo_pause);
         timeBar = view.findViewById(R.id.exo_progress);
         loadingBar = view.findViewById(R.id.loading_bar);
+        taskReminder = view.findViewById(R.id.task_reminder);
 
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
+        /** ----- log ----- */
+        taskReminder.setVisibility(View.GONE);
+        /** --------------- */
 
         backBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
