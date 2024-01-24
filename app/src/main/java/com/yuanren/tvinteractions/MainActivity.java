@@ -65,9 +65,13 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     .add(R.id.nav_drawer, navMenuFragment)
                     .commit();
 
+            /** -------- log -------- */
+            Metrics metrics = (Metrics) getApplicationContext();
+            Fragment fragment = metrics.session == 3 ? searchFragment : moviesFragment;
+            /** --------------------- */
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragments, moviesFragment)
+                    .add(R.id.fragments, fragment)
                     .commit();
         }
 

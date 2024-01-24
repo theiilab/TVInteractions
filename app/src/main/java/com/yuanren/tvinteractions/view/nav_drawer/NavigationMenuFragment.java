@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
+import com.yuanren.tvinteractions.log.Metrics;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -105,11 +106,19 @@ public class NavigationMenuFragment extends Fragment {
         settingsTV = view.findViewById(R.id.settings_TV);
         settingsUnderlineIB = view.findViewById(R.id.settings_underline_IB);
 
-        // by default selection
-        homeIB.setImageResource(R.drawable.ic_nav_home_selected);
-        homeUnderlineIB.setVisibility(View.VISIBLE);
-        lastSelectedMenuItem = TYPE_VIEW_HOME;
-        currentSelectedFragmentType = TYPE_VIEW_HOME;
+        Metrics metrics = (Metrics) getActivity().getApplicationContext();
+        if (metrics.session == 3) {
+            searchIB.setImageResource(R.drawable.ic_nav_search_selected);
+            searchUnderlineIB.setVisibility(View.VISIBLE);
+            lastSelectedMenuItem = TYPE_VIEW_SEARCH;
+            currentSelectedFragmentType = TYPE_VIEW_SEARCH;
+        } else {
+            // by default selection
+            homeIB.setImageResource(R.drawable.ic_nav_home_selected);
+            homeUnderlineIB.setVisibility(View.VISIBLE);
+            lastSelectedMenuItem = TYPE_VIEW_HOME;
+            currentSelectedFragmentType = TYPE_VIEW_HOME;
+        }
 
         // set listeners for each mav menu item
         searchListeners();
