@@ -22,6 +22,7 @@ public class PlaybackActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playback);
 
+        /** ----- log ----- */
         Movie selectedMovie = MovieList.getMovie((int)getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         Metrics metrics = (Metrics) getApplicationContext();
 
@@ -34,6 +35,7 @@ public class PlaybackActivity extends FragmentActivity {
         } else {
             fragment = PlaybackFragment0.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         }
+        /** --------------- */
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -42,6 +44,7 @@ public class PlaybackActivity extends FragmentActivity {
         }
     }
 
+    /** ----- log ----- */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (fragment instanceof PlaybackFragment2 && requestCode == PlaybackFragment2.RESULT_CODE_X_RAY_CONTENT) {

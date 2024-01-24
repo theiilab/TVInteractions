@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,14 +14,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.log.Action;
+import com.yuanren.tvinteractions.log.ActionType;
 import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.model.XRayItem;
+import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.movie_playback.PlaybackActivity;
 
 public class XRayItemContentActivity extends Activity {
@@ -120,17 +125,22 @@ public class XRayItemContentActivity extends Activity {
             price1.setVisibility(View.GONE);
             price2.setVisibility(View.GONE);
             price3.setVisibility(View.GONE);
-
         }
     }
 
+    /** ----- log ----- */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
 
-        /** ----- log ----- */
         Metrics metrics = (Metrics) getApplicationContext();
         metrics.actionsPerTask++;
+        /** ----- raw log ----- */
+        Action action = new Action(metrics, movie.getTitle(),
+                ActionType.TYPE_ACTION_BACK.name(), TAG, System.currentTimeMillis(), System.currentTimeMillis());
+        FileUtils.writeRaw(getApplicationContext(), action);
+
+        /** --------------- */
     }
 
     private int getMerchandiseLogo(String name) {

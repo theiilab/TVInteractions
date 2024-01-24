@@ -42,6 +42,8 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.OnKeyListener;
+import com.yuanren.tvinteractions.log.Action;
+import com.yuanren.tvinteractions.log.ActionType;
 import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.log.TaskType;
 import com.yuanren.tvinteractions.model.Movie;
@@ -93,8 +95,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     /** ----- log ----- */
     public TextView taskReminder;
     private Metrics metrics;
-    private int actionCount = 0;
     private int task = 1;
+    private int position = 0;
     /** --------------- */
 
     public PlaybackFragment2() {
@@ -179,7 +181,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                 switch (i) {
                     case KeyEvent.KEYCODE_ENTER:
                     case KeyEvent.KEYCODE_DPAD_CENTER:
-                    case KeyEvent.KEYCODE_BACK:
+//                    case KeyEvent.KEYCODE_BACK:
                         getActivity().finish();
                         break;
                     default:
@@ -216,6 +218,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                         Log.d(TAG, "forward");
                         animateVideoIndicator(VIDEO_ACTION_FORWARD);
                         break;
+                    case KeyEvent.KEYCODE_DPAD_UP:
+                        break;
                     case KeyEvent.KEYCODE_DPAD_DOWN:
                         // always focus on the first x-ray item
                         recyclerView.getChildAt(0).requestFocus();
@@ -228,10 +232,13 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                         }
                         clearLogData();
                         /** --------------- */
+
                         getActivity().finish();
                         break;
                     default:
+                        /** ----- log ----- */
                         Log.d(TAG, "videoStatusIndicator - onKey - default");
+
                 }
                 return false;
             }
@@ -243,35 +250,68 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         timeBar.setFocusable(false);
     }
 
+    /** ----- log ----- */
     @Override
     public boolean onItemClick(View v, int keyCode, KeyEvent event, int position) {
-        /** ----- log ----- */
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            return false;
+        }
+
         Metrics metrics = (Metrics) v.getContext().getApplicationContext();
         metrics.actionsPerTask++;
-        /** --------------- */
 
+        Action action = null;
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (position + 1 < Integer.parseInt(metrics.task)) { // cur < target
-                    showTaskReminder("Please finish questions after");
-                    return true;
-                } else if (position + 1 > Integer.parseInt(metrics.task)) { // cur > target
-                    showTaskReminder("Please finish previous questions");
-                    return true;
-                }
+                /** ----- raw log ----- */
+                this.position = position;
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_ENTER.name(), TAG, event.getDownTime(), event.getEventTime());
+                break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
+                /** ----- raw log ----- */
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_LEFT.name(), TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
+                /** ----- raw log ----- */
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_RIGHT.name(), TAG, event.getDownTime(), event.getEventTime());
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                /** ----- raw log ----- */
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_UP.name(), TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
+                /** ----- raw log ----- */
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_DOWN.name(), TAG, event.getDownTime(), event.getEventTime());
                 break;
+            case KeyEvent.KEYCODE_BACK:
+                /** ----- log ----- */
+                if (task <= movie.getXRayItems().size()) {
+                    showTaskReminder("Please answer all questions");
+                    return true;
+                }
+                /** ----- raw log ----- */
+                action = new Action(metrics, movie.getTitle(),
+                        ActionType.TYPE_ACTION_BACK.name(), TAG, event.getDownTime(), event.getEventTime());
         }
+        FileUtils.writeRaw(getContext(), action);
         return false;
     }
 
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (position + 1 < Integer.parseInt(metrics.task)) { // cur < target
+            showTaskReminder("Please finish questions after");
+            return;
+        } else if (position + 1 > Integer.parseInt(metrics.task)) { // cur > target
+            showTaskReminder("Please finish previous questions");
+            return;
+        }
         if (task <= movie.getXRayItems().size()) {
             metrics.endTime = System.currentTimeMillis();
             metrics.selectedMovie = movie.getTitle();
@@ -437,8 +477,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     }
 
     private void clearLogData() {
-        actionCount = 0;
         task = 0;
+        position = 0;
     }
 
     @Override

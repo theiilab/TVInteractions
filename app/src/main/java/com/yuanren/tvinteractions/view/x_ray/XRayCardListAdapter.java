@@ -92,10 +92,7 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
         xRayCardViewHolder.cover.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    return onKeyListener.onItemClick(v, keyCode, event, holder.getLayoutPosition());
-                }
-                return false;
+                return onKeyListener.onItemClick(v, keyCode, event, holder.getLayoutPosition());
             }
         });
     }
