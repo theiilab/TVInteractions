@@ -32,16 +32,14 @@ public class LoginActivity extends AppCompatActivity {
     private ToggleButton methodBtn;
     private Button button;
     private LinearLayout layout4;
-    private LinearLayout layout5;
     private ToggleButton dataSetBtn;
-    private EditText searchDataSetBtn;
 
+    /** ----- log ----- */
     String pid = "0";
     String session = "0";
     String method = "Remote";
-
     String dataSet = "0";
-    String searchDataSet = "0";
+    /** --------------- */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         methodBtn = findViewById(R.id.method);
         button = findViewById(R.id.submit);
         layout4 = findViewById(R.id.layout4);
-        layout5 = findViewById(R.id.layout5);
         dataSetBtn = findViewById(R.id.dataSet);
-        searchDataSetBtn = findViewById(R.id.searchDataSet);
 
         layout4.setVisibility(View.GONE);
-        layout5.setVisibility(View.GONE);
 
         participantET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -98,9 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (session.equals("1") || session.equals("2")) {
                         layout4.setVisibility(View.VISIBLE);
-                        layout5.setVisibility(View.GONE);
                     } else if (session.equals("3")){
-                        layout5.setVisibility(View.VISIBLE);
                         layout4.setVisibility(View.GONE);
                     }
                     methodBtn.requestFocus();
@@ -117,8 +110,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (layout4.getVisibility() == View.VISIBLE) {
                     dataSetBtn.requestFocus();
-                } else {
-                    searchDataSetBtn.requestFocus();
                 }
             }
         });
@@ -131,27 +122,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        searchDataSetBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-        });
-        searchDataSetBtn.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    searchDataSet = v.getText().toString();
-                    button.requestFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +131,6 @@ public class LoginActivity extends AppCompatActivity {
                 metrics.method = method;
                 metrics.session = Integer.parseInt(session);
                 metrics.dataSet = Integer.parseInt(dataSet);
-                metrics.searchDataSet = Integer.parseInt(searchDataSet);
                 metrics.targetMovie = metrics.getFirstTargetMovie(); // must set!
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
