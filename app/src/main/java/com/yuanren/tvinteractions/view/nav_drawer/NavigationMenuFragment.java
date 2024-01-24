@@ -106,12 +106,14 @@ public class NavigationMenuFragment extends Fragment {
         settingsTV = view.findViewById(R.id.settings_TV);
         settingsUnderlineIB = view.findViewById(R.id.settings_underline_IB);
 
+        /** -------- log -------- */
         Metrics metrics = (Metrics) getActivity().getApplicationContext();
         if (metrics.session == 3) {
             searchIB.setImageResource(R.drawable.ic_nav_search_selected);
             searchUnderlineIB.setVisibility(View.VISIBLE);
             lastSelectedMenuItem = TYPE_VIEW_SEARCH;
             currentSelectedFragmentType = TYPE_VIEW_SEARCH;
+            /** --------------------- */
         } else {
             // by default selection
             homeIB.setImageResource(R.drawable.ic_nav_home_selected);
