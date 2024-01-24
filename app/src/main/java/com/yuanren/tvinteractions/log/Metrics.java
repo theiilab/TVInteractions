@@ -31,7 +31,7 @@ public class Metrics extends Application {
 
     public List<Action> actions = new ArrayList<>();
 
-    private String[] targetMovies = {
+    private String[] session1_targetMovies = {
             "The King's Man",
             "Jumanji",
             "The Devil Wears Prada",
@@ -45,7 +45,7 @@ public class Metrics extends Application {
             "Space Jam",
             "Death on the Nile"};
 
-    private String[] targetMovies2 = {
+    private String[] session1_targetMovies2 = {
             "Red Notice",
             "Uncharted",
             "The Wolf of Wall Street",
@@ -59,33 +59,58 @@ public class Metrics extends Application {
             "Million Dollar Baby",
             "Pain Hustler"};
 
+    private String[] session2_targetMovies = {
+            "The King's Man",
+            "Jumanji",
+            "The Devil Wears Prada",
+            "Venom",
+            "Harry Potter and the Prisoner of Azkaban",
+            "Insomnia",
+            "Mama Mia",
+            "Sherlock Holmes"};
+
+    private String[] session2_targetMovies2 = {
+            "Red Notice",
+            "Uncharted",
+            "The Wolf of Wall Street",
+            "Iron man",
+            "Fantastic Beasts and Where to Find Them",
+            "Fall",
+            "Lala Land",
+            "The Da Vinci Code"};
+
     @NonNull
     @Override
     public String toString() {
-        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
+        String res = "";
         movieLength = MovieList.getMovie(targetMovie).getLength();
 
-        String res;
-        if (session == 1) {
+        if (session == 1 || session == 2) {
             res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
-        } else {
-            res = "" + pid + "," + method + "," + session + "," + searchDataSet + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+        }  else {
+            res = "" + pid + "," + method + "," + session + "," + searchDataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
         }
         return res;
     }
 
     public String getFirstTargetMovie() {
-        return dataSet == 0 ? targetMovies[0] : targetMovies2[0];
+        if (session == 1) {
+            return dataSet == 0 ? session1_targetMovies[0] : session1_targetMovies2[0];
+        } else if (session == 2) {
+            return dataSet == 0 ? session2_targetMovies[0] : session2_targetMovies2[0];
+        } else {
+            return dataSet == 0 ? session1_targetMovies[0] : session1_targetMovies2[0];
+        }
     }
 
-    public int calculateActionsNeeded() {
-        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
+    public int calculateSession1ActionsNeeded() {
+        targetMovie = dataSet == 0 ? session1_targetMovies[block - 1] : session1_targetMovies2[block - 1];
         Movie movie = MovieList.getMovie(targetMovie);
         if (task == TaskType.TYPE_TASK_FIND.name()) {
             if (block <= 1) {
                 actionsNeeded = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
             } else {
-                Movie prevMovie = MovieList.getMovie(targetMovies[block - 2]);
+                Movie prevMovie = MovieList.getMovie(dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2]);
                 int prevActionsNeeded = prevMovie.getCategoryIndex() + prevMovie.getPosition();
                 int curActionsNeeded = movie.getCategoryIndex() + movie.getPosition();
                 actionsNeeded = Math.abs(curActionsNeeded - prevActionsNeeded) + 1;
@@ -95,8 +120,18 @@ public class Metrics extends Application {
     }
 
     public void next() {
-        block = block > targetMovies.length ? block : block + 1;
-        targetMovie = dataSet == 0 ? targetMovies[block - 1] : targetMovies2[block - 1];
+        if (session == 1) {
+            block = block > session1_targetMovies.length ? block : block + 1;
+            targetMovie = dataSet == 0 ? session1_targetMovies[block - 1] : session1_targetMovies2[block - 1];
+        } else if (session == 2) {
+            block = block > session2_targetMovies.length ? block : block + 1;
+            targetMovie = dataSet == 0 ? session2_targetMovies[block - 1] : session2_targetMovies2[block - 1];
+        } else {
+            block = block > session1_targetMovies.length ? block : block + 1;
+            targetMovie = dataSet == 0 ? session1_targetMovies[block - 1] : session1_targetMovies2[block - 1];
+        }
+
+        movieLength = MovieList.getMovie(targetMovie).getLength();
         selectedMovie = "";
         task = "";
         taskCompletionTime = 0L;

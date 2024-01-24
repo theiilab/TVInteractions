@@ -290,7 +290,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 String selectedMovie = ((Movie) item).getTitle();
                 if (metrics.targetMovie.equals(selectedMovie)) {
                     metrics.selectedMovie = selectedMovie;
-                    metrics.task = TaskType.TYPE_TASK_FIND.name();
+                    metrics.task = metrics.session == 1 ? TaskType.TYPE_TASK_FIND.name() : "1"; // declare task for session 1 or session 2
                     metrics.actionsPerTask = actionCount;
                     metrics.taskCompletionTime = endTime - startTime;
                     metrics.actionsNeeded = metrics.calculateSession1ActionsNeeded();

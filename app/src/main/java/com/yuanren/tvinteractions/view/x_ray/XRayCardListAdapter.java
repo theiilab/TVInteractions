@@ -1,17 +1,24 @@
 package com.yuanren.tvinteractions.view.x_ray;
 
 import android.content.Intent;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.base.OnKeyListener;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.XRayItem;
+import com.yuanren.tvinteractions.view.movie_playback.PlaybackFragment2;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +33,8 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
     public XRayCardListAdapter(List<XRayItem> data) {
         this.data = data;
     }
+
+    private OnKeyListener onKeyListener;
 
     @NonNull
     @NotNull
@@ -69,7 +78,24 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
                 intent.putExtra(XRayItemContentActivity.SELECTED_XRAY_ITEM_ID, item.getItemId());
                 selectedXRayItemId = (int) item.getItemId();
 
-                view.getContext().startActivity(intent);
+                Metrics metrics = (Metrics) view.getContext().getApplicationContext();
+                if (metrics.session == 1) {
+                    view.getContext().startActivity(intent);
+                } else {  // session 2
+                    /** ----- log ----- */
+                    ((FragmentActivity) view.getContext()).startActivityForResult(intent, PlaybackFragment2.RESULT_CODE_X_RAY_CONTENT);
+                    /** --------------- */
+                }
+            }
+        });
+
+        xRayCardViewHolder.cover.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    return onKeyListener.onItemClick(v, keyCode, event, holder.getLayoutPosition());
+                }
+                return false;
             }
         });
     }
@@ -81,5 +107,9 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
 
     public int getSelectedXRayItemId() {
         return selectedXRayItemId;
+    }
+
+    public void setOnKeyListener(OnKeyListener onKeyListener) {
+        this.onKeyListener = onKeyListener;
     }
 }

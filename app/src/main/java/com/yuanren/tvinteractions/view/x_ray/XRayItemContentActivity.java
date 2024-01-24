@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.model.XRayItem;
@@ -121,6 +122,15 @@ public class XRayItemContentActivity extends Activity {
             price3.setVisibility(View.GONE);
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        /** ----- log ----- */
+        Metrics metrics = (Metrics) getApplicationContext();
+        metrics.actionsPerTask++;
     }
 
     private int getMerchandiseLogo(String name) {
