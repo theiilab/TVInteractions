@@ -303,6 +303,11 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         return false;
     }
 
+    @Override
+    public boolean onItemClick(View v, int keyCode, KeyEvent event, Movie movie) {
+        return false;
+    }
+
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (position + 1 < Integer.parseInt(metrics.task)) { // cur < target

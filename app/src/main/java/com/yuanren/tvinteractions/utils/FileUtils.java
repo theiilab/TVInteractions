@@ -15,12 +15,17 @@ public class FileUtils {
     private static final String extension = ".csv";
     public static final String logHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
     public static final String logHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
-    public static final String logHeader3 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader3 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Character Per Second,Backspace Count,Time Per Character(ms),Total Character Entered,Error Rate\n";
     public static final String logRawHeader = "Participant,Method,Session,Block,Target Movie,Selected Movie,Action,Scope,Start Time,End Time,Duration,Other\n";
 
 
     public static void write(Context context, Metrics metrics) {
-        String filename = "P" + metrics.pid + "-" + metrics.method + extension;
+        String filename;
+        if (metrics.session == 3) {
+            filename = "P" + metrics.pid + "-" + metrics.method + "-Search" + extension;
+        } else {
+            filename = "P" + metrics.pid + "-" + metrics.method + extension;
+        }
 
         File file = new File(context.getFilesDir(), filename);
 

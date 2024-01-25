@@ -178,7 +178,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
             Metrics metrics = (Metrics)getActivity().getApplicationContext();
             if (metrics.targetMovie.equals(metrics.selectedMovie)) {
                 clearLogData();
-                metrics.next();
+                metrics.nextBlock();
             }
             actionCount++;  // for press back button from the wrong movie details
         }
