@@ -1,6 +1,7 @@
 package com.yuanren.tvinteractions;
 
 import android.content.Intent;
+import android.database.MergeCursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,6 +79,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         MovieList.setUpMovies();
 
         // start my socket channel to send random positions of movies to watch side
+        Metrics metrics = (Metrics) getApplicationContext();
+        RandomPositionSocketService.setLogBasic(String.valueOf(metrics.pid), String.valueOf(metrics.session), metrics.method);
         RandomPositionSocketService.start();
     }
 
