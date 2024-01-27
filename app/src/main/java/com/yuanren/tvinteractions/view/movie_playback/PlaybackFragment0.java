@@ -36,6 +36,7 @@ import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.base.OnKeyListener;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
@@ -43,7 +44,7 @@ import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
-public class PlaybackFragment0 extends Fragment {
+public class PlaybackFragment0 extends Fragment implements OnKeyListener {
     private static final String TAG = "PlaybackFragment2";
     private static final int VIDEO_ACTION_PLAY = 0;
     private static final int VIDEO_ACTION_PAUSE = 1;
@@ -114,6 +115,7 @@ public class PlaybackFragment0 extends Fragment {
         recyclerView.setLayoutManager(ll);
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.dimens_10dp)));
         adapter = new XRayCardListAdapter(movie.getXRayItems());
+        adapter.setOnKeyListener(this);
         recyclerView.setAdapter(adapter);
 
         // set up UI components
@@ -314,6 +316,19 @@ public class PlaybackFragment0 extends Fragment {
         AnimatorSet set = new AnimatorSet();
         set.play(scaleX).with(scaleY);
         set.start();
+    }
+
+
+    /** ----- log ----- */
+    @Override
+    public boolean onItemClick(View v, int keyCode, KeyEvent event, int position) {
+        return false;
+    }
+
+    /** ----- log ----- */
+    @Override
+    public boolean onItemClick(View v, int keyCode, KeyEvent event, Movie movie) {
+        return false;
     }
 
     @Override
