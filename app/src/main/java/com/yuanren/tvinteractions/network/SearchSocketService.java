@@ -15,7 +15,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class SearchSocketService {
-    public static final String TAG = "NetworkUtils";
+    public static final String TAG = "SearchSocketService";
     public static final int SERVER_PORT = 5050;
 
     private static SocketUpdateCallback socketUpdateCallback;
@@ -53,24 +53,18 @@ public class SearchSocketService {
         public void run() {
             try {
                 serverSocket = new ServerSocket(SERVER_PORT);
-                Log.i(TAG,"Server Start");
+                Log.i(TAG,"Search service start");
+
+                //communicates to client and displays error if communication fails
+                while (null != serverSocket && !Thread.currentThread().isInterrupted()) {
+                    clientSocket = serverSocket.accept();
+
+                    // start thread
+                    CommunicationThread communicationThread = new CommunicationThread(clientSocket);
+                    new Thread(communicationThread).start();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            //communicates to client and displays error if communication fails
-            if (null != serverSocket) {
-                while (!Thread.currentThread().isInterrupted()) {
-                    try {
-                        clientSocket = serverSocket.accept();
-
-                        // start thread
-                        CommunicationThread communicationThread = new CommunicationThread(clientSocket);
-                        new Thread(communicationThread).start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
     }
@@ -82,36 +76,36 @@ public class SearchSocketService {
         private BufferedReader input;
 
         public CommunicationThread(Socket commSocket) {
-            this.commSocket = commSocket;
             try {
+                this.commSocket = commSocket;
                 this.input = new BufferedReader(new InputStreamReader(this.commSocket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.i(TAG,"1 Connected to Client!");
+            Log.i(TAG,"Search service: connected to Client!");
         }
 
         public void run() {
             // get search input from smartwatch side
-            while (!Thread.currentThread().isInterrupted()) {
-                try {
-                    String read = input.readLine();
-
-                    //checks to see if the client is still connected and displays disconnected if disconnected
-                    if (null == read || "Disconnect".contentEquals(read)) {
-                        Thread.interrupted();
-                        read = "Offline....";
-                        Log.i(TAG,"Client : " + read);
+//            while (!Thread.currentThread().isInterrupted()) {
+            try {
+                while (true) {
+                    String inputLine = input.readLine();
+                    if (inputLine == null) {
+                        Log.d(TAG,"Search client disconnected!");
                         break;
                     }
-                    Log.i(TAG,"Client : " + read);
 
                     // update message on UI Thread
-                    String text = loadActionData(read);
+                    String text = loadActionData(inputLine);
                     socketUpdateCallback.update(handler, text);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.i(TAG, "Search client : " + inputLine);
                 }
+                input.close();
+                commSocket.close();
+                serverSocket.close();
+            } catch(IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
