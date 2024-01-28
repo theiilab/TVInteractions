@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -168,7 +169,14 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback {
         Collections.sort(list, new Comparator<Map.Entry<Movie, Integer> >() {
             @Override
             public int compare(Map.Entry<Movie, Integer> o1, Map.Entry<Movie, Integer> o2) {
-                return (o2.getValue()).compareTo(o1.getValue());
+                if (o1.getValue() < o2.getValue()) {
+                    return -1;
+                } else if (Objects.equals(o1.getValue(), o2.getValue())) {
+                    return o1.getKey().getTitle().length() - o2.getKey().getTitle().length();
+                } else {
+                    return 1;
+                }
+//                return (o2.getValue()).compareTo(o1.getValue());
             }
         });
 
