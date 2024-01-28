@@ -15,12 +15,11 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class RandomPositionSocketService {
-    public static final String TAG = "NetworkUtils";
+    public static final String TAG = "RandomPositionSocketService";
     public static final int SERVER_PORT = 5051;
     private static ServerSocket serverSocket;
     private static Socket clientSocket;
     private static Thread serverThread = null; //here it sets the Thread initially to null
-    private static Handler handler = new Handler();
 
     public static void start() {
         if (serverThread != null) {
@@ -43,24 +42,18 @@ public class RandomPositionSocketService {
         public void run() {
             try {
                 serverSocket = new ServerSocket(SERVER_PORT);
-                Log.i(TAG,"Server Start");
+                Log.i(TAG,"Random position service Start");
+
+                //communicates to client and displays error if communication fails
+                while (null != serverSocket && !Thread.currentThread().isInterrupted()) {
+                    clientSocket = serverSocket.accept();
+
+                    // start thread
+                    CommunicationThread communicationThread = new CommunicationThread(clientSocket);
+                    new Thread(communicationThread).start();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
-            //communicates to client and displays error if communication fails
-            if (null != serverSocket) {
-                while (!Thread.currentThread().isInterrupted()) {
-                    try {
-                        clientSocket = serverSocket.accept();
-
-                        // start thread
-                        CommunicationThread communicationThread = new CommunicationThread(clientSocket);
-                        new Thread(communicationThread).start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         }
     }
@@ -71,32 +64,42 @@ public class RandomPositionSocketService {
         private Socket commSocket;
         private PrintWriter output;
 
+        private BufferedReader input;
+
         public CommunicationThread(Socket commSocket) {
-            this.commSocket = commSocket;
-
             try {
-                // no effect, need to work on more
-                this.commSocket.setSoTimeout(30000);
-
+                this.commSocket = commSocket;
                 this.output = new PrintWriter(this.commSocket.getOutputStream(), true);
+                this.input = new BufferedReader(new InputStreamReader(this.commSocket.getInputStream()));
             } catch (SocketException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.i(TAG,"2 Connected to Client!");
+            Log.i(TAG,"Random position service: connected to client!");
         }
 
+        @Override
         public void run() {
-            // write random positions of movies to smartwatch side
-            while (!Thread.currentThread().isInterrupted()) {
-                // no effect, need to work on more
-                if (commSocket.isClosed()) {
-                    Thread.interrupted();
-                    Log.i(TAG,"Interrupted, client close connection");
-                    break;
+            boolean connected = true;
+            try {
+                while (connected) {
+                    // write random positions of movies to smartwatch side
+                    output.println(MovieList.getRandomPosString(MovieList.randomPositions));
+                    Log.d(TAG, "Random position server sent: " + MovieList.getRandomPosString(MovieList.randomPositions));
+
+                    String inputLine = input.readLine();
+                    if (inputLine == null) {
+                        Log.d(TAG,"Random position client disconnected!");
+                        connected = false;
+                    }
                 }
-                output.println(MovieList.getRandomPosString(MovieList.randomPositions));
+                output.close();
+                input.close();
+                commSocket.close();
+                serverSocket.close();
+            } catch(IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
