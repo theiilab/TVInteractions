@@ -47,7 +47,7 @@ import java.util.List;
  */
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
-    public static final int RESULT_CODE_DETAILS = 101;
+    public static final int REQUEST_CODE_DETAILS = 101;
     private static final int NUM_COLS = 20;
 
     private ImageView bannerBackgroundImage;
@@ -174,7 +174,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
         /** ----- log ----- */
-        if (requestCode == RESULT_CODE_DETAILS) {
+        if (requestCode == REQUEST_CODE_DETAILS) {
             Metrics metrics = (Metrics)getActivity().getApplicationContext();
             if (metrics.targetMovie.equals(metrics.selectedMovie)) {
                 clearLogData();
@@ -316,7 +316,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 //                        ((CardViewHolder) itemViewHolder).view.get,
 //                        DetailsActivity.SHARED_ELEMENT_NAME)
 //                        .toBundle();
-                getActivity().startActivityForResult(intent, RESULT_CODE_DETAILS);
+                getActivity().startActivityForResult(intent, REQUEST_CODE_DETAILS);
             }
         }
     }
