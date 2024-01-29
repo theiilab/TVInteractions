@@ -554,7 +554,7 @@ public class PlaybackFragment extends Fragment {
     private void setLogData(TaskType task, Long startTime, Long endTime) {
         Metrics metrics = (Metrics) getActivity().getApplicationContext();
         metrics.selectedMovie = movie.getTitle();
-        metrics.task = task.name();
+        metrics.task = task.name;
         metrics.actionsPerTask = actionCount;
         metrics.taskCompletionTime = endTime - startTime;
         metrics.actionsNeeded = actionsNeeded.get(task);

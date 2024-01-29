@@ -23,6 +23,10 @@ public class DetailsPresenter extends Presenter {
     private DetailsAnimationCallback detailsCallback;
     private long movieId;
 
+    /** ----- log ----- */
+    private Metrics metrics;
+    /** --------------- */
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
         Log.d(TAG, "onCreateViewHolder");
@@ -32,6 +36,10 @@ public class DetailsPresenter extends Presenter {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
+        /** ----- log ----- */
+        metrics = (Metrics) viewHolder.view.getContext().getApplicationContext();
+        /** ----- log ----- */
+
         Log.d(TAG, "onBindViewHolder");
         Movie movie = (Movie) item;
         movieId = movie.getId();
@@ -67,6 +75,9 @@ public class DetailsPresenter extends Presenter {
                             break;
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
+                            if (!metrics.targetMovie.equals(movie.getTitle()) && (metrics.session == 1 || metrics.session == 2)) {
+                                return true;
+                            }
                             Intent intent = new Intent(detailsViewHolder.view.getContext(), PlaybackActivity.class);
                             intent.putExtra(PlaybackActivity.SELECTED_MOVIE_ID, movieId);
                             detailsViewHolder.view.getContext().startActivity(intent);
@@ -74,7 +85,6 @@ public class DetailsPresenter extends Presenter {
                     }
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- log ----- */
-                    Metrics metrics = (Metrics) view.getContext().getApplicationContext();
                     Action action;
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
