@@ -434,10 +434,11 @@ public final class MovieList {
         movie.setLength(length);
         movie.setDescription(description);
         movie.setStudio(studio);
+        movie.setVideoUrl(videoUrl);
         movie.setCategory(category);
         movie.setCardImageUrl(cardImageUrl);
         movie.setBackgroundImageUrl(backgroundImageUrl);
-        movie.setVideoUrl(videoUrl);
+        movie.setCategoryIndex(categoryIndex);
 
         if (xRayItems != null) {
             Map<String, List<String>> xRayItemForMovie = xRayItems.get((id.intValue()));

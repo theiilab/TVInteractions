@@ -137,14 +137,14 @@ public class Metrics extends Application {
     public int calculateSession1ActionsNeeded() {
         targetMovie = dataSet == 0 ? session1_targetMovies[block - 1] : session1_targetMovies2[block - 1];
         Movie movie = MovieList.getMovie(targetMovie);
-        if (task == TaskType.TYPE_TASK_FIND.name()) {
+        if (task == TaskType.TYPE_TASK_FIND.name) {
             if (block <= 1) {
                 actionsNeeded = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
             } else {
                 Movie prevMovie = MovieList.getMovie(dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2]);
-                int prevActionsNeeded = prevMovie.getCategoryIndex() + prevMovie.getPosition();
-                int curActionsNeeded = movie.getCategoryIndex() + movie.getPosition();
-                actionsNeeded = Math.abs(curActionsNeeded - prevActionsNeeded) + 1;
+                int categoryDiff = Math.abs(movie.getCategoryIndex() - prevMovie.getCategoryIndex());
+                int positionDiff = Math.abs(movie.getPosition() - prevMovie.getPosition());
+                actionsNeeded = categoryDiff + positionDiff + 1; // vertical difference + horizontal difference + click
             }
         }
         return actionsNeeded;
