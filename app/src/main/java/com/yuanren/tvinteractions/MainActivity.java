@@ -188,7 +188,7 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         /** -------- log -------- */
-        if (requestCode == RowsOfMoviesFragment.RESULT_CODE_DETAILS) {
+        if (requestCode == RowsOfMoviesFragment.REQUEST_CODE_DETAILS) {
             moviesFragment.onResult(requestCode, resultCode, data);
         }
     }

@@ -246,28 +246,28 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             switch (i) {
                                 case KeyEvent.KEYCODE_DPAD_LEFT:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_LEFT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_LEFT.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_RIGHT:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_RIGHT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_RIGHT.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_UP:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_UP.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_UP.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_DOWN:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_DOWN.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_DOWN.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_CENTER:
                                 case KeyEvent.KEYCODE_ENTER:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_ENTER.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                                     break;
                                 default:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_DIRECTION.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             }
                             FileUtils.writeRaw(getContext(), action);
                         }

@@ -137,7 +137,7 @@ public class XRayItemContentActivity extends Activity {
         metrics.actionsPerTask++;
         /** ----- raw log ----- */
         Action action = new Action(metrics, movie.getTitle(),
-                ActionType.TYPE_ACTION_BACK.name(), TAG, System.currentTimeMillis(), System.currentTimeMillis());
+                ActionType.TYPE_ACTION_BACK.name, TAG, System.currentTimeMillis(), System.currentTimeMillis());
         FileUtils.writeRaw(getApplicationContext(), action);
 
         /** --------------- */

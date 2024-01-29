@@ -241,24 +241,24 @@ public class PlaybackFragment extends Fragment {
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_UP.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_UP.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DOWN.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DOWN.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_ENTER.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_BACK.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_BACK.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         default:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                     }
                     FileUtils.writeRaw(getContext(), action);
                     return true;
@@ -460,7 +460,7 @@ public class PlaybackFragment extends Fragment {
                 // raw
                 Metrics metrics = (Metrics) getActivity().getApplicationContext();
                 Action action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_VOLUME.name(), TAG, System.currentTimeMillis(), System.currentTimeMillis());
+                        ActionType.TYPE_ACTION_VOLUME.name, TAG, System.currentTimeMillis(), System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
             }
         });

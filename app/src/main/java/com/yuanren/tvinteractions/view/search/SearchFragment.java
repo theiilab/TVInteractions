@@ -230,7 +230,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                         metrics.endTime = System.currentTimeMillis();
                         metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
                         FileUtils.write(v.getContext(), metrics);
-                        action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name(), TAG, event.getDownTime(), event.getEventTime());
+                        action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, event.getDownTime(), event.getEventTime());
 
                         // clear data and advance to the next task
                         if (metrics.block == metrics.SESSION_3_NUM_BLOCK && task == metrics.SESSION_3_NUM_TASK) {
@@ -257,19 +257,19 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                     }
                     break;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name(), TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, event.getDownTime(), event.getEventTime());
                     break;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name(), TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name, TAG, event.getDownTime(), event.getEventTime());
                     break;
                 case KeyEvent.KEYCODE_DPAD_UP:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_UP.name(), TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_UP.name, TAG, event.getDownTime(), event.getEventTime());
                     break;
                 case KeyEvent.KEYCODE_DPAD_DOWN:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name(), TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, event.getDownTime(), event.getEventTime());
                     break;
                 default:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DIRECTION.name(), TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DIRECTION.name, TAG, event.getDownTime(), event.getEventTime());
                     break;
             }
             FileUtils.writeRaw(getContext(), action);

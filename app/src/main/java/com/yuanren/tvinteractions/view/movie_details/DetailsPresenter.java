@@ -80,15 +80,15 @@ public class DetailsPresenter extends Presenter {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_ENTER.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_BACK.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_BACK.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                             break;
                         default:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
                     }
                     FileUtils.writeRaw(view.getContext(), action);
                 }

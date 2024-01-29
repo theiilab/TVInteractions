@@ -267,27 +267,27 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                 /** ----- raw log ----- */
                 this.position = position;
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_ENTER.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_ENTER.name, TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 /** ----- raw log ----- */
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_LEFT.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_LEFT.name, TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 /** ----- raw log ----- */
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_RIGHT.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_RIGHT.name, TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 /** ----- raw log ----- */
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_UP.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_UP.name, TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 /** ----- raw log ----- */
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_DOWN.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_DOWN.name, TAG, event.getDownTime(), event.getEventTime());
                 break;
             case KeyEvent.KEYCODE_BACK:
                 /** ----- log ----- */
@@ -297,7 +297,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                 }
                 /** ----- raw log ----- */
                 action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_BACK.name(), TAG, event.getDownTime(), event.getEventTime());
+                        ActionType.TYPE_ACTION_BACK.name, TAG, event.getDownTime(), event.getEventTime());
         }
         FileUtils.writeRaw(getContext(), action);
         return false;
