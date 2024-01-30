@@ -83,7 +83,7 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
                     view.getContext().startActivity(intent);
                 } else {  // session 2
                     /** ----- log ----- */
-                    ((FragmentActivity) view.getContext()).startActivityForResult(intent, PlaybackFragment2.RESULT_CODE_X_RAY_CONTENT);
+                    ((FragmentActivity) view.getContext()).startActivityForResult(intent, PlaybackFragment2.REQUEST_CODE_X_RAY_CONTENT);
                     /** --------------- */
                 }
             }

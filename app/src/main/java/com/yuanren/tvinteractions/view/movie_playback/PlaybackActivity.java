@@ -47,7 +47,7 @@ public class PlaybackActivity extends FragmentActivity {
     /** ----- log ----- */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (fragment instanceof PlaybackFragment2 && requestCode == PlaybackFragment2.RESULT_CODE_X_RAY_CONTENT) {
+        if (fragment instanceof PlaybackFragment2 && requestCode == PlaybackFragment2.REQUEST_CODE_X_RAY_CONTENT) {
             ((PlaybackFragment2) fragment).onResult(requestCode, resultCode, data);
         }
         super.onActivityResult(requestCode, resultCode, data);

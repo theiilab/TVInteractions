@@ -61,7 +61,7 @@ import java.util.Map;
 public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     private static final String TAG = "PlaybackFragment2";
 
-    public static final int RESULT_CODE_X_RAY_CONTENT = 101;
+    public static final int REQUEST_CODE_X_RAY_CONTENT = 101;
     private static final int VIDEO_ACTION_PLAY = 0;
     private static final int VIDEO_ACTION_PAUSE = 1;
     private static final int VIDEO_ACTION_FORWARD = 2;
@@ -345,6 +345,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
             showTaskReminder("Please finish previous questions");
             return;
         }
+
+        hideTaskReminder();
         if (task <= movie.getXRayItems().size()) {
             metrics.endTime = System.currentTimeMillis();
             metrics.selectedMovie = movie.getTitle();
@@ -480,10 +482,14 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         taskReminder.setVisibility(View.VISIBLE);
         taskReminder.setText(text);
 
-        Animation animation = new AlphaAnimation(1.0f, 0.0f);
-        animation.setDuration(6000);
-        animation.setFillAfter(true);
-        taskReminder.startAnimation(animation);
+//        Animation animation = new AlphaAnimation(1.0f, 0.0f);
+//        animation.setDuration(6000);
+//        animation.setFillAfter(true);
+//        taskReminder.startAnimation(animation);
+    }
+
+    private void hideTaskReminder() {
+        taskReminder.setVisibility(View.GONE);
     }
 
     @Override
