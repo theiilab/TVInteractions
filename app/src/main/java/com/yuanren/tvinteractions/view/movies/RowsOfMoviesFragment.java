@@ -61,8 +61,10 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private Row currentSelectedRow;
 
     /** ----- log ----- */
+    private Metrics metrics;
     private Long startTime;
     private Long endTime;
+    private Long actionStartTime;
     private boolean findFlag = false;
     private int actionCount = 0;
     /** --------------- */
@@ -79,6 +81,9 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /** ----- log ----- */
+        metrics = (Metrics)getActivity().getApplicationContext();
+        /** --------------- */
 
         // prepare for the date
         list = MovieList.getList();
@@ -172,10 +177,10 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         super.onResume();
     }
 
+    /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
-        /** ----- log ----- */
+
         if (requestCode == REQUEST_CODE_DETAILS) {
-            Metrics metrics = (Metrics)getActivity().getApplicationContext();
             if (metrics.targetMovie.equals(metrics.selectedMovie)) {
                 clearLogData();
                 metrics.nextBlock();
@@ -188,6 +193,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private void clearLogData() {
         startTime = 0L;
         endTime = 0L;
+        actionStartTime = 0L;
         findFlag = false;
         actionCount = 0;
     }
@@ -222,6 +228,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                                 startTime = System.currentTimeMillis();
                             }
                             actionCount++;
+                            actionStartTime = System.currentTimeMillis();
                             /** --------------- */
 
                             if (i == KeyEvent.KEYCODE_DPAD_LEFT && indexOfItemInRow == 0) {
@@ -242,35 +249,35 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             }
                         } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                             /** ----- log ----- */
-                            Metrics metrics = (Metrics)getActivity().getApplicationContext();
                             Action action;
                             switch (i) {
                                 case KeyEvent.KEYCODE_DPAD_LEFT:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_LEFT.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_RIGHT:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_RIGHT.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_UP:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_UP.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_DOWN:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_DOWN.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_CENTER:
                                 case KeyEvent.KEYCODE_ENTER:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 default:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                            ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                             }
                             FileUtils.writeRaw(getContext(), action);
+                            /** --------------- */
                         }
                         return false; // handle the UI behavior by parent
                     }
@@ -287,7 +294,6 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
             if (item instanceof Movie) {
                 /** ----- log ----- */
                 endTime = System.currentTimeMillis();
-                Metrics metrics = (Metrics)getActivity().getApplicationContext();
                 String selectedMovie = ((Movie) item).getTitle();
                 if (metrics.targetMovie.equals(selectedMovie)) {
                     metrics.selectedMovie = selectedMovie;

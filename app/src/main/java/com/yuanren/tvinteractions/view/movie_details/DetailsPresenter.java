@@ -25,6 +25,7 @@ public class DetailsPresenter extends Presenter {
 
     /** ----- log ----- */
     private Metrics metrics;
+    private Long actionStartTime;
     /** --------------- */
 
     @Override
@@ -75,14 +76,20 @@ public class DetailsPresenter extends Presenter {
                             break;
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
+                            /** ----- log ----- */
                             if (!metrics.targetMovie.equals(movie.getTitle()) && (metrics.session == 1 || metrics.session == 2)) {
                                 return true;
                             }
+                            /** --------------- */
                             Intent intent = new Intent(detailsViewHolder.view.getContext(), PlaybackActivity.class);
                             intent.putExtra(PlaybackActivity.SELECTED_MOVIE_ID, movieId);
                             detailsViewHolder.view.getContext().startActivity(intent);
                             break;
                     }
+
+                    /** ----- log ----- */
+                    actionStartTime = System.currentTimeMillis();
+                    /** --------------- */
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- log ----- */
                     Action action;
@@ -90,15 +97,15 @@ public class DetailsPresenter extends Presenter {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_BACK.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         default:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(view.getContext(), action);
                 }

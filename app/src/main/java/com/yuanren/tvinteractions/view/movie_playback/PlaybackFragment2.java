@@ -97,6 +97,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     private Metrics metrics;
     private int task = 1;
     private int position = 0;
+    private Long actionStartTime = 0L;
     /** --------------- */
 
     public PlaybackFragment2() {
@@ -104,7 +105,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     }
 
     public static PlaybackFragment2 newInstance(long id) {
-        Log.d(TAG, "Item: " + String.valueOf(id));
+        Log.d(TAG, "Item: " + id);
 
         PlaybackFragment2 fragment = new PlaybackFragment2();
         Bundle args = new Bundle();
@@ -196,49 +197,75 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 Log.d(TAG, "Key action: " + String.valueOf(i));
-                // filter out the function call for KEY_DOWN event, only working for KEY_UP event to avoid two-times calling
-                if (keyEvent.getAction() != KeyEvent.ACTION_DOWN) {
-                    return true;
-                }
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    /** ----- log ----- */
+                    actionStartTime = System.currentTimeMillis();
+                    /** ----- log ----- */
 
-                /** ----- log ----- */
-                metrics.actionsPerTask++;
-                /** --------------- */
-
-                switch (i) {
-                    case KeyEvent.KEYCODE_ENTER:
-                    case KeyEvent.KEYCODE_DPAD_CENTER:
-                        animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_LEFT:
-                        Log.d(TAG, "rewind");
-                        animateVideoIndicator(VIDEO_ACTION_REWIND);
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_RIGHT:
-                        Log.d(TAG, "forward");
-                        animateVideoIndicator(VIDEO_ACTION_FORWARD);
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_UP:
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_DOWN:
+                    if (i == KeyEvent.KEYCODE_DPAD_DOWN) {
                         // always focus on the first x-ray item
                         recyclerView.getChildAt(0).requestFocus();
-                        break;
-                    case KeyEvent.KEYCODE_BACK:
-                        /** ----- log ----- */
-                        if (task <= movie.getXRayItems().size()) {
-                            showTaskReminder("Please answer all questions");
-                            return true;
-                        }
-                        clearLogData();
-                        /** --------------- */
+                    }
+                } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    /** ----- log ----- */
+                    metrics.actionsPerTask++;
+                    /** --------------- */
 
-                        getActivity().finish();
-                        break;
-                    default:
-                        /** ----- log ----- */
-                        Log.d(TAG, "videoStatusIndicator - onKey - default");
+                    Action action = null;
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
 
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            Log.d(TAG, "rewind");
+                            animateVideoIndicator(VIDEO_ACTION_REWIND);
+
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            Log.d(TAG, "forward");
+                            animateVideoIndicator(VIDEO_ACTION_FORWARD);
+
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_UP:
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            // always focus on the first x-ray item
+                            recyclerView.getChildAt(0).requestFocus();
+
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                            break;
+                        case KeyEvent.KEYCODE_BACK:
+                            /** ----- log ----- */
+                            if (task <= movie.getXRayItems().size()) {
+                                showTaskReminder("Please answer all questions");
+                                return true;
+                            }
+                            clearLogData();
+                            /** --------------- */
+
+                            getActivity().finish();
+                            break;
+                        default:
+                            /** ----- log ----- */
+                            Log.d(TAG, "videoStatusIndicator - onKey - default");
+                    }
+                    FileUtils.writeRaw(getContext(), action);
                 }
                 return false;
             }
@@ -254,52 +281,53 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     @Override
     public boolean onItemClick(View v, int keyCode, KeyEvent event, int position) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            return false;
-        }
+            actionStartTime = System.currentTimeMillis();
+        } else if (event.getAction() == KeyEvent.ACTION_UP) {
+            metrics.actionsPerTask++;
 
-        Metrics metrics = (Metrics) v.getContext().getApplicationContext();
-        metrics.actionsPerTask++;
+            Action action = null;
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_ENTER:
+                case KeyEvent.KEYCODE_DPAD_CENTER:
+                    this.position = position;
 
-        Action action = null;
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_ENTER:
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                /** ----- raw log ----- */
-                this.position = position;
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_ENTER.name, TAG, event.getDownTime(), event.getEventTime());
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                /** ----- raw log ----- */
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_LEFT.name, TAG, event.getDownTime(), event.getEventTime());
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                /** ----- raw log ----- */
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_RIGHT.name, TAG, event.getDownTime(), event.getEventTime());
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                /** ----- raw log ----- */
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_UP.name, TAG, event.getDownTime(), event.getEventTime());
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                /** ----- raw log ----- */
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_DOWN.name, TAG, event.getDownTime(), event.getEventTime());
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                /** ----- log ----- */
-                if (task <= movie.getXRayItems().size()) {
-                    showTaskReminder("Please answer all questions");
-                    return true;
-                }
-                /** ----- raw log ----- */
-                action = new Action(metrics, movie.getTitle(),
-                        ActionType.TYPE_ACTION_BACK.name, TAG, event.getDownTime(), event.getEventTime());
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+                case KeyEvent.KEYCODE_DPAD_LEFT:
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+                case KeyEvent.KEYCODE_DPAD_RIGHT:
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+                case KeyEvent.KEYCODE_DPAD_UP:
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+                case KeyEvent.KEYCODE_DPAD_DOWN:
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+                case KeyEvent.KEYCODE_BACK:
+                    /** ----- log ----- */
+                    if (task <= movie.getXRayItems().size()) {
+                        showTaskReminder("Please answer all questions");
+                        return true;
+                    }
+                    /** ----- raw log ----- */
+                    action = new Action(metrics, movie.getTitle(),
+                            ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
+                    break;
+            }
+            FileUtils.writeRaw(getContext(), action);
         }
-        FileUtils.writeRaw(getContext(), action);
         return false;
     }
 

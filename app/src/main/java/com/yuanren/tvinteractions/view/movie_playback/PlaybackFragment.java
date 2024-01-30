@@ -88,6 +88,7 @@ public class PlaybackFragment extends Fragment {
     private Movie movie;
 
     /** ----- log ----- */
+    private Metrics metrics;
     private TextView taskReminder;
     private Handler timeHandler = new Handler(Looper.getMainLooper());
     private int actionCount = 0;
@@ -121,6 +122,7 @@ public class PlaybackFragment extends Fragment {
     private Long goToStartStartTime = 0L;
     private Long goToStartEndTime = 0L;
     private boolean goToStartFlag = false;
+    private Long actionStartTime = 0L;
 
     private Map<TaskType, Integer> actionsNeeded = new HashMap<TaskType, Integer>() {{
         put(TaskType.TYPE_TASK_PLAY_5_SEC, 0);
@@ -158,10 +160,13 @@ public class PlaybackFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // get selected movie
         movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+
         /** ----- log ----- */
+        metrics = (Metrics) getContext().getApplicationContext();
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         /** --------------- */
+
 
         // set x-ray row dynamically
         recyclerView = view.findViewById(R.id.x_ray_container);
@@ -224,146 +229,149 @@ public class PlaybackFragment extends Fragment {
         videoStatusIndicator.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                Log.d(TAG, "Key action: " + String.valueOf(i));
-                // filter out the function call for KEY_DOWN event, only working for KEY_UP event to avoid two-times calling
-                Metrics metrics = (Metrics) getActivity().getApplicationContext();
-                if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                Log.d(TAG, "Key action: " + i);
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    /** ----- log ----- */
+                    actionStartTime = System.currentTimeMillis();
+                    /** --------------- */
+
+                    switch (i) {
+                        case KeyEvent.KEYCODE_ENTER:
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                            animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
+
+                            /** ----- log ----- */
+                            if (!pauseFlag && forwardFlag) {
+                                pauseFlag = true;
+                                setLogData(TaskType.TYPE_TASK_FORWARD, forwardStartTime, forwardEndTime);
+
+                                actionCount = 0;
+                                pauseStartTime = System.currentTimeMillis();
+
+                                taskReminder.setText("5. Backward by 10 seconds");
+                            }
+                            actionCount++;
+                            pauseEndTime = System.currentTimeMillis();
+                            /** --------------- */
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            Log.d(TAG, "rewind");
+                            animateVideoIndicator(VIDEO_ACTION_REWIND);
+
+                            /** ----- log ----- */
+                            if (!backwardDoneFlag) {
+                                if (!backwardFlag && pauseFlag) {
+                                    backwardFlag = true;
+                                    forwardDoneFlag = true;
+                                    setLogData(TaskType.TYPE_TASK_PAUSE, pauseStartTime, pauseEndTime);
+
+                                    actionCount = 0;
+                                    backwardStartTime = System.currentTimeMillis();
+
+                                    taskReminder.setText("6. Go to the end");
+                                }
+                                actionCount++;
+                                backwardEndTime = System.currentTimeMillis();
+                            } else {
+                                if (!goToStartFlag && goToEndFlag) {
+                                    goToStartFlag = true;
+                                    actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, (int) (movie.getLength() - goToEndCurTimeIndex) / (VIDEO_TIME_DELTA / 1000) + 1);
+                                    setLogData(TaskType.TYPE_TASK_GO_TO_END, goToEndStartTime, goToEndEndTime);
+
+                                    actionCount = 0;
+                                    goToStartStartTime = System.currentTimeMillis();
+                                    taskReminder.setText("8. Back");
+                                }
+                                actionCount++;
+                                goToStartEndTime = System.currentTimeMillis();
+                            }
+                            /** --------------- */
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            Log.d(TAG, "forward");
+                            animateVideoIndicator(VIDEO_ACTION_FORWARD);
+
+                            /** ----- log ----- */
+                            if (!forwardDoneFlag) {
+                                if (!forwardFlag && changeVolumeFlag) {
+                                    forwardFlag = true;
+                                    setLogData(TaskType.TYPE_TASK_CHANGE_VOLUME, changeVolumeStartTime, changeVolumeEndTime);
+
+                                    actionCount = 0;
+                                    forwardStartTime = System.currentTimeMillis();
+
+                                    taskReminder.setText("4. Pause");
+                                }
+                                actionCount++;
+                                forwardEndTime = System.currentTimeMillis();
+                            } else {
+                                if (!goToEndFlag && backwardFlag) {
+                                    goToEndFlag = true;
+                                    backwardDoneFlag = true;
+                                    setLogData(TaskType.TYPE_TASK_BACKWARD, backwardStartTime, backwardEndTime);
+
+                                    actionCount = 0;
+                                    goToEndStartTime = System.currentTimeMillis();
+                                    goToEndCurTimeIndex = exoPlayer.getCurrentPosition() / 1000;
+
+                                    taskReminder.setText("7. Go to the start");
+                                }
+                                actionCount++;
+                                goToEndEndTime = System.currentTimeMillis();
+                            }
+                            /** --------------- */
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            // always focus on the first x-ray item
+                            recyclerView.getChildAt(0).requestFocus();
+                            actionCount++;
+                            break;
+                        case KeyEvent.KEYCODE_BACK:
+                            /** ----- log ----- */
+                            setLogData(TaskType.TYPE_TASK_GO_TO_START, goToStartStartTime, goToStartEndTime);
+                            clearLogData();
+                            /** --------------- */
+
+                            getActivity().finish();
+                            break;
+                        default:
+                            Log.d(TAG, "videoStatusIndicator - onKey - default");
+                    }
+                } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- raw log ----- */
-                    Action action = null;
+                    Action action;
                     switch (i) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_LEFT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_RIGHT.name(), TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_UP.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DOWN.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_ENTER.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_BACK.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         default:
                             action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, keyEvent.getDownTime(), keyEvent.getEventTime());
+                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(getContext(), action);
                     return true;
-                }
-                /** --------------- */
-
-                switch (i) {
-                    case KeyEvent.KEYCODE_ENTER:
-                    case KeyEvent.KEYCODE_DPAD_CENTER:
-                        animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
-
-                        /** ----- log ----- */
-                        if (!pauseFlag && forwardFlag) {
-                            pauseFlag = true;
-                            setLogData(TaskType.TYPE_TASK_FORWARD, forwardStartTime, forwardEndTime);
-
-                            actionCount = 0;
-                            pauseStartTime = System.currentTimeMillis();
-
-                            taskReminder.setText("5. Backward by 10 seconds");
-                        }
-                        actionCount++;
-                        pauseEndTime = System.currentTimeMillis();
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_LEFT:
-                        Log.d(TAG, "rewind");
-                        animateVideoIndicator(VIDEO_ACTION_REWIND);
-
-                        /** ----- log ----- */
-                        if (!backwardDoneFlag) {
-                            if (!backwardFlag && pauseFlag) {
-                                backwardFlag = true;
-                                forwardDoneFlag = true;
-                                setLogData(TaskType.TYPE_TASK_PAUSE, pauseStartTime, pauseEndTime);
-
-                                actionCount = 0;
-                                backwardStartTime = System.currentTimeMillis();
-
-                                taskReminder.setText("6. Go to the end");
-                            }
-                            actionCount++;
-                            backwardEndTime = System.currentTimeMillis();
-                        } else {
-                            if (!goToStartFlag && goToEndFlag) {
-                                goToStartFlag = true;
-                                actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, (int) (movie.getLength() - goToEndCurTimeIndex) / (VIDEO_TIME_DELTA / 1000) + 1);
-                                setLogData(TaskType.TYPE_TASK_GO_TO_END, goToEndStartTime, goToEndEndTime);
-
-                                actionCount = 0;
-                                goToStartStartTime = System.currentTimeMillis();
-                                taskReminder.setText("8. Back" +
-                                        "");
-                            }
-                            actionCount++;
-                            goToStartEndTime = System.currentTimeMillis();
-                        }
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_RIGHT:
-                        Log.d(TAG, "forward");
-                        animateVideoIndicator(VIDEO_ACTION_FORWARD);
-
-                        /** ----- log ----- */
-                        if (!forwardDoneFlag) {
-                            if (!forwardFlag && changeVolumeFlag) {
-                                forwardFlag = true;
-                                setLogData(TaskType.TYPE_TASK_CHANGE_VOLUME, changeVolumeStartTime, changeVolumeEndTime);
-
-                                actionCount = 0;
-                                forwardStartTime = System.currentTimeMillis();
-
-                                taskReminder.setText("4. Pause");
-                            }
-                            actionCount++;
-                            forwardEndTime = System.currentTimeMillis();
-                        } else {
-                            if (!goToEndFlag && backwardFlag) {
-                                goToEndFlag = true;
-                                backwardDoneFlag = true;
-                                setLogData(TaskType.TYPE_TASK_BACKWARD, backwardStartTime, backwardEndTime);
-
-                                actionCount = 0;
-                                goToEndStartTime = System.currentTimeMillis();
-                                goToEndCurTimeIndex = exoPlayer.getCurrentPosition() / 1000;
-
-                                taskReminder.setText("7. Go to the start");
-                            }
-                            actionCount++;
-                            goToEndEndTime = System.currentTimeMillis();
-                        }
-                        break;
-                    case KeyEvent.KEYCODE_DPAD_DOWN:
-                        // always focus on the first x-ray item
-                        recyclerView.getChildAt(0).requestFocus();
-                        actionCount++;
-                        break;
-                    case KeyEvent.KEYCODE_BACK:
-                        /** ----- log ----- */
-                        setLogData(TaskType.TYPE_TASK_GO_TO_START, goToStartStartTime, goToStartEndTime);
-                        clearLogData();
-                        /** --------------- */
-
-                        getActivity().finish();
-                        break;
-                    default:
-                        Log.d(TAG, "videoStatusIndicator - onKey - default");
                 }
                 return false;
             }
@@ -438,11 +446,11 @@ public class PlaybackFragment extends Fragment {
                 }
             }
 
+            /** ----- log ----- */
             @Override
             public void onDeviceVolumeChanged(int volume, boolean muted) {
                 Player.Listener.super.onDeviceVolumeChanged(volume, muted);
 
-                /** ----- log ----- */
                 Log.d(TAG, "device volume changed: " + volume);
                 if (!changeVolumeFlag && playFlag) {
                     changeVolumeFlag = true;
@@ -458,7 +466,6 @@ public class PlaybackFragment extends Fragment {
                 changeVolumeEndTime = System.currentTimeMillis();
 
                 // raw
-                Metrics metrics = (Metrics) getActivity().getApplicationContext();
                 Action action = new Action(metrics, movie.getTitle(),
                         ActionType.TYPE_ACTION_VOLUME.name, TAG, System.currentTimeMillis(), System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
@@ -552,7 +559,6 @@ public class PlaybackFragment extends Fragment {
 
     /** ----- log ----- */
     private void setLogData(TaskType task, Long startTime, Long endTime) {
-        Metrics metrics = (Metrics) getActivity().getApplicationContext();
         metrics.selectedMovie = movie.getTitle();
         metrics.task = task.name;
         metrics.actionsPerTask = actionCount;
