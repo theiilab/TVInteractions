@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
@@ -44,6 +45,7 @@ public class XRayItemContentActivity extends Activity {
     private static final String TYPE_MERCHANDISE_TARGET = "target";
     private static final String TYPE_MERCHANDISE_WALMART = "walmart";
 
+    private View cover;
     private ImageView image;
     private TextView title;
     private TextView price;
@@ -58,6 +60,10 @@ public class XRayItemContentActivity extends Activity {
     private Movie movie;
     private XRayItem item;
 
+    /** ----- log ----- */
+    private Long actionStartTime = 0L;
+    /** --------------- */
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +72,7 @@ public class XRayItemContentActivity extends Activity {
         movie = MovieList.getList().get((int)getIntent().getLongExtra(SELECTED_MOVIE_ID, 0));
         item = movie.getXRayItems().get((int)getIntent().getLongExtra(SELECTED_XRAY_ITEM_ID, 0));
 
+        cover = findViewById(R.id.selectable_cover);
         image = findViewById(R.id.x_ray_image);
         title = findViewById(R.id.x_ray_title);
         price = findViewById(R.id.x_ray_price);
@@ -126,20 +133,28 @@ public class XRayItemContentActivity extends Activity {
             price2.setVisibility(View.GONE);
             price3.setVisibility(View.GONE);
         }
-    }
 
-    /** ----- log ----- */
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+        /** ----- log ----- */
+        cover.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    actionStartTime = System.currentTimeMillis();
+                } else if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-        Metrics metrics = (Metrics) getApplicationContext();
-        metrics.actionsPerTask++;
-        /** ----- raw log ----- */
-        Action action = new Action(metrics, movie.getTitle(),
-                ActionType.TYPE_ACTION_BACK.name, TAG, System.currentTimeMillis(), System.currentTimeMillis());
-        FileUtils.writeRaw(getApplicationContext(), action);
+                        Metrics metrics = (Metrics) getApplicationContext();
+                        metrics.actionsPerTask++;
+                        Action action = new Action(metrics, movie.getTitle(),
+                                ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
+                        FileUtils.writeRaw(getApplicationContext(), action);
 
+                    }
+                }
+                return false;
+            }
+        });
+        cover.requestFocus();
         /** --------------- */
     }
 

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/default_background_gradient">
 
     <androidx.cardview.widget.CardView
@@ -157,4 +158,13 @@
             android:focusable="true"
             android:focusableInTouchMode="true"/>
     </androidx.cardview.widget.CardView>
+    <View
+        android:id="@+id/selectable_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/transparent">
+        <requestFocus />
+    </View>
 </androidx.constraintlayout.widget.ConstraintLayout>
