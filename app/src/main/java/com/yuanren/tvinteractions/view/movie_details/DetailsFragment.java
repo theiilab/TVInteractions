@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,12 +25,15 @@ import androidx.leanback.widget.RowPresenter;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
+import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
+
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -54,6 +58,8 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
 
     private Movie movie;
     private List<Movie> list;
+
+    private TextView taskReminder;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -94,6 +100,16 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
         addRowView();
 
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
+
+        /** ----- log ----- */
+        taskReminder = getActivity().findViewById(R.id.task_reminder);
+        Metrics metrics = (Metrics) getActivity().getApplicationContext();
+        if (!metrics.targetMovie.equals(movie.getTitle()) && (metrics.session == 1 || metrics.session == 2)) {
+            taskReminder.setVisibility(View.VISIBLE);
+        } else {
+            taskReminder.setVisibility(View.GONE);
+        }
+        /** --------------- */
     }
 
     private void addRowView() {
