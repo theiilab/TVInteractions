@@ -335,7 +335,7 @@ public class PlaybackFragment extends Fragment {
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
                             // always focus on the first x-ray item
-                            recyclerView.getChildAt(0).requestFocus();
+//                            recyclerView.getChildAt(0).requestFocus();
                             actionCount++;
                             break;
                         case KeyEvent.KEYCODE_BACK:
