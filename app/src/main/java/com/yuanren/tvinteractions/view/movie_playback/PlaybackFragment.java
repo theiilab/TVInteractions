@@ -195,6 +195,7 @@ public class PlaybackFragment extends Fragment {
 
         /** ----- log ----- */
         taskReminder.setText("1. Play for 5 seconds");
+        playStartTime = System.currentTimeMillis();  // play task includes the pre-loading time for the video clip
         /** --------------- */
 
         backBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -438,7 +439,6 @@ public class PlaybackFragment extends Fragment {
                         /** ----- log ----- */
                         if (!playFlag) {
                             playFlag = true;
-                            playStartTime = System.currentTimeMillis();
 
                             timeHandler.postDelayed(new Runnable() {
                                 @Override
