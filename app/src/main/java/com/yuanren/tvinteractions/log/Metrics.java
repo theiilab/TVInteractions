@@ -136,10 +136,11 @@ public class Metrics extends Application {
             } else {
                 dataSet = 250;
             }
+            taskCompletionTime = endTime - startTime;
             characterPerSecond = (double) totalCharacterEntered / (taskCompletionTime / 1000);
             timePerCharacter = taskCompletionTime / totalCharacterEntered;
             errorRate = incorrectTitleCount != 0 ? 1 / incorrectTitleCount : 0;
-            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + characterPerSecond + "," + backspaceCount + "," + timePerCharacter + "," + totalCharacterEntered + "," + errorRate + "\n";
+            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + errorRate + "," + characterPerSecond + "," + backspaceCount + "," + timePerCharacter + "," + totalCharacterEntered + "\n";
         }
         return res;
     }
@@ -160,7 +161,7 @@ public class Metrics extends Application {
             this.task = "Question 1";
         } else {
             this.targetMovie = session3_targetMovies[0];
-            this.task = "1";
+            this.task = "Search 1";
         }
         this.movieLength = MovieList.getMovie(targetMovie).getLength();
     }
@@ -179,7 +180,7 @@ public class Metrics extends Application {
         } else { // 3
             block = block + 1 > 3 ? block : block + 1;
             targetMovie = session3_targetMovies[0];
-            task = "1";
+            task = "Search 1";
         }
         movieLength = MovieList.getMovie(targetMovie).getLength();
         selectedMovie = "";
@@ -193,14 +194,14 @@ public class Metrics extends Application {
 
     public void nextTask() {
         if (session == 3) {
-            int i = Integer.parseInt(task);
             taskNum = Math.min(session3_targetMovies.length, taskNum + 1);
-            task = String.valueOf(i + 1 > SESSION_3_NUM_TASK ? i : i + 1);
-            targetMovie = session3_targetMovies[Integer.parseInt(task) - 1];
+            task = "Search " + (taskNum + 1 > SESSION_3_NUM_TASK ? taskNum : taskNum + 1);
+            targetMovie = session3_targetMovies[Math.max(0, taskNum - 1)];
             selectedMovie = "";
             taskCompletionTime = 0L;
             startTime = 0L;
             endTime = 0L;
+            errorRate = 0;
             characterPerSecond = 0;
             backspaceCount = 0;
             timePerCharacter = 0L;

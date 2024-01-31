@@ -70,7 +70,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     /** -------- log -------- */
     private TextView taskReminder;
     private Metrics metrics;
-    private int task = 1;
+    private Long actionStartTime = 0L;
+//    private int task = 1;
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -98,9 +99,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
         metrics = (Metrics) getActivity().getApplicationContext();
-        metrics.task = "1";
         metrics.startTime = System.currentTimeMillis();
-        metrics.targetMovie = metrics.getFirstTargetMovie(); // must set!
         /** --------------- */
         movies = setUpSearchDummyMovies();
         movies.addAll(MovieList.getRealList());
@@ -118,7 +117,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         inputField = view.findViewById(R.id.search_input);
         /** ----- log ----- */
         taskReminder = view.findViewById(R.id.task_reminder);
-        taskReminder.setText("Block 1: Search movie " + task + " on the sheet");
+        taskReminder.setText("Block 1: Search movie " + metrics.taskNum + " on the sheet");
         /** --------------- */
 
         // set up listeners for keyboard
@@ -219,57 +218,59 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     /** ----- log ----- */
     @Override
     public boolean onItemClick(View v, int keyCode, KeyEvent event, Movie movie) {
-        if (event.getAction() == KeyEvent.ACTION_UP) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            actionStartTime = System.currentTimeMillis();
+        } else if (event.getAction() == KeyEvent.ACTION_UP) {
             Action action = null;
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
                     if (movie.getTitle().equals(metrics.targetMovie)){
-                        metrics.task = String.valueOf(task);
+//                        metrics.task = String.valueOf(task);
                         metrics.selectedMovie = movie.getTitle();
                         metrics.endTime = System.currentTimeMillis();
-                        metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
+//                        metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
                         FileUtils.write(v.getContext(), metrics);
-                        action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, event.getDownTime(), event.getEventTime());
 
                         // clear data and advance to the next task
-                        if (metrics.block == metrics.SESSION_3_NUM_BLOCK && task == metrics.SESSION_3_NUM_TASK) {
+                        if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
                             clearLogData();
                             taskReminder.setText("Session 3 Accomplished");
-                        } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && task == metrics.SESSION_3_NUM_TASK) {
+                        } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
                             movies = setUpSearchDummyMovies();
                             movies.addAll(MovieList.getRealList());
                             inputField.setText("");
                             metrics.nextBlock();
-                            task = 1;
+//                            task = 1;
 
-                            taskReminder.setText("Block " + metrics.block + ": Search movie " + task + " on the sheet");
+                            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
                         } else {
                             inputField.setText("");
                             metrics.nextTask();
-                            task++;
+//                            task++;
 
-                            taskReminder.setText("Block " + metrics.block + ": Search movie " + task + " on the sheet");
+                            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
                         }
                         metrics.startTime = System.currentTimeMillis();
                     } else {
                         metrics.incorrectTitleCount++;
                     }
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name, TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_UP:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_UP.name, TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_DOWN:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 default:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DIRECTION.name, TAG, event.getDownTime(), event.getEventTime());
+                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
             }
             FileUtils.writeRaw(getContext(), action);
@@ -278,7 +279,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     }
 
     private void clearLogData() {
-        task = 0;
+//        task = 0;
     }
 
     private List<Movie> getSearchResult(String searchName) {
