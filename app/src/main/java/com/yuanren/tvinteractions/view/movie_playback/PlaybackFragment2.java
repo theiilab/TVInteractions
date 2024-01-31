@@ -95,8 +95,9 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     /** ----- log ----- */
     public TextView taskReminder;
     private Metrics metrics;
-    private int task = 1;
     private int position = 0;
+
+    private int exitSemaphore = 0;
     private Long actionStartTime = 0L;
     /** --------------- */
 
@@ -252,7 +253,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             /** ----- log ----- */
-                            if (task <= movie.getXRayItems().size()) {
+                            if (exitSemaphore < movie.getXRayItems().size()) {
                                 showTaskReminder("Please answer all questions");
                                 return true;
                             }
@@ -317,7 +318,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                     break;
                 case KeyEvent.KEYCODE_BACK:
                     /** ----- log ----- */
-                    if (task <= movie.getXRayItems().size()) {
+                    if (exitSemaphore < movie.getXRayItems().size()) {
                         showTaskReminder("Please answer all questions");
                         return true;
                     }
@@ -338,29 +339,23 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
 
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (position + 1 < Integer.parseInt(metrics.task)) { // cur < target
+        if (position + 1 < metrics.taskNum) { // cur < target
             showTaskReminder("Please finish questions after");
             return;
-        } else if (position + 1 > Integer.parseInt(metrics.task)) { // cur > target
+        } else if (position + 1 > metrics.taskNum) { // cur > target
             showTaskReminder("Please finish previous questions");
             return;
         }
 
         hideTaskReminder();
-        if (task <= movie.getXRayItems().size()) {
+        if (metrics.taskNum <= movie.getXRayItems().size()) {
             metrics.endTime = System.currentTimeMillis();
-            metrics.selectedMovie = movie.getTitle();
-            metrics.task = String.valueOf(task);
-            metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
-            metrics.actionsNeeded = 3; // navigate + press + back
-            metrics.errorRate = metrics.actionsNeeded != 0 ? ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded : 0;
 
             FileUtils.write(getContext(), metrics);
+            metrics.nextTask();
 
             // advance to the next task
-            task++;
-            metrics.task = String.valueOf(task);
-            metrics.actionsPerTask = 0;
+            exitSemaphore++;
             metrics.startTime = System.currentTimeMillis();
         }
     }
@@ -516,8 +511,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     }
 
     private void clearLogData() {
-        task = 0;
         position = 0;
+        exitSemaphore = 0;
     }
 
     @Override

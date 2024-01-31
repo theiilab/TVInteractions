@@ -157,7 +157,7 @@ public class Metrics extends Application {
             this.actionsNeeded = calculateS1ActionsNeeded();  // for task 1, others need to be calculated dynamically in activity
         } else if (session == 2) {
             this.targetMovie = dataSet == 0 ? session2_targetMovies[0] : session2_targetMovies2[0];
-            this.task = "1";
+            this.task = "Question 1";
         } else {
             this.targetMovie = session3_targetMovies[0];
             this.task = "1";
@@ -170,10 +170,12 @@ public class Metrics extends Application {
             block = block > session1_targetMovies.length ? block : block + 1;
             targetMovie = dataSet == 0 ? session1_targetMovies[Math.min(session1_targetMovies.length - 1, block - 1)] : session1_targetMovies2[Math.min(session1_targetMovies.length - 1, block - 1)];
             task = session1_tasks[0];
+            actionsNeeded = calculateS1ActionsNeeded(); // for task 1 in each block
         } else if (session == 2) { // 2
             block = block > session2_targetMovies.length ? block : block + 1;
             targetMovie = dataSet == 0 ? session2_targetMovies[Math.min(session2_targetMovies.length - 1, block - 1)] : session2_targetMovies2[Math.min(session2_targetMovies.length - 1, block - 1)];
-            task = "1";
+            task = "Question 1";
+            actionsNeeded = 3;
         } else { // 3
             block = block + 1 > 3 ? block : block + 1;
             targetMovie = session3_targetMovies[0];
@@ -186,7 +188,6 @@ public class Metrics extends Application {
         startTime = 0L;
         endTime = 0L;
         actionsPerTask = 0;
-        actionsNeeded = calculateS1ActionsNeeded(); // for task 1 in each block
         errorRate = 0;
     }
 
@@ -207,7 +208,7 @@ public class Metrics extends Application {
             incorrectTitleCount = 0;
         } else if (session == 2) {
             taskNum = Math.min(SESSION_2_NUM_TASK, taskNum + 1);
-            task = String.valueOf(taskNum);
+            task = "Question " + taskNum;
             taskCompletionTime = 0L;
             startTime = 0L;
             endTime = 0L;
