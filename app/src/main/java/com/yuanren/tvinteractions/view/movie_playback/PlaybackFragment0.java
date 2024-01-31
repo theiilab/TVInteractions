@@ -327,7 +327,7 @@ public class PlaybackFragment0 extends Fragment implements OnKeyListener {
 
     /** ----- log ----- */
     @Override
-    public boolean onItemClick(View v, int keyCode, KeyEvent event, Movie movie) {
+    public boolean onItemClick(View v, int keyCode, KeyEvent event, int position, Movie movie) {
         return false;
     }
 

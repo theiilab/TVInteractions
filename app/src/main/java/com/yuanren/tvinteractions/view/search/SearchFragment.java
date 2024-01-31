@@ -217,7 +217,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     /** ----- log ----- */
     @Override
-    public boolean onItemClick(View v, int keyCode, KeyEvent event, Movie movie) {
+    public boolean onItemClick(View v, int keyCode, KeyEvent event, int position, Movie movie) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             actionStartTime = System.currentTimeMillis();
         } else if (event.getAction() == KeyEvent.ACTION_UP) {
@@ -229,6 +229,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 //                        metrics.task = String.valueOf(task);
                         metrics.selectedMovie = movie.getTitle();
                         metrics.endTime = System.currentTimeMillis();
+                        metrics.positionOnSelect = position;
 //                        metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
                         FileUtils.write(v.getContext(), metrics);
 

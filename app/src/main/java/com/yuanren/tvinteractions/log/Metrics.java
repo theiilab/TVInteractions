@@ -35,6 +35,7 @@ public class Metrics extends Application {
     public double errorRate = 0;
 
     // session 3
+    public int positionOnSelect = 0;
     public double characterPerSecond = 0;
     public int backspaceCount = 0;
     public Long timePerCharacter = 0L;
@@ -140,7 +141,7 @@ public class Metrics extends Application {
             characterPerSecond = (double) totalCharacterEntered / (taskCompletionTime / 1000);
             timePerCharacter = taskCompletionTime / totalCharacterEntered;
             errorRate = incorrectTitleCount != 0 ? 1 / incorrectTitleCount : 0;
-            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + errorRate + "," + characterPerSecond + "," + backspaceCount + "," + timePerCharacter + "," + totalCharacterEntered + "\n";
+            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + errorRate + "," + positionOnSelect + "," + characterPerSecond + "," + backspaceCount + "," + timePerCharacter + "," + totalCharacterEntered + "\n";
         }
         return res;
     }
@@ -190,6 +191,13 @@ public class Metrics extends Application {
         endTime = 0L;
         actionsPerTask = 0;
         errorRate = 0;
+        // session 3
+        positionOnSelect = 0;
+        characterPerSecond = 0;
+        backspaceCount = 0;
+        timePerCharacter = 0L;
+        totalCharacterEntered = 0;
+        incorrectTitleCount = 0;
     }
 
     public void nextTask() {
@@ -202,6 +210,7 @@ public class Metrics extends Application {
             startTime = 0L;
             endTime = 0L;
             errorRate = 0;
+            positionOnSelect = 0;
             characterPerSecond = 0;
             backspaceCount = 0;
             timePerCharacter = 0L;

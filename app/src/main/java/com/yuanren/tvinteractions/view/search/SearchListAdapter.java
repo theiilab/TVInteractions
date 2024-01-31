@@ -93,7 +93,7 @@ public class SearchListAdapter extends RecyclerView.Adapter {
         searchMovieViewHolder.cover.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                return onKeyListener.onItemClick(v, keyCode, event, movie);
+                return onKeyListener.onItemClick(v, keyCode, event, holder.getLayoutPosition(), movie);
             }
         });
     }
