@@ -26,12 +26,10 @@ public class PlaybackActivity extends FragmentActivity {
         Movie selectedMovie = MovieList.getMovie((int)getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         Metrics metrics = (Metrics) getApplicationContext();
 
-        if (metrics.targetMovie.equals(selectedMovie.getTitle())) {
-            if (metrics.session == 1) {
-                fragment = PlaybackFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
-            } else { // session = 2
-                fragment = PlaybackFragment2.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
-            }
+        if (metrics.session == 1) {
+            fragment = PlaybackFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
+        } else if (metrics.session == 2) { // session = 2
+            fragment = PlaybackFragment2.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         } else {
             fragment = PlaybackFragment0.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         }
