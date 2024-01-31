@@ -115,6 +115,11 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        return; // prevent user accidentally exit the app before completing all the tasks
+    }
+
     private void navEnterAnimation() {
         Animation animate = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
         navDrawerLayout.startAnimation(animate);
