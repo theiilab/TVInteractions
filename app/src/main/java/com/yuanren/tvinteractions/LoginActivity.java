@@ -123,15 +123,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         button.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+                MovieList.setUpMovies();
+
                 /** -------- log -------- */
                 Metrics metrics = (Metrics) getApplicationContext();
-                metrics.pid = Integer.parseInt(pid);
-                metrics.method = method;
-                metrics.session = Integer.parseInt(session);
-                metrics.dataSet = Integer.parseInt(dataSet);
-                metrics.targetMovie = metrics.getFirstTargetMovie(); // must set!
+                metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet));
+                /** --------------------- */
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

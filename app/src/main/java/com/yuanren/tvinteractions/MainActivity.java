@@ -44,7 +44,6 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
 
     private int currentSelectedFragment = NavigationMenuFragment.TYPE_VIEW_HOME;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +74,6 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     .add(R.id.fragments, fragment)
                     .commit();
         }
-
-        MovieList.setUpMovies();
-
         // start my socket channel to send random positions of movies to watch side
         Metrics metrics = (Metrics) getApplicationContext();
         RandomPositionSocketService.setLogBasic(String.valueOf(metrics.pid), String.valueOf(metrics.session), metrics.method);

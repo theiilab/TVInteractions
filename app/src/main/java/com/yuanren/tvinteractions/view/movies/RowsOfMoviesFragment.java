@@ -297,17 +297,14 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                 String selectedMovie = ((Movie) item).getTitle();
                 if (metrics.targetMovie.equals(selectedMovie)) {
                     metrics.selectedMovie = selectedMovie;
-                    metrics.task = metrics.session == 1 ? TaskType.TYPE_TASK_FIND.name : "1"; // declare task for session 1 or session 2
                     metrics.actionsPerTask = actionCount;
-                    metrics.taskCompletionTime = endTime - startTime;
-                    metrics.actionsNeeded = metrics.calculateSession1ActionsNeeded();
                     metrics.startTime = startTime;
                     metrics.endTime = endTime;
-                    metrics.errorRate = ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded;
 
                     // only reflect navigation time in log for session 1
                     if (metrics.session == 1) {
                         FileUtils.write(getContext(), metrics);
+                        metrics.nextTask();
                     }
                 }
                 /** --------------- */

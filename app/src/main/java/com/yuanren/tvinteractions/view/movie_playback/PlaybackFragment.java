@@ -572,16 +572,13 @@ public class PlaybackFragment extends Fragment {
 
     /** ----- log ----- */
     private void setLogData(TaskType task, Long startTime, Long endTime) {
-        metrics.selectedMovie = movie.getTitle();
-        metrics.task = task.name;
         metrics.actionsPerTask = actionCount;
-        metrics.taskCompletionTime = endTime - startTime;
         metrics.actionsNeeded = actionsNeeded.get(task);
         metrics.startTime = startTime;
         metrics.endTime = endTime;
-        metrics.errorRate = metrics.actionsNeeded != 0 ? ((double) metrics.actionsPerTask - (double) metrics.actionsNeeded) / metrics.actionsNeeded : 0;
 
         FileUtils.write(getContext(), metrics);
+        metrics.nextTask();
     }
 
     /** ----- log ----- */
