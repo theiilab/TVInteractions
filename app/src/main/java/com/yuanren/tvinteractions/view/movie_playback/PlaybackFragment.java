@@ -339,6 +339,12 @@ public class PlaybackFragment extends Fragment {
                             actionCount++;
                             break;
                         case KeyEvent.KEYCODE_BACK:
+                            // prevent user accidentally exit before completing all tasks
+                            if (goToStartSemaphore < 1) {
+                                actionCount++;
+                                return true;
+                            }
+
                             /** ----- log ----- */
                             setLogData(TaskType.TYPE_TASK_GO_TO_START, goToStartStartTime, goToStartEndTime);
                             clearLogData();

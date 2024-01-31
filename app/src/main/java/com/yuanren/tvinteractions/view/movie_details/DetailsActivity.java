@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import com.yuanren.tvinteractions.R;
+import com.yuanren.tvinteractions.log.Metrics;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,5 +25,15 @@ public class DetailsActivity extends FragmentActivity {
                     .replace(R.id.details_fragment, DetailsFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID)))
                     .commitNow();
         }
+    }
+
+    /** ----- log ----- */
+    @Override
+    public void onBackPressed() {
+        Metrics metrics = (Metrics) getApplicationContext();
+        if (metrics.taskNum < 3) {
+            return;
+        }
+        super.onBackPressed();
     }
 }
