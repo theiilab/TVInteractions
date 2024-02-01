@@ -312,7 +312,7 @@ public class PlaybackFragment extends Fragment {
                                 forwardEndTime = System.currentTimeMillis();
 
                                 if (forwardSemaphore >= actionsNeeded.get(TaskType.TYPE_TASK_FORWARD)) {
-                                    taskReminder.setText("4. Pause");
+                                    taskReminder.setText("4. Pause/Play");
                                 }
                             } else {
                                 if (goToEndSemaphore == 0 && backwardSemaphore >= actionsNeeded.get(TaskType.TYPE_TASK_BACKWARD)) {
