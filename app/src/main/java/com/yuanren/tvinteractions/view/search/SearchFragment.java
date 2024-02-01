@@ -71,7 +71,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     private TextView taskReminder;
     private Metrics metrics;
     private Long actionStartTime = 0L;
-//    private int task = 1;
 
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
@@ -226,29 +225,24 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
                     if (movie.getTitle().equals(metrics.targetMovie)){
-//                        metrics.task = String.valueOf(task);
                         metrics.selectedMovie = movie.getTitle();
                         metrics.endTime = System.currentTimeMillis();
                         metrics.positionOnSelect = position;
-//                        metrics.taskCompletionTime = metrics.endTime - metrics.startTime;
                         FileUtils.write(v.getContext(), metrics);
 
                         // clear data and advance to the next task
                         if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
-                            clearLogData();
                             taskReminder.setText("Session 3 Accomplished");
                         } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
                             movies = setUpSearchDummyMovies();
                             movies.addAll(MovieList.getRealList());
                             inputField.setText("");
                             metrics.nextBlock();
-//                            task = 1;
 
                             taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
                         } else {
                             inputField.setText("");
                             metrics.nextTask();
-//                            task++;
 
                             taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
                         }
@@ -277,10 +271,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             FileUtils.writeRaw(getContext(), action);
         }
         return false;
-    }
-
-    private void clearLogData() {
-//        task = 0;
     }
 
     private List<Movie> getSearchResult(String searchName) {

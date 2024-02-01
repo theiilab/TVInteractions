@@ -115,6 +115,18 @@ public class Metrics extends Application {
             "Flipped",
             "Inception"};
 
+    private String[] session3_targetMovies2 = {
+            "Red Notice",
+            "Uncharted",
+            "The Wolf of Wall Street",
+            "Iron man",
+            "Fantastic Beasts and Where to Find Them",
+            "Fall",
+            "Lala Land",
+            "The Da Vinci Code",
+            "Crazy Rich Asians",
+            "The Adam Project"};
+
     @NonNull
     @Override
     public String toString() {
@@ -130,13 +142,6 @@ public class Metrics extends Application {
             errorRate = actionsNeeded != 0 ? ((double) actionsPerTask - (double) actionsNeeded) / actionsNeeded : 0;
             res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
         } else { // session 3
-            if (block == 1) {
-                dataSet = 50;
-            } else if (block == 2) {
-                dataSet = 100;
-            } else {
-                dataSet = 250;
-            }
             taskCompletionTime = endTime - startTime;
             characterPerSecond = (double) totalCharacterEntered / (taskCompletionTime / 1000);
             timePerCharacter = taskCompletionTime / totalCharacterEntered;
@@ -161,7 +166,8 @@ public class Metrics extends Application {
             this.targetMovie = dataSet == 0 ? session2_targetMovies[0] : session2_targetMovies2[0];
             this.task = "Question 1";
         } else {
-            this.targetMovie = session3_targetMovies[0];
+            this.targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
+
             this.task = "Search 1";
         }
         this.movieLength = MovieList.getMovie(targetMovie).getLength();
@@ -180,7 +186,7 @@ public class Metrics extends Application {
             actionsNeeded = 3;
         } else { // 3
             block = block + 1 > 3 ? block : block + 1;
-            targetMovie = session3_targetMovies[0];
+            targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
             task = "Search 1";
         }
         movieLength = MovieList.getMovie(targetMovie).getLength();
@@ -204,7 +210,7 @@ public class Metrics extends Application {
         if (session == 3) {
             taskNum = Math.min(session3_targetMovies.length, taskNum + 1);
             task = "Search " + (taskNum + 1 > SESSION_3_NUM_TASK ? taskNum : taskNum + 1);
-            targetMovie = session3_targetMovies[Math.max(0, taskNum - 1)];
+            targetMovie = dataSet == 0 ? session3_targetMovies[Math.max(0, taskNum - 1)]: session3_targetMovies2[Math.max(0, taskNum - 1)];
             selectedMovie = "";
             taskCompletionTime = 0L;
             startTime = 0L;
