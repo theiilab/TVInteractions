@@ -132,7 +132,6 @@
         android:layout_marginTop="@dimen/login_margin_between"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/layout3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">

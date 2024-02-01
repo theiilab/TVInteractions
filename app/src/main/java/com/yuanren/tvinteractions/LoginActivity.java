@@ -2,6 +2,7 @@ package com.yuanren.tvinteractions;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -53,8 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         layout4 = findViewById(R.id.layout4);
         dataSetBtn = findViewById(R.id.dataSet);
 
-        layout4.setVisibility(View.GONE);
-
         participantET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -90,12 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     session = v.getText().toString();
-
-                    if (session.equals("1") || session.equals("2")) {
-                        layout4.setVisibility(View.VISIBLE);
-                    } else if (session.equals("3")){
-                        layout4.setVisibility(View.GONE);
-                    }
                     methodBtn.requestFocus();
                     return true;
                 }
@@ -107,10 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 method = isChecked ? "Smartwatch" : "Remote";
-
-                if (layout4.getVisibility() == View.VISIBLE) {
-                    dataSetBtn.requestFocus();
-                }
+                dataSetBtn.requestFocus();
             }
         });
 
