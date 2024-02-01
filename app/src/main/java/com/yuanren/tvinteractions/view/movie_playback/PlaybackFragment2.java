@@ -253,11 +253,14 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             /** ----- log ----- */
-                            if (exitSemaphore < movie.getXRayItems().size()) {
+                            if (metrics.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
                                 showTaskReminder("Please answer all questions");
                                 return true;
                             }
                             clearLogData();
+                            /** ----- raw log ----- */
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             /** --------------- */
 
                             getActivity().finish();
@@ -265,6 +268,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                         default:
                             /** ----- log ----- */
                             Log.d(TAG, "videoStatusIndicator - onKey - default");
+                            action = new Action(metrics, movie.getTitle(),
+                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(getContext(), action);
                 }
@@ -318,7 +323,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                     break;
                 case KeyEvent.KEYCODE_BACK:
                     /** ----- log ----- */
-                    if (exitSemaphore < movie.getXRayItems().size()) {
+                    if (metrics.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
                         showTaskReminder("Please answer all questions");
                         return true;
                     }
