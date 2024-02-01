@@ -578,7 +578,7 @@ public class PlaybackFragment extends Fragment {
         metrics.startTime = startTime;
         metrics.endTime = endTime;
 
-        FileUtils.write(getContext(), metrics);
+        FileUtils.write(getContext().getApplicationContext(), metrics);
         metrics.nextTask();
     }
 
