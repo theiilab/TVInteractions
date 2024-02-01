@@ -336,7 +336,7 @@ public class PlaybackFragment extends Fragment {
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             /** ----- log ----- */// prevent user accidentally exit before completing all tasks
-                            if (goToStartSemaphore < 1) {
+                            if (metrics.taskNum <= actionsNeeded.size()) { // on last task #: 8, 7 actions in this page (1 navi in main page)
                                 actionCount++;
                                 return true;
                             }
