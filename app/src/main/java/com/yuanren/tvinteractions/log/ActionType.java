@@ -1,7 +1,7 @@
 package com.yuanren.tvinteractions.log;
 
 public enum ActionType {
-    TYPE_ACTION_DIRECTION("D-Pad Action"),
+    TYPE_ACTION_DIRECTION("D-Pad Direction"),
     TYPE_ACTION_LEFT("D-Pad Left"),
     TYPE_ACTION_RIGHT("D-Pad Right"),
     TYPE_ACTION_UP("D-Pad Up"),

@@ -15,11 +15,14 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -134,6 +137,52 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             });
         }
 
+        /** ----- log ----- */
+        View.OnKeyListener onKeyListener = new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    actionStartTime = System.currentTimeMillis();
+                } else if (event.getAction() == KeyEvent.ACTION_UP) {
+                    metrics.actionsPerTask++;
+
+                    Action action = null;
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_UP:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                    }
+                }
+                return false;
+            }
+        };
+        for (int i = 0; i < keyboard.getChildCount(); i++) {
+            LinearLayout child = (LinearLayout) keyboard.getChildAt(i);
+            for (int j = 0; j < child.getChildCount(); j++) {
+                View grandChild = child.getChildAt(j);
+                if (grandChild instanceof Button) {
+                    ((Button) grandChild).setOnKeyListener(onKeyListener);
+                } else {
+                    ((ImageButton) grandChild).setOnKeyListener(onKeyListener);
+                }
+            }
+            Log.i("tag", String.format("%d %d %d %d", child.getLeft(), child.getTop(), child.getRight(), child.getBottom()));
+        }
+        /** --------------- */
+
         // manage input watcher
         inputField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -167,9 +216,9 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     public void onKeyClick(View v) {
         /** ----- log ----- */
-        metrics.actionsPerTask++;
+//        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
 
-        Action action = new Action(metrics, "", v.getTag().toString(), TAG, System.currentTimeMillis(), System.currentTimeMillis());
+        Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
         FileUtils.writeRaw(getContext(), action);
         /** --------------- */
 
@@ -220,6 +269,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             actionStartTime = System.currentTimeMillis();
         } else if (event.getAction() == KeyEvent.ACTION_UP) {
+            metrics.actionsPerTask++;
+
             Action action = null;
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
