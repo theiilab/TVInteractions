@@ -73,6 +73,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     /** -------- log -------- */
     private TextView taskReminder;
     private Metrics metrics;
+    private Boolean sessionStartFlag = false;
     private Long actionStartTime = 0L;
 
     public static SearchFragment newInstance() {
@@ -101,7 +102,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
         metrics = (Metrics) getActivity().getApplicationContext();
-        metrics.startTime = System.currentTimeMillis();
         /** --------------- */
         movies = setUpSearchDummyMovies();
         movies.addAll(MovieList.getRealList());
@@ -122,26 +122,15 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         taskReminder.setText("Block 1: Search movie " + metrics.taskNum + " on the sheet");
         /** --------------- */
 
-        // set up listeners for keyboard
-        for (int i = 0; i < keyboard.getChildCount(); i++) {
-            View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
-            v.setOnKeyListener(new View.OnKeyListener() {
-                @Override
-                public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_DPAD_LEFT) {
-                        Log.d(TAG, "OnKeyRight - Keyboard the most left keys pressed");
-                        navigationMenuCallback.navMenuToggle(true);
-                    }
-                    return false;
-                }
-            });
-        }
-
         /** ----- log ----- */
         View.OnKeyListener onKeyListener = new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (!sessionStartFlag) {
+                        sessionStartFlag = true;
+                        metrics.startTime = System.currentTimeMillis();
+                    }
                     actionStartTime = System.currentTimeMillis();
                 } else if (event.getAction() == KeyEvent.ACTION_UP) {
                     metrics.actionsPerTask++;
@@ -169,7 +158,23 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 return false;
             }
         };
+        /** --------------- */
+
+
+        // set up listeners for keyboard
         for (int i = 0; i < keyboard.getChildCount(); i++) {
+            View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
+            v.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_DPAD_LEFT) {
+                        Log.d(TAG, "OnKeyRight - Keyboard the most left keys pressed");
+                        navigationMenuCallback.navMenuToggle(true);
+                    }
+                    return false;
+                }
+            });
+
             LinearLayout child = (LinearLayout) keyboard.getChildAt(i);
             for (int j = 0; j < child.getChildCount(); j++) {
                 View grandChild = child.getChildAt(j);
@@ -181,7 +186,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             }
             Log.i("tag", String.format("%d %d %d %d", child.getLeft(), child.getTop(), child.getRight(), child.getBottom()));
         }
-        /** --------------- */
 
         // manage input watcher
         inputField.addTextChangedListener(new TextWatcher() {
@@ -216,6 +220,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     public void onKeyClick(View v) {
         /** ----- log ----- */
+        if (!sessionStartFlag) {
+            sessionStartFlag = true;
+            metrics.startTime = System.currentTimeMillis();
+        }
 //        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
 
         Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
@@ -280,6 +288,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                         metrics.endTime = System.currentTimeMillis();
                         metrics.positionOnSelect = position;
                         FileUtils.write(v.getContext(), metrics);
+                        action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
 
                         // clear data and advance to the next task
                         if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
@@ -300,8 +309,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                         metrics.startTime = System.currentTimeMillis();
                     } else {
                         metrics.incorrectTitleCount++;
+                        action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
                     action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
@@ -394,6 +403,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         // clear the search result in text field and grid because setText will call afterTextChange and reset the movie grid
         inputField.setText("");
         userInput.setLength(0);
+        sessionStartFlag = false;
 
         SearchSocketService.setSocketUpdateCallback(this);
         SearchSocketService.start();

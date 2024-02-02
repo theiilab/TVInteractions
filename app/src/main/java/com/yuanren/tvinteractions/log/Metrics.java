@@ -209,7 +209,7 @@ public class Metrics extends Application {
     public void nextTask() {
         if (session == 3) {
             taskNum = Math.min(session3_targetMovies.length, taskNum + 1);
-            task = "Search " + (taskNum + 1 > SESSION_3_NUM_TASK ? taskNum : taskNum + 1);
+            task = "Search " + taskNum;
             targetMovie = dataSet == 0 ? session3_targetMovies[Math.max(0, taskNum - 1)]: session3_targetMovies2[Math.max(0, taskNum - 1)];
             selectedMovie = "";
             taskCompletionTime = 0L;
