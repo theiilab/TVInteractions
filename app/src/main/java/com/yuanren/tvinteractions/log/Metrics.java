@@ -63,7 +63,7 @@ public class Metrics extends Application {
             "Red Notice",
             "Uncharted",
             "The Wolf of Wall Street",
-            "Iron man",
+            "Iron man ",
             "Fantastic Beasts and Where to Find Them",
             "Fall",
             "Lala Land",
@@ -97,7 +97,7 @@ public class Metrics extends Application {
             "Red Notice",
             "Uncharted",
             "The Wolf of Wall Street",
-            "Iron man",
+            "Iron man ",
             "Fantastic Beasts and Where to Find Them",
             "Fall",
             "Lala Land",
@@ -119,7 +119,7 @@ public class Metrics extends Application {
             "Red Notice",
             "Uncharted",
             "The Wolf of Wall Street",
-            "Iron man",
+            "Iron man ",
             "Fantastic Beasts and Where to Find Them",
             "Fall",
             "Lala Land",
@@ -144,7 +144,7 @@ public class Metrics extends Application {
         } else { // session 3
             taskCompletionTime = endTime - startTime;
             characterPerSecond = (double) totalCharacterEntered / (taskCompletionTime / 1000);
-            timePerCharacter = taskCompletionTime / totalCharacterEntered;
+            timePerCharacter = totalCharacterEntered != 0 ? taskCompletionTime / totalCharacterEntered : 0;
             errorRate = incorrectTitleCount != 0 ? 1 / incorrectTitleCount : 0;
             res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + errorRate + "," + positionOnSelect + "," + characterPerSecond + "," + backspaceCount + "," + timePerCharacter + "," + totalCharacterEntered + "\n";
         }
@@ -167,7 +167,6 @@ public class Metrics extends Application {
             this.task = "Question 1";
         } else {
             this.targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
-
             this.task = "Search 1";
         }
         this.movieLength = MovieList.getMovie(targetMovie).getLength();
