@@ -73,7 +73,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     /** -------- log -------- */
     private TextView taskReminder;
     private Metrics metrics;
-    private Boolean sessionStartFlag = false;
+    private boolean taskStartFlag = false;
+    private boolean shouldOpenNav = false;
     private Long actionStartTime = 0L;
 
     public static SearchFragment newInstance() {
@@ -127,8 +128,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (!sessionStartFlag) {
-                        sessionStartFlag = true;
+                    if (!taskStartFlag) {
+                        taskStartFlag = true;
                         metrics.startTime = System.currentTimeMillis();
                     }
                     actionStartTime = System.currentTimeMillis();
@@ -160,21 +161,49 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         };
         /** --------------- */
 
+        View.OnKeyListener leftColumnOnKeyListener = new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (!taskStartFlag) {
+                        taskStartFlag = true;
+                        metrics.startTime = System.currentTimeMillis();
+                    }
+                    actionStartTime = System.currentTimeMillis();
 
-        // set up listeners for keyboard
-        for (int i = 0; i < keyboard.getChildCount(); i++) {
-            View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
-            v.setOnKeyListener(new View.OnKeyListener() {
-                @Override
-                public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                    if (keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_DPAD_LEFT) {
+                    if (i == KeyEvent.KEYCODE_DPAD_LEFT) {
                         Log.d(TAG, "OnKeyRight - Keyboard the most left keys pressed");
                         navigationMenuCallback.navMenuToggle(true);
                     }
-                    return false;
-                }
-            });
+                } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
+                    metrics.actionsPerTask++;
 
+                    Action action = null;
+                    switch (i) {
+                        case KeyEvent.KEYCODE_DPAD_LEFT:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_RIGHT:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_UP:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                        case KeyEvent.KEYCODE_DPAD_DOWN:
+                            action = new Action(metrics, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                            FileUtils.writeRaw(getContext(), action);
+                            break;
+                    }
+                }
+                return false;
+            }
+        };
+
+        // set up listeners for keyboard
+        for (int i = 0; i < keyboard.getChildCount(); i++) {
             LinearLayout child = (LinearLayout) keyboard.getChildAt(i);
             for (int j = 0; j < child.getChildCount(); j++) {
                 View grandChild = child.getChildAt(j);
@@ -184,7 +213,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                     ((ImageButton) grandChild).setOnKeyListener(onKeyListener);
                 }
             }
-            Log.i("tag", String.format("%d %d %d %d", child.getLeft(), child.getTop(), child.getRight(), child.getBottom()));
+
+            // for left column, control when to open nav
+            View v = ((LinearLayout)keyboard.getChildAt(i)).getChildAt(0);
+            v.setOnKeyListener(leftColumnOnKeyListener);
         }
 
         // manage input watcher
@@ -207,7 +239,9 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                     adapter.update(movies);
                     userInput.setLength(0);
                 } else {
-                    adapter.update(getSearchResult(editable.toString()));
+                    if (editable.toString().trim().length() != 0) {
+                        adapter.update(getSearchResult(editable.toString()));
+                    }
                 }
                 recyclerView.invalidate();
                 adapter.notifyDataSetChanged();
@@ -220,31 +254,42 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     public void onKeyClick(View v) {
         /** ----- log ----- */
-        if (!sessionStartFlag) {
-            sessionStartFlag = true;
+        if (!taskStartFlag) {
+            taskStartFlag = true;
             metrics.startTime = System.currentTimeMillis();
-        }
-//        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
-
-        Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
-        FileUtils.writeRaw(getContext(), action);
+        }//        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
         /** --------------- */
 
         if (v.getTag().toString().equals("SPACE")) {
             userInput.append(" ");
+
+            /** ----- log ----- */
+            Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+            FileUtils.writeRaw(getContext(), action);
+            /** ----- log ----- */
         } else if (v.getTag().toString().equals("DEL")) {
             if (userInput.length() > 0 ) {
                 userInput.deleteCharAt(userInput.length() - 1);
-            }
 
-            /** ----- log ----- */
-            metrics.backspaceCount++;
-            /** --------------- */
+                /** ----- log ----- */
+                metrics.backspaceCount++;
+
+                Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+                FileUtils.writeRaw(getContext(), action);
+            } else {
+                /** ----- log ----- */
+                metrics.actionsPerTask--;  // account for correction if user keep deleting on empty string
+                /** --------------- */
+            }
         } else {
             userInput.append(v.getTag().toString().toLowerCase());
 
             /** ----- log ----- */
-            metrics.totalCharacterEntered++;
+            metrics.totalCharacterEntered = userInput.length();
+            Log.d(TAG, "totalCharacterEntered: " + metrics.totalCharacterEntered);
+
+            Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+            FileUtils.writeRaw(getContext(), action);
             /** --------------- */
         }
         inputField.setText(userInput.toString());
@@ -284,29 +329,11 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
                     if (movie.getTitle().equals(metrics.targetMovie)){
-                        metrics.selectedMovie = movie.getTitle();
-                        metrics.endTime = System.currentTimeMillis();
-                        metrics.positionOnSelect = position;
-                        FileUtils.write(v.getContext(), metrics);
+                        setLogData(movie, position);
                         action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
 
                         // clear data and advance to the next task
-                        if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
-                            taskReminder.setText("Session 3 Accomplished");
-                        } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
-                            movies = setUpSearchDummyMovies();
-                            movies.addAll(MovieList.getRealList());
-                            inputField.setText("");
-                            metrics.nextBlock();
-
-                            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
-                        } else {
-                            inputField.setText("");
-                            metrics.nextTask();
-
-                            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
-                        }
-                        metrics.startTime = System.currentTimeMillis();
+                        prepareNextTask();
                     } else {
                         metrics.incorrectTitleCount++;
                         action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
@@ -333,6 +360,36 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         return false;
     }
 
+    private void prepareNextTask() {
+        if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
+            taskReminder.setText("Session 3 Accomplished");
+        } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
+            movies = setUpSearchDummyMovies();
+            movies.addAll(MovieList.getRealList());
+            inputField.setText("");
+            metrics.nextBlock();
+
+            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
+        } else {
+            inputField.setText("");
+            metrics.nextTask();
+
+            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
+        }
+        clearDataLog();
+    }
+
+    private void setLogData(Movie movie, int position) {
+        metrics.selectedMovie = movie.getTitle();
+        metrics.endTime = System.currentTimeMillis();
+        metrics.positionOnSelect = position;
+        FileUtils.write(getActivity().getApplicationContext(), metrics);
+    }
+
+    private void clearDataLog () {
+        taskStartFlag = false;
+    }
+
     private List<Movie> getSearchResult(String searchName) {
         List<Movie> result = new ArrayList<>();
         Map<Movie, Integer> map = new HashMap<>();
@@ -355,7 +412,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 if (o1.getValue() < o2.getValue()) {
                     return -1;
                 } else if (Objects.equals(o1.getValue(), o2.getValue())) {
-                    return o1.getKey().getTitle().length() - o2.getKey().getTitle().length();
+                    return o1.getKey().getCategoryIndex() - o2.getKey().getCategoryIndex();
                 } else {
                     return 1;
                 }
@@ -387,10 +444,11 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         handler.post(new Runnable() {
             @Override
             public void run() {
-                /** ----- raw log ----- */
+                /** ----- log ----- */
+                metrics.totalCharacterEntered = text.length();
                 Action action = new Action(metrics, "", text, TAG, System.currentTimeMillis(), System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
-                /** ------------------- */
+                /** --------------- */
 
                 inputField.setText(text);
             }
@@ -403,7 +461,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         // clear the search result in text field and grid because setText will call afterTextChange and reset the movie grid
         inputField.setText("");
         userInput.setLength(0);
-        sessionStartFlag = false;
+
+        /** ----- log ----- */
+        clearDataLog();
+        /** --------------- */
 
         SearchSocketService.setSocketUpdateCallback(this);
         SearchSocketService.start();
