@@ -412,11 +412,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 if (o1.getValue() < o2.getValue()) {
                     return -1;
                 } else if (Objects.equals(o1.getValue(), o2.getValue())) {
-                    return o1.getKey().getCategoryIndex() - o2.getKey().getCategoryIndex();
+                    return o2.getKey().getCategoryIndex() - o1.getKey().getCategoryIndex();
                 } else {
                     return 1;
                 }
-//                return (o2.getValue()).compareTo(o1.getValue());
             }
         });
 

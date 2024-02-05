@@ -2071,7 +2071,7 @@ public final class MovieList {
                             "",
                             "",
                             "",
-                            i,
+                            i * 24,
                             null));
         }
 
