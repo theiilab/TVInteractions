@@ -191,7 +191,7 @@ public final class MovieList {
                 "The Da Vinci Code",
                 "Flipped",
                 "Crazy Rich Asians",
-                "Inception ",
+                "Inception",
                 "The Adam Project",
                 "Space Jam",
                 "Million Dollar Baby",
