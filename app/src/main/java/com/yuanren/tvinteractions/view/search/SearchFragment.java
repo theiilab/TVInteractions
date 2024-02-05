@@ -74,7 +74,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     private TextView taskReminder;
     private Metrics metrics;
     private boolean taskStartFlag = false;
-    private boolean shouldOpenNav = false;
     private Long actionStartTime = 0L;
 
     public static SearchFragment newInstance() {
@@ -196,6 +195,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                             action = new Action(metrics, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
+//                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        // ENTER is handled in onKeyClick()
                     }
                 }
                 return false;
@@ -285,9 +286,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             userInput.append(v.getTag().toString().toLowerCase());
 
             /** ----- log ----- */
-            metrics.totalCharacterEntered = userInput.length();
-            Log.d(TAG, "totalCharacterEntered: " + metrics.totalCharacterEntered);
-
             Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
             FileUtils.writeRaw(getContext(), action);
             /** --------------- */
@@ -328,7 +326,11 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
+                    metrics.totalCharacterEntered = userInput.length();
+                    Log.d(TAG, "totalCharacterEntered: " + metrics.totalCharacterEntered);
+                    Log.d(TAG, "Movie targeted: " + metrics.targetMovie);
                     if (movie.getTitle().equals(metrics.targetMovie)){
+                        Log.d(TAG, "Movie selected: " + movie.getTitle());
                         setLogData(movie, position);
                         action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
 
