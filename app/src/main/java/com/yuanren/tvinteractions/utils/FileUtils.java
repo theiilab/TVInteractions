@@ -53,6 +53,9 @@ public class FileUtils {
     }
 
     public static void writeRaw(Context context, Action action) {
+        if (action == null) {
+            return;
+        }
         String filename;
         if (action.session == 3) {
             filename = "P" + action.pid + "-" + action.method + "-Search-Raw" + extension;
