@@ -90,7 +90,7 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
         backgroundContainer = getActivity().findViewById(R.id.background_container);
         originalY = backgroundContainer.getY();
         backgroundImage = getActivity().findViewById(R.id.background_image);
-        Glide.with(getContext())
+        Glide.with(view.getContext())
                 .load(movie.getBackgroundImageUrl())
                 .centerCrop()
                 .thumbnail(0.1f)

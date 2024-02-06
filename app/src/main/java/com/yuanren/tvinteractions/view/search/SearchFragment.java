@@ -101,7 +101,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
-        metrics = (Metrics) getActivity().getApplicationContext();
+        metrics = (Metrics) view.getContext().getApplicationContext();
         /** --------------- */
         movies = setUpSearchDummyMovies();
         movies.addAll(MovieList.getRealList());

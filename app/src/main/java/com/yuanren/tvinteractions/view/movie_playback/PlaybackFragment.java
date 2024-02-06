@@ -53,6 +53,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlaybackFragment extends Fragment {
     private static final String TAG = "PlaybackFragment";
@@ -163,7 +164,7 @@ public class PlaybackFragment extends Fragment {
         movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         /** ----- log ----- */
-        metrics = (Metrics) getContext().getApplicationContext();
+        metrics = (Metrics) view.getContext().getApplicationContext();
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         /** --------------- */
@@ -412,7 +413,7 @@ public class PlaybackFragment extends Fragment {
 
         RenderersFactory renderersFactory = new DefaultRenderersFactory(getContext()).setEnableAudioTrackPlaybackParams(true);
 
-        exoPlayer = new ExoPlayer.Builder(getContext())
+        exoPlayer = new ExoPlayer.Builder(getActivity().getApplicationContext())
                 .setLoadControl(loadControl)
                 .setTrackSelector(trackSelector)
                 .setRenderersFactory(renderersFactory)

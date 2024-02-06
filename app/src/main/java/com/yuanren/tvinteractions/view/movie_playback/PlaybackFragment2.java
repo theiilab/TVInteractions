@@ -57,6 +57,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     private static final String TAG = "PlaybackFragment2";
@@ -127,7 +128,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
-        metrics = (Metrics) getActivity().getApplicationContext();
+        metrics = (Metrics) view.getContext().getApplicationContext();
         metrics.startTime = 0L;
         metrics.actionsPerTask = 0;
         /** --------------- */

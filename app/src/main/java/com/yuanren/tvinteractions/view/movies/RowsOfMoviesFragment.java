@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -39,6 +40,7 @@ import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,9 +83,11 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /** ----- log ----- */
-        metrics = (Metrics)getActivity().getApplicationContext();
-        /** --------------- */
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         // prepare for the date
         list = MovieList.getList();
@@ -100,6 +104,10 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         // set selection listener for each movie
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
         setOnItemViewClickedListener(new ItemViewClickedListener());
+
+        /** ----- log ----- */
+        metrics = (Metrics) view.getContext().getApplicationContext();
+        /** --------------- */
     }
 
     public void setNavigationMenuCallback(NavigationMenuCallback callback) {
