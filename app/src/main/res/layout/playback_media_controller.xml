@@ -74,7 +74,7 @@
             android:textColor="@color/x_ray_card_highlighted"
             android:textAlignment="center"
             android:background="@drawable/shape_x_ray_card_logo_bg"
-            android:text="X-Ray"
+            android:text="Info"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
