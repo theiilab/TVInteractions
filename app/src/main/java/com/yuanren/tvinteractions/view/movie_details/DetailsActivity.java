@@ -31,7 +31,7 @@ public class DetailsActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         Metrics metrics = (Metrics) getApplicationContext();
-        if ((metrics.session == 1 || metrics.session == 2) && metrics.method.equals("Remote") && metrics.taskNum < 3) {
+        if ((metrics.session == 1 || metrics.session == 2) && metrics.method.equals("Remote") && metrics.taskNum < 3 && metrics.targetMovie.equals(metrics.selectedMovie)) {
             return;
         }
         super.onBackPressed();
