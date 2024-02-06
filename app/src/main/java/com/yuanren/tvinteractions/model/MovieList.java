@@ -114,26 +114,42 @@ public final class MovieList {
         realMovies = setUpRealMovies(); // record of unique real movies
 
         ListIterator<Movie> reals = realMovies.listIterator();
-        ListIterator<Movie> dummies = setUpDummyMovies((NUM_COLS - NUM_REAL_MOVIE) * NUM_MOVIE_CATEGORY).listIterator();
+        ListIterator<Movie> dummies = setUpDummyMovies(NUM_COLS * NUM_MOVIE_CATEGORY).listIterator();
 
         for (int row = 0; row < NUM_MOVIE_CATEGORY; ++row) {
             for (int col = 0; col < NUM_COLS; ++col) {
-                Movie movie;
-                if (col == randomPositions[row * 2] || col == randomPositions[row * 2 + 1]) {
-                    movie = reals.next();
-                    movie.setPosition(col);
-                } else {
-                    movie = dummies.next();
-                }
-                list.add(movie);
-
-                // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
-                Long id = Long.valueOf(row * NUM_COLS + col);
+                int id = row * NUM_COLS + col;
+                Movie movie = dummies.next();
                 movie.setId(id);
+                // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
                 List<XRayItem> items = movie.getXRayItems();
                 for (int i = 0; i < items.size(); ++i) {
                     items.get(i).setMovieId(id);
                 }
+                list.add(movie);
+            }
+        }
+
+        for (int row = 0; row < randomPositions.length / 2; ++row) {
+            int id1 = row * NUM_COLS + randomPositions[row];
+            int id2 = row * NUM_COLS + randomPositions[row + 1];
+
+            Movie movie = reals.next();
+            movie.setId(id1);
+            list.set(id1, movie);
+            // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
+            List<XRayItem> items = movie.getXRayItems();
+            for (int i = 0; i < items.size(); ++i) {
+                items.get(i).setMovieId(id1);
+            }
+
+            movie = reals.next();
+            movie.setId(id2);
+            list.set(id2, movie);
+            // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
+            items = movie.getXRayItems();
+            for (int i = 0; i < items.size(); ++i) {
+                items.get(i).setMovieId(id2);
             }
         }
         return list;
@@ -180,7 +196,7 @@ public final class MovieList {
                 "The Devil Wears Prada",
                 "The Wolf of Wall Street",
                 "Venom",
-                "Iron man ",
+                "Iron man",
                 "Harry Potter and the Prisoner of Azkaban",
                 "Fantastic Beasts and Where to Find Them",
                 "Insomnia",
