@@ -92,6 +92,7 @@ public class PlaybackFragment extends Fragment {
     private TextView taskReminder;
     private Handler timeHandler = new Handler(Looper.getMainLooper());
     private int actionCount = 0;
+    private int actionUpCount = 0;
     private Long playStartTime = 0L;
     private Long playEndTime = 0L;
     private boolean playFlag = false;
@@ -350,6 +351,8 @@ public class PlaybackFragment extends Fragment {
                     }
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- raw log ----- */
+                    actionUpCount++;
+
                     Action action;
                     switch (i) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -577,6 +580,7 @@ public class PlaybackFragment extends Fragment {
         metrics.actionsNeeded = actionsNeeded.get(task);
         metrics.startTime = startTime;
         metrics.endTime = endTime;
+        metrics.actionUpPerTask = actionUpCount;
 
         FileUtils.write(getContext().getApplicationContext(), metrics);
         metrics.nextTask();
@@ -584,6 +588,7 @@ public class PlaybackFragment extends Fragment {
 
     private void clearTaskData() {
         actionCount = 0;
+        actionUpCount = 0;
         changeVolumeSemaphore = 0;
         forwardSemaphore = 0;
         pauseSemaphore = 0;

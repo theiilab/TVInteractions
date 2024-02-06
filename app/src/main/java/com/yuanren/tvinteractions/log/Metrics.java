@@ -43,6 +43,8 @@ public class Metrics extends Application {
 
     public int incorrectTitleCount = 0;
 
+    public int actionUpPerTask = 0;
+
     public List<Action> actions = new ArrayList<>();
 
     private String[] session1_targetMovies = {
@@ -135,7 +137,7 @@ public class Metrics extends Application {
             taskCompletionTime = endTime - startTime;
             /* leave action needed in the activity to handle (run-time data needed) */
             errorRate = actionsNeeded != 0 ? ((double) actionsPerTask - (double) actionsNeeded) / actionsNeeded : 0;
-            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
+            res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "," + actionUpPerTask + "\n";
         } else if (session == 2) {
             taskCompletionTime = endTime - startTime;
             actionsNeeded = 3;
