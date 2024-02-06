@@ -55,10 +55,12 @@ public final class MovieList {
     public static Movie getMovie(String name) {
         for (Movie movie : list){
             if (movie.getTitle().equals(name)) {
+                Log.d(TAG, "getMovie() return: " + movie);
                 return movie;
             }
         }
-        return null;
+        Log.d(TAG, "getMovie() return: null");
+        return list.get(0);
     }
 
     public static List<Movie> getList() {
