@@ -240,6 +240,7 @@ public class Metrics extends Application {
             endTime = 0L;
             actionsPerTask = 0;
             errorRate = 0;
+            actionUpPerTask = 0;
         }
     }
 

@@ -445,6 +445,7 @@ public class PlaybackFragment extends Fragment {
                                 public void run() {
                                     playFlag = true;
                                     playEndTime = System.currentTimeMillis();
+                                    actionUpCount = Math.max(0, actionUpCount - 1); // weird bug, always has 1 hit when enter this page
                                     setLogData(TaskType.TYPE_TASK_PLAY_5_SEC, playStartTime, playEndTime);
                                     clearTaskData();
 
@@ -472,6 +473,7 @@ public class PlaybackFragment extends Fragment {
                     changeVolumeStartTime = System.currentTimeMillis();
                 }
                 actionCount++;
+                actionUpCount++;
                 changeVolumeSemaphore++;
                 changeVolumeEndTime = System.currentTimeMillis();
 
@@ -600,6 +602,7 @@ public class PlaybackFragment extends Fragment {
     /** ----- log ----- */
     private void clearLogData() {
         actionCount = 0;
+        actionUpCount = 0;
 
         playStartTime = 0L;
         playEndTime = 0L;
