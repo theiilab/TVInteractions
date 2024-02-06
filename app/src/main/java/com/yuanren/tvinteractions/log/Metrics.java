@@ -140,7 +140,6 @@ public class Metrics extends Application {
             res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "," + actionUpPerTask + "\n";
         } else if (session == 2) {
             taskCompletionTime = endTime - startTime;
-            actionsNeeded = 3;
             errorRate = actionsNeeded != 0 ? ((double) actionsPerTask - (double) actionsNeeded) / actionsNeeded : 0;
             res = "" + pid + "," + method + "," + session + "," + dataSet + "," + block + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskNum + "," + task + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerTask + "," + actionsNeeded + "," + errorRate + "\n";
         } else { // session 3
@@ -171,7 +170,7 @@ public class Metrics extends Application {
             this.targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
             this.task = "Search 1";
         }
-        this.movieLength = MovieList.getMovie(targetMovie).getLength();
+        this.movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
     }
 
     public void nextBlock() {
@@ -190,7 +189,7 @@ public class Metrics extends Application {
             targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
             task = "Search 1";
         }
-        movieLength = MovieList.getMovie(targetMovie).getLength();
+        movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
         selectedMovie = "";
         taskNum = 1;
         taskCompletionTime = 0L;
