@@ -161,7 +161,7 @@ public class Metrics extends Application {
         if (session == 1) {
             this.targetMovie = dataSet == 0 ? session1_targetMovies[0] : session1_targetMovies2[0];
             this.task = session1_tasks[0];
-            this.actionsNeeded = calculateS1ActionsNeeded();  // for task 1, others need to be calculated dynamically in activity
+            this.actionsNeeded = calculateS1T1ActionsNeeded();  // for task 1, others need to be calculated dynamically in activity
         } else if (session == 2) {
             this.targetMovie = dataSet == 0 ? session2_targetMovies[0] : session2_targetMovies2[0];
             this.task = "Question 1";
@@ -177,7 +177,7 @@ public class Metrics extends Application {
             block = block > session1_targetMovies.length ? block : block + 1;
             targetMovie = dataSet == 0 ? session1_targetMovies[Math.min(session1_targetMovies.length - 1, block - 1)] : session1_targetMovies2[Math.min(session1_targetMovies.length - 1, block - 1)];
             task = session1_tasks[0];
-            actionsNeeded = calculateS1ActionsNeeded(); // for task 1 in each block
+            actionsNeeded = calculateS1T1ActionsNeeded(); // for task 1 in each block
         } else if (session == 2) { // 2
             block = block > session2_targetMovies.length ? block : block + 1;
             targetMovie = dataSet == 0 ? session2_targetMovies[Math.min(session2_targetMovies.length - 1, block - 1)] : session2_targetMovies2[Math.min(session2_targetMovies.length - 1, block - 1)];
@@ -241,7 +241,7 @@ public class Metrics extends Application {
         }
     }
 
-    private int calculateS1ActionsNeeded() {
+    private int calculateS1T1ActionsNeeded() {
         Movie movie = MovieList.getMovie(targetMovie);
 
         int count = 0;
