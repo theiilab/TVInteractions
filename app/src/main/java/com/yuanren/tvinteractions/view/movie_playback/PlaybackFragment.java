@@ -2,6 +2,7 @@ package com.yuanren.tvinteractions.view.movie_playback;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -89,6 +90,7 @@ public class PlaybackFragment extends Fragment {
     private Movie movie;
 
     /** ----- log ----- */
+    private Context context;
     private Metrics metrics;
     private TextView taskReminder;
     private Handler timeHandler = new Handler(Looper.getMainLooper());
@@ -164,6 +166,7 @@ public class PlaybackFragment extends Fragment {
         movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         /** ----- log ----- */
+        context = view.getContext().getApplicationContext();
         metrics = (Metrics) view.getContext().getApplicationContext();
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
@@ -585,7 +588,7 @@ public class PlaybackFragment extends Fragment {
         metrics.endTime = endTime;
         metrics.actionUpPerTask = actionUpCount;
 
-        FileUtils.write(getContext().getApplicationContext(), metrics);
+        FileUtils.write(context, metrics);
         metrics.nextTask();
     }
 

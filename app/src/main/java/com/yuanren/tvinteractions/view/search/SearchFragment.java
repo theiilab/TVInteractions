@@ -1,5 +1,6 @@
 package com.yuanren.tvinteractions.view.search;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -71,6 +72,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     private StringBuilder userInput = new StringBuilder();
 
     /** -------- log -------- */
+    private Context context;
     private TextView taskReminder;
     private Metrics metrics;
     private boolean taskStartFlag = false;
@@ -102,6 +104,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
         metrics = (Metrics) view.getContext().getApplicationContext();
+        context = view.getContext().getApplicationContext();
         /** --------------- */
         movies = setUpSearchDummyMovies();
         movies.addAll(MovieList.getRealList());
@@ -388,7 +391,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         metrics.selectedMovie = movie.getTitle();
         metrics.endTime = System.currentTimeMillis();
         metrics.positionOnSelect = position;
-        FileUtils.write(getActivity().getApplicationContext(), metrics);
+        FileUtils.write(context, metrics);
     }
 
     private void clearDataLog () {
