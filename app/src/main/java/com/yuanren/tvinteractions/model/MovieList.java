@@ -59,8 +59,7 @@ public final class MovieList {
                 return movie;
             }
         }
-        Log.d(TAG, "getMovie() return: null");
-        return list.get(0);
+        return null;
     }
 
     public static List<Movie> getList() {
