@@ -1,18 +1,16 @@
 package com.yuanren.tvinteractions.log;
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.view.movie_playback.PlaybackFragment;
-import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Metrics extends Application {
+    private final static String TAG = "Metrics";
     public final static int SESSION_1_NUM_TASK = 8;  // change session1_tasks accordingly
     public final static int SESSION_2_NUM_TASK = 7;
     public final static int SESSION_3_NUM_BLOCK = 3;
@@ -168,6 +166,33 @@ public class Metrics extends Application {
             this.task = "Question 1";
         } else {
             this.targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
+            this.task = "Search 1";
+        }
+        this.movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
+    }
+
+    public void init(int pid, int session, String method, int dataSet, int block) {
+        this.pid = pid;
+        this.session = session;
+        this.method = method;
+        this.dataSet = dataSet;
+        this.block = block;
+        this.taskNum = 1;
+        if (session == 1) {
+            this.block = Math.min(block, session1_targetMovies.length);
+            this.block = Math.max(block, 1);
+            this.targetMovie = dataSet == 0 ? session1_targetMovies[block - 1] : session1_targetMovies2[block - 1];
+            this.task = session1_tasks[block - 1];
+            this.actionsNeeded = calculateS1T1ActionsNeeded();  // for task 1, others need to be calculated dynamically in activity
+        } else if (session == 2) {
+            this.block = Math.min(block, session1_targetMovies.length);
+            this.block = Math.max(block, 1);
+            this.targetMovie = dataSet == 0 ? session2_targetMovies[block - 1] : session2_targetMovies2[block - 1];
+            this.task = "Question 1";
+        } else {
+            this.block = Math.min(block, session1_targetMovies.length);
+            this.block = Math.max(block, 1);
+            this.targetMovie = dataSet == 0 ? session3_targetMovies[block - 1] : session3_targetMovies2[block - 1];
             this.task = "Search 1";
         }
         this.movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;

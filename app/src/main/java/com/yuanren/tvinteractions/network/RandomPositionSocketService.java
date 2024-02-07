@@ -26,13 +26,15 @@ public class RandomPositionSocketService {
     private static String session = "";
     private static String method = "";
     private static String dataSet = "";
+    private static String blockNum = "";
 
 
-    public static void setLogBasic(String pid, String sid, String mid, String ds) {
+    public static void setLogBasic(String pid, String sid, String mid, String ds, String b) {
         participant = pid;
         session = sid;
         method = mid;
         dataSet = ds;
+        blockNum = b;
     }
 
     public static void start() {
@@ -100,7 +102,7 @@ public class RandomPositionSocketService {
             try {
                 while (connected) {
                     // write random positions of movies to smartwatch side
-                    String basic = participant + "," + session + "," + method + "," + dataSet + ";";
+                    String basic = participant + "," + session + "," + method + "," + dataSet + "," + blockNum + ";";
                     output.println(basic + MovieList.getRandomPosString(MovieList.randomPositions));
                     Log.d(TAG, "Random position server sent: " + basic + MovieList.getRandomPosString(MovieList.randomPositions));
 

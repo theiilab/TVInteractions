@@ -35,12 +35,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button button;
     private LinearLayout layout4;
     private ToggleButton dataSetBtn;
+    private EditText blockNumET;
 
     /** ----- log ----- */
     String pid = "0";
     String session = "0";
     String method = "Remote";
     String dataSet = "0";
+    String block = "1";
     /** --------------- */
 
     @Override
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         button = findViewById(R.id.submit);
         layout4 = findViewById(R.id.layout4);
         dataSetBtn = findViewById(R.id.dataSet);
+        blockNumET = findViewById(R.id.block_num);
 
         participantET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -109,7 +112,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 dataSet = isChecked ? "1" : "0";
-                button.requestFocus();
+                blockNumET.requestFocus();
+            }
+        });
+
+        blockNumET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
+        blockNumET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    block = v.getText().toString();
+                    button.requestFocus();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -121,7 +145,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 /** -------- log -------- */
                 Metrics metrics = (Metrics) getApplicationContext();
-                metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet));
+
+                if (block.equals("1")) {
+                    metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet));
+                } else {
+                    metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet), Integer.parseInt(block));
+                }
                 /** --------------------- */
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

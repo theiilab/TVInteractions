@@ -12,7 +12,7 @@
     <dimen name="dimens_20sp">20sp</dimen>
 
     <dimen name="login_margin_parent">50dp</dimen>
-    <dimen name="login_margin_between">50dp</dimen>
+    <dimen name="login_margin_between">35dp</dimen>
     <dimen name="login_item_width">200dp</dimen>
     <dimen name="login_label_width">130dp</dimen>
     <dimen name="login_text_size">17sp</dimen>
