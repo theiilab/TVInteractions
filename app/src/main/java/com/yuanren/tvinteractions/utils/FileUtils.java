@@ -13,8 +13,8 @@ import java.io.IOException;
 public class FileUtils {
     private static final String TAG = "FileUtils";
     private static final String extension = ".csv";
-    public static final String logHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task Number,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate,Action Up Per Task\n";
-    public static final String logHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task Number,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate\n";
+    public static final String logHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task Number,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate,Action Up Per Task on TV\n";
+    public static final String logHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task Number,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate,Action Up Per Task on TV\n";
     public static final String logHeader3 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task Number,Task,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Error Rate,Position On Select,Character Per Second,Backspace Count,Time Per Character(ms),Total Character Entered\n";
     public static final String logRawHeader = "Participant,Method,Session,Block,Target Movie,Selected Movie,Task Number,Action,Scope,Start Time,End Time,Duration,Other\n";
 
@@ -22,9 +22,17 @@ public class FileUtils {
     public static void write(Context context, Metrics metrics) {
         String filename;
         if (metrics.session == 3) {
-            filename = "P" + metrics.pid + "-" + metrics.method + "-Search" + extension;
+            filename = "P" + metrics.pid + "-" + metrics.method + "-Search";
+            if (metrics.method.equals("Smartwatch")) {
+                filename += "-TV";
+            }
+            filename += extension;
         } else {
-            filename = "P" + metrics.pid + "-" + metrics.method + extension;
+            filename = "P" + metrics.pid + "-" + metrics.method;
+            if (metrics.method.equals("Smartwatch")) {
+                filename += "-TV";
+            }
+            filename += extension;
         }
 
         File file = new File(context.getFilesDir(), filename);
@@ -58,9 +66,17 @@ public class FileUtils {
         }
         String filename;
         if (action.session == 3) {
-            filename = "P" + action.pid + "-" + action.method + "-Search-Raw" + extension;
+            filename = "P" + action.pid + "-" + action.method + "-Search";
+            if (action.method.equals("Smartwatch")) {
+                filename += "-TV";
+            }
+            filename += "-Raw" + extension;
         } else {
-            filename = "P" + action.pid + "-" + action.method + "-Raw" + extension;
+            filename = "P" + action.pid + "-" + action.method;
+            if (action.method.equals("Smartwatch")) {
+                filename += "-TV";
+            }
+            filename += "-Raw" + extension;
         }
 
         File file = new File(context.getFilesDir(), filename);
