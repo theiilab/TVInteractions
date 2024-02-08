@@ -75,7 +75,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     private Context context;
     private TextView taskReminder;
     private Metrics metrics;
-    private boolean taskStartFlag = false;
+    private boolean startFlag = false;
     private Long actionStartTime = 0L;
 
     public static SearchFragment newInstance() {
@@ -130,8 +130,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (!taskStartFlag) {
-                        taskStartFlag = true;
+                    if (!startFlag) {
+                        startFlag = true;
                         metrics.startTime = System.currentTimeMillis();
                     }
                     actionStartTime = System.currentTimeMillis();
@@ -166,8 +166,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-                    if (!taskStartFlag) {
-                        taskStartFlag = true;
+                    if (!startFlag) {
+                        startFlag = true;
                         metrics.startTime = System.currentTimeMillis();
                     }
                     actionStartTime = System.currentTimeMillis();
@@ -257,8 +257,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     public void onKeyClick(View v) {
         /** ----- log ----- */
-        if (!taskStartFlag) {
-            taskStartFlag = true;
+        if (!startFlag) {
+            startFlag = true;
             metrics.startTime = System.currentTimeMillis();
         }//        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
         /** --------------- */
@@ -333,8 +333,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                     if (movie.getTitle().equals(metrics.targetMovie)) {
                         setLogData(movie, position);
                         Log.d(TAG, "Log data set");
-                        // clear data and advance to the next task
-                        prepareNextTask();
                     } else {
                         metrics.incorrectTitleCount++;
                     }
@@ -384,7 +382,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
             taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
         }
-        clearDataLog();
     }
 
     private void setLogData(Movie movie, int position) {
@@ -392,10 +389,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         metrics.endTime = System.currentTimeMillis();
         metrics.positionOnSelect = position;
         FileUtils.write(context, metrics);
-    }
 
-    private void clearDataLog () {
-        taskStartFlag = false;
+        // advance to the next task
+        prepareNextTask();
+        metrics.startTime = System.currentTimeMillis();
     }
 
     private List<Movie> getSearchResult(String searchName) {
@@ -470,10 +467,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         // clear the search result in text field and grid because setText will call afterTextChange and reset the movie grid
         inputField.setText("");
         userInput.setLength(0);
-
-        /** ----- log ----- */
-        clearDataLog();
-        /** --------------- */
 
         SearchSocketService.setSocketUpdateCallback(this);
         SearchSocketService.start();
