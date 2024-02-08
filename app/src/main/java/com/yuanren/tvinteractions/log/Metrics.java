@@ -1,6 +1,8 @@
 package com.yuanren.tvinteractions.log;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.yuanren.tvinteractions.model.Movie;
@@ -271,12 +273,22 @@ public class Metrics extends Application {
     private int calculateS1T1ActionsNeeded() {
         Movie movie = MovieList.getMovie(targetMovie);
 
+        if (movie == null) {
+            Log.d(TAG, "Target movie: " + targetMovie);
+            Log.d(TAG, "Current movie is null");
+        }
+
         int count = 0;
         if (task.equals(TaskType.TYPE_TASK_FIND.name)) {
             if (block <= 1) {
                 count = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
             } else {
                 Movie prevMovie = MovieList.getMovie(dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2]);
+                if (prevMovie == null) {
+                    String name = dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2];
+                    Log.d(TAG, "Previous movie name: " + name);
+                    Log.d(TAG, "Previous movie is null");
+                }
                 int categoryDiff = Math.abs(movie.getCategoryIndex() - prevMovie.getCategoryIndex());
                 int positionDiff = Math.abs(movie.getPosition() - prevMovie.getPosition());
                 count = categoryDiff + positionDiff + 1; // vertical difference + horizontal difference + click
