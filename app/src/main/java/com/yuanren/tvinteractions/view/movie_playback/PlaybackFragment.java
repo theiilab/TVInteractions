@@ -250,6 +250,7 @@ public class PlaybackFragment extends Fragment {
                             if (!forwardDoneFlag) {
                                 if (forwardSemaphore == 0 && metrics.taskNum == 3) {
                                     // completion of task 3
+                                    changeVolumeEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_CHANGE_VOLUME, changeVolumeStartTime, changeVolumeEndTime);
                                     clearTaskData();
 
@@ -257,24 +258,23 @@ public class PlaybackFragment extends Fragment {
                                 }
                                 actionCount++;
                                 forwardSemaphore++;
-                                forwardEndTime = System.currentTimeMillis();
                                 if (forwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_FORWARD) && metrics.taskNum == 4) {
                                     forwardDoneFlag = true;
-
                                     taskReminder.setText("4. Pause/Play");
                                 }
                             } else {
                                 if (goToEndSemaphore == 0 && metrics.taskNum == 6) {
                                     // completion of task 6
+                                    backwardEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_BACKWARD, backwardStartTime, backwardEndTime);
                                     clearTaskData();
 
+                                    // on task 7
                                     goToEndStartTime = System.currentTimeMillis();
                                     goToEndCurTimeIndex = exoPlayer.getCurrentPosition() / 1000;
                                 }
                                 actionCount++;
                                 goToEndSemaphore++;
-                                goToEndEndTime = System.currentTimeMillis();
 
                                 if (goToEndSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_GO_TO_END) && metrics.taskNum == 7) {
                                     taskReminder.setText("7. Go to the start");
@@ -289,14 +289,15 @@ public class PlaybackFragment extends Fragment {
                             /** ----- log ----- */
                             if (pauseSemaphore == 0 && metrics.taskNum == 4) {
                                 // completion of task 4
+                                forwardEndTime = System.currentTimeMillis();
                                 setLogData(TaskType.TYPE_TASK_FORWARD, forwardStartTime, forwardEndTime);
                                 clearTaskData();
 
+                                // on task 5
                                 pauseStartTime = System.currentTimeMillis();
                             }
                             actionCount++;
                             pauseSemaphore++;
-                            pauseEndTime = System.currentTimeMillis();
 
                             if (pauseSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_PAUSE) && metrics.taskNum == 5) {
                                 taskReminder.setText("5. Backward by 10 seconds");
@@ -311,23 +312,24 @@ public class PlaybackFragment extends Fragment {
                             if (!backwardDoneFlag) {
                                 if (backwardSemaphore == 0 && metrics.taskNum == 5) {
                                     // completion of task 5
+                                    pauseEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_PAUSE, pauseStartTime, pauseEndTime);
                                     clearTaskData();
 
+                                    // on task 5
                                     backwardStartTime = System.currentTimeMillis();
                                 }
                                 actionCount++;
                                 backwardSemaphore++;
-                                backwardEndTime = System.currentTimeMillis();
 
                                 if (backwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_BACKWARD) && metrics.taskNum == 6) {
                                     backwardDoneFlag = true;
-
                                     taskReminder.setText("6. Go to the end");
                                 }
                             } else {
                                 if (goToStartSemaphore == 0 && metrics.taskNum == 7) {
                                     // completion of task 7
+                                    goToEndEndTime = System.currentTimeMillis();
                                     actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, (int) (movie.getLength() - goToEndCurTimeIndex) / (VIDEO_TIME_DELTA / 1000) + 1);
                                     setLogData(TaskType.TYPE_TASK_GO_TO_END, goToEndStartTime, goToEndEndTime);
                                     clearTaskData();
@@ -496,8 +498,6 @@ public class PlaybackFragment extends Fragment {
                 actionCount++;
                 actionUpCount++;
                 changeVolumeSemaphore++;
-                changeVolumeEndTime = System.currentTimeMillis();
-
                 if (changeVolumeSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_CHANGE_VOLUME) && metrics.taskNum == 3) {
                     taskReminder.setText("3. Forward by 10 seconds");
                 }
