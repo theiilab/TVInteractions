@@ -269,8 +269,6 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                         default:
                             /** ----- log ----- */
                             Log.d(TAG, "videoStatusIndicator - onKey - default");
-                            action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(getContext(), action);
                 }

@@ -257,7 +257,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             }
                         } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                             /** ----- log ----- */
-                            Action action;
+                            Action action = null;
                             switch (i) {
                                 case KeyEvent.KEYCODE_DPAD_LEFT:
                                     action = new Action(metrics, ((Movie) item).getTitle(),
@@ -280,9 +280,6 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                                     action = new Action(metrics, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
-                                default:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
-                                            ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                             }
                             FileUtils.writeRaw(getContext(), action);
                             /** --------------- */

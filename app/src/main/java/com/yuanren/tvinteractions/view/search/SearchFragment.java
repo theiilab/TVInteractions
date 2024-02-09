@@ -357,9 +357,6 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 case KeyEvent.KEYCODE_DPAD_DOWN:
                     action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
-                default:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
-                    break;
             }
             FileUtils.writeRaw(getContext(), action);
         }

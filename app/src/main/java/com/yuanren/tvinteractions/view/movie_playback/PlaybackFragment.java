@@ -373,7 +373,7 @@ public class PlaybackFragment extends Fragment {
                     /** ----- raw log ----- */
                     actionUpCount++;
 
-                    Action action;
+                    Action action = null;
                     switch (i) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
                             action = new Action(metrics, movie.getTitle(),
@@ -400,9 +400,6 @@ public class PlaybackFragment extends Fragment {
                             action = new Action(metrics, movie.getTitle(),
                                     ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
-                        default:
-                            action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(getContext(), action);
                     return true;

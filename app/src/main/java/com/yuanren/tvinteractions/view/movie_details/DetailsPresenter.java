@@ -90,7 +90,7 @@ public class DetailsPresenter extends Presenter {
                     }
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- log ----- */
-                    Action action;
+                    Action action = null;
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
@@ -101,9 +101,6 @@ public class DetailsPresenter extends Presenter {
                             action = new Action(metrics, movie.getTitle(),
                                     ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
-                        default:
-                            action = new Action(metrics, movie.getTitle(),
-                                    ActionType.TYPE_ACTION_DIRECTION.name, TAG, actionStartTime, System.currentTimeMillis());
                     }
                     FileUtils.writeRaw(view.getContext(), action);
                 }
