@@ -618,13 +618,13 @@ public class PlaybackFragment extends Fragment {
     }
 
     private void clearTaskData() {
-        playFlag = false;
-        changeVolumeFlag = false;
-        forwardFlag = false;
-        pauseFlag = false;
-        backwardFlag = false;
-        goToEndFlag = false;
-        goToStartFlag = false;
+//        playFlag = false;
+//        changeVolumeFlag = false;
+//        forwardFlag = false;
+//        pauseFlag = false;
+//        backwardFlag = false;
+//        goToEndFlag = false;
+//        goToStartFlag = false;
 
         actionCount = 0;
         actionUpCount = 0;
