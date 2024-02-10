@@ -1,9 +1,11 @@
 package com.yuanren.tvinteractions.log;
 
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
@@ -170,7 +172,7 @@ public class Metrics extends Application {
             this.targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
             this.task = "Search 1";
         }
-        this.movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
+        this.movieLength = MovieList.getMovie(this, targetMovie) != null ? MovieList.getMovie(this, targetMovie).getLength() : 0;
     }
 
     public void init(int pid, int session, String method, int dataSet, int block) {
@@ -197,7 +199,7 @@ public class Metrics extends Application {
             this.targetMovie = dataSet == 0 ? session3_targetMovies[block - 1] : session3_targetMovies2[block - 1];
             this.task = "Search 1";
         }
-        this.movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
+        this.movieLength = MovieList.getMovie(this, targetMovie) != null ? MovieList.getMovie(this, targetMovie).getLength() : 0;
     }
 
     public void nextBlock() {
@@ -216,7 +218,7 @@ public class Metrics extends Application {
             targetMovie = dataSet == 0 ? session3_targetMovies[0] : session3_targetMovies2[0];
             task = "Search 1";
         }
-        movieLength = MovieList.getMovie(targetMovie) != null ? MovieList.getMovie(targetMovie).getLength() : 0;
+        movieLength = MovieList.getMovie(this, targetMovie) != null ? MovieList.getMovie(this, targetMovie).getLength() : 0;
         selectedMovie = "";
         taskNum = 1;
         taskCompletionTime = 0L;
@@ -271,7 +273,7 @@ public class Metrics extends Application {
     }
 
     private int calculateS1T1ActionsNeeded() {
-        Movie movie = MovieList.getMovie(targetMovie);
+        Movie movie = MovieList.getMovie(this, targetMovie);
 
         if (movie == null) {
             Log.d(TAG, "Target movie: " + targetMovie);
@@ -283,7 +285,7 @@ public class Metrics extends Application {
             if (block <= 1) {
                 count = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
             } else {
-                Movie prevMovie = MovieList.getMovie(dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2]);
+                Movie prevMovie = MovieList.getMovie(this, dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2]);
                 if (prevMovie == null) {
                     String name = dataSet == 0 ? session1_targetMovies[block - 2] : session1_targetMovies2[block - 2];
                     Log.d(TAG, "Previous movie name: " + name);

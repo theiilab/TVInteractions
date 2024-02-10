@@ -23,7 +23,7 @@ public class PlaybackActivity extends FragmentActivity {
         setContentView(R.layout.activity_playback);
 
         /** ----- log ----- */
-        Movie selectedMovie = MovieList.getMovie((int)getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
+        Movie selectedMovie = MovieList.getMovie(getApplicationContext(), (int)getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         Metrics metrics = (Metrics) getApplicationContext();
 
         if (metrics.session == 1) {

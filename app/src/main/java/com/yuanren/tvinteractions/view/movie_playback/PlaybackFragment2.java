@@ -134,7 +134,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         /** --------------- */
 
         // get selected movie
-        movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+        movie = MovieList.getMovie(view.getContext().getApplicationContext(), (int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         // set x-ray row dynamically
         recyclerView = view.findViewById(R.id.x_ray_container);

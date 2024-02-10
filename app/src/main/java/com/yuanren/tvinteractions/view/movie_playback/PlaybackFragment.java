@@ -171,7 +171,7 @@ public class PlaybackFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // get selected movie
-        movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+        movie = MovieList.getMovie(view.getContext().getApplicationContext(), (int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         /** ----- log ----- */
         context = view.getContext().getApplicationContext();

@@ -69,7 +69,7 @@ public class XRayItemContentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xray_item_content);
 
-        movie = MovieList.getList().get((int)getIntent().getLongExtra(SELECTED_MOVIE_ID, 0));
+        movie = MovieList.getList(getApplicationContext()).get((int)getIntent().getLongExtra(SELECTED_MOVIE_ID, 0));
         item = movie.getXRayItems().get((int)getIntent().getLongExtra(SELECTED_XRAY_ITEM_ID, 0));
 
         cover = findViewById(R.id.selectable_cover);

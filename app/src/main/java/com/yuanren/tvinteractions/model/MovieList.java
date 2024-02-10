@@ -1,11 +1,17 @@
 package com.yuanren.tvinteractions.model;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.leanback.widget.HeaderItem;
 import androidx.leanback.widget.ListRow;
+
+import com.yuanren.tvinteractions.log.Metrics;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,18 +26,21 @@ import java.util.SplittableRandom;
 
 public final class MovieList {
     private static final String TAG = "MovieList";
+    private static final String SP_TAG = "com.yuanren.tvinteractions.movielist";
     public static final int NUM_REAL_MOVIE = 2; //
     public static final int NUM_MOVIE_CATEGORY = 12; // change MOVIE_CATEGORY accordingly
     public static final int NUM_COLS = 20;
-    private static  final String KEY_TYPE = "type";
-    private static  final String KEY_NAME = "name";
-    private static  final String KEY_IMAGE = "image";
-    private static  final String KEY_DESCRIPTION = "description";
-    private static  final String KEY_MERCHANDISE = "merchandise";
+    private static final String KEY_TYPE = "type";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_IMAGE = "image";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_MERCHANDISE = "merchandise";
     private static List<Movie> list;
     private static List<Movie> realMovies;
     private static SplittableRandom splittableRandom;
     public static int[] randomPositions;
+
+    private static Context context;
 
     // change NUM_MOVIE_CATEGORY accordingly
     public static final String MOVIE_CATEGORY[] = {
@@ -49,30 +58,49 @@ public final class MovieList {
             "Crime"
     };
 
-    public static Movie getMovie(int id) {
+    public static void init(Context ct) {
+        context = ct;
+    }
+
+    public static Movie getMovie(Context ct, int id) {
+        context = ct;
+        if (list == null) {
+            Log.d(TAG, "Movie list is null, set it up again");
+            list = setUpMovies(randomPositions);
+        }
         return list.get(id);
     }
-    public static Movie getMovie(String name) {
+    public static Movie getMovie(Context ct, String name) {
+        context = ct;
+        if (list == null) {
+            Log.d(TAG, "Movie list is null, set it up again");
+            list = setUpMovies(randomPositions);
+        }
+
         for (Movie movie : list){
             if (movie.getTitle().equals(name)) {
                 Log.d(TAG, "getMovie() return: " + movie);
                 return movie;
             }
         }
+        Log.d(TAG, "No movie with this name is found");
         return null;
     }
 
-    public static List<Movie> getList() {
-//        if (list == null) {
-//            list = setupMovies();
-//        }
+    public static List<Movie> getList(Context ct) {
+        context = ct;
+        if (list == null) {
+            Log.d(TAG, "Movie list is null, set it up again");
+            list = setUpMovies(randomPositions);
+        }
         return list;
     }
 
     public static List<Movie> getRealList() {
-//        if (list == null) {
-//            list = setupMovies();
-//        }
+        if (realMovies == null) {
+            Log.d(TAG, "Real movie list is null, set it up again");
+            realMovies = setUpRealMovies();
+        }
         return realMovies;
     }
 
@@ -109,6 +137,7 @@ public final class MovieList {
             randomPositions[i + 1] = i + 1 < randomPositions.length ? precise2 : randomPositions.length - 1;
         }
         Log.d(TAG, getRandomPosString(randomPositions));  // debug use
+        spWrite(getRandomPosString(randomPositions));
 
         /** fill real movies at the random position and dummy movies in the rest */
         list = new ArrayList<>();
@@ -158,6 +187,66 @@ public final class MovieList {
         return list;
     }
 
+    public static List<Movie> setUpMovies(int[] randomPositions) {
+        if (randomPositions == null || randomPositions.length < NUM_MOVIE_CATEGORY * NUM_REAL_MOVIE) {
+            randomPositions = getRandomPosIntArray(spRead());
+        }
+
+        /** fill real movies at the random position and dummy movies in the rest */
+        list = new ArrayList<>();
+        realMovies = setUpRealMovies(); // record of unique real movies
+
+        ListIterator<Movie> reals = realMovies.listIterator();
+        ListIterator<Movie> dummies = setUpDummyMovies(NUM_COLS * NUM_MOVIE_CATEGORY).listIterator();
+
+        for (int row = 0; row < NUM_MOVIE_CATEGORY; ++row) {
+            for (int col = 0; col < NUM_COLS; ++col) {
+                int id = row * NUM_COLS + col;
+                Movie movie = dummies.next();
+                movie.setId(id);
+                // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
+                List<XRayItem> items = movie.getXRayItems();
+                for (int i = 0; i < items.size(); ++i) {
+                    items.get(i).setMovieId(id);
+                }
+                list.add(movie);
+            }
+        }
+
+        for (int row = 0; row < randomPositions.length / 2; ++row) {
+            int id1 = row * NUM_COLS + randomPositions[row];
+            int id2 = row * NUM_COLS + randomPositions[row + 1];
+
+            Movie movie = reals.next();
+            movie.setId(id1);
+            movie.setPosition(randomPositions[row]);
+            list.set(id1, movie);
+            // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
+            List<XRayItem> items = movie.getXRayItems();
+            for (int i = 0; i < items.size(); ++i) {
+                items.get(i).setMovieId(id1);
+            }
+
+            movie = reals.next();
+            movie.setId(id2);
+            movie.setPosition(randomPositions[row + 1]);
+            list.set(id2, movie);
+            // change movie Id accordingly in movie and its xRayItems (drawbacks for not having database)
+            items = movie.getXRayItems();
+            for (int i = 0; i < items.size(); ++i) {
+                items.get(i).setMovieId(id2);
+            }
+        }
+        return list;
+    }
+
+    private static int[] getRandomPosIntArray(String s) {
+        String[] data = s.split(",");
+        for (int i = 0; i < data.length; ++i) {
+            randomPositions[i] = Integer.parseInt(data[i]);
+        }
+        return randomPositions;
+    }
 
     public static String getRandomPosString(int[] data) {
         String s = "";
@@ -187,6 +276,23 @@ public final class MovieList {
             default:
                 return getRandomInt(14, 20);
         }
+    }
+
+    private static void spWrite(String data) {
+        Metrics metrics = (Metrics) context;
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SP_TAG, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(metrics.pid + "-" + metrics.session + "-" + metrics.method + "-" + "randomPositions", data);
+        editor.commit();
+        Log.d(TAG, "Write into shared preference: " + data);
+    }
+
+    private static String spRead() {
+        Metrics metrics = (Metrics) context;
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SP_TAG, MODE_PRIVATE);
+        String data = sharedPreferences.getString(metrics.pid + "-" + metrics.session + "-" + metrics.method + "-" + "randomPositions", "");
+        Log.d(TAG, "Read from shared preference: " + data);
+        return data;
     }
 
     public static List<Movie> setUpRealMovies() {

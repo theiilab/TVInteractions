@@ -106,7 +106,7 @@ public class PlaybackFragment0 extends Fragment implements OnKeyListener {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // get selected movie
-        movie = MovieList.getMovie((int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
+        movie = MovieList.getMovie(view.getContext().getApplicationContext(), (int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
         // set x-ray row dynamically
         recyclerView = view.findViewById(R.id.x_ray_container);

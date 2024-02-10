@@ -47,6 +47,7 @@ import java.util.Objects;
  * Use the {@link RowsOfMoviesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class RowsOfMoviesFragment extends RowsSupportFragment {
     private static final String TAG = "RowsOfMoviesFragment";
     public static final int REQUEST_CODE_DETAILS = 101;
@@ -90,7 +91,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         super.onViewCreated(view, savedInstanceState);
 
         // prepare for the date
-        list = MovieList.getList();
+        list = MovieList.getList(view.getContext().getApplicationContext());
 
         // init views on the top banner
         bannerBackgroundImage = getActivity().findViewById(R.id.background_image);

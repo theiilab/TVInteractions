@@ -84,8 +84,8 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
         super.onViewCreated(view, savedInstanceState);
 
         // get movies list and selected movie
-        list = MovieList.getList();
-        movie = MovieList.getMovie((int)getArguments().getLong(DetailsActivity.SELECTED_MOVIE_ID));
+        list = MovieList.getList(view.getContext().getApplicationContext());
+        movie = MovieList.getMovie(getActivity().getApplicationContext(), (int)getArguments().getLong(DetailsActivity.SELECTED_MOVIE_ID));
 
         backgroundContainer = getActivity().findViewById(R.id.background_container);
         originalY = backgroundContainer.getY();

@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+                MovieList.init(getApplicationContext());
                 MovieList.setUpMovies();
 
                 /** -------- log -------- */
