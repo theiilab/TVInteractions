@@ -654,7 +654,6 @@ public class PlaybackFragment extends Fragment {
 
         playStartTime = 0L;
         playEndTime = 0L;
-        playFlag = false;
 
         changeVolumeStartTime = 0L;
         changeVolumeEndTime = 0L;
