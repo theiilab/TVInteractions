@@ -8,13 +8,8 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
-import androidx.leanback.widget.HeaderItem;
-import androidx.leanback.widget.ListRow;
 
-import com.yuanren.tvinteractions.log.Metrics;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.yuanren.tvinteractions.log.Session;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -187,9 +182,10 @@ public final class MovieList {
         return list;
     }
 
-    public static List<Movie> setUpMovies(int[] randomPositions) {
-        if (randomPositions == null || randomPositions.length < NUM_MOVIE_CATEGORY * NUM_REAL_MOVIE) {
-            randomPositions = getRandomPosIntArray(spRead());
+    public static List<Movie> setUpMovies(int[] rp) {
+        if (rp == null || rp.length < NUM_MOVIE_CATEGORY * NUM_REAL_MOVIE) {
+            rp = getRandomPosIntArray(spRead());
+            randomPositions = rp;
         }
 
         /** fill real movies at the random position and dummy movies in the rest */
@@ -242,10 +238,11 @@ public final class MovieList {
 
     private static int[] getRandomPosIntArray(String s) {
         String[] data = s.split(",");
+        int[] positions = new int[NUM_MOVIE_CATEGORY * NUM_REAL_MOVIE];
         for (int i = 0; i < data.length; ++i) {
-            randomPositions[i] = Integer.parseInt(data[i]);
+            positions[i] = Integer.parseInt(data[i]);
         }
-        return randomPositions;
+        return positions;
     }
 
     public static String getRandomPosString(int[] data) {
@@ -279,18 +276,18 @@ public final class MovieList {
     }
 
     private static void spWrite(String data) {
-        Metrics metrics = (Metrics) context;
+        Session session = (Session) context;
         SharedPreferences sharedPreferences = context.getSharedPreferences(SP_TAG, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(metrics.pid + "-" + metrics.session + "-" + metrics.method + "-" + "randomPositions", data);
+        editor.putString(session.pid + "-" + session.id + "-" + session.method + "-" + "randomPositions", data);
         editor.commit();
         Log.d(TAG, "Write into shared preference: " + data);
     }
 
     private static String spRead() {
-        Metrics metrics = (Metrics) context;
+        Session session = (Session) context;
         SharedPreferences sharedPreferences = context.getSharedPreferences(SP_TAG, MODE_PRIVATE);
-        String data = sharedPreferences.getString(metrics.pid + "-" + metrics.session + "-" + metrics.method + "-" + "randomPositions", "");
+        String data = sharedPreferences.getString(session.pid + "-" + session.id + "-" + session.method + "-" + "randomPositions", "");
         Log.d(TAG, "Read from shared preference: " + data);
         return data;
     }

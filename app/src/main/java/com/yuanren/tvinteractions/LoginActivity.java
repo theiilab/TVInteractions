@@ -2,7 +2,6 @@ package com.yuanren.tvinteractions;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,21 +11,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.yuanren.tvinteractions.MainActivity;
-import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.MovieList;
-import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText participantET;
@@ -39,10 +32,10 @@ public class LoginActivity extends AppCompatActivity {
 
     /** ----- log ----- */
     String pid = "0";
-    String session = "0";
+    String sid = "0";
     String method = "Remote";
     String dataSet = "0";
-    String block = "1";
+    String bid = "1";
     /** --------------- */
 
     @Override
@@ -92,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    session = v.getText().toString();
+                    sid = v.getText().toString();
                     methodBtn.requestFocus();
                     return true;
                 }
@@ -129,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    block = v.getText().toString();
+                    bid = v.getText().toString();
                     button.requestFocus();
                     return true;
                 }
@@ -145,12 +138,12 @@ public class LoginActivity extends AppCompatActivity {
                 MovieList.setUpMovies();
 
                 /** -------- log -------- */
-                Metrics metrics = (Metrics) getApplicationContext();
+                Session session = (Session) getApplicationContext();
 
-                if (block.equals("1")) {
-                    metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet));
+                if (bid.equals("1")) {
+                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet), MovieList.randomPositions);
                 } else {
-                    metrics.init(Integer.parseInt(pid), Integer.parseInt(session), method, Integer.parseInt(dataSet), Integer.parseInt(block));
+                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet), MovieList.randomPositions, Integer.parseInt(bid));
                 }
                 /** --------------------- */
 

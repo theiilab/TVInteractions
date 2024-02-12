@@ -1,12 +1,10 @@
 package com.yuanren.tvinteractions.view.x_ray;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -16,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.OnKeyListener;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.XRayItem;
 import com.yuanren.tvinteractions.view.movie_playback.PlaybackFragment2;
 
@@ -78,8 +76,8 @@ public class XRayCardListAdapter extends RecyclerView.Adapter {
                 intent.putExtra(XRayItemContentActivity.SELECTED_XRAY_ITEM_ID, item.getItemId());
                 selectedXRayItemId = (int) item.getItemId();
 
-                Metrics metrics = (Metrics) view.getContext().getApplicationContext();
-                if (metrics.session == 1) {
+                Session session = (Session) view.getContext().getApplicationContext();
+                if (session.id == 1) {
                     view.getContext().startActivity(intent);
                 } else {  // session 2
                     /** ----- log ----- */

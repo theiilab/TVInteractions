@@ -1,10 +1,7 @@
 package com.yuanren.tvinteractions.view.x_ray;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,22 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.model.XRayItem;
 import com.yuanren.tvinteractions.utils.FileUtils;
-import com.yuanren.tvinteractions.view.movie_playback.PlaybackActivity;
 
 public class XRayItemContentActivity extends Activity {
     private static final String TAG = "XRayItemContentActivity";
@@ -143,9 +136,9 @@ public class XRayItemContentActivity extends Activity {
                 } else if (event.getAction() == KeyEvent.ACTION_UP) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-                        Metrics metrics = (Metrics) getApplicationContext();
-                        metrics.actionsPerTask++;
-                        Action action = new Action(metrics, movie.getTitle(),
+                        Session session = (Session) getApplicationContext();
+                        session.getCurrentBlock().getCurrentTask().actionsPerTask++;
+                        Action action = new Action(session, movie.getTitle(),
                                 ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                         FileUtils.writeRaw(getApplicationContext(), action);
 

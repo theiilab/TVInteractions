@@ -13,7 +13,7 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.movie_playback.PlaybackActivity;
@@ -24,7 +24,7 @@ public class DetailsPresenter extends Presenter {
     private long movieId;
 
     /** ----- log ----- */
-    private Metrics metrics;
+    private Session session;
     private Long actionStartTime;
     /** --------------- */
 
@@ -38,7 +38,7 @@ public class DetailsPresenter extends Presenter {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
         /** ----- log ----- */
-        metrics = (Metrics) viewHolder.view.getContext().getApplicationContext();
+        session = (Session) viewHolder.view.getContext().getApplicationContext();
         /** ----- log ----- */
 
         Log.d(TAG, "onBindViewHolder");
@@ -80,7 +80,7 @@ public class DetailsPresenter extends Presenter {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                             /** ----- log ----- */
-                            if (metrics.targetMovie.equals(movie.getTitle()) || (metrics.session != 1 && metrics.session != 2)) {
+                            if (session.getCurrentBlock().targetMovie.equals(movie.getTitle()) || (session.id != 1 && session.id != 2)) {
                                 Intent intent = new Intent(detailsViewHolder.view.getContext(), PlaybackActivity.class);
                                 intent.putExtra(PlaybackActivity.SELECTED_MOVIE_ID, movieId);
                                 detailsViewHolder.view.getContext().startActivity(intent);
@@ -94,11 +94,11 @@ public class DetailsPresenter extends Presenter {
                     switch (i) {
                         case KeyEvent.KEYCODE_ENTER:
                         case KeyEvent.KEYCODE_DPAD_CENTER:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_BACK:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                     }

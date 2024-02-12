@@ -1,10 +1,7 @@
 package com.yuanren.tvinteractions;
 
 import android.content.Intent;
-import android.database.MergeCursor;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,15 +9,13 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
-import com.yuanren.tvinteractions.log.Metrics;
-import com.yuanren.tvinteractions.model.MovieList;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.network.RandomPositionSocketService;
 import com.yuanren.tvinteractions.view.movies.MoviesFragment;
 import com.yuanren.tvinteractions.view.movies.RowsOfMoviesFragment;
@@ -66,8 +61,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     .commit();
 
             /** -------- log -------- */
-            Metrics metrics = (Metrics) getApplicationContext();
-            Fragment fragment = metrics.session == 3 ? searchFragment : moviesFragment;
+            Session session = (Session) getApplicationContext();
+            Fragment fragment = session.id == 3 ? searchFragment : moviesFragment;
             /** --------------------- */
             getSupportFragmentManager()
                     .beginTransaction()
@@ -75,8 +70,8 @@ public class MainActivity extends FragmentActivity implements FragmentChangeList
                     .commit();
         }
         // start my socket channel to send random positions of movies to watch side
-        Metrics metrics = (Metrics) getApplicationContext();
-        RandomPositionSocketService.setLogBasic(String.valueOf(metrics.pid), String.valueOf(metrics.session), metrics.method, String.valueOf(metrics.dataSet), String.valueOf(metrics.block));
+        Session session = (Session) getApplicationContext();
+        RandomPositionSocketService.setLogBasic(String.valueOf(session.pid), String.valueOf(session.id), session.method, String.valueOf(session.dataSet), String.valueOf(session.getCurrentBlock().id));
         RandomPositionSocketService.start();
     }
 

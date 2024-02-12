@@ -4,8 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,12 +14,10 @@ import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,20 +40,16 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.OnKeyListener;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
-import com.yuanren.tvinteractions.log.TaskType;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
+import com.yuanren.tvinteractions.log.Task;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.utils.FileUtils;
 import com.yuanren.tvinteractions.view.base.SpaceItemDecoration;
 import com.yuanren.tvinteractions.view.x_ray.XRayCardListAdapter;
-import com.yuanren.tvinteractions.view.x_ray.XRayItemContentActivity;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     private static final String TAG = "PlaybackFragment2";
@@ -95,7 +87,9 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
 
     /** ----- log ----- */
     public TextView taskReminder;
-    private Metrics metrics;
+    private Session session;
+    private Block block;
+    private Task task;
     private int position = 0;
 
     private int exitSemaphore = 0;
@@ -127,12 +121,6 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /** ----- log ----- */
-        metrics = (Metrics) view.getContext().getApplicationContext();
-        metrics.startTime = 0L;
-        metrics.actionsPerTask = 0;
-        /** --------------- */
-
         // get selected movie
         movie = MovieList.getMovie(view.getContext().getApplicationContext(), (int)getArguments().getLong(PlaybackActivity.SELECTED_MOVIE_ID));
 
@@ -160,10 +148,13 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         title.setText(movie.getTitle());
         initializePlayer(movie.getVideoUrl());
 
-
         /** ----- log ----- */
+        session = (Session) view.getContext().getApplicationContext();
+        block = session.getCurrentBlock();
+        task = session.getCurrentBlock().getCurrentTask();
+        block.startTime = System.currentTimeMillis();
+        task.startTime = block.startTime;
         showTaskReminder("Please find answers for the questions on the sheet");
-        metrics.startTime = System.currentTimeMillis();
         /** --------------- */
 
         backBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -210,7 +201,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                     }
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     /** ----- log ----- */
-                    metrics.actionsPerTask++;
+                    task.actionsPerTask++;
                     /** --------------- */
 
                     Action action = null;
@@ -220,7 +211,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
 
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -228,7 +219,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             animateVideoIndicator(VIDEO_ACTION_REWIND);
 
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
@@ -236,12 +227,12 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             animateVideoIndicator(VIDEO_ACTION_FORWARD);
 
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
@@ -249,18 +240,18 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                             recyclerView.getChildAt(0).requestFocus();
 
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_BACK:
                             /** ----- log ----- */
-                            if (metrics.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
+                            if (session.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
                                 showTaskReminder("Please answer all questions");
                                 return true;
                             }
                             clearLogData();
                             /** ----- raw log ----- */
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             /** --------------- */
 
@@ -288,7 +279,7 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             actionStartTime = System.currentTimeMillis();
         } else if (event.getAction() == KeyEvent.ACTION_UP) {
-            metrics.actionsPerTask++;
+            task.actionsPerTask++;
 
             Action action = null;
             switch (keyCode) {
@@ -297,37 +288,37 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                     this.position = position;
 
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_UP:
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_DOWN:
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_BACK:
                     /** ----- log ----- */
-                    if (metrics.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
+                    if (session.method.equals("Remote") && exitSemaphore < movie.getXRayItems().size()) {
                         showTaskReminder("Please answer all questions");
                         return true;
                     }
                     /** ----- raw log ----- */
-                    action = new Action(metrics, movie.getTitle(),
+                    action = new Action(session, movie.getTitle(),
                             ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
             }
@@ -343,24 +334,25 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
 
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (position + 1 < metrics.taskNum) { // cur < target
+        if (position + 1 < task.id) { // cur < target
             showTaskReminder("Please finish questions after");
             return;
-        } else if (position + 1 > metrics.taskNum) { // cur > target
+        } else if (position + 1 > task.id) { // cur > target
             showTaskReminder("Please finish previous questions");
             return;
         }
 
         hideTaskReminder();
-        if (metrics.taskNum <= movie.getXRayItems().size()) {
-            metrics.endTime = System.currentTimeMillis();
-
-            FileUtils.write(getContext(), metrics);
-            metrics.nextTask();
+        if (task.id <= movie.getXRayItems().size()) {
+            block.actionsPerBlock += task.actionsPerTask;
+            task.selectedMovie = movie.getTitle();
+            task.endTime = System.currentTimeMillis();
+            FileUtils.write(getContext(), task);
+            exitSemaphore++;
 
             // advance to the next task
-            exitSemaphore++;
-            metrics.startTime = System.currentTimeMillis();
+            task = session.getCurrentBlock().nextTask();
+            task.startTime = System.currentTimeMillis();
         }
     }
 

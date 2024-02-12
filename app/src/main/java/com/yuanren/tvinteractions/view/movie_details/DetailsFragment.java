@@ -25,14 +25,14 @@ import androidx.leanback.widget.RowPresenter;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.DetailsAnimationCallback;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.view.base.CardPresenter;
 import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import com.bumptech.glide.Glide;
 
@@ -103,8 +103,9 @@ public class DetailsFragment extends RowsSupportFragment implements DetailsAnima
 
         /** ----- log ----- */
         taskReminder = getActivity().findViewById(R.id.task_reminder);
-        Metrics metrics = (Metrics) getActivity().getApplicationContext();
-        if (!metrics.targetMovie.equals(movie.getTitle()) && (metrics.session == 1 || metrics.session == 2)) {
+        Session session = (Session) getActivity().getApplicationContext();
+        Block block = session.getCurrentBlock();
+        if (!block.targetMovie.equals(movie.getTitle()) && (session.id == 1 || session.id == 2)) {
             taskReminder.setVisibility(View.VISIBLE);
         } else {
             taskReminder.setVisibility(View.GONE);

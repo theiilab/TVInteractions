@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.FragmentChangeListener;
 import com.yuanren.tvinteractions.base.NavigationStateListener;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -107,8 +107,8 @@ public class NavigationMenuFragment extends Fragment {
         settingsUnderlineIB = view.findViewById(R.id.settings_underline_IB);
 
         /** -------- log -------- */
-        Metrics metrics = (Metrics) getActivity().getApplicationContext();
-        if (metrics.session == 3) {
+        Session session = (Session) getActivity().getApplicationContext();
+        if (session.id == 3) {
             searchIB.setImageResource(R.drawable.ic_nav_search_selected);
             searchUnderlineIB.setVisibility(View.VISIBLE);
             lastSelectedMenuItem = TYPE_VIEW_SEARCH;

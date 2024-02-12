@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
+import com.yuanren.tvinteractions.log.Task;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +32,10 @@ public class DetailsActivity extends FragmentActivity {
     /** ----- log ----- */
     @Override
     public void onBackPressed() {
-        Metrics metrics = (Metrics) getApplicationContext();
-        if ((metrics.session == 1 || metrics.session == 2) && metrics.method.equals("Remote") && metrics.taskNum < 3 && metrics.targetMovie.equals(metrics.selectedMovie)) {
+        Session session = (Session) getApplicationContext();
+        Block block = session.getCurrentBlock();
+        Task task = block.getCurrentTask();
+        if ((session.id == 1 || session.id == 2) && session.method.equals("Remote") && task.id < 7 && block.targetMovie.equals(block.selectedMovie)) {
             return;
         }
         super.onBackPressed();

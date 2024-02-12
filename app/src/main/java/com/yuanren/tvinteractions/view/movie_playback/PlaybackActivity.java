@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.yuanren.tvinteractions.R;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Session;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 
@@ -24,11 +24,11 @@ public class PlaybackActivity extends FragmentActivity {
 
         /** ----- log ----- */
         Movie selectedMovie = MovieList.getMovie(getApplicationContext(), (int)getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
-        Metrics metrics = (Metrics) getApplicationContext();
+        Session session = (Session) getApplicationContext();
 
-        if (metrics.session == 1) {
+        if (session.id == 1) {
             fragment = PlaybackFragment.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
-        } else if (metrics.session == 2) { // session = 2
+        } else if (session.id == 2) { // session = 2
             fragment = PlaybackFragment2.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));
         } else {
             fragment = PlaybackFragment0.newInstance(getIntent().getExtras().getLong(SELECTED_MOVIE_ID));

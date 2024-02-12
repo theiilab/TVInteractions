@@ -42,7 +42,9 @@ import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
+import com.yuanren.tvinteractions.log.Task;
 import com.yuanren.tvinteractions.log.TaskType;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
@@ -54,7 +56,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class PlaybackFragment extends Fragment {
     private static final String TAG = "PlaybackFragment";
@@ -91,7 +92,9 @@ public class PlaybackFragment extends Fragment {
 
     /** ----- log ----- */
     private Context context;
-    private Metrics metrics;
+    private Session session;
+    private Block block;
+    private Task task;
     private TextView taskReminder;
     private Handler timeHandler = new Handler(Looper.getMainLooper());
     private int actionCount = 0;
@@ -175,7 +178,9 @@ public class PlaybackFragment extends Fragment {
 
         /** ----- log ----- */
         context = view.getContext().getApplicationContext();
-        metrics = (Metrics) view.getContext().getApplicationContext();
+        session = (Session) view.getContext().getApplicationContext();
+        block = session.getCurrentBlock();
+        task = session.getCurrentBlock().getCurrentTask();
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_START, movie.getLength() / (VIDEO_TIME_DELTA / 1000) + 1);
         /** --------------- */
@@ -256,7 +261,7 @@ public class PlaybackFragment extends Fragment {
 
                             /** ----- log ----- */
                             if (!forwardDoneFlag) {
-                                if (changeVolumeFlag && metrics.taskNum == 3) {
+                                if (changeVolumeFlag && task.id == 3) {
                                     // completion of task 3
                                     changeVolumeEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_CHANGE_VOLUME, changeVolumeStartTime, changeVolumeEndTime);
@@ -266,13 +271,13 @@ public class PlaybackFragment extends Fragment {
                                 }
                                 actionCount++;
                                 forwardSemaphore++;
-                                if (forwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_FORWARD) && metrics.taskNum == 4) {
+                                if (forwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_FORWARD) && task.id == 4) {
                                     forwardFlag = true;
                                     forwardDoneFlag = true;
                                     taskReminder.setText("4. Pause/Play");
                                 }
                             } else {
-                                if (backwardFlag && metrics.taskNum == 6) {
+                                if (backwardFlag && task.id == 6) {
                                     // completion of task 6
                                     backwardEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_BACKWARD, backwardStartTime, backwardEndTime);
@@ -285,7 +290,7 @@ public class PlaybackFragment extends Fragment {
                                 actionCount++;
                                 goToEndSemaphore++;
 
-                                if (goToEndSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_GO_TO_END) && metrics.taskNum == 7) {
+                                if (goToEndSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_GO_TO_END) && task.id == 7) {
                                     goToEndFlag = true;
                                     taskReminder.setText("7. Go to the start");
                                 }
@@ -297,7 +302,7 @@ public class PlaybackFragment extends Fragment {
                             Log.d(TAG, "pause");
                             animateVideoIndicator(playWhenReady ? VIDEO_ACTION_PAUSE : VIDEO_ACTION_PLAY);
                             /** ----- log ----- */
-                            if (forwardFlag && metrics.taskNum == 4) {
+                            if (forwardFlag && task.id == 4) {
                                 // completion of task 4
                                 forwardEndTime = System.currentTimeMillis();
                                 setLogData(TaskType.TYPE_TASK_FORWARD, forwardStartTime, forwardEndTime);
@@ -309,7 +314,7 @@ public class PlaybackFragment extends Fragment {
                             actionCount++;
                             pauseSemaphore++;
 
-                            if (pauseSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_PAUSE) && metrics.taskNum == 5) {
+                            if (pauseSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_PAUSE) && task.id == 5) {
                                 pauseFlag = true;
                                 taskReminder.setText("5. Backward by 10 seconds");
                             }
@@ -321,7 +326,7 @@ public class PlaybackFragment extends Fragment {
 
                             /** ----- log ----- */
                             if (!backwardDoneFlag) {
-                                if (pauseFlag && metrics.taskNum == 5) {
+                                if (pauseFlag && task.id == 5) {
                                     // completion of task 5
                                     pauseEndTime = System.currentTimeMillis();
                                     setLogData(TaskType.TYPE_TASK_PAUSE, pauseStartTime, pauseEndTime);
@@ -333,13 +338,13 @@ public class PlaybackFragment extends Fragment {
                                 actionCount++;
                                 backwardSemaphore++;
 
-                                if (backwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_BACKWARD) && metrics.taskNum == 6) {
+                                if (backwardSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_BACKWARD) && task.id == 6) {
                                     backwardFlag = true;
                                     backwardDoneFlag = true;
                                     taskReminder.setText("6. Go to the end");
                                 }
                             } else {
-                                if (goToEndFlag && metrics.taskNum == 7) {
+                                if (goToEndFlag && task.id == 7) {
                                     // completion of task 7
                                     goToEndEndTime = System.currentTimeMillis();
                                     actionsNeeded.put(TaskType.TYPE_TASK_GO_TO_END, (int) (movie.getLength() - goToEndCurTimeIndex) / (VIDEO_TIME_DELTA / 1000) + 1);
@@ -353,7 +358,7 @@ public class PlaybackFragment extends Fragment {
                                 goToStartSemaphore++;
                                 goToStartEndTime = System.currentTimeMillis();
 
-                                if (goToStartSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_GO_TO_START) && metrics.taskNum == 8) {
+                                if (goToStartSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_GO_TO_START) && task.id == 8) {
                                     blockDoneFlag = true;
                                     taskReminder.setText("8. Back");
                                 }
@@ -389,28 +394,28 @@ public class PlaybackFragment extends Fragment {
                     Action action = null;
                     switch (i) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                         case KeyEvent.KEYCODE_BACK:
-                            action = new Action(metrics, movie.getTitle(),
+                            action = new Action(session, movie.getTitle(),
                                     ActionType.TYPE_ACTION_BACK.name, TAG, actionStartTime, System.currentTimeMillis());
                             break;
                     }
@@ -496,7 +501,7 @@ public class PlaybackFragment extends Fragment {
                 Player.Listener.super.onDeviceVolumeChanged(volume, muted);
 
                 Log.d(TAG, "device volume changed: " + volume);
-                if (playFlag && metrics.taskNum == 2) {
+                if (playFlag && task.id == 2) {
                     // completion of task 1
                     playEndTime = System.currentTimeMillis();
                     setLogData(TaskType.TYPE_TASK_PLAY_5_SEC, playStartTime, playEndTime);
@@ -508,13 +513,13 @@ public class PlaybackFragment extends Fragment {
                 actionCount++;
                 actionUpCount++;
                 changeVolumeSemaphore++;
-                if (changeVolumeSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_CHANGE_VOLUME) && metrics.taskNum == 3) {
+                if (changeVolumeSemaphore == actionsNeeded.get(TaskType.TYPE_TASK_CHANGE_VOLUME) && task.id == 3) {
                     changeVolumeFlag = true;
                     taskReminder.setText("3. Forward by 10 seconds");
                 }
 
                 // raw
-                Action action = new Action(metrics, movie.getTitle(),
+                Action action = new Action(session, movie.getTitle(),
                         ActionType.TYPE_ACTION_VOLUME.name, TAG, System.currentTimeMillis(), System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
             }
@@ -606,15 +611,18 @@ public class PlaybackFragment extends Fragment {
     }
 
     /** ----- log ----- */
-    private void setLogData(TaskType task, Long startTime, Long endTime) {
-        metrics.actionsPerTask = actionCount;
-        metrics.actionsNeeded = actionsNeeded.get(task);
-        metrics.startTime = startTime;
-        metrics.endTime = endTime;
-        metrics.actionUpPerTask = actionUpCount;
+    private void setLogData(TaskType taskType, Long startTime, Long endTime) {
+        task.selectedMovie = block.selectedMovie;
+        task.actionsPerTask = actionCount;
+        task.actionsNeeded = actionsNeeded.get(taskType);
+        task.startTime = startTime;
+        task.endTime = endTime;
+        task.actionUpsPerTask = actionUpCount;
+        block.actionsPerBlock += actionCount;
+        block.actionUpsPerBlock += actionUpCount;
 
-        FileUtils.write(context, metrics);
-        metrics.nextTask();
+        FileUtils.write(context, task);
+        task = session.getCurrentBlock().nextTask();
     }
 
     private void clearTaskData() {

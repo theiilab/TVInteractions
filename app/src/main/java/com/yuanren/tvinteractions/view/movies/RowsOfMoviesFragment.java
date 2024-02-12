@@ -30,8 +30,9 @@ import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.NavigationMenuCallback;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
-import com.yuanren.tvinteractions.log.TaskType;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
+import com.yuanren.tvinteractions.log.Task;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.utils.FileUtils;
@@ -40,7 +41,6 @@ import com.yuanren.tvinteractions.view.base.RowPresenterSelector;
 import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,12 +64,14 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
     private Row currentSelectedRow;
 
     /** ----- log ----- */
-    private Metrics metrics;
+    private Session session;
+    private Block block;
     private Long startTime;
-    private Long endTime;
+//    private Long endTime;
     private Long actionStartTime;
     private boolean findFlag = false;
     private int actionCount = 0;
+    private int actionUpCount = 0;
     /** --------------- */
 
     public RowsOfMoviesFragment() {
@@ -107,7 +109,8 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         setOnItemViewClickedListener(new ItemViewClickedListener());
 
         /** ----- log ----- */
-        metrics = (Metrics) view.getContext().getApplicationContext();
+        session = (Session) view.getContext().getApplicationContext();
+        block = session.getCurrentBlock();
         /** --------------- */
     }
 
@@ -188,23 +191,26 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
-
+        block.endTime = System.currentTimeMillis();
         if (requestCode == REQUEST_CODE_DETAILS) {
-            if (metrics.targetMovie.equals(metrics.selectedMovie)) {
+            if (block.targetMovie.equals(block.selectedMovie)) {
+                FileUtils.write(getContext(), block);
                 clearLogData();
-                metrics.nextBlock();
+                block = session.nextBlock();
             } else {
                 actionCount++;  // for press back button from the wrong movie details
+                actionUpCount++;
             }
         }
     }
 
     private void clearLogData() {
         startTime = 0L;
-        endTime = 0L;
+//        endTime = 0L;
         actionStartTime = 0L;
         findFlag = false;
         actionCount = 0;
+        actionUpCount = 0;
     }
 
     // called when user navigate to the item and focus on it
@@ -258,27 +264,29 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
                             }
                         } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
                             /** ----- log ----- */
+                            actionUpCount++;
+
                             Action action = null;
                             switch (i) {
                                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
+                                    action = new Action(session, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
+                                    action = new Action(session, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_UP:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
+                                    action = new Action(session, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_DOWN:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
+                                    action = new Action(session, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                                 case KeyEvent.KEYCODE_DPAD_CENTER:
                                 case KeyEvent.KEYCODE_ENTER:
-                                    action = new Action(metrics, ((Movie) item).getTitle(),
+                                    action = new Action(session, ((Movie) item).getTitle(),
                                             ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                                     break;
                             }
@@ -299,18 +307,25 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
         public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
             if (item instanceof Movie) {
                 /** ----- log ----- */
-                endTime = System.currentTimeMillis();
                 String selectedMovie = ((Movie) item).getTitle();
-                if (metrics.targetMovie.equals(selectedMovie)) {
-                    metrics.selectedMovie = selectedMovie;
-                    metrics.actionsPerTask = actionCount;
-                    metrics.startTime = startTime;
-                    metrics.endTime = endTime;
+                if (block.targetMovie.equals(selectedMovie)) {
+                    block.selectedMovie = selectedMovie;
 
                     // only reflect navigation time in log for session 1
-                    if (metrics.session == 1) {
-                        FileUtils.write(getContext(), metrics);
-                        metrics.nextTask();
+                    if (session.id == 1) {
+                        block.startTime = startTime;
+                        block.actionsPerBlock += actionCount;
+                        block.actionUpsPerBlock += actionUpCount;
+
+                        Task task = block.getCurrentTask();
+                        task.selectedMovie = selectedMovie;
+                        task.actionsPerTask = actionCount;
+                        task.actionUpsPerTask = actionUpCount;
+                        task.startTime = startTime;
+                        task.endTime = System.currentTimeMillis();;
+
+                        FileUtils.write(getContext(), task);
+                        block.nextTask();
                     }
                 }
                 /** --------------- */
