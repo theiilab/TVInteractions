@@ -1,6 +1,5 @@
 package com.yuanren.tvinteractions.view.search;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.KeyEvent;
@@ -16,10 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yuanren.tvinteractions.R;
 import com.yuanren.tvinteractions.base.OnKeyListener;
-import com.yuanren.tvinteractions.log.Metrics;
 import com.yuanren.tvinteractions.model.Movie;
-import com.yuanren.tvinteractions.utils.FileUtils;
-import com.yuanren.tvinteractions.view.movie_details.DetailsActivity;
 
 import java.util.List;
 import java.util.SplittableRandom;

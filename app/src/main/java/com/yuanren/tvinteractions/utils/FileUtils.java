@@ -17,7 +17,7 @@ public class FileUtils {
     private static final String extension = ".csv";
     public static final String blockHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Block Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Block,Actions Needed,Error Rate,Action Up Per Block on TV\n";
     public static final String blockHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Block Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Block,Actions Needed,Error Rate,Action Up Per Block on TV\n";
-    public static final String blockHeader3 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Block Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Block,Error Rate\n";
+    public static final String blockHeader3 = "Participant,Method,Session,Data Set,Block,Block Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Block,Error Rate\n";
 
     public static final String taskHeader1 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Name,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate,Action Up Per Task on TV\n";
     public static final String taskHeader2 = "Participant,Method,Session,Data Set,Block,Target Movie,Movie Length(s),Selected Movie,Task,Task Name,Task Completion Time (ms),Start Time(ms),End Time(ms),Actions Per Task,Actions Needed,Error Rate,Action Up Per Task on TV\n";

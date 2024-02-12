@@ -29,12 +29,13 @@ public class Block {
     public String selectedMovie = "";
     public Long startTime = 0L;
     public Long endTime = 0L;
-    public Long taskCompletionTime = 0L;
+    public Long blockCompletionTime = 0L;
     public int actionsPerBlock = 0;
     public int actionUpsPerBlock = 0;
     public int actionsNeeded = 0;
     public double errorRate = 0;
     public int index = 0; // zero-based
+    public int incorrectTitleCount = 0;
 
     private int[] randoms;
     public List<Task> tasks = new ArrayList<>();
@@ -104,7 +105,8 @@ public class Block {
             default:
                 for (int i = 0; i < SESSION_3_NUM_TASK; ++i) {
                     this.targetMovie = dataSet == 0 ? session3_tasks1[i]: session3_tasks2[i];
-                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, "Search " + (i + 1), targetMovie, movieLength);
+                    this.movieLength = MovieList.getMovie(context, this.targetMovie) != null ? MovieList.getMovie(context, this.targetMovie).getLength() : 0;
+                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, "Search " + (i + 1), this.targetMovie, movieLength);
                     tasks.add(task);
                 }
                 break;
@@ -137,12 +139,22 @@ public class Block {
     @NonNull
     @Override
     public String toString() {
-        for (Task task: tasks) {
-            actionsNeeded += task.actionsNeeded;
+        if (sid == 3) {
+            for (Task task: tasks) {
+                incorrectTitleCount += task.incorrectTitleCount;
+            }
+            errorRate = incorrectTitleCount != 0 ? 10.0 / incorrectTitleCount : 0;
+            blockCompletionTime = endTime - startTime;
+            return "" + pid + "," + method + "," + sid + "," + dataSet + "," + id + "," + blockCompletionTime + "," + startTime + "," + endTime + "," + actionsPerBlock + "," + errorRate + "\n";
+
+        } else {
+            for (Task task: tasks) {
+                actionsNeeded += task.actionsNeeded;
+            }
+            blockCompletionTime = endTime - startTime;
+            errorRate = actionsNeeded != 0 ? ((double) actionsPerBlock - (double) actionsNeeded) / actionsNeeded : 0;
+            return "" + pid + "," + method + "," + sid + "," + dataSet + "," + id + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + blockCompletionTime + "," + startTime + "," + endTime + "," + actionsPerBlock + "," + actionsNeeded + "," + errorRate + "," + actionUpsPerBlock + "\n";
         }
-        taskCompletionTime = endTime - startTime;
-        errorRate = actionsNeeded != 0 ? ((double) actionsPerBlock - (double) actionsNeeded) / actionsNeeded : 0;
-        return "" + pid + "," + method + "," + sid + "," + dataSet + "," + id + "," + targetMovie + "," + movieLength + "," + selectedMovie + "," + taskCompletionTime + "," + startTime + "," + endTime + "," + actionsPerBlock + "," + actionsNeeded + "," + errorRate + "," + actionUpsPerBlock + "\n";
     }
 
     private int calculateS1T1ActionsNeeded() {

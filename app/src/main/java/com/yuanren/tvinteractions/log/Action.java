@@ -22,7 +22,7 @@ public class Action {
         this.method = session.method;
         this.sid = session.id;
         this.bid = session.getCurrentBlock().id;
-        this.targetMovie = session.getCurrentBlock().targetMovie;
+        this.targetMovie = this.sid == 3 ? session.getCurrentBlock().getCurrentTask().targetMovie : session.getCurrentBlock().targetMovie;
         this.selectedMovie = selectedMovie;
 
         this.tid = session.getCurrentBlock().getCurrentTask().id;
@@ -38,8 +38,9 @@ public class Action {
         this.method = session.method;
         this.sid = session.id;
         this.bid = session.getCurrentBlock().id;
-        this.targetMovie = session.getCurrentBlock().targetMovie;
+        this.targetMovie = this.sid == 3 ? session.getCurrentBlock().getCurrentTask().targetMovie : session.getCurrentBlock().targetMovie;
         this.selectedMovie = selectedMovie;
+
         this.tid = session.getCurrentBlock().getCurrentTask().id;
         this.name = name;
         this.scope = scope;

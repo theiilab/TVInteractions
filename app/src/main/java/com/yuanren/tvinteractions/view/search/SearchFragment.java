@@ -16,11 +16,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,8 +30,9 @@ import com.yuanren.tvinteractions.base.OnKeyListener;
 import com.yuanren.tvinteractions.base.SocketUpdateCallback;
 import com.yuanren.tvinteractions.log.Action;
 import com.yuanren.tvinteractions.log.ActionType;
-import com.yuanren.tvinteractions.log.Metrics;
-import com.yuanren.tvinteractions.log.TaskType;
+import com.yuanren.tvinteractions.log.Block;
+import com.yuanren.tvinteractions.log.Session;
+import com.yuanren.tvinteractions.log.Task;
 import com.yuanren.tvinteractions.model.Movie;
 import com.yuanren.tvinteractions.model.MovieList;
 import com.yuanren.tvinteractions.network.SearchSocketService;
@@ -46,7 +44,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.EventListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,7 +71,9 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     /** -------- log -------- */
     private Context context;
     private TextView taskReminder;
-    private Metrics metrics;
+    private Session session;
+    private Block block;
+    private Task task;
     private boolean startFlag = false;
     private Long actionStartTime = 0L;
 
@@ -103,8 +102,10 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         /** ----- log ----- */
-        metrics = (Metrics) view.getContext().getApplicationContext();
         context = view.getContext().getApplicationContext();
+        session = (Session) view.getContext().getApplicationContext();
+        block = session.getCurrentBlock();
+        task = session.getCurrentBlock().getCurrentTask();
         /** --------------- */
         movies = setUpSearchDummyMovies();
         movies.addAll(MovieList.getRealList());
@@ -122,7 +123,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         inputField = view.findViewById(R.id.search_input);
         /** ----- log ----- */
         taskReminder = view.findViewById(R.id.task_reminder);
-        taskReminder.setText("Block 1: Search movie " + metrics.taskNum + " on the sheet");
+        taskReminder.setText("Block 1: Search movie " + task.id + " on the sheet");
         /** --------------- */
 
         /** ----- log ----- */
@@ -132,27 +133,28 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (!startFlag) {
                         startFlag = true;
-                        metrics.startTime = System.currentTimeMillis();
+                        block.startTime = System.currentTimeMillis();
+                        task.startTime = block.startTime;
                     }
                     actionStartTime = System.currentTimeMillis();
-                    metrics.actionsPerTask++;
+                    task.actionsPerTask++;
                 } else if (event.getAction() == KeyEvent.ACTION_UP) {
                     Action action = null;
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                     }
@@ -168,7 +170,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
                     if (!startFlag) {
                         startFlag = true;
-                        metrics.startTime = System.currentTimeMillis();
+                        block.startTime = System.currentTimeMillis();
+                        task.startTime = block.startTime;
                     }
                     actionStartTime = System.currentTimeMillis();
 
@@ -177,24 +180,24 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                         navigationMenuCallback.navMenuToggle(true);
                     }
                 } else if (keyEvent.getAction() == KeyEvent.ACTION_UP) {
-                    metrics.actionsPerTask++;
+                    task.actionsPerTask++;
 
                     Action action = null;
                     switch (i) {
                         case KeyEvent.KEYCODE_DPAD_LEFT:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_RIGHT:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_UP:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
                         case KeyEvent.KEYCODE_DPAD_DOWN:
-                            action = new Action(metrics, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                            action = new Action(session, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
 //                        case KeyEvent.KEYCODE_DPAD_CENTER:
@@ -259,7 +262,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         /** ----- log ----- */
         if (!startFlag) {
             startFlag = true;
-            metrics.startTime = System.currentTimeMillis();
+            block.startTime = System.currentTimeMillis();
+            task.startTime = block.startTime;
         }//        metrics.actionsPerTask++;  // already add 1 in the onKeyListener above
         /** --------------- */
 
@@ -267,7 +271,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             userInput.append(" ");
 
             /** ----- log ----- */
-            Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+            Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
             FileUtils.writeRaw(getContext(), action);
             /** ----- log ----- */
         } else if (v.getTag().toString().equals("DEL")) {
@@ -275,20 +279,20 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                 userInput.deleteCharAt(userInput.length() - 1);
 
                 /** ----- log ----- */
-                metrics.backspaceCount++;
+                task.backspaceCount++;
 
-                Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+                Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
             } else {
                 /** ----- log ----- */
-                metrics.actionsPerTask--;  // account for correction if user keep deleting on empty string
+                task.actionsPerTask--;  // account for correction if user keep deleting on empty string
                 /** --------------- */
             }
         } else {
             userInput.append(v.getTag().toString().toLowerCase());
 
             /** ----- log ----- */
-            Action action = new Action(metrics, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
+            Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
             FileUtils.writeRaw(getContext(), action);
             /** --------------- */
         }
@@ -297,11 +301,11 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     /** ----- log ----- */
     private List<Movie> setUpSearchDummyMovies() {
-        if (metrics.session == 3) {
+        if (session.id == 3) {
             int length;
-            if (metrics.block == 1) {
+            if (block.id == 1) {
                 length = 50;
-            } else if (metrics.block == 2) {
+            } else if (block.id == 2) {
                 length = 100;
             } else {
                 length = 250;
@@ -321,20 +325,20 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
     public boolean onItemClick(View v, int keyCode, KeyEvent event, int position, Movie movie) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             actionStartTime = System.currentTimeMillis();
-            metrics.actionsPerTask++;
+            task.actionsPerTask++;
 
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
-                    metrics.totalCharacterEntered = userInput.length();
-                    Log.d(TAG, "totalCharacterEntered: " + metrics.totalCharacterEntered);
-                    Log.d(TAG, "Movie targeted: " + metrics.targetMovie);
+                    task.totalCharacterEntered = userInput.length();
+                    Log.d(TAG, "totalCharacterEntered: " + task.totalCharacterEntered);
+                    Log.d(TAG, "Movie targeted: " + task.targetMovie);
                     Log.d(TAG, "Movie selected: " + movie.getTitle());
-                    if (movie.getTitle().equals(metrics.targetMovie)) {
+                    if (movie.getTitle().equals(task.targetMovie)) {
                         setLogData(movie, position);
                         Log.d(TAG, "Log data set");
                     } else {
-                        metrics.incorrectTitleCount++;
+                        task.incorrectTitleCount++;
                     }
                     break;
             }
@@ -343,19 +347,19 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             switch (keyCode) {
                 case KeyEvent.KEYCODE_ENTER:
                 case KeyEvent.KEYCODE_DPAD_CENTER:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
+                    action = new Action(session, movie.getTitle(), ActionType.TYPE_ACTION_ENTER.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_LEFT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
+                    action = new Action(session, movie.getTitle(), ActionType.TYPE_ACTION_LEFT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
+                    action = new Action(session, movie.getTitle(), ActionType.TYPE_ACTION_RIGHT.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_UP:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
+                    action = new Action(session, movie.getTitle(), ActionType.TYPE_ACTION_UP.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
                 case KeyEvent.KEYCODE_DPAD_DOWN:
-                    action = new Action(metrics, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
+                    action = new Action(session, movie.getTitle(), ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                     break;
             }
             FileUtils.writeRaw(getContext(), action);
@@ -363,33 +367,44 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         return false;
     }
 
-    private void prepareNextTask() {
-        if (metrics.block == metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
+    private void setLogData(Movie movie, int position) {
+        task.selectedMovie = movie.getTitle();
+        task.endTime = System.currentTimeMillis();
+        task.positionOnSelect = position;
+        block.actionsPerBlock += task.actionsPerTask;
+        FileUtils.write(context, task);
+
+        // advance to the next
+        if (block.id == session.SESSION_3_NUM_BLOCK && task.id == block.SESSION_3_NUM_TASK) {
+            block.endTime = task.endTime;
+            FileUtils.write(context, block);
+
+            // update reminder
             taskReminder.setText("Session 3 Accomplished");
-        } else if (metrics.block < metrics.SESSION_3_NUM_BLOCK && metrics.taskNum == metrics.SESSION_3_NUM_TASK) {
-            metrics.nextBlock();
+        } else if (block.id < session.SESSION_3_NUM_BLOCK && task.id == block.SESSION_3_NUM_TASK) {
+            block.endTime = task.endTime;
+            FileUtils.write(context, block);
+
+            // next block
+            block = session.nextBlock();
+            task = block.getCurrentTask();
             movies = setUpSearchDummyMovies();
             movies.addAll(MovieList.getRealList());
             inputField.setText("");
 
-            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
+            // update reminder
+            taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
+            block.startTime = System.currentTimeMillis();
+            task.startTime = block.startTime;;
         } else {
+            // next task
             inputField.setText("");
-            metrics.nextTask();
+            task = block.nextTask();
+            task.startTime = System.currentTimeMillis();
 
-            taskReminder.setText("Block " + metrics.block + ": Search movie " + metrics.taskNum + " on the sheet");
+            // update reminder
+            taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
         }
-    }
-
-    private void setLogData(Movie movie, int position) {
-        metrics.selectedMovie = movie.getTitle();
-        metrics.endTime = System.currentTimeMillis();
-        metrics.positionOnSelect = position;
-        FileUtils.write(context, metrics);
-
-        // advance to the next task
-        prepareNextTask();
-        metrics.startTime = System.currentTimeMillis();
     }
 
     private List<Movie> getSearchResult(String searchName) {
@@ -447,7 +462,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             public void run() {
                 /** ----- log ----- */
 //                metrics.totalCharacterEntered = text.length();
-                Action action = new Action(metrics, "", text, TAG, System.currentTimeMillis(), System.currentTimeMillis());
+                Action action = new Action(session, "", text, TAG, System.currentTimeMillis(), System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
                 /** --------------- */
 
