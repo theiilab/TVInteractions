@@ -74,7 +74,7 @@ public class Block {
             "Crazy Rich Asians",
             "The Adam Project"};
 
-    public Block(Context context, int pid, int sid, String method, int dataSet, int bid, String targetMovie, int[] randoms) {
+    public Block(Context context, int pid, int sid, String method, int dataSet, int bid, String targetMovie) {
         this.context = context;
         this.pid = pid;
         this.sid = sid;
@@ -83,7 +83,6 @@ public class Block {
         this.id = bid;
         this.targetMovie = targetMovie;
         this.movieLength = MovieList.getMovie(context, targetMovie) != null ? MovieList.getMovie(context, targetMovie).getLength() : 0;
-        this.randoms = randoms;
 
         switch (sid) {
             case 1:
@@ -158,13 +157,15 @@ public class Block {
     }
 
     private int calculateS1T1ActionsNeeded() {
+        Movie movie = MovieList.getMovie(context, targetMovie);
         int count = 0;
-        int i = id - 1;
-        if (i == 0) { // 1st movie/block
-            count = randoms[i] + 1; // vertical navigation (0) + horizontal navigation + click
+        if (id == 1) { // 1st movie/block
+            count = movie.getCategoryIndex() + movie.getPosition() + 1; // vertical navigation + horizontal navigation + click
         } else {
-            int categoryDiff = 1;
-            int positionDiff = Math.abs(randoms[i] - randoms[i - 1]);
+            int prevId = (int) Math.max(0, movie.getRealId() - 2);
+            Movie prevMovie = MovieList.getPrevMovie(context, prevId);
+            int categoryDiff = Math.abs(movie.getCategoryIndex() - prevMovie.getCategoryIndex());
+            int positionDiff = Math.abs(movie.getPosition() - prevMovie.getPosition());
             count = categoryDiff + positionDiff + 1; // vertical difference + horizontal difference + click
         }
         return count;

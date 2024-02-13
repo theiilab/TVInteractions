@@ -82,6 +82,15 @@ public final class MovieList {
         return null;
     }
 
+    public static Movie getPrevMovie(Context ct, int id) {
+        context = ct;
+        if (list == null) {
+            Log.d(TAG, "Movie list is null, set it up again");
+            list = setUpMovies(randomPositions);
+        }
+        return realMovies.get(id);
+    }
+
     public static List<Movie> getList(Context ct) {
         context = ct;
         if (list == null) {
@@ -523,6 +532,7 @@ public final class MovieList {
             reals.add(
                     buildMovieInfo(
                             (long) index,
+                            (long) index,
                             title[index],
                             movieLength[index],
                             description,
@@ -539,6 +549,7 @@ public final class MovieList {
 
     private static Movie buildMovieInfo(
             Long id,
+            Long realId,
             String title,
             int length,
             String description,
@@ -552,6 +563,7 @@ public final class MovieList {
         Movie movie = new Movie();
 //        movie.setId(count++);
         movie.setId(id);
+        movie.setRealId(realId);
         movie.setTitle(title);
         movie.setLength(length);
         movie.setDescription(description);
@@ -2094,6 +2106,7 @@ public final class MovieList {
             dummies.add(
                     buildMovieInfo(
                             (long) index,
+                            (long) index,
                             title[index % n],
                             50,
                             description,
@@ -2184,6 +2197,7 @@ public final class MovieList {
         for (int i = 0; i < titles.length; ++i) {
             searchDummies.add(
                     buildMovieInfo(
+                            (long) -1,
                             (long) -1,
                             titles[i],
                             0,

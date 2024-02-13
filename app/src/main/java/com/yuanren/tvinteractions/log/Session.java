@@ -64,46 +64,20 @@ public class Session extends Application {
             "Lala Land",
             "The Da Vinci Code"};
 
-    private String[] session3_targetMovies = {
-            "The King's Man",
-            "Jumanji",
-            "The Devil Wears Prada",
-            "Venom",
-            "Harry Potter and the Prisoner of Azkaban",
-            "Insomnia",
-            "Mama Mia",
-            "Sherlock Holmes",
-            "Flipped",
-            "Inception"};
-
-    private String[] session3_targetMovies2 = {
-            "Red Notice",
-            "Uncharted",
-            "The Wolf of Wall Street",
-            "Iron man",
-            "Fantastic Beasts and Where to Find Them",
-            "Fall",
-            "Lala Land",
-            "The Da Vinci Code",
-            "Crazy Rich Asians",
-            "The Adam Project"};
-
-    public void init(int pid, int sid, String method, int dataSet, int[] randoms) {
+    public void init(int pid, int sid, String method, int dataSet) {
         this.pid = pid;
         this.id = sid;
         this.method = method;
         this.dataSet = dataSet;
-        this.randoms = randoms;
 
         generateBlocks(0);
     }
 
-    public void init(int pid, int sid, String method, int dataSet, int[] randoms, int block) {
+    public void init(int pid, int sid, String method, int dataSet, int block) {
         this.pid = pid;
         this.id = sid;
         this.method = method;
         this.dataSet = dataSet;
-        this.randoms = randoms;
 
         generateBlocks(block - 1);
     }
@@ -113,20 +87,20 @@ public class Session extends Application {
             case 1:
                 for (int i = index; i < session1_targetMovies.length; ++i) {
                     String targetMovie = dataSet == 0 ? session1_targetMovies[i] : session1_targetMovies2[i];
-                    Block block = new Block(this, pid, id, method, dataSet, i + 1, targetMovie, randoms);
+                    Block block = new Block(this, pid, id, method, dataSet, i + 1, targetMovie);
                     blocks.add(block);
                 }
                 break;
             case 2:
                 for (int i = index; i < session2_targetMovies.length; ++i) {
                     String targetMovie = dataSet == 0 ? session2_targetMovies[i] : session2_targetMovies2[i];
-                    Block block = new Block(this, pid, id, method, dataSet, i + 1, targetMovie, randoms);
+                    Block block = new Block(this, pid, id, method, dataSet, i + 1, targetMovie);
                     blocks.add(block);
                 }
                 break;
             default:
                 for (int i = 0; i < 3; ++i) {
-                    Block block = new Block(this, pid, id, method, dataSet, i + 1, "", randoms);
+                    Block block = new Block(this, pid, id, method, dataSet, i + 1, "");
                     blocks.add(block);
                 }
                 break;

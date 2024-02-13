@@ -141,9 +141,9 @@ public class LoginActivity extends AppCompatActivity {
                 Session session = (Session) getApplicationContext();
 
                 if (bid.equals("1")) {
-                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet), MovieList.randomPositions);
+                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet));
                 } else {
-                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet), MovieList.randomPositions, Integer.parseInt(bid));
+                    session.init(Integer.parseInt(pid), Integer.parseInt(sid), method, Integer.parseInt(dataSet), Integer.parseInt(bid));
                 }
                 /** --------------------- */
 
