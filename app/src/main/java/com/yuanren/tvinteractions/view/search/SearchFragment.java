@@ -427,11 +427,11 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             @Override
             public int compare(Map.Entry<Movie, Integer> o1, Map.Entry<Movie, Integer> o2) {
                 if (o1.getValue() < o2.getValue()) {
-                    return -1;
+                    return 1;
                 } else if (Objects.equals(o1.getValue(), o2.getValue())) {
                     return o2.getKey().getCategoryIndex() - o1.getKey().getCategoryIndex();
                 } else {
-                    return 1;
+                    return -1;
                 }
             }
         });
