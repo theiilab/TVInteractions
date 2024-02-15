@@ -108,7 +108,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         task = session.getCurrentBlock().getCurrentTask();
         /** --------------- */
         movies = setUpSearchDummyMovies();
-        movies.addAll(MovieList.getRealList());
+//        movies.addAll(MovieList.getRealList());
 
         // grid of movies
         recyclerView = view.findViewById(R.id.search_movies);
@@ -301,17 +301,17 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
     /** ----- log ----- */
     private List<Movie> setUpSearchDummyMovies() {
-        if (session.id == 3) {
-            int length;
-            if (block.id == 1) {
-                length = 50;
-            } else if (block.id == 2) {
-                length = 100;
-            } else {
-                length = 250;
-            }
-            return MovieList.setUpSearchDummyMovies(length);
-        }
+//        if (session.id == 3) {
+//            int length;
+//            if (block.id == 1) {
+//                length = 50;
+//            } else if (block.id == 2) {
+//                length = 100;
+//            } else {
+//                length = 250;
+//            }
+//            return MovieList.setUpSearchDummyMovies(length);
+//        }
         return MovieList.setUpSearchDummyMovies(-1); // set up movies as much as had
     }
 
@@ -389,7 +389,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             block = session.nextBlock();
             task = block.getCurrentTask();
             movies = setUpSearchDummyMovies();
-            movies.addAll(MovieList.getRealList());
+//            movies.addAll(MovieList.getRealList());
             inputField.setText("");
 
             // update reminder
