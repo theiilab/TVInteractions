@@ -241,7 +241,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             public void afterTextChanged(Editable editable) {
 //                Log.d(TAG, "Input text changed");
 
-                if (editable.toString().equals("")) {
+                if (editable.toString().trim().equals("")) {
                     adapter.update(movies);
                     userInput.setLength(0);
                 } else {
