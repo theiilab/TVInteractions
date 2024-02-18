@@ -157,6 +157,25 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                             action = new Action(session, "", ActionType.TYPE_ACTION_DOWN.name, TAG, actionStartTime, System.currentTimeMillis());
                             FileUtils.writeRaw(getContext(), action);
                             break;
+                        case KeyEvent.KEYCODE_0:
+                        case KeyEvent.KEYCODE_1:
+                        case KeyEvent.KEYCODE_2:
+                        case KeyEvent.KEYCODE_3:
+                        case KeyEvent.KEYCODE_4:
+                        case KeyEvent.KEYCODE_5:
+                        case KeyEvent.KEYCODE_6:
+                        case KeyEvent.KEYCODE_7:
+                        case KeyEvent.KEYCODE_8:
+                        case KeyEvent.KEYCODE_9:
+                            // accommodate for the losing command from smartwatch
+                            int taskIndex = keyCode - 7;
+                            if (taskIndex < block.getCurrentTask().id) {
+                                block = session.nextBlock();
+                            }
+                            block.setTaskIndex(taskIndex); // KEYCODE_0 = 7, KEYCODE_1 = 8 ...
+                            task = block.getCurrentTask();
+                            taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
+                            break;
                     }
                 }
                 return false;
@@ -202,6 +221,25 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                             break;
 //                        case KeyEvent.KEYCODE_DPAD_CENTER:
                         // ENTER is handled in onKeyClick()
+                        case KeyEvent.KEYCODE_0:
+                        case KeyEvent.KEYCODE_1:
+                        case KeyEvent.KEYCODE_2:
+                        case KeyEvent.KEYCODE_3:
+                        case KeyEvent.KEYCODE_4:
+                        case KeyEvent.KEYCODE_5:
+                        case KeyEvent.KEYCODE_6:
+                        case KeyEvent.KEYCODE_7:
+                        case KeyEvent.KEYCODE_8:
+                        case KeyEvent.KEYCODE_9:
+                            // accommodate for the losing command from smartwatch
+                            int taskIndex = i - 7;
+                            if (taskIndex < block.getCurrentTask().id) {
+                                block = session.nextBlock();
+                            }
+                            block.setTaskIndex(taskIndex); // KEYCODE_0 = 7, KEYCODE_1 = 8 ...
+                            task = block.getCurrentTask();
+                            taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
+                            break;
                     }
                 }
                 return false;

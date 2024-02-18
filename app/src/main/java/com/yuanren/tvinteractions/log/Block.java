@@ -179,6 +179,10 @@ public class Block {
         }
     }
 
+    public void setTaskIndex(int i) { // zero-based
+        index = i;
+    }
+
     public Task nextTask() {
         switch (sid) {
             case 1:
