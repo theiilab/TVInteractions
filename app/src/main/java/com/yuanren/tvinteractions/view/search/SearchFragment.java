@@ -271,6 +271,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             userInput.append(" ");
 
             /** ----- log ----- */
+            task.inputStream += " ";
             Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
             FileUtils.writeRaw(getContext(), action);
             /** ----- log ----- */
@@ -280,6 +281,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
 
                 /** ----- log ----- */
                 task.backspaceCount++;
+                task.inputStream += "<";
 
                 Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
                 FileUtils.writeRaw(getContext(), action);
@@ -292,6 +294,8 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
             userInput.append(v.getTag().toString().toLowerCase());
 
             /** ----- log ----- */
+            task.inputStream += v.getTag().toString().toLowerCase();
+
             Action action = new Action(session, "", v.getTag().toString(), TAG, actionStartTime, System.currentTimeMillis());
             FileUtils.writeRaw(getContext(), action);
             /** --------------- */
@@ -371,6 +375,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         task.selectedMovie = movie.getTitle();
         task.endTime = System.currentTimeMillis();
         task.positionOnSelect = position;
+        task.textEntered = inputField.getText().toString();
         block.actionsPerBlock += task.actionsPerTask;
         FileUtils.write(context, task);
 
