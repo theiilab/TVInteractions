@@ -62,11 +62,11 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
     private static final int VIDEO_TIME_DELTA = 5000; // 5s
 
     //Minimum Video you want to buffer while Playing (ms)
-    private static final int MIN_BUFFER_DURATION = 6000;
+    private static final int MIN_BUFFER_DURATION = 5000;
     //Max Video you want to buffer during PlayBack
-    private static final int MAX_BUFFER_DURATION = 9000;
+    private static final int MAX_BUFFER_DURATION = 6000;
     //Min Video you want to buffer before start Playing it
-    private static final int MIN_PLAYBACK_START_BUFFER = 6000;
+    private static final int MIN_PLAYBACK_START_BUFFER = 5000;
     //Min video You want to buffer when user resumes video
     private static final int MIN_PLAYBACK_RESUME_BUFFER = 0;
 
