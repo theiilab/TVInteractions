@@ -174,6 +174,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                             }
                             block.setTaskIndex(taskIndex); // KEYCODE_0 = 7, KEYCODE_1 = 8 ...
                             task = block.getCurrentTask();
+                            task.startTime = System.currentTimeMillis();
                             taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
                             break;
                     }
@@ -238,6 +239,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
                             }
                             block.setTaskIndex(taskIndex); // KEYCODE_0 = 7, KEYCODE_1 = 8 ...
                             task = block.getCurrentTask();
+                            task.startTime = System.currentTimeMillis();
                             taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
                             break;
                     }
