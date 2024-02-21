@@ -191,7 +191,7 @@ public class RowsOfMoviesFragment extends RowsSupportFragment {
 
     /** ----- log ----- */
     public void onResult(int requestCode, int resultCode, @Nullable Intent data) {
-        block.endTime = System.currentTimeMillis();
+        block.endTime = block.getCurrentTask().endTime;
         if (requestCode == REQUEST_CODE_DETAILS) {
             if (block.targetMovie.equals(block.selectedMovie)) {
                 FileUtils.write(getContext(), block);
