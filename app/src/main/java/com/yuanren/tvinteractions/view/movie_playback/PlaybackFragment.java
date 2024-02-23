@@ -487,8 +487,8 @@ public class PlaybackFragment extends Fragment {
                         }
                         /** --------------- */
                         break;
-                    case Player.STATE_ENDED:
-                        backBtn.requestFocus();
+//                    case Player.STATE_ENDED:
+//                        backBtn.requestFocus();
                     default:
                         Log.d(TAG, "default");
                         break;

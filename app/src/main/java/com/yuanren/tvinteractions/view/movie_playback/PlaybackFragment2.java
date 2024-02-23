@@ -397,8 +397,8 @@ public class PlaybackFragment2 extends Fragment implements OnKeyListener {
                     case Player.STATE_READY:
                         loadingBar.setVisibility(View.GONE);
                         break;
-                    case Player.STATE_ENDED:
-                        backBtn.requestFocus();
+//                    case Player.STATE_ENDED:
+//                        backBtn.requestFocus();
                     default:
                         Log.d(TAG, "default");
                         break;
