@@ -123,7 +123,7 @@ public class SearchFragment extends Fragment implements SocketUpdateCallback, On
         inputField = view.findViewById(R.id.search_input);
         /** ----- log ----- */
         taskReminder = view.findViewById(R.id.task_reminder);
-        taskReminder.setText("Block 1: Search movie " + task.id + " on the sheet");
+        taskReminder.setText("Block " + block.id + ": Search movie " + task.id + " on the sheet");
         /** --------------- */
 
         /** ----- log ----- */
