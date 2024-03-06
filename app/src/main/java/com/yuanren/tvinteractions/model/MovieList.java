@@ -78,7 +78,7 @@ public final class MovieList {
                 return movie;
             }
         }
-        Log.d(TAG, "No movie with this name is found");
+        Log.d(TAG, "No movie with name: " + name + " is found");
         return null;
     }
 
