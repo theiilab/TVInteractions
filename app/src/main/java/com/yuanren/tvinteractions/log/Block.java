@@ -52,7 +52,7 @@ public class Block {
     };
     private String[] session3_block1_1 = {
             "Dancer in the Dark",
-            "Facing the Giants ",
+            "Facing the Giants",
             "Key West",
             "Lady of the Manor",
             "Nancy",
@@ -208,22 +208,6 @@ public class Block {
         this.movieLength = MovieList.getMovie(context, targetMovie) != null ? MovieList.getMovie(context, targetMovie).getLength() : 0;
 
         switch (sid) {
-            case 1:
-                for (int i = 0; i < session1_tasks.length; ++i) {
-                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, session1_tasks[i], targetMovie, movieLength);
-                    if (i == 0) {
-                        task.actionsNeeded = calculateS1T1ActionsNeeded();
-                    }
-                    tasks.add(task);
-                }
-                break;
-            case 2:
-                for (int i = 0; i < SESSION_2_NUM_TASK; ++i) {
-                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, "Question " + (i + 1), targetMovie, movieLength);
-                    task.actionsNeeded = 3;
-                    tasks.add(task);
-                }
-                break;
             case 3:
                 if (id == 1) {
                     for (int i = 0; i < SESSION_3_NUM_TASK; ++i) {
@@ -269,7 +253,21 @@ public class Block {
                     }
                 }
                 break;
-            default:
+            case 2:
+                for (int i = 0; i < SESSION_2_NUM_TASK; ++i) {
+                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, "Question " + (i + 1), targetMovie, movieLength);
+                    task.actionsNeeded = 3;
+                    tasks.add(task);
+                }
+                break;
+            default: // session 1
+                for (int i = 0; i < session1_tasks.length; ++i) {
+                    Task task = new Task(pid, sid, method, dataSet, bid, i + 1, session1_tasks[i], targetMovie, movieLength);
+                    if (i == 0) {
+                        task.actionsNeeded = calculateS1T1ActionsNeeded();
+                    }
+                    tasks.add(task);
+                }
                 break;
         }
     }
@@ -280,14 +278,14 @@ public class Block {
 
     public Task nextTask() {
         switch (sid) {
-            case 1:
-                index = Math.min(index + 1, session1_tasks.length - 1);
+            case 3:
+                index = Math.min(index + 1, SESSION_3_NUM_TASK - 1);
                 break;
             case 2:
                 index = Math.min(index + 1, SESSION_2_NUM_TASK - 1);
                 break;
             default:
-                index = Math.min(index + 1, SESSION_3_NUM_TASK - 1);
+                index = Math.min(index + 1, session1_tasks.length - 1);
                 break;
         }
         return tasks.get(index);
